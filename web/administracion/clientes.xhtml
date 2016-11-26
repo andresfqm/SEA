@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8" />
+	<title>Administración de clientes | SEA</title>
+	<link rel="shortcut icon" href="/SEA/img/favicon.ico" />
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+	<link rel="stylesheet" href="/SEA/css/material-icons.css" />
+	<link rel="stylesheet" href="/SEA/css/material.min.css" />
+	<link rel="stylesheet" href="/SEA/css/mdl-selectfield.min.css" />
+	<link rel="stylesheet" href="/SEA/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="/SEA/css/maquetacionBasica.css" />
+	<link rel="stylesheet" href="/SEA/css/administracion.css" />
+	<script src="/auth/SEA/js/checkBrowser.js"></script>
+	<script src="/SEA/js/material.min.js"></script>
+	<script src="/SEA/js/mdl-selectfield.min.js"></script>
+	<script src="/SEA/js/breadcrumbs.js"></script>
+	<script src="/SEA/js/taksTabs.js"></script>
+	<script src="/SEA/js/scrollup.js"></script>
+	<script src="/SEA/js/toggleforms.js"></script>
+	<script src="/SEA/js/administracion.js"></script>
+</head>
+<body>
+	<header class="mdl-layout__header is-casting-shadow mdl-layout__header-row">
+		<a class="fa fa-bars mostrarNavbars" data-target="body > nav" aria-hidden="true" href="#"></a>
+		<nav id="navBreadcrumbs">
+			<ul id="breadcrumbs"></ul>
+		</nav>
+		<a class="fa fa-tasks mdl-badge mostrarNavbars" data-badge="4" data-target="#taskList" aria-hidden="true" href="#"></a>
+	</header>
+	<main id="clientesDashboard">
+		<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+			<thead>
+				<tr>
+					<th>No. Documento</th>
+					<th>Nombre/Razón social</th>
+					<th>Dirección</th>
+					<th>Teléfono</th>
+					<th>Correo electrónico</th>
+					<th>Contacto</th>
+					<th>Asesor</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="mdl-data-table__cell--non-numeric">NIT 123456789-6</td>
+					<td class="mdl-data-table__cell--non-numeric">RECEPCION DYM</td>
+					<td class="mdl-data-table__cell--non-numeric">CLL 2 72 B 45</td>
+					<td class="mdl-data-table__cell--non-numeric">4501307</td>
+					<td class="mdl-data-table__cell--non-numeric">recepcion@comercializadoradym.com</td>
+					<td class="mdl-data-table__cell--non-numeric">JESSICA ALEXANDRA SOLER</td>
+					<td class="mdl-data-table__cell--non-numeric">YEIMITH</td>
+				</tr>
+			</tbody>
+		</table>
+		<a href="#addCliente" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
+			<i class="material-icons">person_add</i>
+		</a>
+	</main>
+	<aside id="subForm">
+		<form action="#" method="get" id="addCliente" class="mdl-dialog">
+			<h3 class="mdl-dialog__title">Registrar cliente</h3>
+			<div class="mdl-dialog__content">
+				<div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label fullWidth">
+					<select class="mdl-selectfield__select" id="tipoDocumento" required="required">
+						<option value=""></option>
+						<option value="1">Cédula de ciudadanía</option>
+						<option value="2">Cédula extrajera</option>
+						<option value="3">Número de identificación tributaria</option>
+						<option value="4">Número único de identificación personal</option>
+					</select>
+					<label class="mdl-selectfield__label" for="tipoDocumento">Tipo de documento</label>
+				</div>
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="number" min="1" maxlength="32" step="1" required.id="NoDocumento"/>
+					<label class="mdl-textfield__label" for="NoDocumento">Número de documento</label>
+				</div>
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="text" disabled="disabled" id="DV" value=" ">
+					<label class="mdl-textfield__label" for="DV">Dígito de verificación</label>
+				</div>
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
+					<input class="mdl-textfield__input" type="text" maxlength="256" required.id="razonSocial"/>
+					<label class="mdl-textfield__label" for="razonSocial">Razón social</label>
+				</div>
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="text" maxlength="256" required.id="nombre"/>
+					<label class="mdl-textfield__label" for="nombre">Nombre</label>
+				</div>
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="text" maxlength="256" required.id="apellido"/>
+					<label class="mdl-textfield__label" for="apellido">Apellido</label>
+				</div>
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="tel" maxlength="64" required.id="telCorporativo"/>
+					<label class="mdl-textfield__label" for="telCorporativo">Teléfono corporativo</label>
+				</div>
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="tel" maxlength="64" required.id="telCartera"/>
+					<label class="mdl-textfield__label" for="telCartera">Teléfono de cartera</label>
+				</div>
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
+					<input class="mdl-textfield__input" type="email" maxlength="64" required.id="email"/>
+					<label class="mdl-textfield__label" for="email">Correo electrónico</label>
+				</div>
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
+					<input class="mdl-textfield__input" type="text" maxlength="128" required.id="direccion"/>
+					<label class="mdl-textfield__label" for="direccion">Dirección fiscal</label>
+				</div>
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="text" maxlength="45" required.id="departamento"/>
+					<label class="mdl-textfield__label" for="departamento">Departamento</label>
+				</div>
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="text" maxlength="45" required.id="ciudad"/>
+					<label class="mdl-textfield__label" for="ciudad">Ciudad</label>
+				</div>
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
+					<input class="mdl-textfield__input" type="text" maxlength="128" required.id="personaContacto"/>
+					<label class="mdl-textfield__label" for="personaContacto">Persona de contacto</label>
+				</div>
+				<div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label fullWidth">
+					<select class="mdl-selectfield__select" id="asesor" required="required">
+						<option value=""></option>
+						<option value="1">Asdrubal</option>
+						<option value="2">Carolina</option>
+						<option value="3">Yeimith</option>
+						<option value="4">Ángel</option>
+					</select>
+					<label class="mdl-selectfield__label" for="asesor">Asesor asignado</label>
+				</div>
+				<div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label fullWidth">
+					<select class="mdl-selectfield__select" id="origen" required="required">
+						<option value=""></option>
+						<option value="1">SITIO WEB</option>
+						<option value="2">PAGINAS AMARILLAS</option>
+						<option value="3">DIRECTORIO TEXTIL</option>
+						<option value="4">REVISTA FIERROS</option>
+						<option value="5">ABC PUBLICITARIO</option>
+						<option value="6">GOOGLE</option>
+						<option value="7">REFERIDO</option>
+						<option value="8">BASE DE DATOS FD</option>
+						<option value="9">BD PROPIA (P AMARILLAS)</option>
+						<option value="10">BD PROPIA (ABC PUBLICITARIO)</option>
+						<option value="11">PROVEEDOR.COM.CO</option>
+						<option value="12">SHOWROOM</option>
+						<option value="13">VISITA</option>
+						<option value="14">LLAMADA</option>
+					</select>
+					<label class="mdl-selectfield__label" for="origen">Origen</label>
+				</div>
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
+					<textarea class="mdl-textfield__input" type="text" maxlength="256" id="cambioAsesor" ></textarea>
+					<label class="mdl-textfield__label" for="cambioAsesor">Comentarios por cambio de asesor</label>
+				</div>
+			</div>
+			<div class="mdl-dialog__actions">
+				<button id="mostrarClienteNuevo" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" type="submit">Crear cliente</button>
+				<button type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm">Cancelar</button>
+			</div>
+		</form>
+	</aside>
+	<aside>
+		<div id="clienteNuevo" class="mdl-js-snackbar mdl-snackbar">
+			<div class="mdl-snackbar__text"></div>
+			<button class="mdl-snackbar__action" type="button"></button>
+		</div>
+		<script>
+			(function() {
+				'use strict';
+				window['counter'] = 0;
+				var snackbarContainer = document.querySelector('#clienteNuevo');
+				var showToastButton = document.querySelector('#mostrarClienteNuevo');
+				showToastButton.addEventListener('click', function() {
+					'use strict';
+					var data = {message: 'Cliente creado satisfactoriamente.',timeout: 5000};
+					snackbarContainer.MaterialSnackbar.showSnackbar(data);
+				});
+			}());
+		</script>
+	</aside>
+	<nav class="fixed-nav">
+		<div id="logo"></div>
+		<div id="user">
+			<div id="userName">Depurador</div>
+			<div id="userPosition">
+				<span>Administrador</span>
+				<button id="userActions" class="mdl-button mdl-js-button mdl-button--icon">
+					<i class="material-icons">arrow_drop_down</i>
+				</button>
+			</div>
+			<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="userActions">
+				<li class="mdl-menu__item"><a href="/administracion/configuracion.html">Configuración</a></li>
+				<li class="mdl-menu__item"><a href="/usuariosdeventas/">Ventas</a></li>
+				<li class="mdl-menu__item"><a href="/jefedeproduccion/">Producción</a></li>
+				<li class="mdl-menu__item"><a href="/usuariosadministrativos/">Administrativos</a></li>
+				<li class="mdl-menu__item"><a href="/auth/">Cerrar sesión</a></li>
+			</ul>
+		</div>
+		<ul>
+			<li><a href="/" class="fa fa-home" aria-hidden="true">Inicio</a></li>
+			<li><a href="/cotizaciones" class="fa fa-shopping-cart" aria-hidden="true">Cotizaciones</a></li>
+			<li><a href="/produccion" class="fa fa-wpforms" aria-hidden="true">Producción</a></li>
+			<li><a href="/reportes" class="fa fa-area-chart" aria-hidden="true">Reportes</a></li>
+			<li><a href="/administracion" class="fa fa-cog" aria-hidden="true">Administración</a></li>
+			<li><a href="/calendario" class="fa fa-calendar" aria-hidden="true">Calendario</a></li>
+			<li><a href="/documentacion" class="fa fa-info" aria-hidden="true">Ayuda</a></li>
+			<li><a href="/500.html" class="fa fa-bug" aria-hidden="true">Reportar un error</a></li>
+			<li><a href="/sustentacion" class="fa logoSena" aria-hidden="true">Sustentación</a></li>
+			<li><a href="https://github.com/Darhakexge/Interfaces-internas/issues/" target="_blank" class="fa fa-github" aria-hidden="true">Github issues</a></li>
+		</ul>
+	</nav>
+	<aside id="taskList" class="fixed-nav" data-active="false">
+		<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+			<div class="mdl-tabs__tab-bar">
+				<a href="#taskEventos" class="mdl-tabs__tab is-active">Eventos</a>
+				<a href="#taskNotificaciones" class="mdl-tabs__tab">Notificaciones</a>
+				<a href="#taskTareas" class="mdl-tabs__tab">Tareas</a>
+			</div>
+			<div class="mdl-tabs__panel is-active" id="taskEventos"></div>
+			<div class="mdl-tabs__panel" id="taskNotificaciones"></div>
+			<div class="mdl-tabs__panel" id="taskTareas"></div>
+		</div>
+	</aside>
+	<div id="ofuscador"></div>
+</body>
+</html>
