@@ -1,12 +1,114 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE html>
+<html lang="es"
+      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
-    </h:body>
+<head>
+	<meta charset="UTF-8" />
+	<title>Inicio | SEA</title>
+	<link rel="shortcut icon" href="/SEA/img/favicon.ico" />
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+	<link rel="stylesheet" href="/SEA/css/material.min.css" />
+	<link rel="stylesheet" href="/SEA/css/material-icons.css" />
+	<link rel="stylesheet" href="/SEA/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="/SEA/css/maquetacionBasica.css" />
+	<link rel="stylesheet" href="/SEA/css/index.css" />
+	<script src="/auth/js/checkBrowser.js"></script>
+	<script src="/SEA/js/material.min.js"></script>
+	<script src="/SEA/js/breadcrumbs.js"></script>
+	<script src="/SEA/js/taksTabs.js"></script>
+	<script src="/SEA/js/scrollup.js"></script>
+</head>
+<body>
+	<header class="mdl-layout__header is-casting-shadow mdl-layout__header-row">
+		<a class="fa fa-bars mostrarNavbars" data-target="body > nav" aria-hidden="true" href="#"></a>
+		<nav id="navBreadcrumbs">
+			<ul id="breadcrumbs"></ul>
+		</nav>
+		<a class="fa fa-tasks mdl-badge mostrarNavbars" data-badge="4" data-target="#taskList" aria-hidden="true" href="#"></a>
+	</header>
+	<main>
+		<section id="estadisticas">
+			<a href="#" class="contenedorStat azul">
+				<span class="tipoStat">
+					<span class="fa fa-shopping-cart"></span>
+				</span>
+				<span class="detalleStat">
+					<div class="numero">200</div>
+					<div class="descripcion">Cotizaciones enviadas</div>
+				</span>
+			</a>
+			<a href="#" class="contenedorStat verde">
+				<span class="tipoStat">
+					<span class="fa fa-usd"></span>
+				</span>
+				<span class="detalleStat">
+					<div class="numero">200</div>
+					<div class="descripcion">Cierres efectivos</div>
+				</span>
+			</a>
+			<a href="#" class="contenedorStat morado">
+				<span class="tipoStat">
+					<span class="fa fa-users"></span>
+				</span>
+				<span class="detalleStat">
+					<div class="numero">200</div>
+					<div class="descripcion">Clientes nuevos</div>
+				</span>
+			</a>
+			<a href="#" class="contenedorStat rojo">
+				<span class="tipoStat">
+					<span class="fa fa-line-chart"></span>
+				</span>
+				<span class="detalleStat">
+					<div class="numero">200</div>
+					<div class="descripcion">Solicitudes de devoluciones</div>
+				</span>
+			</a>
+		</section>
+	</main>
+	<nav class="fixed-nav">
+		<div id="logo"></div>
+		<div id="user">
+			<div id="userName">Depurador</div>
+			<div id="userPosition">
+				<span>Administrador</span>
+				<button id="userActions" class="mdl-button mdl-js-button mdl-button--icon">
+					<i class="material-icons">arrow_drop_down</i>
+				</button>
+			</div>
+			<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="userActions">
+				<li class="mdl-menu__item"><a href="/administracion/configuracion.html">Configuración</a></li>
+				<li class="mdl-menu__item"><a href="/usuariosdeventas/">Ventas</a></li>
+				<li class="mdl-menu__item"><a href="/jefedeproduccion/">Producción</a></li>
+				<li class="mdl-menu__item"><a href="/usuariosadministrativos/">Administrativos</a></li>
+				<li class="mdl-menu__item"><a href="/auth/">Cerrar sesión</a></li>
+			</ul>
+		</div>
+		<ul>
+			<li><a href="/" class="fa fa-home" aria-hidden="true">Inicio</a></li>
+			<li><a href="/cotizaciones" class="fa fa-shopping-cart" aria-hidden="true">Cotizaciones</a></li>
+			<li><a href="/produccion" class="fa fa-wpforms" aria-hidden="true">Producción</a></li>
+			<li><a href="/reportes" class="fa fa-area-chart" aria-hidden="true">Reportes</a></li>
+			<li><a href="/administracion" class="fa fa-cog" aria-hidden="true">Administración</a></li>
+			<li><a href="/calendario" class="fa fa-calendar" aria-hidden="true">Calendario</a></li>
+			<li><a href="/documentacion" class="fa fa-info" aria-hidden="true">Ayuda</a></li>
+			<li><a href="/500.html" class="fa fa-bug" aria-hidden="true">Reportar un error</a></li>
+			<li><a href="/sustentacion" class="fa logoSena" aria-hidden="true">Sustentación</a></li>
+			<li><a href="https://github.com/Darhakexge/Interfaces-internas/issues/" target="_blank" class="fa fa-github" aria-hidden="true">Github issues</a></li>
+		</ul>
+	</nav>
+	<aside id="taskList" class="fixed-nav" data-active="false">
+		<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+			<div class="mdl-tabs__tab-bar">
+				<a href="#taskEventos" class="mdl-tabs__tab is-active">Eventos</a>
+				<a href="#taskNotificaciones" class="mdl-tabs__tab">Notificaciones</a>
+				<a href="#taskTareas" class="mdl-tabs__tab">Tareas</a>
+			</div>
+			<div class="mdl-tabs__panel is-active" id="taskEventos"></div>
+			<div class="mdl-tabs__panel" id="taskNotificaciones"></div>
+			<div class="mdl-tabs__panel" id="taskTareas"></div>
+		</div>
+	</aside>
+	<div id="ofuscador"></div>
+</body>
 </html>
-
