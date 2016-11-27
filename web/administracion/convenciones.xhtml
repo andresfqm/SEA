@@ -739,12 +739,12 @@
 			<h3 class="mdl-dialog__title">Registrar categoría</h3>
 			<div class="mdl-dialog__content">
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" type="text" maxlength="32" required.id="nombreCategoria"/>
+                                    <input class="mdl-textfield__input" type="text" maxlength="32" required.id="nombreCategoria" value="#{categoriaController.categoria.nombre}" />
 					<label class="mdl-textfield__label" for="nombreCategoria">Nombre</label>
 				</div>
 			</div>
 			<div class="mdl-dialog__actions">
-				<button id="mostrarCategoriaCreada" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" type="submit">Crear categoría</button>
+                            <button id="mostrarCategoriaCreada" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" type="submit" actionListener="#{categoriaController.registrar()}">Crear categoría</button>
 				<button type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm">Cancelar</button>
 			</div>
 		</form>
