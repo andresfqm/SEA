@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<head>
+	<meta charset="UTF-8" />
+	<title>Orígenes de los clientes | SEA</title>
+	<link rel="shortcut icon" href="/SEA/img/favicon.ico" />
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+	<link rel="stylesheet" href="/SEA/css/material.min.css" />
+	<link rel="stylesheet" href="/SEA/css/material-icons.css" />
+	<link rel="stylesheet" href="/SEA/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="/SEA/css/maquetacionBasica.css" />
+	<link rel="stylesheet" href="/SEA/css/administracion.css" />
+	<script src="/SEA/auth/js/checkBrowser.js"></script>
+	<script src="/SEA/js/material.min.js"></script>
+	<script src="/SEA/js/breadcrumbs.js"></script>
+	<script src="/SEA/js/taksTabs.js"></script>
+	<script src="/SEA/js/scrollup.js"></script>
+	<script src="/SEA/js/toggleforms.js"></script>
+</head>
+<body>
+	<header class="mdl-layout__header is-casting-shadow mdl-layout__header-row">
+		<a class="fa fa-bars mostrarNavbars" data-target="body > nav" aria-hidden="true" href="#"></a>
+		<nav id="navBreadcrumbs">
+			<ul id="breadcrumbs"></ul>
+		</nav>
+		<a class="fa fa-tasks mdl-badge mostrarNavbars" data-badge="4" data-target="#taskList" aria-hidden="true" href="#"></a>
+	</header>
+	<main>
+		<section id="origenes">
+			<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+				<thead>
+					<tr>
+						<th class="mdl-data-table__cell--non-numeric">Nombre</th>
+						<th class="mdl-data-table__cell--non-numeric">Descripción del orígen</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="mdl-data-table__cell--non-numeric">SITIO WEB</td>
+						<td class="mdl-data-table__cell--non-numeric">Cliente entrontrado mediante un sitio web</td>
+					</tr>
+					<tr>
+						<td class="mdl-data-table__cell--non-numeric">PAGINAS AMARILLAS</td>
+						<td class="mdl-data-table__cell--non-numeric">Cliente encontrado en páginas amarillas</td>
+					</tr>
+					<tr>
+						<td class="mdl-data-table__cell--non-numeric">DIRECTORIO TEXTIL</td>
+						<td class="mdl-data-table__cell--non-numeric">Descripción del orígen</td>
+					</tr>
+					<tr>
+						<td class="mdl-data-table__cell--non-numeric">REVISTA FIERROS</td>
+						<td class="mdl-data-table__cell--non-numeric">Descripción del orígen</td>
+					</tr>
+					<tr>
+						<td class="mdl-data-table__cell--non-numeric">ABC PUBLICITARIO</td>
+						<td class="mdl-data-table__cell--non-numeric">Descripción del orígen</td>
+					</tr>
+					<tr>
+						<td class="mdl-data-table__cell--non-numeric">GOOGLE</td>
+						<td class="mdl-data-table__cell--non-numeric">Cliente encontrado en una página de inernet</td>
+					</tr>
+					<tr>
+						<td class="mdl-data-table__cell--non-numeric">REFERIDO</td>
+						<td class="mdl-data-table__cell--non-numeric">Cliente recomendado por un tercero</td>
+					</tr>
+					<tr>
+						<td class="mdl-data-table__cell--non-numeric">BASE DE DATOS FD</td>
+						<td class="mdl-data-table__cell--non-numeric">Cliente registrado en la base de datos de Full Dotaciones</td>
+					</tr>
+					<tr>
+						<td class="mdl-data-table__cell--non-numeric">BD PROPIA (P AMARILLAS)</td>
+						<td class="mdl-data-table__cell--non-numeric">Descripción del orígen</td>
+					</tr>
+					<tr>
+						<td class="mdl-data-table__cell--non-numeric">BD PROPIA (ABC PUBLICITARIO)</td>
+						<td class="mdl-data-table__cell--non-numeric">Descripción del orígen</td>
+					</tr>
+					<tr>
+						<td class="mdl-data-table__cell--non-numeric">PROVEEDOR.COM.CO</td>
+						<td class="mdl-data-table__cell--non-numeric">Descripción del orígen</td>
+					</tr>
+					<tr>
+						<td class="mdl-data-table__cell--non-numeric">SHOWROOM</td>
+						<td class="mdl-data-table__cell--non-numeric">Cliente que contactó directamente con Full Dotaciones</td>
+					</tr>
+					<tr>
+						<td class="mdl-data-table__cell--non-numeric">VISITA</td>
+						<td class="mdl-data-table__cell--non-numeric">Descripción del orígen</td>
+					</tr>
+					<tr>
+						<td class="mdl-data-table__cell--non-numeric">LLAMADA</td>
+						<td class="mdl-data-table__cell--non-numeric">Descripción del orígen</td>
+					</tr>
+				</tbody>
+			</table>
+			<a href="#addOrigen" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
+				<i class="material-icons">add</i>
+			</a>
+		</section>
+		<aside id="subForm">
+                    <h:form id="addOrigen" class="mdl-dialog">
+				<h3 class="mdl-dialog__title">Registrar origen</h3>
+				<h:panelGroup layout="block" class="mdl-dialog__content">
+					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <h:inputText class="mdl-textfield__input" id="nombreOrigen" maxlength="45" required="true" value="#{origenController.origen.nombre}" />
+                                            <h:outputLabel class="mdl-textfield__label" for="nombreOrigen">Nombre del origen</h:outputLabel>
+                                        </h:panelGroup>
+					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <h:inputTextarea class="mdl-textfield__input" id="descripcionOrigen" maxlength="45" required="true" value="#{origenController.origen.descripcion}" />
+						<h:outputLabel class="mdl-textfield__label" for="descripcionOrigen">Descripción del origen</h:outputLabel>
+                                        </h:panelGroup>
+                                </h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-dialog__actions">
+                                    <h:commandButton id="mostrarOrigenNuevo" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" type="submit" actionListener="#{origenController.registrar()}" value="Crear origen" />
+                                    <button type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm">Cancelar</button>
+                                </h:panelGroup>
+			</h:form>
+		</aside>
+	</main>
+	<aside>
+		<h:panelGroup layout="block" id="origenNuevo" class="mdl-js-snackbar mdl-snackbar">
+                    <h:panelGroup layout="block" class="mdl-snackbar__text"></h:panelGroup>
+			<button class="mdl-snackbar__action" type="button"></button>
+                        </h:panelGroup>
+		<script>
+			(function() {
+				'use strict';
+				window['counter'] = 0;
+				var snackbarContainer = document.querySelector('#origenNuevo');
+				var showToastButton = document.querySelector('#mostrarOrigenNuevo');
+				showToastButton.addEventListener('click', function() {
+					'use strict';
+					var data = {message: 'Origen creado satisfactoriamente.',timeout: 5000};
+					snackbarContainer.MaterialSnackbar.showSnackbar(data);
+				});
+			}());
+		</script>
+	</aside>
+	<nav class="fixed-nav">
+		<div id="logo"></div>
+		<div id="user">
+			<div id="userName">Depurador</div>
+			<div id="userPosition">
+				<span>Administrador</span>
+				<button id="userActions" class="mdl-button mdl-js-button mdl-button--icon">
+					<i class="material-icons">arrow_drop_down</i>
+				</button>
+			</div>
+			<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="userActions">
+				<li class="mdl-menu__item"><a href="/administracion/configuracion.html">Configuración</a></li>
+				<li class="mdl-menu__item"><a href="/auth/">Cerrar sesión</a></li>
+			</ul>
+		</div>
+		<ul>
+			<li><a href="/" class="fa fa-home" aria-hidden="true">Inicio</a></li>
+			<li><a href="/cotizaciones" class="fa fa-shopping-cart" aria-hidden="true">Cotizaciones</a></li>
+			<li><a href="/produccion" class="fa fa-wpforms" aria-hidden="true">Producción</a></li>
+			<li><a href="/reportes" class="fa fa-area-chart" aria-hidden="true">Reportes</a></li>
+			<li><a href="/administracion" class="fa fa-cog" aria-hidden="true">Administración</a></li>
+			<li><a href="/calendario" class="fa fa-calendar" aria-hidden="true">Calendario</a></li>
+			<li><a href="https://github.com/Darhakexge/Interfaces-internas/issues/" class="fa fa-bug" aria-hidden="true">Reportar un error</a></li>
+			<li><a href="/sustentacion" class="fa logoSena" aria-hidden="true">Sustentación</a></li>
+		</ul>
+	</nav>
+	<aside id="taskList" class="fixed-nav" data-active="false">
+		<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+			<div class="mdl-tabs__tab-bar">
+				<a href="#taskEventos" class="mdl-tabs__tab is-active">Eventos</a>
+				<a href="#taskNotificaciones" class="mdl-tabs__tab">Notificaciones</a>
+				<a href="#taskTareas" class="mdl-tabs__tab">Tareas</a>
+			</div>
+			<div class="mdl-tabs__panel is-active" id="taskEventos"></div>
+			<div class="mdl-tabs__panel" id="taskNotificaciones"></div>
+			<div class="mdl-tabs__panel" id="taskTareas"></div>
+		</div>
+	</aside>
+	<div id="ofuscador"></div>
+</body>
+</html>
