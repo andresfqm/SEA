@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<head>
+	<meta charset="UTF-8" />
+	<title>Generar orden de producción | SEA</title>
+	<link rel="shortcut icon" href="/img/favicon.ico" />
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+	<link rel="stylesheet" href="/css/material.min.css" />
+	<link rel="stylesheet" href="/css/material-icons.css" />
+	<link rel="stylesheet" href="/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="/css/maquetacionBasica.css" />
+	<link rel="stylesheet" href="/css/cotizaciones.css" />
+	<script src="/auth/js/checkBrowser.js"></script>
+	<script src="/js/material.min.js"></script>
+	<script src="/js/breadcrumbs.js"></script>
+	<script src="/js/taksTabs.js"></script>
+	<script src="/js/scrollup.js"></script>
+</head>
+<body>
+	<header class="mdl-layout__header is-casting-shadow mdl-layout__header-row">
+		<a class="fa fa-bars mostrarNavbars" data-target="body > nav" aria-hidden="true" href="#"></a>
+		<nav id="navBreadcrumbs">
+			<ul id="breadcrumbs"></ul>
+		</nav>
+		<a class="fa fa-tasks mdl-badge mostrarNavbars" data-badge="4" data-target="#taskList" aria-hidden="true" href="#"></a>
+	</header>
+	<main>
+		<form action="./" method="get" class="stepForm ordenProduccion">
+			<section class="step">
+				<h3 class="mdl-typography--headline">Datos de la orden</h3>
+				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputText class="mdl-textfield__input" id="numeroDevolucion" value="0000" disabled="disabled" />
+					<h:outputLabel class="mdl-textfield__label" for="numeroDevolucion">Devolución No.</h:outputLabel>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputText class="mdl-textfield__input" id="numeroOP" value="0000" disabled="disabled" />
+					<h:outputLabel class="mdl-textfield__label" for="numeroOP">Orden de producción No.</h:outputLabel>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputText class="mdl-textfield__input" p:maxlength="32" id="ciudadEmision" value="Bogotá D.C." required="required" />
+					<h:outputLabel class="mdl-textfield__label" for="ciudadEmision">Ciudad de emisión</h:outputLabel>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputText class="mdl-textfield__input" id="fechaEmision" value="15/05/2016" disabled="disabled" />
+					<h:outputLabel class="mdl-textfield__label" for="fechaEmision">Fecha de emisión</h:outputLabel>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputText class="mdl-textfield__input" id="cliente" value="DIMAI DOTACIONES" disabled="disabled" />
+					<h:outputLabel class="mdl-textfield__label" for="cliente">Empresa</h:outputLabel>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputText class="mdl-textfield__input" p:type="email" id="e-mail" value="info@dotacionesindustriales.net" disabled="disabled" />
+					<h:outputLabel class="mdl-textfield__label" for="e-mail1">e-mail</h:outputLabel>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputText class="mdl-textfield__input" id="direccionCliente" value="CR 999 Ñ bis Ñ norte No. 999 Ñ bis Ñ - 999 sur edificio 999 apartamento 999" disabled="disabled" />
+					<h:outputLabel class="mdl-textfield__label" for="direccionCliente">Dirección</h:outputLabel>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputText class="mdl-textfield__input" id="asesor" value="Ángel Torres" disabled="disabled" />
+					<h:outputLabel class="mdl-textfield__label" for="asesor">Asesor</h:outputLabel>
+				</h:panelGroup>
+			</section>
+			<section class="step">
+				<h3 class="mdl-typography--headline">Artículos a solicitar</h3>
+				<h5 class="mdl-typography--title fullWidth">Prenda 1</h5>
+				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputTextarea class="mdl-textfield__input" disabled>C001L</textarea>
+					<h:outputLabel class="mdl-textfield__label" for="referencia">Referencia</h:outputLabel>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputTextarea class="mdl-textfield__input" disabled>Camisa formal cierre botones manga larga para dama y caballero</textarea>
+					<h:outputLabel class="mdl-textfield__label" for="descripción">Descripción</h:outputLabel>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputTextarea class="mdl-textfield__input" disabled>LINO FLEX</textarea>
+					<h:outputLabel class="mdl-textfield__label" for="material">Material</h:outputLabel>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputTextarea class="mdl-textfield__input" disabled>Full Dotaciones</textarea>
+					<h:outputLabel class="mdl-textfield__label" for="fabricante">Fabricante</h:outputLabel>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputTextarea class="mdl-textfield__input" id="descripcionColor" required="required" p:maxlength="512" />
+					<h:outputLabel class="mdl-textfield__label" for="descripcionColor">Color</h:outputLabel>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputTextarea class="mdl-textfield__input" id="descripcionCuello" required="required" p:maxlength="512" />
+					<h:outputLabel class="mdl-textfield__label" for="descripcionCuello">Cuello</h:outputLabel>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputTextarea class="mdl-textfield__input" id="descripcionBotones" required="required" p:maxlength="512" />
+					<h:outputLabel class="mdl-textfield__label" for="descripcionBotones">Botones</h:outputLabel>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputTextarea class="mdl-textfield__input" id="observacionAdicional" required="required" p:maxlength="512" />
+					<h:outputLabel class="mdl-textfield__label" for="observacionAdicional">Observaciones adicionales</h:outputLabel>
+				</h:panelGroup>
+				<h3 class="mdl-typography--title">Cantidad por tallas</h3>
+				<h:panelGroup layout="block" class="fullWidth">
+					<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+						<thead>
+							<tr>
+								<th class="mdl-data-table__cell--non-numeric">Diseño</th>
+								<th class="mdl-data-table__cell--non-numeric">Descripción</th>
+								<th class="mdl-data-table__cell--non-numeric">Logotipo</th>
+								<th>S</th>
+								<th>M</th>
+								<th>L</th>
+								<th>XL</th>
+								<th>Total</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="mdl-data-table__cell--non-numeric">Mujer Beige</td>
+								<td class="mdl-data-table__cell--non-numeric">BASE DE LA CAMISA, MANGAS, Y BOLSILLO BEIGE. CUELLO, PECHERA, PUÑOS Y BORDE DE BOLSILLO EN VINOTINTO</td>
+								<td class="mdl-data-table__cell--non-numeric">N/A</td>
+								<td>10</td>
+								<td>4</td>
+								<td>2</td>
+								<td>1</td>
+								<td>17</td>
+							</tr>
+							<tr>
+								<td class="mdl-data-table__cell--non-numeric">Hombre Beige</td>
+								<td class="mdl-data-table__cell--non-numeric">BASE DE LA CAMISA, MANGAS, Y BOLSILLO BEIGE. CUELLO, PECHERA, PUÑOS Y BORDE DE BOLSILLO EN VINOTINTO</td>
+								<td class="mdl-data-table__cell--non-numeric">N/A</td>
+								<td>0</td>
+								<td>7</td>
+								<td>1</td>
+								<td>0</td>
+								<td>8</td>
+							</tr>
+							<tr>
+								<td class="mdl-data-table__cell--non-numeric">Mujer Gris</td>
+								<td class="mdl-data-table__cell--non-numeric">BASE DE LA CAMISA, CUELLO, PECHERA Y PUÑO GRIS. MANGAS Y BOLSILLO COMPLETO EN NEGRO</td>
+								<td class="mdl-data-table__cell--non-numeric">N/A</td>
+								<td>10</td>
+								<td>4</td>
+								<td>4</td>
+								<td>2</td>
+								<td>20</td>
+							</tr>
+							<tr>
+								<td class="mdl-data-table__cell--non-numeric">Hombre Gris</td>
+								<td class="mdl-data-table__cell--non-numeric">BASE DE LA CAMISA, CUELLO, PECHERA Y PUÑO GRIS. MANGAS Y BOLSILLO COMPLETO EN NEGRO</td>
+								<td class="mdl-data-table__cell--non-numeric">N/A</td>
+								<td>0</td>
+								<td>11</td>
+								<td>2</td>
+								<td>0</td>
+								<td>13</td>
+							</tr>
+						</tbody>
+					</table>
+				</h:panelGroup>
+				<!-- input file-->
+				<h3 class="mdl-typography--headline">Diagrama de diseño</h3>
+				<img src="/img/diagramaDiseno.png" alt="">
+				<h:panelGroup layout="block">
+					<h:inputFile id="diagramaDiseno" class="fileInput">
+					<h:outputLabel for="diagramaDiseno" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+						<i class="material-icons">file_upload</i>
+					</h:outputLabel>
+				</h:panelGroup>
+			</section>
+			<section class="step">
+				<h3 class="mdl-typography--headline">Condiciones comerciales</h3>
+				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputText class="mdl-textfield__input" id="lugarEntrega" disabled="disabled" value="En sus instalaciones" />
+					<h:outputLabel class="mdl-textfield__label" for="lugarEntrega">Lugar de entrega</h:outputLabel>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputText class="mdl-textfield__input" id="tiempoEntrega" disabled="disabled" value="1 días hábiles enviada orden de compra y validado anticipo" />
+					<h:outputLabel class="mdl-textfield__label" for="tiempoEntrega">Tiempo de entrega</h:outputLabel>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
+					<h:inputTextarea class="mdl-textfield__input" id="observaciones" p:maxlength="512" / />
+					<h:outputLabel class="mdl-textfield__label" for="observaciones">Observaciones</h:outputLabel>
+				</h:panelGroup>
+				<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" type="submit">Generar orden de producción</button>
+			</section>
+		</h:form>
+	</main>
+	<nav class="fixed-nav">
+		<h:panelGroup layout="block" id="logo"></h:panelGroup>
+		<h:panelGroup layout="block" id="user">
+			<h:panelGroup layout="block" id="userName">Depurador</h:panelGroup>
+			<h:panelGroup layout="block" id="userPosition">
+				<h:panelGroup>Administrador</h:panelGroup>
+				<button id="userActions" class="mdl-button mdl-js-button mdl-button--icon">
+					<i class="material-icons">arrow_drop_down</i>
+				</button>
+			</h:panelGroup>
+			<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="userActions">
+				<li class="mdl-menu__item"><a href="/administracion/configuracion.html">Configuración</a></li>
+				<li class="mdl-menu__item"><a href="/auth/">Cerrar sesión</a></li>
+			</ul>
+		</h:panelGroup>
+		<ul>
+			<li><a href="/" class="fa fa-home" aria-hidden="true">Inicio</a></li>
+			<li><a href="/cotizaciones" class="fa fa-shopping-cart" aria-hidden="true">Cotizaciones</a></li>
+			<li><a href="/produccion" class="fa fa-wpforms" aria-hidden="true">Producción</a></li>
+			<li><a href="/reportes" class="fa fa-area-chart" aria-hidden="true">Reportes</a></li>
+			<li><a href="/administracion" class="fa fa-cog" aria-hidden="true">Administración</a></li>
+			<li><a href="/calendario" class="fa fa-calendar" aria-hidden="true">Calendario</a></li>
+			<li><a href="https://github.com/Darhakexge/Interfaces-internas/issues/" class="fa fa-bug" aria-hidden="true">Reportar un error</a></li>
+			<li><a href="/sustentacion" class="fa logoSena" aria-hidden="true">Sustentación</a></li>
+		</ul>
+	</nav>
+	<aside id="taskList" class="fixed-nav" data-active="false">
+		<h:panelGroup layout="block" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+			<h:panelGroup layout="block" class="mdl-tabs__tab-bar">
+				<a href="#taskEventos" class="mdl-tabs__tab is-active">Eventos</a>
+				<a href="#taskNotificaciones" class="mdl-tabs__tab">Notificaciones</a>
+				<a href="#taskTareas" class="mdl-tabs__tab">Tareas</a>
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-tabs__panel is-active" id="taskEventos"></h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-tabs__panel" id="taskNotificaciones"></h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-tabs__panel" id="taskTareas"></h:panelGroup>
+		</h:panelGroup>
+	</aside>
+	<h:panelGroup layout="block" id="ofuscador"></h:panelGroup>
+</body>
+</html>

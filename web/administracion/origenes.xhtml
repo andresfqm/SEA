@@ -105,17 +105,17 @@
 				<h3 class="mdl-dialog__title">Registrar origen</h3>
 				<h:panelGroup layout="block" class="mdl-dialog__content">
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                            <h:inputText class="mdl-textfield__input" id="nombreOrigen" maxlength="45" required="true" value="#{origenController.origen.nombre}" />
+                                            <h:inputText class="mdl-textfield__input" id="nombreOrigen" p:maxlength="45" required="true" value="#{origenController.origen.nombre}" />
                                             <h:outputLabel class="mdl-textfield__label" for="nombreOrigen">Nombre del origen</h:outputLabel>
                                         </h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                            <h:inputTextarea class="mdl-textfield__input" id="descripcionOrigen" maxlength="45" required="true" value="#{origenController.origen.descripcion}" />
+                                            <h:inputTextarea class="mdl-textfield__input" id="descripcionOrigen" p:maxlength="45" required="true" value="#{origenController.origen.descripcion}" />
 						<h:outputLabel class="mdl-textfield__label" for="descripcionOrigen">Descripción del origen</h:outputLabel>
                                         </h:panelGroup>
                                 </h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-dialog__actions">
                                     <h:commandButton id="mostrarOrigenNuevo" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" type="submit" actionListener="#{origenController.registrar()}" value="Crear origen" />
-                                    <button type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm">Cancelar</button>
+                                    <h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
                                 </h:panelGroup>
 			</h:form>
 		</aside>
@@ -140,20 +140,20 @@
 		</script>
 	</aside>
 	<nav class="fixed-nav">
-		<div id="logo"></div>
-		<div id="user">
-			<div id="userName">Depurador</div>
-			<div id="userPosition">
-				<span>Administrador</span>
+		<h:panelGroup layout="block" id="logo"></h:panelGroup>
+		<h:panelGroup layout="block" id="user">
+			<h:panelGroup layout="block" id="userName">Depurador</h:panelGroup>
+			<h:panelGroup layout="block" id="userPosition">
+				<h:panelGroup>Administrador</h:panelGroup>
 				<button id="userActions" class="mdl-button mdl-js-button mdl-button--icon">
 					<i class="material-icons">arrow_drop_down</i>
 				</button>
-			</div>
+			</h:panelGroup>
 			<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="userActions">
 				<li class="mdl-menu__item"><a href="/administracion/configuracion.html">Configuración</a></li>
 				<li class="mdl-menu__item"><a href="/auth/">Cerrar sesión</a></li>
 			</ul>
-		</div>
+		</h:panelGroup>
 		<ul>
 			<li><a href="/" class="fa fa-home" aria-hidden="true">Inicio</a></li>
 			<li><a href="/cotizaciones" class="fa fa-shopping-cart" aria-hidden="true">Cotizaciones</a></li>
@@ -166,17 +166,17 @@
 		</ul>
 	</nav>
 	<aside id="taskList" class="fixed-nav" data-active="false">
-		<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-			<div class="mdl-tabs__tab-bar">
+		<h:panelGroup layout="block" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+			<h:panelGroup layout="block" class="mdl-tabs__tab-bar">
 				<a href="#taskEventos" class="mdl-tabs__tab is-active">Eventos</a>
 				<a href="#taskNotificaciones" class="mdl-tabs__tab">Notificaciones</a>
 				<a href="#taskTareas" class="mdl-tabs__tab">Tareas</a>
-			</div>
-			<div class="mdl-tabs__panel is-active" id="taskEventos"></div>
-			<div class="mdl-tabs__panel" id="taskNotificaciones"></div>
-			<div class="mdl-tabs__panel" id="taskTareas"></div>
-		</div>
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-tabs__panel is-active" id="taskEventos"></h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-tabs__panel" id="taskNotificaciones"></h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-tabs__panel" id="taskTareas"></h:panelGroup>
+		</h:panelGroup>
 	</aside>
-	<div id="ofuscador"></div>
+	<h:panelGroup layout="block" id="ofuscador"></h:panelGroup>
 </body>
 </html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<head>
+	<meta charset="UTF-8" />
+	<title>Condiciones de garantía | SEA</title>
+	<link rel="shortcut icon" href="/img/favicon.ico" />
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+	<link rel="stylesheet" href="/css/material.min.css" />
+	<link rel="stylesheet" href="/css/material-icons.css" />
+	<link rel="stylesheet" href="/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="/css/maquetacionBasica.css" />
+	<link rel="stylesheet" href="/css/administracion.css" />
+	<script src="/auth/js/checkBrowser.js"></script>
+	<script src="/js/material.min.js"></script>
+	<script src="/js/breadcrumbs.js"></script>
+	<script src="/js/taksTabs.js"></script>
+	<script src="/js/scrollup.js"></script>
+	<script src="/js/toggleforms.js"></script>
+</head>
+<body>
+	<header class="mdl-layout__header is-casting-shadow mdl-layout__header-row">
+		<a class="fa fa-bars mostrarNavbars" data-target="body > nav" aria-hidden="true" href="#"></a>
+		<nav id="navBreadcrumbs">
+			<ul id="breadcrumbs"></ul>
+		</nav>
+		<a class="fa fa-tasks mdl-badge mostrarNavbars" data-badge="4" data-target="#taskList" aria-hidden="true" href="#"></a>
+	</header>
+	<main>
+		<section id="garantiaDashboard">
+			<h:form>
+				<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+					<thead>
+						<tr>
+							<th class="mdl-data-table__cell--non-numeric">Nombre</th>
+							<th class="mdl-data-table__cell--non-numeric">Descripción</th>
+							<th class="mdl-data-table__cell--non-numeric">Activo</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="mdl-data-table__cell--non-numeric">Póliza alterada</td>
+							<td class="mdl-data-table__cell--non-numeric">Cuando esta póliza manifestara claros signos de haber sido alterada en los datos originales consignados en ella.</td>
+							<td class="mdl-data-table__cell--non-numeric">
+								<h:outputLabel for="garantia1" class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
+									<h:selectBooleanCheckbox id="garantia1" class="mdl-switch__input">
+									<h:panelGroup class="mdl-switch__label"></h:panelGroup>
+								</h:outputLabel>
+							</td>
+						</tr>
+						<tr>
+							<td class="mdl-data-table__cell--non-numeric">Uso del producto</td>
+							<td class="mdl-data-table__cell--non-numeric">Cuando el producto haya sido usado fuera de su capacidad, maltratado, rasgado, expuesto a excesiva humedad, molado por algún líquido o substancia corrosiva, así como por cualquiera otra falla atribuible al consumidor.</td>
+							<td class="mdl-data-table__cell--non-numeric">
+								<h:outputLabel for="garantia2" class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
+									<h:selectBooleanCheckbox id="garantia2" class="mdl-switch__input">
+									<h:panelGroup class="mdl-switch__label"></h:panelGroup>
+								</h:outputLabel>
+							</td>
+						</tr>
+						<tr>
+							<td class="mdl-data-table__cell--non-numeric">Producto alterado</td>
+							<td class="mdl-data-table__cell--non-numeric">Cuando el producto haya sido desbaratado, modificado o reparado por personas no autorizadas full dotaciones SAS.</td>
+							<td class="mdl-data-table__cell--non-numeric">
+								<h:outputLabel for="garantia3" class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
+									<h:selectBooleanCheckbox id="garantia3" class="mdl-switch__input">
+									<h:panelGroup class="mdl-switch__label"></h:panelGroup>
+								</h:outputLabel>
+							</td>
+						</tr>
+						<tr>
+							<td class="mdl-data-table__cell--non-numeric">Uso</td>
+							<td class="mdl-data-table__cell--non-numeric">Cuando el defecto sea originado por el desgaste normal de las prendas debido al uso.</td>
+							<td class="mdl-data-table__cell--non-numeric">
+								<h:outputLabel for="garantia4" class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
+									<h:selectBooleanCheckbox id="garantia4" class="mdl-switch__input">
+									<h:panelGroup class="mdl-switch__label"></h:panelGroup>
+								</h:outputLabel>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</h:form>
+			<a href="#addGarantia" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
+				<i class="material-icons">add</i>
+			</a>
+		</section>
+		<aside id="subForm">
+			<form action="#" method="get" id="addGarantia" class="mdl-dialog">
+				<h3 class="mdl-dialog__title">Registrar condición de garantía</h3>
+				<h:panelGroup layout="block" class="mdl-dialog__content">
+					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+						<h:inputText class="mdl-textfield__input" p:maxlength="128" required="required" id="nombreGarantia">
+						<h:outputLabel class="mdl-textfield__label" for="nombreGarantia">Nombre de la condición garantía</h:outputLabel>
+					</h:panelGroup>
+					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+						<h:inputTextarea class="mdl-textfield__input" p:maxlength="500" required="required" id="sample3" />
+						<h:outputLabel class="mdl-textfield__label" for="sample3">Descripción de la condición de garantía</h:outputLabel>
+					</h:panelGroup>
+					<h:outputLabel class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="condicionActiva">
+						<h:selectBooleanCheckbox id="condicionActiva" class="mdl-switch__input">
+						<h:panelGroup class="mdl-switch__label">Activo</h:panelGroup>
+					</h:outputLabel>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-dialog__actions">
+					<h:commandButton id="mostrarGarantia" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Crear origen" />
+					<h:commandButton value="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm">Cancelar</button>
+				</h:panelGroup>
+			</h:form>
+		</aside>
+	</main>
+	<aside>
+		<h:panelGroup layout="block" id="garantiaNueva" class="mdl-js-snackbar mdl-snackbar">
+			<h:panelGroup layout="block" class="mdl-snackbar__text"></h:panelGroup>
+			<button class="mdl-snackbar__action" type="button"></button>
+		</h:panelGroup>
+		<script>
+			(function() {
+				'use strict';
+				window['counter'] = 0;
+				var snackbarContainer = document.querySelector('#garantiaNueva');
+				var showToastButton = document.querySelector('#mostrarGarantia');
+				showToastButton.addEventListener('click', function() {
+					'use strict';
+					var data = {message: 'Condición de garantía creada satisfactoriamente.',timeout: 5000};
+					snackbarContainer.MaterialSnackbar.showSnackbar(data);
+				});
+			}());
+		</script>
+	</aside>
+	<nav class="fixed-nav">
+		<h:panelGroup layout="block" id="logo"></h:panelGroup>
+		<h:panelGroup layout="block" id="user">
+			<h:panelGroup layout="block" id="userName">Depurador</h:panelGroup>
+			<h:panelGroup layout="block" id="userPosition">
+				<h:panelGroup>Administrador</h:panelGroup>
+				<button id="userActions" class="mdl-button mdl-js-button mdl-button--icon">
+					<i class="material-icons">arrow_drop_down</i>
+				</button>
+			</h:panelGroup>
+			<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="userActions">
+				<li class="mdl-menu__item"><a href="/administracion/configuracion.html">Configuración</a></li>
+				<li class="mdl-menu__item"><a href="/auth/">Cerrar sesión</a></li>
+			</ul>
+		</h:panelGroup>
+		<ul>
+			<li><a href="/" class="fa fa-home" aria-hidden="true">Inicio</a></li>
+			<li><a href="/cotizaciones" class="fa fa-shopping-cart" aria-hidden="true">Cotizaciones</a></li>
+			<li><a href="/produccion" class="fa fa-wpforms" aria-hidden="true">Producción</a></li>
+			<li><a href="/reportes" class="fa fa-area-chart" aria-hidden="true">Reportes</a></li>
+			<li><a href="/administracion" class="fa fa-cog" aria-hidden="true">Administración</a></li>
+			<li><a href="/calendario" class="fa fa-calendar" aria-hidden="true">Calendario</a></li>
+			<li><a href="https://github.com/Darhakexge/Interfaces-internas/issues/" class="fa fa-bug" aria-hidden="true">Reportar un error</a></li>
+			<li><a href="/sustentacion" class="fa logoSena" aria-hidden="true">Sustentación</a></li>
+		</ul>
+	</nav>
+	<aside id="taskList" class="fixed-nav" data-active="false">
+		<h:panelGroup layout="block" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+			<h:panelGroup layout="block" class="mdl-tabs__tab-bar">
+				<a href="#taskEventos" class="mdl-tabs__tab is-active">Eventos</a>
+				<a href="#taskNotificaciones" class="mdl-tabs__tab">Notificaciones</a>
+				<a href="#taskTareas" class="mdl-tabs__tab">Tareas</a>
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-tabs__panel is-active" id="taskEventos"></h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-tabs__panel" id="taskNotificaciones"></h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-tabs__panel" id="taskTareas"></h:panelGroup>
+		</h:panelGroup>
+	</aside>
+	<h:panelGroup layout="block" id="ofuscador"></h:panelGroup>
+</body>
+</html>

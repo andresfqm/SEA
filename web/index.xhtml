@@ -29,53 +29,53 @@
 	<main>
 		<section id="estadisticas">
 			<a href="#" class="contenedorStat azul">
-				<span class="tipoStat">
-					<span class="fa fa-shopping-cart"></span>
-				</span>
-				<span class="detalleStat">
-					<div class="numero">200</div>
-					<div class="descripcion">Cotizaciones enviadas</div>
-				</span>
+				<h:panelGroup class="tipoStat">
+					<h:panelGroup class="fa fa-shopping-cart"></h:panelGroup>
+				</h:panelGroup>
+				<h:panelGroup class="detalleStat">
+					<h:panelGroup layout="block" class="numero">200</h:panelGroup>
+					<h:panelGroup layout="block" class="descripcion">Cotizaciones enviadas</h:panelGroup>
+				</h:panelGroup>
 			</a>
 			<a href="#" class="contenedorStat verde">
-				<span class="tipoStat">
-					<span class="fa fa-usd"></span>
-				</span>
-				<span class="detalleStat">
-					<div class="numero">200</div>
-					<div class="descripcion">Cierres efectivos</div>
-				</span>
+				<h:panelGroup class="tipoStat">
+					<h:panelGroup class="fa fa-usd"></h:panelGroup>
+				</h:panelGroup>
+				<h:panelGroup class="detalleStat">
+					<h:panelGroup layout="block" class="numero">200</h:panelGroup>
+					<h:panelGroup layout="block" class="descripcion">Cierres efectivos</h:panelGroup>
+				</h:panelGroup>
 			</a>
 			<a href="#" class="contenedorStat morado">
-				<span class="tipoStat">
-					<span class="fa fa-users"></span>
-				</span>
-				<span class="detalleStat">
-					<div class="numero">200</div>
-					<div class="descripcion">Clientes nuevos</div>
-				</span>
+				<h:panelGroup class="tipoStat">
+					<h:panelGroup class="fa fa-users"></h:panelGroup>
+				</h:panelGroup>
+				<h:panelGroup class="detalleStat">
+					<h:panelGroup layout="block" class="numero">200</h:panelGroup>
+					<h:panelGroup layout="block" class="descripcion">Clientes nuevos</h:panelGroup>
+				</h:panelGroup>
 			</a>
 			<a href="#" class="contenedorStat rojo">
-				<span class="tipoStat">
-					<span class="fa fa-line-chart"></span>
-				</span>
-				<span class="detalleStat">
-					<div class="numero">200</div>
-					<div class="descripcion">Solicitudes de devoluciones</div>
-				</span>
+				<h:panelGroup class="tipoStat">
+					<h:panelGroup class="fa fa-line-chart"></h:panelGroup>
+				</h:panelGroup>
+				<h:panelGroup class="detalleStat">
+					<h:panelGroup layout="block" class="numero">200</h:panelGroup>
+					<h:panelGroup layout="block" class="descripcion">Solicitudes de devoluciones</h:panelGroup>
+				</h:panelGroup>
 			</a>
 		</section>
 	</main>
 	<nav class="fixed-nav">
-		<div id="logo"></div>
-		<div id="user">
-			<div id="userName">Depurador</div>
-			<div id="userPosition">
-				<span>Administrador</span>
+		<h:panelGroup layout="block" id="logo"></h:panelGroup>
+		<h:panelGroup layout="block" id="user">
+			<h:panelGroup layout="block" id="userName">Depurador</h:panelGroup>
+			<h:panelGroup layout="block" id="userPosition">
+				<h:panelGroup>Administrador</h:panelGroup>
 				<button id="userActions" class="mdl-button mdl-js-button mdl-button--icon">
 					<i class="material-icons">arrow_drop_down</i>
 				</button>
-			</div>
+			</h:panelGroup>
 			<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="userActions">
 				<li class="mdl-menu__item"><a href="/administracion/configuracion.html">Configuración</a></li>
 				<li class="mdl-menu__item"><a href="/usuariosdeventas/">Ventas</a></li>
@@ -83,7 +83,7 @@
 				<li class="mdl-menu__item"><a href="/usuariosadministrativos/">Administrativos</a></li>
 				<li class="mdl-menu__item"><a href="/auth/">Cerrar sesión</a></li>
 			</ul>
-		</div>
+		</h:panelGroup>
 		<ul>
 			<li><a href="/" class="fa fa-home" aria-hidden="true">Inicio</a></li>
 			<li><a href="/cotizaciones" class="fa fa-shopping-cart" aria-hidden="true">Cotizaciones</a></li>
@@ -98,17 +98,17 @@
 		</ul>
 	</nav>
 	<aside id="taskList" class="fixed-nav" data-active="false">
-		<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-			<div class="mdl-tabs__tab-bar">
+		<h:panelGroup layout="block" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+			<h:panelGroup layout="block" class="mdl-tabs__tab-bar">
 				<a href="#taskEventos" class="mdl-tabs__tab is-active">Eventos</a>
 				<a href="#taskNotificaciones" class="mdl-tabs__tab">Notificaciones</a>
 				<a href="#taskTareas" class="mdl-tabs__tab">Tareas</a>
-			</div>
-			<div class="mdl-tabs__panel is-active" id="taskEventos"></div>
-			<div class="mdl-tabs__panel" id="taskNotificaciones"></div>
-			<div class="mdl-tabs__panel" id="taskTareas"></div>
-		</div>
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-tabs__panel is-active" id="taskEventos"></h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-tabs__panel" id="taskNotificaciones"></h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-tabs__panel" id="taskTareas"></h:panelGroup>
+		</h:panelGroup>
 	</aside>
-	<div id="ofuscador"></div>
+	<h:panelGroup layout="block" id="ofuscador"></h:panelGroup>
 </body>
 </html>

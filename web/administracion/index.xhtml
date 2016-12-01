@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<head>
+	<meta charset="UTF-8" />
+	<title>Administración | SEA</title>
+	<link rel="shortcut icon" href="/img/favicon.ico" />
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+	<link rel="stylesheet" href="/css/material.min.css" />
+	<link rel="stylesheet" href="/css/material-icons.css" />
+	<link rel="stylesheet" href="/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="/css/maquetacionBasica.css" />
+	<script src="/auth/js/checkBrowser.js"></script>
+	<script src="/js/material.min.js"></script>
+	<script src="/js/breadcrumbs.js"></script>
+	<script src="/js/taksTabs.js"></script>
+	<script src="/js/scrollup.js"></script>
+</head>
+<body>
+	<header class="mdl-layout__header is-casting-shadow mdl-layout__header-row">
+		<a class="fa fa-bars mostrarNavbars" data-target="body > nav" aria-hidden="true" href="#"></a>
+		<nav id="navBreadcrumbs">
+			<ul id="breadcrumbs"></ul>
+		</nav>
+		<a class="fa fa-tasks mdl-badge mostrarNavbars" data-badge="4" data-target="#taskList" aria-hidden="true" href="#"></a>
+	</header>
+	<main class="menuGeneral">
+		<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
+			<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
+				<h2 class="mdl-card__title-text">English interface</h2>
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-card__supporting-text">
+				View this interface in English.
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
+				<a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" href="default.html">View interface</a>
+			</h:panelGroup>
+		</h:panelGroup>
+		<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
+			<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
+				<h2 class="mdl-card__title-text">Configuración</h2>
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-card__supporting-text">
+				Realice configuraciones para su usuario.
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
+				<a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" href="configuracion.html">Cambiar configuración</a>
+			</h:panelGroup>
+		</h:panelGroup>
+		<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
+			<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
+				<h2 class="mdl-card__title-text">Usuarios</h2>
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-card__supporting-text">
+				Administre a los usuarios registrados en el sistema.
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
+				<a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" href="./usuarios.html">Administrar usuarios</a>
+			</h:panelGroup>
+		</h:panelGroup>
+		<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
+			<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
+				<h2 class="mdl-card__title-text">Clientes</h2>
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-card__supporting-text">
+				Administre a los clientes registrados en el sistema.
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
+				<a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" href="./clientes.html">Administrar clientes</a>
+			</h:panelGroup>
+		</h:panelGroup>
+		<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
+			<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
+				<h2 class="mdl-card__title-text">Artículos</h2>
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-card__supporting-text">
+				Administre los artículos registrados en el sistema.
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
+				<a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" href="./articulos.html">Administrar artículos</a>
+			</h:panelGroup>
+		</h:panelGroup>
+		<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
+			<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
+				<h2 class="mdl-card__title-text">Condiciones comerciales</h2>
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-card__supporting-text">
+				Administre las condiciones comerciales.
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
+				<a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" href="./condicionesComerciales.html">Administrar condiciones</a>
+			</h:panelGroup>
+		</h:panelGroup>
+		<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
+			<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
+				<h2 class="mdl-card__title-text">Convenciones</h2>
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-card__supporting-text">
+				Administre las convenciones.
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
+				<a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" href="./convenciones.html">Administrar convenciones</a>
+			</h:panelGroup>
+		</h:panelGroup>
+		<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
+			<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
+				<h2 class="mdl-card__title-text">Orígenes de clientes</h2>
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-card__supporting-text">
+				Administre los posibles orígenes de los clientes.
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
+				<a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" href="./origenes.html">Administrar orígenes</a>
+			</h:panelGroup>
+		</h:panelGroup>
+		<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
+			<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
+				<h2 class="mdl-card__title-text">Condiciones de garantía</h2>
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-card__supporting-text">
+				Administre las condiciones que aplican en la garantía de las dotaciones.
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
+				<a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" href="./condicionesGarantia.html">Administrar condiciones</a>
+			</h:panelGroup>
+		</h:panelGroup>
+	</main>
+	<nav class="fixed-nav">
+		<h:panelGroup layout="block" id="logo"></h:panelGroup>
+		<h:panelGroup layout="block" id="user">
+			<h:panelGroup layout="block" id="userName">Depurador</h:panelGroup>
+			<h:panelGroup layout="block" id="userPosition">
+				<h:panelGroup>Administrador</h:panelGroup>
+				<button id="userActions" class="mdl-button mdl-js-button mdl-button--icon">
+					<i class="material-icons">arrow_drop_down</i>
+				</button>
+			</h:panelGroup>
+			<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="userActions">
+				<li class="mdl-menu__item"><a href="/administracion/configuracion.html">Configuración</a></li>
+				<li class="mdl-menu__item"><a href="/auth/">Cerrar sesión</a></li>
+			</ul>
+		</h:panelGroup>
+		<ul>
+			<li><a href="/" class="fa fa-home" aria-hidden="true">Inicio</a></li>
+			<li><a href="/cotizaciones" class="fa fa-shopping-cart" aria-hidden="true">Cotizaciones</a></li>
+			<li><a href="/produccion" class="fa fa-wpforms" aria-hidden="true">Producción</a></li>
+			<li><a href="/reportes" class="fa fa-area-chart" aria-hidden="true">Reportes</a></li>
+			<li><a href="/administracion" class="fa fa-cog" aria-hidden="true">Administración</a></li>
+			<li><a href="/calendario" class="fa fa-calendar" aria-hidden="true">Calendario</a></li>
+			<li><a href="https://github.com/Darhakexge/Interfaces-internas/issues/" class="fa fa-bug" aria-hidden="true">Reportar un error</a></li>
+			<li><a href="/sustentacion" class="fa logoSena" aria-hidden="true">Sustentación</a></li>
+		</ul>
+	</nav>
+	<aside id="taskList" class="fixed-nav" data-active="false">
+		<h:panelGroup layout="block" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+			<h:panelGroup layout="block" class="mdl-tabs__tab-bar">
+				<a href="#taskEventos" class="mdl-tabs__tab is-active">Eventos</a>
+				<a href="#taskNotificaciones" class="mdl-tabs__tab">Notificaciones</a>
+				<a href="#taskTareas" class="mdl-tabs__tab">Tareas</a>
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-tabs__panel is-active" id="taskEventos"></h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-tabs__panel" id="taskNotificaciones"></h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-tabs__panel" id="taskTareas"></h:panelGroup>
+		</h:panelGroup>
+	</aside>
+	<h:panelGroup layout="block" id="ofuscador"></h:panelGroup>
+</body>
+</html>

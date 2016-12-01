@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 <head>
 	<meta charset="UTF-8" />
 	<title>Conveniones | SEA</title>
-	<link rel="shortcut icon" href="/SEA/img/favicon.ico" />
+	<link rel="shortcut icon" href="/img/favicon.ico" />
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
-	<link rel="stylesheet" href="/SEA/css/material.min.css" />
-	<link rel="stylesheet" href="/SEA/css/mdl-selectfield.min.css" />
-	<link rel="stylesheet" href="/SEA/css/material-icons.css" />
-	<link rel="stylesheet" href="/SEA/css/font-awesome.min.css" />
-	<link rel="stylesheet" href="/SEA/css/maquetacionBasica.css" />
-	<link rel="stylesheet" href="/SEA/css/administracion.css" />
-	<script src="/auth/SEA/js/checkBrowser.js"></script>
-	<script src="/SEA/js/material.min.js"></script>
-	<script src="/SEA/js/mdl-selectfield.min.js"></script>
-	<script src="/SEA/js/breadcrumbs.js"></script>
-	<script src="/SEA/js/taksTabs.js"></script>
-	<script src="/SEA/js/scrollup.js"></script>
-	<script src="/SEA/js/toggleforms.js"></script>
+	<link rel="stylesheet" href="/css/material.min.css" />
+	<link rel="stylesheet" href="/css/mdl-selectfield.min.css" />
+	<link rel="stylesheet" href="/css/material-icons.css" />
+	<link rel="stylesheet" href="/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="/css/maquetacionBasica.css" />
+	<link rel="stylesheet" href="/css/administracion.css" />
+	<script src="/auth/js/checkBrowser.js"></script>
+	<script src="/js/material.min.js"></script>
+	<script src="/js/mdl-selectfield.min.js"></script>
+	<script src="/js/breadcrumbs.js"></script>
+	<script src="/js/taksTabs.js"></script>
+	<script src="/js/scrollup.js"></script>
+	<script src="/js/toggleforms.js"></script>
 </head>
 <body>
 	<header class="mdl-layout__header is-casting-shadow mdl-layout__header-row">
@@ -28,14 +28,14 @@
 		<a class="fa fa-tasks mdl-badge mostrarNavbars" data-badge="4" data-target="#taskList" aria-hidden="true" href="#"></a>
 	</header>
 	<main id="convenciones">
-		<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect mdl-shadow--4dp">
-			<div class="mdl-tabs__tab-bar">
+		<h:panelGroup layout="block" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect mdl-shadow--4dp">
+			<h:panelGroup layout="block" class="mdl-tabs__tab-bar">
 				<a href="#categorias-panel" class="mdl-tabs__tab is-active">Categorías</a>
 				<a href="#subcategorias-panel" class="mdl-tabs__tab">Subcategorías</a>
 				<a href="#materiales-panel" class="mdl-tabs__tab">Materiales</a>
 				<a href="#sufijos-panel" class="mdl-tabs__tab">Sufijos</a>
-			</div>
-			<div class="mdl-tabs__panel is-active" id="categorias-panel">
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-tabs__panel is-active" id="categorias-panel">
 				<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
 					<thead>
 						<tr>
@@ -54,8 +54,8 @@
 				<a href="#addCategoria" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
 					<i class="material-icons">add</i>
 				</a>
-			</div>
-			<div class="mdl-tabs__panel" id="subcategorias-panel">
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-tabs__panel" id="subcategorias-panel">
 				<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
 					<thead>
 						<tr>
@@ -205,8 +205,8 @@
 				<a href="#addSubcategoria" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
 					<i class="material-icons">add</i>
 				</a>
-			</div>
-			<div class="mdl-tabs__panel" id="materiales-panel">
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-tabs__panel" id="materiales-panel">
 				<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
 					<thead>
 						<tr>
@@ -524,8 +524,8 @@
 				<a href="#addMaterial" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
 					<i class="material-icons">add</i>
 				</a>
-			</div>
-			<div class="mdl-tabs__panel" id="sufijos-panel">
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-tabs__panel" id="sufijos-panel">
 				<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
 					<thead>
 						<tr>
@@ -731,100 +731,100 @@
 				<a href="#addSufijo" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
 					<i class="material-icons">add</i>
 				</a>
-			</div>
-		</div>
+			</h:panelGroup>
+		</h:panelGroup>
 	</main>
 	<aside id="subForm">
 		<form action="#" method="get" id="addCategoria" class="mdl-dialog">
 			<h3 class="mdl-dialog__title">Registrar categoría</h3>
-			<div class="mdl-dialog__content">
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input class="mdl-textfield__input" type="text" maxlength="32" required.id="nombreCategoria" value="#{categoriaController.categoria.nombre}" />
-					<label class="mdl-textfield__label" for="nombreCategoria">Nombre</label>
-				</div>
-			</div>
-			<div class="mdl-dialog__actions">
-                            <button id="mostrarCategoriaCreada" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" type="submit" actionListener="#{categoriaController.registrar()}">Crear categoría</button>
-				<button type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm">Cancelar</button>
-			</div>
-		</form>
+			<h:panelGroup layout="block" class="mdl-dialog__content">
+				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputText class="mdl-textfield__input" p:maxlength="32" required="required" id="nombreCategoria">
+					<h:outputLabel class="mdl-textfield__label" for="nombreCategoria">Nombre</h:outputLabel>
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-dialog__actions">
+				<h:commandButton id="mostrarCategoriaCreada" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Crear categoría" />
+				<h:commandButton value="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm">Cancelar</button>
+			</h:panelGroup>
+		</h:form>
 		<form action="#" method="get" id="addSubcategoria" class="mdl-dialog">
 			<h3 class="mdl-dialog__title">Registrar subcategoría</h3>
-			<div class="mdl-dialog__content">
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" type="text" maxlength="5" required.id="codigoSubcategoria"/>
-					<label class="mdl-textfield__label" for="codigoSubcategoria">Código</label>
-				</div>
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" type="text" maxlength="32" required.id="nombreSubcategoria"/>
-					<label class="mdl-textfield__label" for="nombreSubcategoria">Nombre</label>
-				</div>
-				<div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+			<h:panelGroup layout="block" class="mdl-dialog__content">
+				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputText class="mdl-textfield__input" p:maxlength="5" required="required" id="codigoSubcategoria">
+					<h:outputLabel class="mdl-textfield__label" for="codigoSubcategoria">Código</h:outputLabel>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputText class="mdl-textfield__input" p:maxlength="32" required="required" id="nombreSubcategoria">
+					<h:outputLabel class="mdl-textfield__label" for="nombreSubcategoria">Nombre</h:outputLabel>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
 					<select class="mdl-selectfield__select" name="" id="clasificaCategoria" required="required">
 						<option value=""></option>
 						<option value="1">Prendas</option>
 						<option value="2">Seguridad industrial</option>
 					</select>
-					<label class="mdl-selectfield__label" for="clasificaCategoria">Clasificar categoría en</label>
-				</div>
-			</div>
-			<div class="mdl-dialog__actions">
-				<button id="mostrarSubcategoriaCreada" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" type="submit">Crear subcategoría</button>
-				<button type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm">Cancelar</button>
-			</div>
-		</form>
+					<h:outputLabel class="mdl-selectfield__label" for="clasificaCategoria">Clasificar categoría en</h:outputLabel>
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-dialog__actions">
+				<h:commandButton id="mostrarSubcategoriaCreada" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Crear subcategoría" />
+				<h:commandButton value="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm">Cancelar</button>
+			</h:panelGroup>
+		</h:form>
 		<form action="#" method="get" id="addMaterial" class="mdl-dialog">
 			<h3 class="mdl-dialog__title">Registrar material</h3>
-			<div class="mdl-dialog__content">
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" type="text" maxlength="5" required.id="codigoMaterial"/>
-					<label class="mdl-textfield__label" for="codigoMaterial">Código</label>
-				</div>
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" type="text" maxlength="64" required.id="nombreMaterial"/>
-					<label class="mdl-textfield__label" for="nombreMaterial">Nombre</label>
-				</div>
-			</div>
-			<div class="mdl-dialog__actions">
-				<button id="mostrarMaterialNuevo" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" type="submit">Crear material</button>
-				<button type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm">Cancelar</button>
-			</div>
-		</form>
+			<h:panelGroup layout="block" class="mdl-dialog__content">
+				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputText class="mdl-textfield__input" p:maxlength="5" required="required" id="codigoMaterial">
+					<h:outputLabel class="mdl-textfield__label" for="codigoMaterial">Código</h:outputLabel>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputText class="mdl-textfield__input" p:maxlength="64" required="required" id="nombreMaterial">
+					<h:outputLabel class="mdl-textfield__label" for="nombreMaterial">Nombre</h:outputLabel>
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-dialog__actions">
+				<h:commandButton id="mostrarMaterialNuevo" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Crear material" />
+				<h:commandButton value="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm">Cancelar</button>
+			</h:panelGroup>
+		</h:form>
 		<form action="#" method="get" id="addSufijo" class="mdl-dialog">
 			<h3 class="mdl-dialog__title">Registrar sufijo</h3>
-			<div class="mdl-dialog__content">
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" type="text" maxlength="10" required.id="sufijo"/>
-					<label class="mdl-textfield__label" for="sufijo">Código</label>
-				</div>
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" type="text" maxlength="500" required.id="descripcionFabricante"/>
-					<label class="mdl-textfield__label" for="descripcionFabricante">Nombre</label>
-				</div>
-			</div>
-			<div class="mdl-dialog__actions">
-				<button id="mostrarSufijoNuevo" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" type="submit">Crear sufijo</button>
-				<button type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm">Cancelar</button>
-			</div>
-		</form>
+			<h:panelGroup layout="block" class="mdl-dialog__content">
+				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputText class="mdl-textfield__input" p:maxlength="10" required="required" id="sufijo">
+					<h:outputLabel class="mdl-textfield__label" for="sufijo">Código</h:outputLabel>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputText class="mdl-textfield__input" p:maxlength="500" required="required" id="descripcionFabricante">
+					<h:outputLabel class="mdl-textfield__label" for="descripcionFabricante">Nombre</h:outputLabel>
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-dialog__actions">
+				<h:commandButton id="mostrarSufijoNuevo" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Crear sufijo"/ >
+				<h:commandButton value="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm">Cancelar</button>
+			</h:panelGroup>
+		</h:form>
 	</aside>
 	<aside>
-		<div id="categoriaCreada" class="mdl-js-snackbar mdl-snackbar">
-			<div class="mdl-snackbar__text"></div>
+		<h:panelGroup layout="block" id="categoriaCreada" class="mdl-js-snackbar mdl-snackbar">
+			<h:panelGroup layout="block" class="mdl-snackbar__text"></h:panelGroup>
 			<button class="mdl-snackbar__action" type="button"></button>
-		</div>
-		<div id="subcategoriaCreada" class="mdl-js-snackbar mdl-snackbar">
-			<div class="mdl-snackbar__text"></div>
+		</h:panelGroup>
+		<h:panelGroup layout="block" id="subcategoriaCreada" class="mdl-js-snackbar mdl-snackbar">
+			<h:panelGroup layout="block" class="mdl-snackbar__text"></h:panelGroup>
 			<button class="mdl-snackbar__action" type="button"></button>
-		</div>
-		<div id="materialNuevo" class="mdl-js-snackbar mdl-snackbar">
-			<div class="mdl-snackbar__text"></div>
+		</h:panelGroup>
+		<h:panelGroup layout="block" id="materialNuevo" class="mdl-js-snackbar mdl-snackbar">
+			<h:panelGroup layout="block" class="mdl-snackbar__text"></h:panelGroup>
 			<button class="mdl-snackbar__action" type="button"></button>
-		</div>
-		<div id="sufijoNuevo" class="mdl-js-snackbar mdl-snackbar">
-			<div class="mdl-snackbar__text"></div>
+		</h:panelGroup>
+		<h:panelGroup layout="block" id="sufijoNuevo" class="mdl-js-snackbar mdl-snackbar">
+			<h:panelGroup layout="block" class="mdl-snackbar__text"></h:panelGroup>
 			<button class="mdl-snackbar__action" type="button"></button>
-		</div>
+		</h:panelGroup>
 		<script>
 			(function() {
 				'use strict';
@@ -874,23 +874,20 @@
 	</aside>
 
 	<nav class="fixed-nav">
-		<div id="logo"></div>
-		<div id="user">
-			<div id="userName">Depurador</div>
-			<div id="userPosition">
-				<span>Administrador</span>
+		<h:panelGroup layout="block" id="logo"></h:panelGroup>
+		<h:panelGroup layout="block" id="user">
+			<h:panelGroup layout="block" id="userName">Depurador</h:panelGroup>
+			<h:panelGroup layout="block" id="userPosition">
+				<h:panelGroup>Administrador</h:panelGroup>
 				<button id="userActions" class="mdl-button mdl-js-button mdl-button--icon">
 					<i class="material-icons">arrow_drop_down</i>
 				</button>
-			</div>
+			</h:panelGroup>
 			<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="userActions">
 				<li class="mdl-menu__item"><a href="/administracion/configuracion.html">Configuración</a></li>
-				<li class="mdl-menu__item"><a href="/usuariosdeventas/">Ventas</a></li>
-				<li class="mdl-menu__item"><a href="/jefedeproduccion/">Producción</a></li>
-				<li class="mdl-menu__item"><a href="/usuariosadministrativos/">Administrativos</a></li>
 				<li class="mdl-menu__item"><a href="/auth/">Cerrar sesión</a></li>
 			</ul>
-		</div>
+		</h:panelGroup>
 		<ul>
 			<li><a href="/" class="fa fa-home" aria-hidden="true">Inicio</a></li>
 			<li><a href="/cotizaciones" class="fa fa-shopping-cart" aria-hidden="true">Cotizaciones</a></li>
@@ -898,24 +895,22 @@
 			<li><a href="/reportes" class="fa fa-area-chart" aria-hidden="true">Reportes</a></li>
 			<li><a href="/administracion" class="fa fa-cog" aria-hidden="true">Administración</a></li>
 			<li><a href="/calendario" class="fa fa-calendar" aria-hidden="true">Calendario</a></li>
-			<li><a href="/documentacion" class="fa fa-info" aria-hidden="true">Ayuda</a></li>
-			<li><a href="/500.html" class="fa fa-bug" aria-hidden="true">Reportar un error</a></li>
+			<li><a href="https://github.com/Darhakexge/Interfaces-internas/issues/" class="fa fa-bug" aria-hidden="true">Reportar un error</a></li>
 			<li><a href="/sustentacion" class="fa logoSena" aria-hidden="true">Sustentación</a></li>
-			<li><a href="https://github.com/Darhakexge/Interfaces-internas/issues/" target="_blank" class="fa fa-github" aria-hidden="true">Github issues</a></li>
 		</ul>
 	</nav>
 	<aside id="taskList" class="fixed-nav" data-active="false">
-		<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-			<div class="mdl-tabs__tab-bar">
+		<h:panelGroup layout="block" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+			<h:panelGroup layout="block" class="mdl-tabs__tab-bar">
 				<a href="#taskEventos" class="mdl-tabs__tab is-active">Eventos</a>
 				<a href="#taskNotificaciones" class="mdl-tabs__tab">Notificaciones</a>
 				<a href="#taskTareas" class="mdl-tabs__tab">Tareas</a>
-			</div>
-			<div class="mdl-tabs__panel is-active" id="taskEventos"></div>
-			<div class="mdl-tabs__panel" id="taskNotificaciones"></div>
-			<div class="mdl-tabs__panel" id="taskTareas"></div>
-		</div>
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-tabs__panel is-active" id="taskEventos"></h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-tabs__panel" id="taskNotificaciones"></h:panelGroup>
+			<h:panelGroup layout="block" class="mdl-tabs__panel" id="taskTareas"></h:panelGroup>
+		</h:panelGroup>
 	</aside>
-	<div id="ofuscador"></div>
+	<h:panelGroup layout="block" id="ofuscador"></h:panelGroup>
 </body>
 </html>
