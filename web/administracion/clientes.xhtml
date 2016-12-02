@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <script src="https://use.fontawesome.com/a39256cab5.js"></script>
 	<h:outputScript library="js" name="mdl-selectfield.min.js"></h:outputScript>
+	<h:outputScript library="js" name="material.min.js"></h:outputScript>
 	<h:outputScript library="js" name="breadcrumbs.js"></h:outputScript>
 	<h:outputScript library="js" name="taksTabs.js"></h:outputScript>
 	<h:outputScript library="js" name="scrollup.js"></h:outputScript>
@@ -823,9 +824,7 @@
 					<td class="mdl-data-table__cell--non-numeric"></td>
 					<td class="mdl-data-table__cell--non-numeric"></td>
 					<td class="mdl-data-table__cell--non-numeric">sisoma.ce2015@gmail.com</td>
-					<td class="mdl-data-table__cell--non-numeric">natalia trujillo
-						<natalia.trujillo1210@gmail.com>
-					</td>
+					<td class="mdl-data-table__cell--non-numeric">natalia.trujillo1210@gmail.com</td>
 					<td class="mdl-data-table__cell--non-numeric">ASDRUBAL</td>
 				</tr>
 				<tr>
@@ -869,9 +868,7 @@
 					<td class="mdl-data-table__cell--non-numeric">Giovani Bello Mayorga</td>
 					<td class="mdl-data-table__cell--non-numeric"></td>
 					<td class="mdl-data-table__cell--non-numeric"></td>
-					<td class="mdl-data-table__cell--non-numeric">Deiwis Giovani Bello Mayorga
-						<DMayorga@4linc.com>
-					</td>
+					<td class="mdl-data-table__cell--non-numeric">DMayorga@4linc.com</td>
 					<td class="mdl-data-table__cell--non-numeric">Giovani Bello Mayorga</td>
 					<td class="mdl-data-table__cell--non-numeric">ASDRUBAL</td>
 				</tr>
@@ -1886,51 +1883,51 @@
 					<h:outputLabel class="mdl-selectfield__label" for="tipoDocumento">Tipo de documento</h:outputLabel>
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:inputText class="mdl-textfield__input" p:type="number" p:min="1" p:maxlength="32" p:step="1" required="required" id="NoDocumento">
+					<h:inputText class="mdl-textfield__input" p:type="number" p:min="1" p:maxlength="32" p:step="1" required="required" id="NoDocumento" />
 					<h:outputLabel class="mdl-textfield__label" for="NoDocumento">Número de documento</h:outputLabel>
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:inputText class="mdl-textfield__input" disabled="disabled" id="DV" value=" ">
+					<h:inputText class="mdl-textfield__input" disabled="disabled" id="DV" value=" " />
 					<h:outputLabel class="mdl-textfield__label" for="DV">Dígito de verificación</h:outputLabel>
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-					<h:inputText class="mdl-textfield__input" p:maxlength="256" required="required" id="razonSocial">
+					<h:inputText class="mdl-textfield__input" p:maxlength="256" required="required" id="razonSocial" />
 					<h:outputLabel class="mdl-textfield__label" for="razonSocial">Razón social</h:outputLabel>
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:inputText class="mdl-textfield__input" p:maxlength="256" required="required" id="nombre">
+					<h:inputText class="mdl-textfield__input" p:maxlength="256" required="required" id="nombre" />
 					<h:outputLabel class="mdl-textfield__label" for="nombre">Nombre</h:outputLabel>
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:inputText class="mdl-textfield__input" p:maxlength="256" required="required" id="apellido">
+					<h:inputText class="mdl-textfield__input" p:maxlength="256" required="required" id="apellido" />
 					<h:outputLabel class="mdl-textfield__label" for="apellido">Apellido</h:outputLabel>
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:inputText class="mdl-textfield__input" p:type="tel" p:maxlength="64" required="required" id="telCorporativo">
+					<h:inputText class="mdl-textfield__input" p:type="tel" p:maxlength="64" required="required" id="telCorporativo" />
 					<h:outputLabel class="mdl-textfield__label" for="telCorporativo">Teléfono corporativo</h:outputLabel>
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:inputText class="mdl-textfield__input" p:type="tel" p:maxlength="64" required="required" id="telCartera">
+					<h:inputText class="mdl-textfield__input" p:type="tel" p:maxlength="64" required="required" id="telCartera" />
 					<h:outputLabel class="mdl-textfield__label" for="telCartera">Teléfono de cartera</h:outputLabel>
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-					<h:inputText class="mdl-textfield__input" p:type="email" p:maxlength="64" required="required" id="email">
+					<h:inputText class="mdl-textfield__input" p:type="email" p:maxlength="64" required="required" id="email" />
 					<h:outputLabel class="mdl-textfield__label" for="email">Correo electrónico</h:outputLabel>
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-					<h:inputText class="mdl-textfield__input" p:maxlength="128" required="required" id="direccion">
+					<h:inputText class="mdl-textfield__input" p:maxlength="128" required="required" id="direccion" />
 					<h:outputLabel class="mdl-textfield__label" for="direccion">Dirección fiscal</h:outputLabel>
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:inputText class="mdl-textfield__input" p:maxlength="45" required="required" id="departamento">
+					<h:inputText class="mdl-textfield__input" p:maxlength="45" required="required" id="departamento" />
 					<h:outputLabel class="mdl-textfield__label" for="departamento">Departamento</h:outputLabel>
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:inputText class="mdl-textfield__input" p:maxlength="45" required="required" id="ciudad">
+					<h:inputText class="mdl-textfield__input" p:maxlength="45" required="required" id="ciudad" />
 					<h:outputLabel class="mdl-textfield__label" for="ciudad">Ciudad</h:outputLabel>
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-					<h:inputText class="mdl-textfield__input" p:maxlength="128" required="required" id="personaContacto">
+					<h:inputText class="mdl-textfield__input" p:maxlength="128" required="required" id="personaContacto" />
 					<h:outputLabel class="mdl-textfield__label" for="personaContacto">Persona de contacto</h:outputLabel>
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label fullWidth">
@@ -1970,7 +1967,7 @@
 			</h:panelGroup>
 			<h:panelGroup layout="block" class="mdl-dialog__actions">
 				<h:commandButton id="mostrarClienteNuevo" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Crear cliente" />
-				<h:commandButton value="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm">Cancelar</button>
+				<h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
 			</h:panelGroup>
 		</h:form>
 	</aside>

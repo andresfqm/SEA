@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <script src="https://use.fontawesome.com/a39256cab5.js"></script>
 	<h:outputScript library="js" name="mdl-selectfield.min.js"></h:outputScript>
+	<h:outputScript library="js" name="material.min.js"></h:outputScript>
 	<h:outputScript library="js" name="breadcrumbs.js"></h:outputScript>
 	<h:outputScript library="js" name="taksTabs.js"></h:outputScript>
 	<h:outputScript library="js" name="scrollup.js"></h:outputScript>
@@ -483,7 +484,7 @@
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-dialog__actions">
 					<h:commandButton id="mostrarUsuarioCreado" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" type="submit" value="Crear usuario" />
-					<h:commandButton value="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm">Cancelar</button>
+					<h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
 				</h:panelGroup>
 			</h:form>
 		</aside>

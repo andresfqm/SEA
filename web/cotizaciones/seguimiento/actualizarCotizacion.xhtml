@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <script src="https://use.fontawesome.com/a39256cab5.js"></script>
 	<h:outputScript library="js" name="mdl-selectfield.min.js"></h:outputScript>
+	<h:outputScript library="js" name="material.min.js"></h:outputScript>
 	<h:outputScript library="js" name="breadcrumbs.js"></h:outputScript>
 	<h:outputScript library="js" name="taksTabs.js"></h:outputScript>
 	<h:outputScript library="js" name="scrollup.js"></h:outputScript>
@@ -30,7 +31,7 @@
 		<a class="fa fa-tasks mdl-badge mostrarNavbars" data-badge="4" data-target="#taskList" aria-hidden="true" href="#"></a>
 	</header>
 	<main>
-		<h:form action="./index.html" id="corregirCotizacion">
+		<h:form id="corregirCotizacion">
 			<section class="step">
 				<h3 class="mdl-typography--headline">Datos de la cotización</h3>
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -81,7 +82,7 @@
 					<h:inputText class="mdl-textfield__input" id="numeroRemision" p:maxlength="16" />
 					<h:outputLabel class="mdl-textfield__label" for="numeroRemision" class="mdl-textfield__label">Número de remisión:</h:outputLabel>
 				</h:panelGroup>
-				<h:panelGroup layout="block">
+				<h:panelGroup layout="block" />
 					<h:outputLabel class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="visita">
 						<h:selectBooleanCheckbox id="visita" class="mdl-switch__input" />
 						<h:panelGroup class="mdl-switch__label">Visita</h:panelGroup>
@@ -392,7 +393,7 @@
 		</h:panelGroup>
 		<h:panelGroup layout="block" class="mdl-dialog__actions">
 			<button id="mostrarArticuloAgregado" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" type="submit">Agregar artículo</button>
-			<h:commandButton value="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm">Cancelar</button>
+			<h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
 		</h:panelGroup>
 	</h:form>
 	<h:form id="addNovedad" class="mdl-dialog">
@@ -409,7 +410,7 @@
 		</h:panelGroup>
 		<h:panelGroup layout="block" class="mdl-dialog__actions">
 			<button id="mostrarNovedadAgregada" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" type="submit">Registrar novedad</button>
-			<h:commandButton value="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm">Cancelar</button>
+			<h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
 		</h:panelGroup>
 	</h:form>
 </aside>

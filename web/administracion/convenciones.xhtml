@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <script src="https://use.fontawesome.com/a39256cab5.js"></script>
 	<h:outputScript library="js" name="mdl-selectfield.min.js"></h:outputScript>
+	<h:outputScript library="js" name="material.min.js"></h:outputScript>
 	<h:outputScript library="js" name="breadcrumbs.js"></h:outputScript>
 	<h:outputScript library="js" name="taksTabs.js"></h:outputScript>
 	<h:outputScript library="js" name="scrollup.js"></h:outputScript>
@@ -739,24 +740,24 @@
 			<h3 class="mdl-dialog__title">Registrar categoría</h3>
 			<h:panelGroup layout="block" class="mdl-dialog__content">
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:inputText class="mdl-textfield__input" p:maxlength="32" required="required" id="nombreCategoria">
+					<h:inputText class="mdl-textfield__input" p:maxlength="32" required="required" id="nombreCategoria" />
 					<h:outputLabel class="mdl-textfield__label" for="nombreCategoria">Nombre</h:outputLabel>
 				</h:panelGroup>
 			</h:panelGroup>
 			<h:panelGroup layout="block" class="mdl-dialog__actions">
 				<h:commandButton id="mostrarCategoriaCreada" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Crear categoría" />
-				<h:commandButton value="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm">Cancelar</button>
+				<h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
 			</h:panelGroup>
 		</h:form>
 		<h:form id="addSubcategoria" class="mdl-dialog">
 			<h3 class="mdl-dialog__title">Registrar subcategoría</h3>
 			<h:panelGroup layout="block" class="mdl-dialog__content">
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:inputText class="mdl-textfield__input" p:maxlength="5" required="required" id="codigoSubcategoria">
+					<h:inputText class="mdl-textfield__input" p:maxlength="5" required="required" id="codigoSubcategoria" />
 					<h:outputLabel class="mdl-textfield__label" for="codigoSubcategoria">Código</h:outputLabel>
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:inputText class="mdl-textfield__input" p:maxlength="32" required="required" id="nombreSubcategoria">
+					<h:inputText class="mdl-textfield__input" p:maxlength="32" required="required" id="nombreSubcategoria" />
 					<h:outputLabel class="mdl-textfield__label" for="nombreSubcategoria">Nombre</h:outputLabel>
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
@@ -770,41 +771,41 @@
 			</h:panelGroup>
 			<h:panelGroup layout="block" class="mdl-dialog__actions">
 				<h:commandButton id="mostrarSubcategoriaCreada" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Crear subcategoría" />
-				<h:commandButton value="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm">Cancelar</button>
+				<h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
 			</h:panelGroup>
 		</h:form>
 		<h:form id="addMaterial" class="mdl-dialog">
 			<h3 class="mdl-dialog__title">Registrar material</h3>
 			<h:panelGroup layout="block" class="mdl-dialog__content">
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:inputText class="mdl-textfield__input" p:maxlength="5" required="required" id="codigoMaterial">
+					<h:inputText class="mdl-textfield__input" p:maxlength="5" required="required" id="codigoMaterial" />
 					<h:outputLabel class="mdl-textfield__label" for="codigoMaterial">Código</h:outputLabel>
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:inputText class="mdl-textfield__input" p:maxlength="64" required="required" id="nombreMaterial">
+					<h:inputText class="mdl-textfield__input" p:maxlength="64" required="required" id="nombreMaterial" />
 					<h:outputLabel class="mdl-textfield__label" for="nombreMaterial">Nombre</h:outputLabel>
 				</h:panelGroup>
 			</h:panelGroup>
 			<h:panelGroup layout="block" class="mdl-dialog__actions">
 				<h:commandButton id="mostrarMaterialNuevo" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Crear material" />
-				<h:commandButton value="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm">Cancelar</button>
+				<h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
 			</h:panelGroup>
 		</h:form>
 		<h:form id="addSufijo" class="mdl-dialog">
 			<h3 class="mdl-dialog__title">Registrar sufijo</h3>
 			<h:panelGroup layout="block" class="mdl-dialog__content">
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:inputText class="mdl-textfield__input" p:maxlength="10" required="required" id="sufijo">
+					<h:inputText class="mdl-textfield__input" p:maxlength="10" required="required" id="sufijo" />
 					<h:outputLabel class="mdl-textfield__label" for="sufijo">Código</h:outputLabel>
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:inputText class="mdl-textfield__input" p:maxlength="500" required="required" id="descripcionFabricante">
+					<h:inputText class="mdl-textfield__input" p:maxlength="500" required="required" id="descripcionFabricante" />
 					<h:outputLabel class="mdl-textfield__label" for="descripcionFabricante">Nombre</h:outputLabel>
 				</h:panelGroup>
 			</h:panelGroup>
 			<h:panelGroup layout="block" class="mdl-dialog__actions">
-				<h:commandButton id="mostrarSufijoNuevo" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Crear sufijo"/ >
-				<h:commandButton value="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm">Cancelar</button>
+				<h:commandButton id="mostrarSufijoNuevo" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Crear sufijo" />
+				<h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
 			</h:panelGroup>
 		</h:form>
 	</aside>
