@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8" />
+	<title>Reestablecer contraseña | SEA</title>
+	<link rel="shortcut icon" href="/img/favicon.ico" />
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+	<link rel="stylesheet" href="/css/material.min.css" />
+	<link rel="stylesheet" href="/auth/css/login.css" />
+	<script src="/auth/js/material.min.js"></script>
+	<script src="/auth/js/checkBrowser.js"></script>
+</head>
+<body>
+	<main class="mdl-shadow--4dp">
+		<h1 class="mdl-typography--display-1">Reestablecer contraseña</h1>
+		<form action="/auth/" method="POST">
+			<div class="mdl-textfield mdl-textfield--floating-label mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				<input class="mdl-textfield__input" type="password" id="newPassword" required />
+				<label class="mdl-textfield__label" for="newPassword">Nueva contraseña</label>
+			</div>
+			<div class="mdl-textfield mdl-textfield--floating-label mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				<input class="mdl-textfield__input" type="password" id="passwordRepeat" required />
+				<label class="mdl-textfield__label" for="passwordRepeat">Confirme su contraseña</label>
+			</div>
+			<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Cambiar contraseña</button>
+		</form>
+		<div>
+			<span>SEA &copy; 2016 - Todos los derechos reservados - v0.2.160628</span>
+		</div>
+	</main>
+</body>
+</html>

@@ -150,7 +150,7 @@ body > nav{
 #logo{
 	flex: 0 0 230px;
 	height: var(--altoHeader);
-	background: #3f51b5 url(../img/logo.png);
+	background: #3f51b5 url(#{resource['img/logo.png']});
 	background-size: auto 75%;
 	background-repeat: no-repeat;
 	background-position: top center;
@@ -163,7 +163,7 @@ body > nav{
 	position: relative;
 	padding: 0 22px;
 	height: 150px;
-	background: url(../img/user-bg.png);
+	background: url(#{resource['img/user-bg.png']});
 	background-size: cover;
 }
 #userName{
@@ -209,7 +209,7 @@ body > nav > ul li a:hover {
 }
 .logoSena::before{
 	content: "";
-	background: url(/img/LogoSENA.svg);
+	background: url(#{resource['img/LogoSENA.svg']});
 	background-size: 30px 30px;
 	background-repeat: no-repeat;
 	background-position: 15px center;

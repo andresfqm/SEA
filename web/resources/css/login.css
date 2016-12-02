@@ -1,0 +1,91 @@
+/********************************************************************************
+Estilos generales
+********************************************************************************/
+*, *::before, *::after{
+	box-sizing: border-box;
+}
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	display: grid;
+	grid-template-columns: 416px calc(100% - 416px);
+	grid-template-rows: auto;
+	grid-template-areas: "main .";
+	height: 100vh;
+	background: #fff url(#{resource['/img/fondoLogin.png']}) no-repeat fixed left top / cover;
+}
+main{
+	grid-area: main;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 90px auto auto;
+	grid-template-areas: "titulo" "formulario" "creditos";
+	background: #FFF;
+}
+main h1{
+	grid-area: titulo;
+	text-align: center;
+}
+/**********************************************************************
+Formulario
+**********************************************************************/
+form{
+	grid-area: formulario;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: repeat(4, auto);
+	grid-template-areas: "usuario" "contrasena" "opciones" "submit";
+	align-content: center;
+	padding: 0 40px;
+}
+form > div:nth-child(1){
+	grid-area: usuario;
+}
+form > div:nth-child(2){
+	grid-area: contrasena;
+}
+form > div:nth-child(3){
+	grid-area: opciones;
+}
+form > div:nth-child(3) > *{
+	width: 50%;
+}
+form > div:nth-child(3) a{
+	color: #448aff;
+	text-decoration: none;
+	vertical-align: middle;
+}
+form > button[type="submit"]{
+	grid-area: submit;
+}
+.mdl-button.mdl-button--raised{
+	width: 100%;
+	margin: 16px 0;
+}
+.mdl-textfield__input[required] + .mdl-textfield__label::before, .mdl-selectfield__select[required] + .mdl-selectfield__label::before{
+	content: "(*) ";
+	color: #d50000;
+}
+main > div{
+	grid-area: creditos;
+	padding-bottom: 30px;
+	text-align: center;
+	align-self: end;
+}
+@media all and (max-width: 360px){
+	body{
+		grid-template-areas: "main main";
+	}
+	form{
+		padding: 0 10px;
+	}
+	form > div:nth-child(3) > *{
+		display: block;
+	}
+	form > div:nth-child(3) > a{
+		padding-top: 15px;
+		width: 100%;
+	}
+}
