@@ -50,5 +50,16 @@ public class CategoriaController implements Serializable {
         }
 
     }
+    
+    public void verCategorias() {
+
+        try {
+
+            categoriaEJB.findAll();
+        } catch (Exception e) {
+
+        }
+
+    }
 
 }
