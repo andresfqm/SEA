@@ -3,9 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Depurador/Documents/NetBeansProjects/SEA/web/administracion/articulos.xhtml</file>
-            <file>file:/C:/Users/Depurador/Documents/NetBeansProjects/SEA/web/cotizaciones/corregirOrden.xhtml</file>
-            <file>file:/C:/Users/Depurador/Documents/NetBeansProjects/SEA/web/index.xhtml</file>
+            <file>file:/C:/Users/SENA/Downloads/SEA/src/java/com/sea/backend/entities/Categoria.java</file>
+            <file>file:/C:/Users/SENA/Downloads/SEA/web/administracion/convenciones.xhtml</file>
+            <file>file:/C:/Users/SENA/Downloads/SEA/src/java/com/sea/frontend/controller/CategoriaController.java</file>
+            <file>file:/C:/Users/SENA/Downloads/SEA/src/java/com/sea/backend/model/CategoriaFacadeLocal.java</file>
+            <file>file:/C:/Users/SENA/Downloads/SEA/src/java/com/sea/backend/model/CategoriaFacade.java</file>
+            <file>file:/C:/Users/SENA/Downloads/SEA/web/cotizaciones/enviarCotizacion.xhtml</file>
+            <file>file:/C:/Users/SENA/Downloads/SEA/web/auth/index.html</file>
         </group>
     </open-files>
 </project-private>

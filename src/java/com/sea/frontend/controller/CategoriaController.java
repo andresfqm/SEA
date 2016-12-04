@@ -73,4 +73,9 @@ public class CategoriaController implements Serializable {
 
     }
     
+    public void eliminar(Categoria c){
+        this.categoriaEJB.remove(c);
+    }
+    
+    
 }

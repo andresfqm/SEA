@@ -111,7 +111,8 @@ public class Categoria implements Serializable {
 
     @Override
     public String toString() {
-        return "com.sea.backend.entities.Categoria[ idCategoria=" + idCategoria + " ]";
+        return nombre;
+        
     }
     
 }
