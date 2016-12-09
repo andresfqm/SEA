@@ -30,4 +30,6 @@ public interface DireccionFacadeLocal {
 
     int count();
     
+    Direccion direccionCliente(int idCliente) throws Exception;
+    
 }

@@ -2,7 +2,9 @@
 <html lang="es"
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:pt="http://java.sun.com/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
 	<meta charset="UTF-8" />
 	<title>Enviar cotización | SEA</title>
@@ -40,23 +42,48 @@
 					<h:outputLabel class="mdl-textfield__label" for="numeroCotizacion">Cotización No.</h:outputLabel>
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:inputText class="mdl-textfield__input" p:maxlength="32" id="ciudadEmision" value="Bogotá D.C." required="required" />
+                                    <h:inputText class="mdl-textfield__input" p:maxlength="32" id="ciudadEmision" value="#{cotizacionController.cotizacion.lugarEmision}" required="required" />
 					<h:outputLabel class="mdl-textfield__label" for="ciudadEmision">Ciudad de emisión</h:outputLabel>
+                                                                                
+                                        
+                                        <p:outputLabel value="Ciudad"/>
+                                        <p:selectOneMenu filter="true" filterMatchMode="contains">
+                                            <f:selectItems value="#{consultaController.ciudad}" var="ciu" itemLabel="#{ciu.nombre}" 
+                                                           itemValue="#{ciu.idCiudad}"/>
+                                        </p:selectOneMenu>
+                                
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:inputText class="mdl-textfield__input" id="fechaEmision" value="15/05/2016" disabled="disabled" />
+                                    <h:inputText pt:type="date" class="mdl-textfield__input" id="fechaEmision" value="#{cotizacionController.cotizacion.fechaEmision}" pt:disabled="true" />
 					<h:outputLabel class="mdl-textfield__label" for="fechaEmision">Fecha de emisión</h:outputLabel>
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:inputText class="mdl-textfield__input" id="cliente" value="DIMAI DOTACIONES" required="required" />
+                                    <h:inputText class="mdl-textfield__input" id="cliente" value="#{cotizacionController.cotizacion.tblClienteIdCliente.nombreORazonSocial}" required="required" />
 					<h:outputLabel class="mdl-textfield__label" for="cliente">Empresa</h:outputLabel>
-				</h:panelGroup>
+                                        
+                                        
+
+                                
+                                        
+                                        
+                                        <p:outputLabel value="Empresa"/>
+                                        <p:selectOneMenu value="#{consultaController.idCliente}" filter="true" filterMatchMode="contains">
+                                            <p:ajax event="valueChange" listener="#{consultaController.obtenerDireccionCliente()}" update="ciudad" />
+                                            <f:selectItems itemLabel="" itemValue=""/>
+                                            <f:selectItems value="#{consultaController.clientes}" var="cli" itemLabel="#{cli.nombreORazonSocial}" itemValue="#{cli.idCliente}"/>
+                                        </p:selectOneMenu>
+                                                       
+                                                       
+                                                       
+                                </h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:inputText class="mdl-textfield__input" id="ciudad" value="Bogotá D.C." disabled="disabled" />
+                                    <h:inputText class="mdl-textfield__input" id="ciudad" value="#{consultaController.direccionCliente}" pt:disabled="true" />
 					<h:outputLabel class="mdl-textfield__label" for="ciudad">Ciudad</h:outputLabel>
+
 				</h:panelGroup>
+                                
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:inputText class="mdl-textfield__input" id="departamento" value="Bogotá" disabled="disabled" />
+					<h:inputText class="mdl-textfield__input" id="departamento" value="Bogotá" pt:disabled="true" />
 					<h:outputLabel class="mdl-textfield__label" for="departamento">Departamento</h:outputLabel>
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -75,26 +102,32 @@
 					<h:inputText class="mdl-textfield__input" p:type="tel" id="telefono2" value="5453276" disabled="disabled" />
 					<h:outputLabel class="mdl-textfield__label" for="telefono2">Teléfono 2</h:outputLabel>
 				</h:panelGroup>
+                                        
+                                        
+                                          
+                                        
+				
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 					<h:inputText class="mdl-textfield__input" id="asesor" value="Ángel Torres" disabled="disabled" />
 					<h:outputLabel class="mdl-textfield__label" for="asesor">Asesor</h:outputLabel>
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:inputText class="mdl-textfield__input" id="numeroRemision" p:maxlength="16" />
+                                    <h:inputText class="mdl-textfield__input" id="numeroRemision" p:maxlength="16" value="#{cotizacionController.cotizacion.numeroRemision}" />
 					<h:outputLabel class="mdl-textfield__label" for="numeroRemision">Número de remisión</h:outputLabel>
 				</h:panelGroup>
 				<h:panelGroup layout="block" />
 					<h:outputLabel class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="visita">
-						<h:selectBooleanCheckbox id="visita" class="mdl-switch__input" />
+                                            <h:selectBooleanCheckbox id="visita" class="mdl-switch__input" value="#{cotizacionController.cotizacion.visita}"/>
 						<h:panelGroup class="mdl-switch__label">Visita</h:panelGroup>
 					</h:outputLabel>
 					<h:outputLabel class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="prestamo">
-						<h:selectBooleanCheckbox id="prestamo" class="mdl-switch__input" />
+                                            <h:selectBooleanCheckbox id="prestamo" class="mdl-switch__input" value="#{cotizacionController.cotizacion.prestamoMuestra}" />
 						<h:panelGroup class="mdl-switch__label">Préstamo de muestras</h:panelGroup>
 					</h:outputLabel>
-				</h:panelGroup>
+			
 				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-					<h:inputTextarea id="relacionMuestra" class="mdl-textfield__input" p:maxlength="512" required="required" />
+                                    <h:inputTextarea id="relacionMuestra" class="mdl-textfield__input" pt:maxlength="512" required="required" value="#{cotizacionController.cotizacion.relacionMuestra}" />
+                                                      
 					<h:outputLabel class="mdl-textfield__label" for="relacionMuestra">Relación de muestras</h:outputLabel>
 				</h:panelGroup>
 			</section>
@@ -311,7 +344,7 @@
 					<h:outputLabel class="mdl-textfield__label" for="cuerpoMensaje">Cuerpo del mensaje a enviar</h:outputLabel>
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="buttons fullWidth">
-					<h:commandButton class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent notificacion" value="Enviar y realizar seguimiento" />
+                                    <h:commandButton class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent notificacion" value="Enviar y realizar seguimiento" actionListener="#{cotizacionController.registrar()}" />
 					<h:commandButton class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent notificacion" value="Realizar seguimiento" />
 				</h:panelGroup>
 			</section>
