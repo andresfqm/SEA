@@ -8,6 +8,7 @@ package com.sea.frontend.controller;
 import com.sea.backend.entities.Cliente;
 import com.sea.backend.model.ClienteFacadeLocal;
 import java.io.Serializable;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ViewScoped;
@@ -23,8 +24,19 @@ public class ClienteController implements Serializable {
 
     @EJB
     private ClienteFacadeLocal clienteEJB;
-
+    private List<Cliente> listaClientes;
     private Cliente cliente;
+
+    public List<Cliente> getListaClientes() {
+        listaClientes = clienteEJB.findAll();
+        return listaClientes;
+    }
+
+    public void setListaClientes(List<Cliente> listaClientes) {
+        this.listaClientes = listaClientes;
+    }
+    
+    
 
     public Cliente getCliente() {
         return cliente;

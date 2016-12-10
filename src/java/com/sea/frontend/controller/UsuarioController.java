@@ -9,6 +9,7 @@ import com.sea.backend.entities.Usuario;
 import com.sea.backend.model.UsuarioFacadeLocal;
 import com.sea.frontend.converters.Conversor;
 import java.io.Serializable;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.model.SelectItem;
@@ -27,6 +28,16 @@ public class UsuarioController implements Serializable {
     private UsuarioFacadeLocal usuarioEJB;
     
     private Usuario usuario;
+    private List<Usuario> listaUsuarios;
+
+    public List<Usuario> getListaUsuarios() {
+        listaUsuarios = usuarioEJB.findAll();
+        return listaUsuarios;
+    }
+
+    public void setListaUsuarios(List<Usuario> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
+    }
     
     public Usuario getUsuario() {
         return usuario;

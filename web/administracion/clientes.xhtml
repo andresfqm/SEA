@@ -33,10 +33,46 @@
 	</header>
 	<main id="clientesDashboard">
 		<h:form>
-                        <h:dataTable value="#{categoriaController.listaCategoria}" var="cat" cellpadding="1" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                    <h:dataTable value="#{clienteController.listaClientes}" var="cl" cellpadding="1" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputLabel value="Nombre"/>
+                                    <h:outputLabel value="No. Documento"/>
+                                </f:facet>
+                                <h:outputText value="#{cl.numeroDocumento}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputLabel value="Nombre/Razón social"/>
+                                </f:facet>
+                                <h:outputText value="#{cl.nombreORazonSocial}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputLabel value="Dirección"/>
+                                </f:facet>
+                                <h:outputText value=""/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputLabel value="Teléfono"/>
+                                </f:facet>
+                                <h:outputText value="#{cat.nombre}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputLabel value="Correo electrónico"/>
+                                </f:facet>
+                                <h:outputText value="#{cat.nombre}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputLabel value="Contacto"/>
+                                </f:facet>
+                                <h:outputText value="#{cat.nombre}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputLabel value="Asesor"/>
                                 </f:facet>
                                 <h:outputText value="#{cat.nombre}"/>
                             </h:column>
