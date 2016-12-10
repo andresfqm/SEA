@@ -39,195 +39,66 @@
                 </h:panelGroup>
                 <h:panelGroup layout="block" class="mdl-tabs__panel is-active" id="categorias-panel">
                     <h:form>
-                    <h:dataTable class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" value="#{categoriaController.listaCategoria}" var="cat">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="nombre"/>
-                            </f:facet>
-                            <h:outputLabel class="mdl-data-table__cell--non-numeric" value="#{cat.nombre}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Acciones"/>
-                            </f:facet>
-                            <h:commandButton class="material-icons mdl-data-table__cell--non-numeric" action="#{categoriaController.eliminar(cat)}" value="delete" />
-                        </h:column>
-                    </h:dataTable>
+                        <h:dataTable value="#{categoriaController.listaCategoria}" var="cat" cellpadding="1" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputLabel value="Nombre"/>
+                                </f:facet>
+                                <h:outputText value="#{cat.nombre}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputLabel value="Acciones"/>
+                                </f:facet>
+                                <h:panelGroup layout="block">
+                                    <h:commandButton action="#{categoriaController.Eliminar(cat)}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Eliminar"/>
+                                    <h:commandButton class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Modificar"/>
+                                </h:panelGroup>
+                            </h:column>
+                        </h:dataTable>
                     </h:form>
                     <a href="#addCategoria" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
                         <i class="material-icons">add</i>
                     </a>
                 </h:panelGroup>
                 <h:panelGroup layout="block" class="mdl-tabs__panel" id="subcategorias-panel">
-                    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-                        <thead>
-                            <tr>
-                                <th class="mdl-data-table__cell--non-numeric">Código</th>
-                                <th class="mdl-data-table__cell--non-numeric">Nombre</th>
-                                <th class="mdl-data-table__cell--non-numeric">Clasificada en</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric" >A</td>
-                                <td class="mdl-data-table__cell--non-numeric">CAMISETAS</td>
-                                <td class="mdl-data-table__cell--non-numeric">Prendas</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">B</td>
-                                <td class="mdl-data-table__cell--non-numeric">BATAS</td>
-                                <td class="mdl-data-table__cell--non-numeric">Prendas</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">C</td>
-                                <td class="mdl-data-table__cell--non-numeric">CAMISAS</td>
-                                <td class="mdl-data-table__cell--non-numeric">Prendas</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">D</td>
-                                <td class="mdl-data-table__cell--non-numeric">BORDADOS</td>
-                                <td class="mdl-data-table__cell--non-numeric">Prendas</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">E</td>
-                                <td class="mdl-data-table__cell--non-numeric">CABEZA</td>
-                                <td class="mdl-data-table__cell--non-numeric">Seguridad industrial</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">F</td>
-                                <td class="mdl-data-table__cell--non-numeric">FACIAL</td>
-                                <td class="mdl-data-table__cell--non-numeric">Seguridad industrial</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">G</td>
-                                <td class="mdl-data-table__cell--non-numeric">GORROS</td>
-                                <td class="mdl-data-table__cell--non-numeric">Prendas</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">H</td>
-                                <td class="mdl-data-table__cell--non-numeric">CORPORAL</td>
-                                <td class="mdl-data-table__cell--non-numeric">Seguridad industrial</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">I</td>
-                                <td class="mdl-data-table__cell--non-numeric">DELANTALES</td>
-                                <td class="mdl-data-table__cell--non-numeric">Prendas</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">J</td>
-                                <td class="mdl-data-table__cell--non-numeric">BOTIQUINES</td>
-                                <td class="mdl-data-table__cell--non-numeric">Seguridad industrial</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">K</td>
-                                <td class="mdl-data-table__cell--non-numeric">CAIDAS</td>
-                                <td class="mdl-data-table__cell--non-numeric">Seguridad industrial</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">L</td>
-                                <td class="mdl-data-table__cell--non-numeric">CHALECOS</td>
-                                <td class="mdl-data-table__cell--non-numeric">Prendas</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">M</td>
-                                <td class="mdl-data-table__cell--non-numeric">MALETINES</td>
-                                <td class="mdl-data-table__cell--non-numeric">Prendas</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">N</td>
-                                <td class="mdl-data-table__cell--non-numeric">MANUAL</td>
-                                <td class="mdl-data-table__cell--non-numeric">Seguridad industrial</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">O</td>
-                                <td class="mdl-data-table__cell--non-numeric">OTROS</td>
-                                <td class="mdl-data-table__cell--non-numeric">Prendas</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">P</td>
-                                <td class="mdl-data-table__cell--non-numeric">PANTALONES</td>
-                                <td class="mdl-data-table__cell--non-numeric">Prendas</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">PR</td>
-                                <td class="mdl-data-table__cell--non-numeric">PROMOCIONALES</td>
-                                <td class="mdl-data-table__cell--non-numeric">Seguridad industrial</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">Q</td>
-                                <td class="mdl-data-table__cell--non-numeric">CHAQUETAS</td>
-                                <td class="mdl-data-table__cell--non-numeric">Prendas</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">R</td>
-                                <td class="mdl-data-table__cell--non-numeric">RESPIRATORIA</td>
-                                <td class="mdl-data-table__cell--non-numeric">Seguridad industrial</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">S</td>
-                                <td class="mdl-data-table__cell--non-numeric">ESTAMPADOS Y TRANSFER</td>
-                                <td class="mdl-data-table__cell--non-numeric">Prendas</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">T</td>
-                                <td class="mdl-data-table__cell--non-numeric">CONJUNTOS</td>
-                                <td class="mdl-data-table__cell--non-numeric">Prendas</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">U</td>
-                                <td class="mdl-data-table__cell--non-numeric">PVC</td>
-                                <td class="mdl-data-table__cell--non-numeric">Prendas</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">V</td>
-                                <td class="mdl-data-table__cell--non-numeric">OVEROLES</td>
-                                <td class="mdl-data-table__cell--non-numeric">Prendas</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">W</td>
-                                <td class="mdl-data-table__cell--non-numeric">VISUAL</td>
-                                <td class="mdl-data-table__cell--non-numeric">Seguridad industrial</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">X</td>
-                                <td class="mdl-data-table__cell--non-numeric">AUDITIVA</td>
-                                <td class="mdl-data-table__cell--non-numeric">Seguridad industrial</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">Y</td>
-                                <td class="mdl-data-table__cell--non-numeric">SEÑALIZACIÓN</td>
-                                <td class="mdl-data-table__cell--non-numeric">Seguridad industrial</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">Z</td>
-                                <td class="mdl-data-table__cell--non-numeric">CALZADO</td>
-                                <td class="mdl-data-table__cell--non-numeric">Prendas</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <h:dataTable value="#{subcategoriaController.listaSubcategoria}" var="sub" cellpadding="1" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel value="Codigo"/>
+                            </f:facet>
+                            <h:outputText value="#{sub.codigo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel value="Nombre"/>
+                            </f:facet>
+                            <h:outputText value="#{sub.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel value="Clasificada en: "/>
+                            </f:facet>
+                            <h:outputText value="#{sub.tblCategoriaIdCategoria.nombre}"/>
+                        </h:column>
+                    </h:dataTable>
                     <a href="#addSubcategoria" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
                         <i class="material-icons">add</i>
                     </a>
                 </h:panelGroup>
                 <h:panelGroup layout="block" class="mdl-tabs__panel" id="materiales-panel">
-                    <h:dataTable class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" value="#{materialController.materiales}" var="mat">
+                    <h:dataTable value="#{materialController.listaMateriales}" var="mat" cellpadding="1" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="codigo"/>
+                                <h:outputLabel value="Codigo"/>
                             </f:facet>
-                            <h:outputLabel class="mdl-data-table__cell--non-numeric" value="#{mat.codigo}"/>
+                            <h:outputText value="#{mat.codigo}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="nombre"/>
+                                <h:outputLabel value="Nombre"/>
                             </f:facet>
-                            <h:outputLabel class="mdl-data-table__cell--non-numeric" value="#{mat.nombre}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="costo"/>
-                            </f:facet>
-                            <h:outputLabel class="mdl-data-table__cell--non-numeric" value="#{mat.costo}"/>
+                            <h:outputText value="#{mat.nombre}"/>
                         </h:column>
                     </h:dataTable>
                     <a href="#addMaterial" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
@@ -235,18 +106,18 @@
                     </a>
                 </h:panelGroup>
                 <h:panelGroup layout="block" class="mdl-tabs__panel" id="sufijos-panel">
-                    <h:dataTable class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" value="#{sufijoController.listaSufijos}" var="suf">
+                    <h:dataTable value="#{sufijoController.listaSufijos}" var="suf" cellpadding="1" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="codigo"/>
+                                <h:outputLabel value="Sufijo"/>
                             </f:facet>
-                            <h:outputLabel class="mdl-data-table__cell--non-numeric" value="#{suf.codigo}"/>
+                            <h:outputText value="#{suf.codigo}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="descripcion"/>
+                                <h:outputLabel value="Descripcion del fabricante"/>
                             </f:facet>
-                            <h:outputLabel class="mdl-data-table__cell--non-numeric" value="#{suf.descripcionFabricante}"/>
+                            <h:outputText value="#{suf.descripcionFabricante}"/>
                         </h:column>
                     </h:dataTable>
                     <a href="#addSufijo" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
@@ -266,31 +137,40 @@
                 </h:panelGroup>
                 <h:panelGroup layout="block" class="mdl-dialog__actions">
                     <h:commandButton action="#{categoriaController.registrar()}" id="mostrarCategoriaCreada" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Crear categoría" />
-                    <button type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm">Cancelar</button>
+                    <h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
                 </h:panelGroup>
             </h:form>
-            <h:form id="addSubcategoria" class="mdl-dialog" >
-                <h3 class="mdl-dialog__title">Registrar subcategoría</h3>
+            <h:form id="updateCategoria" class="mdl-dialog">
+                <h3 class="mdl-dialog__title">Modificar categoría</h3>
                 <h:panelGroup layout="block" class="mdl-dialog__content">
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <h:inputText value="#{subcategoriaController.subcategoria.codigo}" class="mdl-textfield__input" p:maxlength="5" required="required" id="codigoSubcategoria" />
-                        <h:outputLabel class="mdl-textfield__label" for="codigoSubcategoria">Código</h:outputLabel>
+                        <h:inputText value="#{categoriaController.categoria.nombre}" class="mdl-textfield__input" p:maxlength="32" required="required" id="nombreCategoria" />
+                        <h:outputLabel class="mdl-textfield__label" for="nombreCategoria">Nombre</h:outputLabel>
                     </h:panelGroup>
+                </h:panelGroup>
+                <h:panelGroup layout="block" class="mdl-dialog__actions">
+                    <h:commandButton action="#{categoriaController.Modificar()}" id="mostrarCategoriaCreada" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Crear categoría" />
+                    <h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
+                </h:panelGroup>
+            </h:form>
+            <h:form id="addSubcategoria" class="mdl-dialog">
+                <h3 class="mdl-dialog__title">Registrar subcategoría</h3>
+                <h:panelGroup layout="block" class="mdl-dialog__content">
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <h:inputText class="mdl-textfield__input" value="#{subcategoriaController.subcategoria.nombre}" p:maxlength="32" required="required" id="nombreSubcategoria" />
                         <h:outputLabel class="mdl-textfield__label" for="nombreSubcategoria">Nombre</h:outputLabel>
                     </h:panelGroup>
-                    <h:panelGroup layout="block" class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-                        <h:selectOneMenu class="mdl-selectfield__select" id="clasificaCategoria" required="required" >
-                            <f:selectItems value="#{categoriaController.listAllName}" var="nom"
-                                           itemLabel="#{nom.idCategoria}"
-                                           itemValue="#{categoriaController.categoria.setIdCategoria(idCategoria)}"/>
-                        </h:selectOneMenu>
+                    <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <h:inputText value="#{subcategoriaController.subcategoria.codigo}" class="mdl-textfield__input" p:maxlength="5" required="required" id="codigoSubcategoria" />
+                        <h:outputLabel class="mdl-textfield__label" for="codigoSubcategoria">Código</h:outputLabel>
                     </h:panelGroup>
+                    <h:selectOneMenu id="categoriaIdCategoria" value="#{subcategoriaController.subcategoria.tblCategoriaIdCategoria}" title="Categorias" required="true" requiredMessage="Categoria creada">
+                        <f:selectItems value="#{categoriaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
                 </h:panelGroup>
                 <h:panelGroup layout="block" class="mdl-dialog__actions">
                     <h:commandButton action="#{subcategoriaController.registrar()}" id="mostrarSubcategoriaCreada" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Crear subcategoría" />
-                    <button type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm">Cancelar</button>
+                    <h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
                 </h:panelGroup>
             </h:form>
             <h:form id="addMaterial" class="mdl-dialog">
@@ -301,12 +181,8 @@
                         <h:outputLabel class="mdl-textfield__label" for="codigoMaterial">Código</h:outputLabel>
                     </h:panelGroup>
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <h:inputText class="mdl-textfield__input" p:maxlength="64" value="#{materialController.material.nombre}" required="required" id="nombreMaterial" />
+                        <h:inputText class="mdl-textfield__input" value="#{materialController.material.nombre}" p:maxlength="64" required="required" id="nombreMaterial" />
                         <h:outputLabel class="mdl-textfield__label" for="nombreMaterial">Nombre</h:outputLabel>
-                    </h:panelGroup>
-                    <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <h:inputText class="mdl-textfield__input" p:maxlength="64" value="#{materialController.material.costo}" required="required" id="costoMaterial" />
-                        <h:outputLabel class="mdl-textfield__label" for="nombreMaterial">Costo</h:outputLabel>
                     </h:panelGroup>
                 </h:panelGroup>
                 <h:panelGroup layout="block" class="mdl-dialog__actions">
@@ -318,12 +194,12 @@
                 <h3 class="mdl-dialog__title">Registrar sufijo</h3>
                 <h:panelGroup layout="block" class="mdl-dialog__content">
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <h:inputText class="mdl-textfield__input" p:maxlength="10" value="#{sufijoController.sufijo.codigo}" required="required" id="sufijo" />
-                        <h:outputLabel class="mdl-textfield__label" for="sufijo">Código</h:outputLabel>
+                        <h:inputText class="mdl-textfield__input" value="#{sufijoController.sufijo.codigo}" p:maxlength="10" required="required" id="sufijo" />
+                        <h:outputLabel class="mdl-textfield__label" for="sufijo">Sufijo</h:outputLabel>
                     </h:panelGroup>
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <h:inputText class="mdl-textfield__input" p:maxlength="500" value="#{sufijoController.sufijo.descripcionFabricante}" required="required" id="descripcionFabricante" />
-                        <h:outputLabel class="mdl-textfield__label" for="descripcionFabricante">Nombre</h:outputLabel>
+                        <h:inputText class="mdl-textfield__input" value="#{sufijoController.sufijo.descripcionFabricante}" p:maxlength="500" required="required" id="descripcionFabricante" />
+                        <h:outputLabel class="mdl-textfield__label" for="descripcionFabricante">Descripcion</h:outputLabel>
                     </h:panelGroup>
                 </h:panelGroup>
                 <h:panelGroup layout="block" class="mdl-dialog__actions">
@@ -414,13 +290,13 @@
             </h:panelGroup>
             <ul>
                 <li><a href="/" class="fa fa-home" aria-hidden="true">Inicio</a></li>
-                <li><a href="/SEA/cotizaciones" class="fa fa-shopping-cart" aria-hidden="true">Cotizaciones</a></li>
-                <li><a href="/SEA/produccion" class="fa fa-wpforms" aria-hidden="true">Producción</a></li>
-                <li><a href="/SEA/reportes" class="fa fa-area-chart" aria-hidden="true">Reportes</a></li>
-                <li><a href="/SEA/administracion" class="fa fa-cog" aria-hidden="true">Administración</a></li>
-                <li><a href="/SEA/calendario" class="fa fa-calendar" aria-hidden="true">Calendario</a></li>
+                <li><a href="/cotizaciones" class="fa fa-shopping-cart" aria-hidden="true">Cotizaciones</a></li>
+                <li><a href="/produccion" class="fa fa-wpforms" aria-hidden="true">Producción</a></li>
+                <li><a href="/reportes" class="fa fa-area-chart" aria-hidden="true">Reportes</a></li>
+                <li><a href="/administracion" class="fa fa-cog" aria-hidden="true">Administración</a></li>
+                <li><a href="/calendario" class="fa fa-calendar" aria-hidden="true">Calendario</a></li>
                 <li><a href="https://github.com/Darhakexge/Interfaces-internas/issues/" class="fa fa-bug" aria-hidden="true">Reportar un error</a></li>
-                <li><a href="/SEA/sustentacion" class="fa logoSena" aria-hidden="true">Sustentación</a></li>
+                <li><a href="/sustentacion" class="fa logoSena" aria-hidden="true">Sustentación</a></li>
             </ul>
         </nav>
         <aside id="taskList" class="fixed-nav" data-active="false">
