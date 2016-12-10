@@ -7,10 +7,12 @@ package com.sea.frontend.controller;
 
 import com.sea.backend.entities.Origen;
 import com.sea.backend.model.OrigenFacadeLocal;
+import com.sea.frontend.converters.Conversor;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 
 import javax.inject.Named;
@@ -70,6 +72,14 @@ public class OrigenController implements Serializable {
 
         }
 
+    }
+    
+    public SelectItem[] getItemsAvailableSelectOne() {
+        return Conversor.getSelectItems(origenEJB.findAll(), true);
+    }
+    
+    public Origen getOrigen(java.lang.Integer id) {
+        return origenEJB.find(id);
     }
 
 }

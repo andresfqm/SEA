@@ -56,7 +56,7 @@ public class ConsultaController implements Serializable {
 
     @PostConstruct
     public void init() {
-        clientes = clienteEJB.findAll();
+        //clientes = clienteEJB.findAll();
        ciudad = ciudadEJB.findAll();
         //departamento = departamentoEJB.findAll();
         //email = emailEJB.findAll();
@@ -88,6 +88,7 @@ public class ConsultaController implements Serializable {
         
         
     }
+    
     /*
     @EJB
     private DepartamentoFacadeLocal departamentoEJB;

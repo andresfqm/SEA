@@ -104,9 +104,9 @@ public class Conversor {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Subcategoria) {
-                Subcategoria o = (Subcategoria) object;
-                return getStringKey(o.getIdSubcategoria());
+            if (object instanceof Usuario) {
+                Usuario o = (Usuario) object;
+                return getStringKey(o.getIdUsuario());
             } else {
                 throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Subcategoria.class.getName());
             }
