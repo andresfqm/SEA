@@ -6,12 +6,11 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.Categoria;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 /**
  *
@@ -31,23 +30,11 @@ public class CategoriaFacade extends AbstractFacade<Categoria> implements Catego
     public CategoriaFacade() {
         super(Categoria.class);
     }
-    
-    
-    
+
     @Override
-    public List<Categoria> findAllName(String nombre) throws Exception{
-        
-        List<Categoria> catg;
-        Query query = em.createNamedQuery("Categoria.findAllNombre", Categoria.class);
-        
-        try {
-            catg=query.getResultList();
-        } catch (Exception e) {
-            catg= new ArrayList<>();
-            System.out.println("error grave"+e.getMessage());
-            throw new Exception("error en el query"+e.getMessage());
-        }
-        return catg;
+    public List<Categoria> findAll() {
+        return super.findAll();
     }
+    
     
 }

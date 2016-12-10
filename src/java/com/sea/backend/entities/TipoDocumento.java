@@ -135,7 +135,7 @@ public class TipoDocumento implements Serializable {
 
     @Override
     public String toString() {
-        return "com.sea.backend.entities.TipoDocumento[ idTipoDocumento=" + idTipoDocumento + " ]";
+        return codigo;
     }
     
 }

@@ -33,9 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Categoria.findAll", query = "SELECT c FROM Categoria c"),
     @NamedQuery(name = "Categoria.findByIdCategoria", query = "SELECT c FROM Categoria c WHERE c.idCategoria = :idCategoria"),
-    @NamedQuery(name = "Categoria.findByNombre", query = "SELECT c FROM Categoria c WHERE c.nombre = :nombre"),
-    //Query para listar los nombres de la categoria
-    @NamedQuery(name = "Categoria.findAllNombre", query = "SELECT c FROM Categoria c")})
+    @NamedQuery(name = "Categoria.findByNombre", query = "SELECT c FROM Categoria c WHERE c.nombre = :nombre")})
 public class Categoria implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -89,11 +87,8 @@ public class Categoria implements Serializable {
         this.subcategoriaList = subcategoriaList;
     }
 
-    @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (idCategoria != null ? idCategoria.hashCode() : 0);
-        return hash;
+        return nombre.hashCode();
     }
 
     @Override
@@ -112,7 +107,7 @@ public class Categoria implements Serializable {
     @Override
     public String toString() {
         return nombre;
-        
     }
+    
     
 }

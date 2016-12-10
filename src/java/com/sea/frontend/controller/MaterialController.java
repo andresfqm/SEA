@@ -26,8 +26,16 @@ public class MaterialController implements Serializable {
     private MaterialFacadeLocal materialEJB;
 
     private Material material;
-    
-    private List<Material> materiales;
+    private List<Material> listaMateriales;
+
+    public List<Material> getListaMateriales() {
+        listaMateriales = materialEJB.findAll();
+        return listaMateriales;
+    }
+
+    public void setListaMateriales(List<Material> listaMateriales) {
+        this.listaMateriales = listaMateriales;
+    }
 
     public Material getMaterial() {
         return material;
@@ -36,17 +44,6 @@ public class MaterialController implements Serializable {
     public void setMaterial(Material material) {
         this.material = material;
     }
-
-    public List<Material> getMateriales() {
-        materiales = materialEJB.findAll();
-        return materiales;
-    }
-
-    public void setMateriales(List<Material> materiales) {
-        this.materiales = materiales;
-    }
-    
-    
 
     @PostConstruct
     public void init() {

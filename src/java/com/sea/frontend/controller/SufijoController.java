@@ -58,9 +58,5 @@ public class SufijoController implements Serializable {
         }
 
     }
-    
-    public void eliminar(){
-        sufijoEJB.remove(sufijo);
-    }
 
 }
