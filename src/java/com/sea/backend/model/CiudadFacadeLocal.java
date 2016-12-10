@@ -6,6 +6,7 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.Ciudad;
+import static com.sea.backend.entities.Cliente_.idCliente;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +30,4 @@ public interface CiudadFacadeLocal {
     List<Ciudad> findRange(int[] range);
 
     int count();
-    
 }

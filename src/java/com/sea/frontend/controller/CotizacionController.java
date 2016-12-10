@@ -8,6 +8,7 @@ package com.sea.frontend.controller;
 import com.sea.backend.entities.Cotizacion;
 import com.sea.backend.model.CotizacionFacadeLocal;
 import java.io.Serializable;
+import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -38,7 +39,9 @@ public class CotizacionController implements Serializable {
     public void init() {
 
         cotizacion = new Cotizacion();
-
+        cotizacion.setFechaEmision(new Date());
+        
+       
     }
 
     public void registrar() {

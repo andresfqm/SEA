@@ -3,13 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/SENA/Downloads/SEA/src/java/com/sea/backend/entities/Categoria.java</file>
-            <file>file:/C:/Users/SENA/Downloads/SEA/web/administracion/convenciones.xhtml</file>
-            <file>file:/C:/Users/SENA/Downloads/SEA/src/java/com/sea/frontend/controller/CategoriaController.java</file>
-            <file>file:/C:/Users/SENA/Downloads/SEA/src/java/com/sea/backend/model/CategoriaFacadeLocal.java</file>
-            <file>file:/C:/Users/SENA/Downloads/SEA/src/java/com/sea/backend/model/CategoriaFacade.java</file>
-            <file>file:/C:/Users/SENA/Downloads/SEA/web/cotizaciones/enviarCotizacion.xhtml</file>
-            <file>file:/C:/Users/SENA/Downloads/SEA/web/auth/index.html</file>
+            <file>file:/C:/Users/SENA/Documents/NetBeansProjects/SEA/src/java/com/sea/backend/entities/Usuario.java</file>
+            <file>file:/C:/Users/SENA/Documents/NetBeansProjects/SEA/src/java/com/sea/frontend/controller/UsuarioController.java</file>
+            <file>file:/C:/Users/SENA/Documents/NetBeansProjects/SEA/web/administracion/convenciones.xhtml</file>
+            <file>file:/C:/Users/SENA/Documents/NetBeansProjects/SEA/src/java/com/sea/backend/entities/Subcategoria.java</file>
+            <file>file:/C:/Users/SENA/Documents/NetBeansProjects/SEA/src/java/com/sea/backend/entities/Categoria.java</file>
+            <file>file:/C:/Users/SENA/Documents/NetBeansProjects/SEA/web/administracion/clientes.xhtml</file>
+            <file>file:/C:/Users/SENA/Documents/NetBeansProjects/SEA/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/SENA/Documents/NetBeansProjects/SEA/src/java/com/sea/frontend/controller/SubcategoriaController.java</file>
+            <file>file:/C:/Users/SENA/Documents/NetBeansProjects/SEA/src/java/com/sea/frontend/controller/ClienteController.java</file>
         </group>
     </open-files>
 </project-private>

@@ -140,7 +140,8 @@ public class Direccion implements Serializable {
 
     @Override
     public String toString() {
-        return "com.sea.backend.entities.Direccion[ idDireccion=" + idDireccion + " ]";
+        //return "com.sea.backend.entities.Direccion[ idDireccion=" + idDireccion + " ]";
+        return direccion;
     }
     
 }
