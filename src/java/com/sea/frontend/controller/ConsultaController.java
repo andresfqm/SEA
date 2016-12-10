@@ -10,12 +10,14 @@ import com.sea.backend.entities.Cliente;
 import com.sea.backend.entities.Departamento;
 import com.sea.backend.entities.Direccion;
 import com.sea.backend.entities.Email;
+import com.sea.backend.entities.Producto;
 import com.sea.backend.entities.Telefono;
 import com.sea.backend.model.CiudadFacadeLocal;
 import com.sea.backend.model.ClienteFacadeLocal;
 import com.sea.backend.model.DepartamentoFacadeLocal;
 import com.sea.backend.model.DireccionFacadeLocal;
 import com.sea.backend.model.EmailFacadeLocal;
+import com.sea.backend.model.ProductoFacadeLocal;
 import com.sea.backend.model.TelefonoFacadeLocal;
 
 import java.io.Serializable;
@@ -35,7 +37,7 @@ public class ConsultaController implements Serializable {
 
     @EJB
     private ClienteFacadeLocal clienteEJB;
-    private List<Cliente> clientes;
+    protected List<Cliente> clientes;
     private int idCliente;
 
     public int getIdCliente() {
@@ -54,10 +56,50 @@ public class ConsultaController implements Serializable {
         this.clientes = clientes;
     }
 
+    @EJB
+    private ProductoFacadeLocal productoEJB;
+    private List<Producto> producto;
+    private int idProducto;
+    private Producto productoDescripcion;
+
+    public List<Producto> getProducto() {
+        return producto;
+    }
+
+    public void setProducto(List<Producto> producto) {
+        this.producto = producto;
+    }
+
+    public int getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
+    }
+
+    public void obtenerDescripcionReferencia() throws Exception {
+        try {
+            productoDescripcion = productoEJB.productoDescripcion(idProducto);
+        } catch (Exception e) {
+            throw e;
+        }
+
+    }
+
+    public Producto getProductoDescripcion() {
+        return productoDescripcion;
+    }
+
+    public void setProductoDescripcion(Producto productoDescripcion) {
+        this.productoDescripcion = productoDescripcion;
+    }
+
     @PostConstruct
     public void init() {
         clientes = clienteEJB.findAll();
-       ciudad = ciudadEJB.findAll();
+        ciudad = ciudadEJB.findAll();
+        producto = productoEJB.findAll();
         //departamento = departamentoEJB.findAll();
         //email = emailEJB.findAll();
         //telefono = telefonoEJB.findAll();
@@ -75,58 +117,19 @@ public class ConsultaController implements Serializable {
     public void setCiudad(List<Ciudad> ciudad) {
         this.ciudad = ciudad;
     }
-    
+
     @EJB
     private DireccionFacadeLocal direccionEJB;
     private Direccion direccionCliente;
-    public void obtenerDireccionCliente() throws Exception{
+
+    public void obtenerDireccionCliente() throws Exception {
         try {
-            direccionCliente=direccionEJB.direccionCliente(idCliente);
+            direccionCliente = direccionEJB.direccionCliente(idCliente);
         } catch (Exception e) {
             throw e;
         }
-        
-        
+
     }
-    /*
-    @EJB
-    private DepartamentoFacadeLocal departamentoEJB;
-    private List<Departamento> departamento;
-
-    public List<Departamento> getDepartamento() {
-        return departamento;
-    }
-
-    public void setDepartamento(List<Departamento> departamento) {
-        this.departamento = departamento;
-    }
-
-    @EJB
-    private EmailFacadeLocal emailEJB;
-
-    private List<Email> email;
-
-    public List<Email> getEmail() {
-        return email;
-    }
-
-    public void setEmail(List<Email> email) {
-        this.email = email;
-    }
-
-    @EJB
-    private TelefonoFacadeLocal telefonoEJB;
-
-    private List<Telefono> telefono;
-
-    public List<Telefono> getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(List<Telefono> telefono) {
-        this.telefono = telefono;
-    }
-*/
 
     public Direccion getDireccionCliente() {
         return direccionCliente;
@@ -135,4 +138,5 @@ public class ConsultaController implements Serializable {
     public void setDireccionCliente(Direccion direccionCliente) {
         this.direccionCliente = direccionCliente;
     }
+
 }

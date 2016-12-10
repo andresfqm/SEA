@@ -27,6 +27,8 @@ public interface ProductoFacadeLocal {
     List<Producto> findAll();
 
     List<Producto> findRange(int[] range);
+    
+    Producto productoDescripcion(int idProducto) throws Exception;
 
     int count();
     
