@@ -29,5 +29,7 @@ public interface UsuarioFacadeLocal {
     List<Usuario> findRange(int[] range);
 
     int count();
-    
+
+    Usuario iniciarSesion(Usuario us);
+
 }
