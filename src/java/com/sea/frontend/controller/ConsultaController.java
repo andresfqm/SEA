@@ -36,31 +36,11 @@ import javax.inject.Named;
 public class ConsultaController implements Serializable {
 
     @EJB
-    private ClienteFacadeLocal clienteEJB;
-    protected List<Cliente> clientes;
-    private int idCliente;
-
-    public int getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    public List<Cliente> getClientes() {
-        return clientes;
-    }
-
-    public void setClientes(List<Cliente> clientes) {
-        this.clientes = clientes;
-    }
-
-    @EJB
     private ProductoFacadeLocal productoEJB;
     private List<Producto> producto;
     private int idProducto;
     private Producto productoDescripcion;
+    private int idCliente;
 
     public List<Producto> getProducto() {
         return producto;
@@ -97,7 +77,6 @@ public class ConsultaController implements Serializable {
 
     @PostConstruct
     public void init() {
-        clientes = clienteEJB.findAll();
         ciudad = ciudadEJB.findAll();
         producto = productoEJB.findAll();
         //departamento = departamentoEJB.findAll();

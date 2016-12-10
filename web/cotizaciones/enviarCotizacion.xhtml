@@ -11,11 +11,11 @@
         <link rel="shortcut icon" href="/img/favicon.ico" />
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
         <h:outputStylesheet library="css" name="material.min.css" />
-        <h:outputStylesheet library="css" name="material-icons.css" />
         <h:outputStylesheet library="css" name="mdl-selectfield.min.css" />
-        <h:outputStylesheet library="css" name="font-awesome.min.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         <h:outputStylesheet library="css" name="maquetacionBasica.css" />
-        <h:outputStylesheet library="css" name="cotizaciones.min.css" />
+        <h:outputStylesheet library="css" name="cotizaciones.css" />
+        <script src="https://use.fontawesome.com/a39256cab5.js"></script>
         <h:outputScript library="js" name="checkBrowser.js"></h:outputScript>
         <h:outputScript library="js" name="material.min.js"></h:outputScript>
         <h:outputScript library="js" name="mdl-selectfield.min.js"></h:outputScript>
@@ -26,6 +26,7 @@
         <h:outputScript library="js" name="retroalimentacion.js"></h:outputScript>
     </h:head>
     <h:body>
+        <f:view>
         <header class="mdl-layout__header is-casting-shadow mdl-layout__header-row">
             <a class="fa fa-bars mostrarNavbars" data-target="body > nav" aria-hidden="true" href="#"></a>
             <nav id="navBreadcrumbs">
@@ -67,10 +68,9 @@
 
 
                         <p:outputLabel value="Empresa"/>
-                        <p:selectOneMenu value="#{consultaController.idCliente}" filter="true" filterMatchMode="contains">
+                        <p:selectOneMenu value="#{clienteController.idCliente}" filter="true" filterMatchMode="contains">
                             <p:ajax event="valueChange" listener="#{clienteController.obtenerDatosCliente()}" update="ciudad" />
-                            <f:selectItems itemLabel="" itemValue=""/>
-                            <f:selectItems value="#{consultaController.clientes}" var="cli" itemLabel="#{cli.nombreORazonSocial}" itemValue="#{cli.idCliente}"/>
+                            <f:selectItems value="#{clienteController.clientes}" var="cli" itemLabel="#{cli.nombreORazonSocial}" itemValue="#{cli.idCliente}"/>
                         </p:selectOneMenu>
 
 
@@ -474,5 +474,6 @@
             </script>
         </aside>
         <h:panelGroup layout="block" id="ofuscador"></h:panelGroup>
+        </f:view>
     </h:body>
 </html>

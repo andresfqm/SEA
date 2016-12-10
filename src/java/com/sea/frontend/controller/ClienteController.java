@@ -1,16 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.sea.frontend.controller;
 
 import com.sea.backend.entities.Cliente;
 import com.sea.backend.model.ClienteFacadeLocal;
+
 import java.io.Serializable;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 /**
@@ -39,9 +37,7 @@ public class ClienteController implements Serializable {
 
     @PostConstruct
     public void init() {
-
-      
-
+        clientes = clienteEJB.findAll();
     }
 
     public Object[] getCliente() {
@@ -60,4 +56,17 @@ public class ClienteController implements Serializable {
         this.idCliente = idCliente;
     }
 
+    
+    
+    
+    protected List<Cliente> clientes;
+
+
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(List<Cliente> clientes) {
+        this.clientes = clientes;
+    }
 }
