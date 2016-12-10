@@ -6,6 +6,7 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.Cliente;
+
 import java.util.List;
 import javax.ejb.Local;
 
@@ -30,4 +31,5 @@ public interface ClienteFacadeLocal {
 
     int count();
     
+    Object[] datosCliente (int idCliente) throws Exception;
 }

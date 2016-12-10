@@ -5,10 +5,19 @@
  */
 package com.sea.frontend.controller;
 
+import com.sea.backend.entities.Ciudad;
+import com.sea.backend.entities.Cliente;
 import com.sea.backend.entities.Cotizacion;
+import com.sea.backend.entities.Direccion;
+import com.sea.backend.entities.Producto;
+import com.sea.backend.model.CiudadFacadeLocal;
+import com.sea.backend.model.ClienteFacadeLocal;
 import com.sea.backend.model.CotizacionFacadeLocal;
+import com.sea.backend.model.DireccionFacadeLocal;
+import com.sea.backend.model.ProductoFacadeLocal;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -40,17 +49,30 @@ public class CotizacionController implements Serializable {
 
         cotizacion = new Cotizacion();
         cotizacion.setFechaEmision(new Date());
+        clientes = clienteEJB.findAll();
         
-       
-    }
-
-    public void registrar() {
-        try {
-            cotizacionEJB.create(cotizacion);
-
-        } catch (Exception e) {
-
-        }
 
     }
+
+    @EJB
+    private ClienteFacadeLocal clienteEJB;
+    private List<Cliente> clientes;
+    private int idCliente;
+
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(List<Cliente> clientes) {
+        this.clientes = clientes;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
 }

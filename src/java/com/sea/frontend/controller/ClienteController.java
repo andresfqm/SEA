@@ -24,26 +24,40 @@ public class ClienteController implements Serializable {
     @EJB
     private ClienteFacadeLocal clienteEJB;
 
-    private Cliente cliente;
+    private Object[] cliente;
+    private int idCliente;
 
-    public Cliente getCliente() {
-        return cliente;
-    }
+    //Obteniendo todos los datos del cliente
+    public void obtenerDatosCliente() throws Exception {
+        try {
+            cliente = clienteEJB.datosCliente(idCliente);
+        } catch (Exception e) {
+            throw e;
+        }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
     }
 
     @PostConstruct
     public void init() {
 
-        cliente = new Cliente();
+      
 
     }
 
-    public void registrar() {
-        clienteEJB.create(cliente);
+    public Object[] getCliente() {
+        return cliente;
+    }
 
+    public void setCliente(Object[] cliente) {
+        this.cliente = cliente;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
 }
