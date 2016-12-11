@@ -45,14 +45,11 @@
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <h:inputText class="mdl-textfield__input" p:maxlength="32" id="ciudadEmision" value="#{cotizacionController.cotizacion.lugarEmision}" required="required" />
                         <h:outputLabel class="mdl-textfield__label" for="ciudadEmision">Ciudad de emisión</h:outputLabel>
-
-
                         <p:outputLabel value="Ciudad"/>
                         <p:selectOneMenu filter="true" filterMatchMode="contains">
                             <f:selectItems value="#{consultaController.ciudad}" var="ciu" itemLabel="#{ciu.nombre}" 
                                            itemValue="#{ciu.idCiudad}"/>
                         </p:selectOneMenu>
-
                     </h:panelGroup>
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <h:inputText pt:type="date" class="mdl-textfield__input" id="fechaEmision" value="#{cotizacionController.cotizacion.fechaEmision}" pt:disabled="true" />
@@ -61,27 +58,16 @@
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <h:inputText class="mdl-textfield__input" id="cliente" value="#{cotizacionController.cotizacion.tblClienteIdCliente.nombreORazonSocial}" required="required" />
                         <h:outputLabel class="mdl-textfield__label" for="cliente">Empresa</h:outputLabel>
-
-
-
-
-
-
                         <p:outputLabel value="Empresa"/>
                         <p:selectOneMenu value="#{clienteController.idCliente}" filter="true" filterMatchMode="contains">
                             <p:ajax event="valueChange" listener="#{clienteController.obtenerDatosCliente()}" update="ciudad" />
                             <f:selectItems value="#{clienteController.clientes}" var="cli" itemLabel="#{cli.nombreORazonSocial}" itemValue="#{cli.idCliente}"/>
                         </p:selectOneMenu>
-
-
-
                     </h:panelGroup>
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <h:inputText class="mdl-textfield__input" id="ciudad" value="#{clienteController.cliente[0]}" pt:disabled="true" />
                         <h:outputLabel class="mdl-textfield__label" for="ciudad">Ciudad</h:outputLabel>
-
                     </h:panelGroup>
-
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <h:inputText class="mdl-textfield__input" id="departamento" value="Bogotá" pt:disabled="true" />
                         <h:outputLabel class="mdl-textfield__label" for="departamento">Departamento</h:outputLabel>
@@ -102,11 +88,6 @@
                         <h:inputText class="mdl-textfield__input" p:type="tel" id="telefono2" value="5453276" disabled="disabled" />
                         <h:outputLabel class="mdl-textfield__label" for="telefono2">Teléfono 2</h:outputLabel>
                     </h:panelGroup>
-
-
-
-
-
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <h:inputText class="mdl-textfield__input" id="asesor" value="Ángel Torres" disabled="disabled" />
                         <h:outputLabel class="mdl-textfield__label" for="asesor">Asesor</h:outputLabel>
@@ -124,17 +105,14 @@
                         <h:selectBooleanCheckbox id="prestamo" class="mdl-switch__input" value="#{cotizacionController.cotizacion.prestamoMuestra}" />
                         <h:panelGroup class="mdl-switch__label">Préstamo de muestras</h:panelGroup>
                     </h:outputLabel>
-
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
                         <h:inputTextarea id="relacionMuestra" class="mdl-textfield__input" pt:maxlength="512" required="required" value="#{cotizacionController.cotizacion.relacionMuestra}" />
-
                         <h:outputLabel class="mdl-textfield__label" for="relacionMuestra">Relación de muestras</h:outputLabel>
                     </h:panelGroup>
                 </section>
                 <section class="step">
                     <h3 class="mdl-typography--headline">Artículos a cotizar</h3>
                     <!-- Usar <template> para los artículos a cotizar -->
-
                     <h:panelGroup layout="block" class="buttons fullWidth">
                         <a href="#addArticulo" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm">Agregar artículo</a>
                         <a href="#addArticulo" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm">Modificar artículo</a>
@@ -362,19 +340,11 @@
                         <p:selectOneMenu value="#{consultaController.idProducto}" filter="true" filterMatchMode="contains">
                             <p:ajax event="valueChange" listener="#{consultaController.obtenerDescripcionReferencia()}" update="descripcion" />
                             <f:selectItems value="#{consultaController.producto}" var="ref" itemLabel="#{ref.referencia}" itemValue="#{ref.idProducto}"/>
-
                         </p:selectOneMenu>
-
                     </h:panelGroup>
-
-
-
-
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <h:inputTextarea class="mdl-textfield__input" id="descripcion"  value="#{consultaController.productoDescripcion.descripcion}" pt:disabled="true" ></h:inputTextarea>
                         <h:outputLabel class="mdl-textfield__label" for="descripcion">Descripción</h:outputLabel>
-
-
                     </h:panelGroup>
                 </h:panelGroup>
                 <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
