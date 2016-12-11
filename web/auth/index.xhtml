@@ -1,10 +1,13 @@
-
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!DOCTYPE html>
 <html lang="es"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:pt="http://java.sun.com/jsf/passthrough">
+      xmlns:pt="http://java.sun.com/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
 
     <h:head>
         <meta charset="UTF-8" />
@@ -16,29 +19,41 @@
         <h:outputScript library="js" name="material.min.js"></h:outputScript>
         <h:outputScript library="js" name="checkBrowser.js"></h:outputScript>
     </h:head>
-    <h:body>
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/templates/header.xhtml">
+
+            <ui:define name="content">
+                content
+            </ui:define>
+
+        </ui:composition>
+
+
         <main class="mdl-shadow--4dp">
             <h1 class="mdl-typography--display-1">Bienvenido a SEA</h1>
             <h:form>
 
-                    <h:panelGroup layout="block" class="mdl-textfield mdl-textfield--floating-label mdl-textfield mdl-js-textfield mdl-textfield--floating-label" >
-                        <h:inputText class="mdl-textfield__input" h:type="text" id="userName" h:name="userName" value="#{indexController.usuario.nombreUsuario}" required="true" />
-                        <h:outputLabel class="mdl-textfield__label" for="userName">Nombre de usuario</h:outputLabel>
-                    </h:panelGroup> 
-                    <h:panelGroup layout="block" class="mdl-textfield mdl-textfield--floating-label mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <h:inputSecret class="mdl-textfield__input" id="password" value="#{indexController.usuario.contrasena}" required="true" />
-                        <h:outputLabel class="mdl-textfield__label" for="password">Contraseña</h:outputLabel>
-                    </h:panelGroup> 
-                    <h:panelGroup layout="block">
-                        <h:outputLabel class="mdl-switch mdl-js-switch" for="recordarSesion" >
-                            <h:selectBooleanCheckbox id="recordarSesion" class="mdl-switch__input" />
-                            <h:panelGroup class="mdl-switch__label">Recordarme</h:panelGroup>
-                        </h:outputLabel>
-                        <a href="/auth/forgot.html">¿Olvidó su contraseña?</a>
-                    </h:panelGroup>
-                    <h:commandButton type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" action="#{indexController.iniciarSesion()}" value="Ingresar"/>
+                <h:panelGroup layout="block" class="mdl-textfield mdl-textfield--floating-label mdl-textfield mdl-js-textfield mdl-textfield--floating-label" >
+                    <h:inputText class="mdl-textfield__input" h:type="text" id="userName" h:name="userName" value="#{indexController.usuario.nombreUsuario}" required="true" />
+                    <h:outputLabel class="mdl-textfield__label" for="userName">Nombre de usuario</h:outputLabel>
+                </h:panelGroup> 
+                <h:panelGroup layout="block" class="mdl-textfield mdl-textfield--floating-label mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <h:inputSecret class="mdl-textfield__input" id="password" value="#{indexController.usuario.contrasena}" required="true" />
+                    <h:outputLabel class="mdl-textfield__label" for="password">Contraseña</h:outputLabel>
+                </h:panelGroup> 
+                <h:panelGroup layout="block">
+                    <h:outputLabel class="mdl-switch mdl-js-switch" for="recordarSesion" >
+                        <h:selectBooleanCheckbox id="recordarSesion" class="mdl-switch__input" />
+                        <h:panelGroup class="mdl-switch__label">Recordarme</h:panelGroup>
+                    </h:outputLabel>
+                    <a href="/auth/forgot.html">¿Olvidó su contraseña?</a>
+                </h:panelGroup>
+                <h:commandButton type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" action="#{indexController.iniciarSesion()}" value="Ingresar"/>
             </h:form>
 
         </main>
-    </h:body>
+
+    </body>
 </html>
