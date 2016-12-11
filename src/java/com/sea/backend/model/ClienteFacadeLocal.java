@@ -31,5 +31,5 @@ public interface ClienteFacadeLocal {
 
     int count();
     
-    Object[] datosCliente (int idCliente) throws Exception;
+    List datosCliente (int idCliente) throws Exception;
 }

@@ -22,13 +22,14 @@ public class ClienteController implements Serializable {
     @EJB
     private ClienteFacadeLocal clienteEJB;
 
-    private Object[] cliente;
+    private List datosCliente;
     private int idCliente;
+    private List<Cliente> clientes;
 
     //Obteniendo todos los datos del cliente
     public void obtenerDatosCliente() throws Exception {
         try {
-            cliente = clienteEJB.datosCliente(idCliente);
+            datosCliente = clienteEJB.datosCliente(idCliente);
         } catch (Exception e) {
             throw e;
         }
@@ -40,12 +41,12 @@ public class ClienteController implements Serializable {
         clientes = clienteEJB.findAll();
     }
 
-    public Object[] getCliente() {
-        return cliente;
+    public List getCliente() {
+        return datosCliente;
     }
 
-    public void setCliente(Object[] cliente) {
-        this.cliente = cliente;
+    public void setCliente(List cliente) {
+        this.datosCliente = cliente;
     }
 
     public int getIdCliente() {
@@ -55,12 +56,6 @@ public class ClienteController implements Serializable {
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }
-
-    
-    
-    
-    protected List<Cliente> clientes;
-
 
     public List<Cliente> getClientes() {
         return clientes;

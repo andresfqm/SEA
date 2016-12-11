@@ -28,7 +28,7 @@ public class PlantillaController implements Serializable {
 
             if (us == null) {
                 
-               context.getExternalContext().redirect("/auth/index.xhtml");
+               context.getExternalContext().redirect("/SEA/auth/index.xhtml");
                 
 
             }   

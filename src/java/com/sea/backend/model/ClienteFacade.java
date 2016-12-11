@@ -6,6 +6,7 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.Cliente;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -33,7 +34,7 @@ public class ClienteFacade extends AbstractFacade<Cliente> implements ClienteFac
     }
 
     @Override
-    public Object[] datosCliente(int idCliente) {
+    public List datosCliente(int idCliente) {
         /*
         Nomenclatura de la consulta
         c: cliente
@@ -49,11 +50,11 @@ public class ClienteFacade extends AbstractFacade<Cliente> implements ClienteFac
         ci: ciudad
         de: departamento
         */
-        Object[] datosCliente;
-        String consulta="SELECT * FROM " +
+        List datosCliente;
+        String consulta="SELECT ci.NOMBRE FROM " +
                         "TBL_CLIENTE c " +
                         "INNER JOIN " +
-                        "TBL_ORIGEN o ON c.TBL_ORIGEN_ID_ORIGEN = o.ID_ORIGEN " +
+                        "TBL_ORIGEN o ON c.TBL_ORIGEN_ID_ORIGEN = o.ID_ORIGEN AND c.ID_CLIENTE=?1 " +
                         "LEFT JOIN " +
                         "TBL_COMENTARIO_CAMBIO_ASESOR ca ON c.TBL_COMENTARIO_CAMBIO_ASESOR_ID_COMENTARIO_CAMBIO_ASESOR = ca.ID_COMENTARIO_CAMBIO_ASESOR " +
                         "INNER JOIN " +
@@ -73,11 +74,10 @@ public class ClienteFacade extends AbstractFacade<Cliente> implements ClienteFac
                         "INNER JOIN " +
                         "TBL_CIUDAD ci ON d.TBL_CIUDAD_ID_CIUDAD = ci.ID_CIUDAD " +
                         "INNER JOIN " +
-                        "TBL_DEPARTAMENTO de ON ci.TBL_DEPARTAMENTO_ID_DEPARTAMENTO = de.ID_DEPARTAMENTO" +
-                        "WHERE c.ID_CLIENTE=?1";
+                        "TBL_DEPARTAMENTO de ON ci.TBL_DEPARTAMENTO_ID_DEPARTAMENTO = de.ID_DEPARTAMENTO";
         Query query = em.createNativeQuery(consulta);
         query.setParameter(1, idCliente);
-        datosCliente = (Object[])query.getSingleResult();
+        datosCliente = query.getResultList();
         return datosCliente;
     }
 
