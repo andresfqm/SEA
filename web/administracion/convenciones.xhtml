@@ -1,911 +1,315 @@
 <!DOCTYPE html>
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:head>
-	<meta charset="UTF-8" />
-	<title>Conveniones | SEA</title>
-	<link rel="shortcut icon" href="/img/favicon.ico" />
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
-	<h:outputStylesheet library="css" name="material.min.css" />
-	<h:outputStylesheet library="css" name="mdl-selectfield.min.css" />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-	<h:outputStylesheet library="css" name="maquetacionBasica.css" />
-	<h:outputStylesheet library="css" name="administracion.css" />
-	<h:outputScript library="js" name="checkBrowser.js"></h:outputScript>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <script src="https://use.fontawesome.com/a39256cab5.js"></script>
-	<h:outputScript library="js" name="mdl-selectfield.min.js"></h:outputScript>
-	<h:outputScript library="js" name="material.min.js"></h:outputScript>
-	<h:outputScript library="js" name="breadcrumbs.js"></h:outputScript>
-	<h:outputScript library="js" name="taksTabs.js"></h:outputScript>
-	<h:outputScript library="js" name="scrollup.js"></h:outputScript>
-	<h:outputScript library="js" name="toggleforms.js"></h:outputScript>
-</h:head>
-<h:body>
-	<header class="mdl-layout__header is-casting-shadow mdl-layout__header-row">
-		<a class="fa fa-bars mostrarNavbars" data-target="body > nav" aria-hidden="true" href="#"></a>
-		<nav id="navBreadcrumbs">
-			<ul id="breadcrumbs"></ul>
-		</nav>
-		<a class="fa fa-tasks mdl-badge mostrarNavbars" data-badge="4" data-target="#taskList" aria-hidden="true" href="#"></a>
-	</header>
-	<main id="convenciones">
-		<h:panelGroup layout="block" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect mdl-shadow--4dp">
-			<h:panelGroup layout="block" class="mdl-tabs__tab-bar">
-				<a href="#categorias-panel" class="mdl-tabs__tab is-active">Categorías</a>
-				<a href="#subcategorias-panel" class="mdl-tabs__tab">Subcategorías</a>
-				<a href="#materiales-panel" class="mdl-tabs__tab">Materiales</a>
-				<a href="#sufijos-panel" class="mdl-tabs__tab">Sufijos</a>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-tabs__panel is-active" id="categorias-panel">
-                                <h:dataTable cellpadding="1" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-						<h:column>
-                                                    <f:facet name="header">
-                                                        <h:outputText value="Nombre"/>
-                                                    </f:facet>
-                                                    <h:outputText value="#{categoriaController.verCategorias()}"/>
-                                                </h:column>
-                                </h:dataTable>
-				<a href="#addCategoria" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
-					<i class="material-icons">add</i>
-				</a>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-tabs__panel" id="subcategorias-panel">
-				<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-					<thead>
-						<tr>
-							<th class="mdl-data-table__cell--non-numeric">Código</th>
-							<th class="mdl-data-table__cell--non-numeric">Nombre</th>
-							<th class="mdl-data-table__cell--non-numeric">Clasificada en</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">A</td>
-							<td class="mdl-data-table__cell--non-numeric">CAMISETAS</td>
-							<td class="mdl-data-table__cell--non-numeric">Prendas</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">B</td>
-							<td class="mdl-data-table__cell--non-numeric">BATAS</td>
-							<td class="mdl-data-table__cell--non-numeric">Prendas</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">C</td>
-							<td class="mdl-data-table__cell--non-numeric">CAMISAS</td>
-							<td class="mdl-data-table__cell--non-numeric">Prendas</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">D</td>
-							<td class="mdl-data-table__cell--non-numeric">BORDADOS</td>
-							<td class="mdl-data-table__cell--non-numeric">Prendas</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">E</td>
-							<td class="mdl-data-table__cell--non-numeric">CABEZA</td>
-							<td class="mdl-data-table__cell--non-numeric">Seguridad industrial</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">F</td>
-							<td class="mdl-data-table__cell--non-numeric">FACIAL</td>
-							<td class="mdl-data-table__cell--non-numeric">Seguridad industrial</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">G</td>
-							<td class="mdl-data-table__cell--non-numeric">GORROS</td>
-							<td class="mdl-data-table__cell--non-numeric">Prendas</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">H</td>
-							<td class="mdl-data-table__cell--non-numeric">CORPORAL</td>
-							<td class="mdl-data-table__cell--non-numeric">Seguridad industrial</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">I</td>
-							<td class="mdl-data-table__cell--non-numeric">DELANTALES</td>
-							<td class="mdl-data-table__cell--non-numeric">Prendas</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">J</td>
-							<td class="mdl-data-table__cell--non-numeric">BOTIQUINES</td>
-							<td class="mdl-data-table__cell--non-numeric">Seguridad industrial</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">K</td>
-							<td class="mdl-data-table__cell--non-numeric">CAIDAS</td>
-							<td class="mdl-data-table__cell--non-numeric">Seguridad industrial</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">L</td>
-							<td class="mdl-data-table__cell--non-numeric">CHALECOS</td>
-							<td class="mdl-data-table__cell--non-numeric">Prendas</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">M</td>
-							<td class="mdl-data-table__cell--non-numeric">MALETINES</td>
-							<td class="mdl-data-table__cell--non-numeric">Prendas</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">N</td>
-							<td class="mdl-data-table__cell--non-numeric">MANUAL</td>
-							<td class="mdl-data-table__cell--non-numeric">Seguridad industrial</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">O</td>
-							<td class="mdl-data-table__cell--non-numeric">OTROS</td>
-							<td class="mdl-data-table__cell--non-numeric">Prendas</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">P</td>
-							<td class="mdl-data-table__cell--non-numeric">PANTALONES</td>
-							<td class="mdl-data-table__cell--non-numeric">Prendas</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">PR</td>
-							<td class="mdl-data-table__cell--non-numeric">PROMOCIONALES</td>
-							<td class="mdl-data-table__cell--non-numeric">Seguridad industrial</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">Q</td>
-							<td class="mdl-data-table__cell--non-numeric">CHAQUETAS</td>
-							<td class="mdl-data-table__cell--non-numeric">Prendas</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">R</td>
-							<td class="mdl-data-table__cell--non-numeric">RESPIRATORIA</td>
-							<td class="mdl-data-table__cell--non-numeric">Seguridad industrial</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">S</td>
-							<td class="mdl-data-table__cell--non-numeric">ESTAMPADOS Y TRANSFER</td>
-							<td class="mdl-data-table__cell--non-numeric">Prendas</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">T</td>
-							<td class="mdl-data-table__cell--non-numeric">CONJUNTOS</td>
-							<td class="mdl-data-table__cell--non-numeric">Prendas</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">U</td>
-							<td class="mdl-data-table__cell--non-numeric">PVC</td>
-							<td class="mdl-data-table__cell--non-numeric">Prendas</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">V</td>
-							<td class="mdl-data-table__cell--non-numeric">OVEROLES</td>
-							<td class="mdl-data-table__cell--non-numeric">Prendas</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">W</td>
-							<td class="mdl-data-table__cell--non-numeric">VISUAL</td>
-							<td class="mdl-data-table__cell--non-numeric">Seguridad industrial</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">X</td>
-							<td class="mdl-data-table__cell--non-numeric">AUDITIVA</td>
-							<td class="mdl-data-table__cell--non-numeric">Seguridad industrial</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">Y</td>
-							<td class="mdl-data-table__cell--non-numeric">SEÑALIZACIÓN</td>
-							<td class="mdl-data-table__cell--non-numeric">Seguridad industrial</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">Z</td>
-							<td class="mdl-data-table__cell--non-numeric">CALZADO</td>
-							<td class="mdl-data-table__cell--non-numeric">Prendas</td>
-						</tr>
-					</tbody>
-				</table>
-				<a href="#addSubcategoria" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
-					<i class="material-icons">add</i>
-				</a>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-tabs__panel" id="materiales-panel">
-				<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-					<thead>
-						<tr>
-							<th class="mdl-data-table__cell--non-numeric">Código</th>
-							<th class="mdl-data-table__cell--non-numeric">Nombre</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">A</td>
-							<td class="mdl-data-table__cell--non-numeric">Garota</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">AF</td>
-							<td class="mdl-data-table__cell--non-numeric">Tela Ignífuga</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">AL</td>
-							<td class="mdl-data-table__cell--non-numeric">Antiestatic Lafshield</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">AP</td>
-							<td class="mdl-data-table__cell--non-numeric">Algodón Perchado</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">AS</td>
-							<td class="mdl-data-table__cell--non-numeric">Alviero Strech</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">B</td>
-							<td class="mdl-data-table__cell--non-numeric">Cuero Nobuck</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">BG</td>
-							<td class="mdl-data-table__cell--non-numeric">Bogotana de Textiles</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">BN</td>
-							<td class="mdl-data-table__cell--non-numeric">Bonlam</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">BR</td>
-							<td class="mdl-data-table__cell--non-numeric">Berlín 60% Algodón, 40% Poliester</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">BT</td>
-							<td class="mdl-data-table__cell--non-numeric">Boston Fabrilar</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">C</td>
-							<td class="mdl-data-table__cell--non-numeric">Cuero Negro</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">CF</td>
-							<td class="mdl-data-table__cell--non-numeric">Confort Flex</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">CG</td>
-							<td class="mdl-data-table__cell--non-numeric">Córcega  100% algodón</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">CH</td>
-							<td class="mdl-data-table__cell--non-numeric">Charol</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">CP</td>
-							<td class="mdl-data-table__cell--non-numeric">Campero</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">CS</td>
-							<td class="mdl-data-table__cell--non-numeric">Cuero Sintético</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">CW</td>
-							<td class="mdl-data-table__cell--non-numeric">Charol Blanco</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">CZ</td>
-							<td class="mdl-data-table__cell--non-numeric">Carnaza</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">D</td>
-							<td class="mdl-data-table__cell--non-numeric">Dril</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">DO</td>
-							<td class="mdl-data-table__cell--non-numeric">Dril Orión</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">DS</td>
-							<td class="mdl-data-table__cell--non-numeric">Dril Strech Quantto</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">DT</td>
-							<td class="mdl-data-table__cell--non-numeric">Dril Twill (Importado)</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">E</td>
-							<td class="mdl-data-table__cell--non-numeric">Serrosport</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">ET</td>
-							<td class="mdl-data-table__cell--non-numeric">Serrosport Lafayette</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">F</td>
-							<td class="mdl-data-table__cell--non-numeric">Cuero Café</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">FC</td>
-							<td class="mdl-data-table__cell--non-numeric">Fleece</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">G</td>
-							<td class="mdl-data-table__cell--non-numeric">Diagonal</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">GE</td>
-							<td class="mdl-data-table__cell--non-numeric">Género (Alg. 100%)</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">GP</td>
-							<td class="mdl-data-table__cell--non-numeric">Guata Prensada</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">GT</td>
-							<td class="mdl-data-table__cell--non-numeric">Gab. Tempo</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">H</td>
-							<td class="mdl-data-table__cell--non-numeric">Indigo 14 Oz </td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">HL</td>
-							<td class="mdl-data-table__cell--non-numeric">Indigo Lycrado</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">HN</td>
-							<td class="mdl-data-table__cell--non-numeric">Indigo 14 Oz Color Negro</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">I</td>
-							<td class="mdl-data-table__cell--non-numeric">Impermeable </td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">J</td>
-							<td class="mdl-data-table__cell--non-numeric">Lona</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">K</td>
-							<td class="mdl-data-table__cell--non-numeric">Dacrón</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">L</td>
-							<td class="mdl-data-table__cell--non-numeric">Linoflex</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">LL</td>
-							<td class="mdl-data-table__cell--non-numeric">Lino 9000</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">LP</td>
-							<td class="mdl-data-table__cell--non-numeric">Liverpool</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">M</td>
-							<td class="mdl-data-table__cell--non-numeric">Morgan</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">MT</td>
-							<td class="mdl-data-table__cell--non-numeric">Montesimone Bases Lafayette</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">N</td>
-							<td class="mdl-data-table__cell--non-numeric">Nautica</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">ND</td>
-							<td class="mdl-data-table__cell--non-numeric">Nylon Dull</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">NP</td>
-							<td class="mdl-data-table__cell--non-numeric">Neopreno</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">NS</td>
-							<td class="mdl-data-table__cell--non-numeric">Novastrech</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">O</td>
-							<td class="mdl-data-table__cell--non-numeric">Algodón 100% (180gr)</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">OL</td>
-							<td class="mdl-data-table__cell--non-numeric">Algodón 100% (160gr)</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">OP</td>
-							<td class="mdl-data-table__cell--non-numeric">Algodón Poliester 50/50</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">OR</td>
-							<td class="mdl-data-table__cell--non-numeric">Orion Lafayette</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">OY</td>
-							<td class="mdl-data-table__cell--non-numeric">Algodón Lycrado</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">P</td>
-							<td class="mdl-data-table__cell--non-numeric">Praga</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">PL</td>
-							<td class="mdl-data-table__cell--non-numeric">Popelina</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">PN</td>
-							<td class="mdl-data-table__cell--non-numeric">Paño</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">PR</td>
-							<td class="mdl-data-table__cell--non-numeric">Ponti Roma</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">Q</td>
-							<td class="mdl-data-table__cell--non-numeric">Reebag</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">R</td>
-							<td class="mdl-data-table__cell--non-numeric">Cuero Amarillo</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">RB</td>
-							<td class="mdl-data-table__cell--non-numeric">Ribana Nacional (Color Verde Cali)</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">RR</td>
-							<td class="mdl-data-table__cell--non-numeric">Reata</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">SH</td>
-							<td class="mdl-data-table__cell--non-numeric">Soho</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">SP</td>
-							<td class="mdl-data-table__cell--non-numeric">Seda pol</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">SX</td>
-							<td class="mdl-data-table__cell--non-numeric">Bases Sutex</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">T</td>
-							<td class="mdl-data-table__cell--non-numeric">Bases Lafayette</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">TF</td>
-							<td class="mdl-data-table__cell--non-numeric">Tempestad</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">TL</td>
-							<td class="mdl-data-table__cell--non-numeric">Tela Toalla </td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">U</td>
-							<td class="mdl-data-table__cell--non-numeric">Universal (antifluido lafayette)</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">V</td>
-							<td class="mdl-data-table__cell--non-numeric">Antifluidos</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">VH</td>
-							<td class="mdl-data-table__cell--non-numeric">Antifluido Dinam (Hilat)</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">VL</td>
-							<td class="mdl-data-table__cell--non-numeric">Vertigo/ Lisboa</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">VO</td>
-							<td class="mdl-data-table__cell--non-numeric">Vinilo</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">W</td>
-							<td class="mdl-data-table__cell--non-numeric">Cuero Blanco</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">X</td>
-							<td class="mdl-data-table__cell--non-numeric">Oxford</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">XM</td>
-							<td class="mdl-data-table__cell--non-numeric">Oxford Maxi</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">Y</td>
-							<td class="mdl-data-table__cell--non-numeric">Malla</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">Z</td>
-							<td class="mdl-data-table__cell--non-numeric">Vendaval Liso</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">ZC</td>
-							<td class="mdl-data-table__cell--non-numeric">Vendaval Crushed</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">ZI</td>
-							<td class="mdl-data-table__cell--non-numeric">Vendaval Importado</td>
-						</tr>
-					</tbody>
-				</table>
-				<a href="#addMaterial" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
-					<i class="material-icons">add</i>
-				</a>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-tabs__panel" id="sufijos-panel">
-				<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-					<thead>
-						<tr>
-							<th class="mdl-data-table__cell--non-numeric">Sufijo</th>
-							<th class="mdl-data-table__cell--non-numeric">Descripción del fabricante</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">1</td>
-							<td class="mdl-data-table__cell--non-numeric">Ref C1</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">2</td>
-							<td class="mdl-data-table__cell--non-numeric">Ref C2</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">3</td>
-							<td class="mdl-data-table__cell--non-numeric">Ref C3</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">4</td>
-							<td class="mdl-data-table__cell--non-numeric">Tallas Grandes</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">5</td>
-							<td class="mdl-data-table__cell--non-numeric">Bordado Seguridad Privada</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">6</td>
-							<td class="mdl-data-table__cell--non-numeric">Kondor</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">7</td>
-							<td class="mdl-data-table__cell--non-numeric">Reflectivo Marca 3M</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">8</td>
-							<td class="mdl-data-table__cell--non-numeric">Marca 3M</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">9</td>
-							<td class="mdl-data-table__cell--non-numeric">DUPONT</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">10</td>
-							<td class="mdl-data-table__cell--non-numeric">Bordado Incluido</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">11</td>
-							<td class="mdl-data-table__cell--non-numeric">Tallas Niños</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">12</td>
-							<td class="mdl-data-table__cell--non-numeric">Calzado 3025</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">13</td>
-							<td class="mdl-data-table__cell--non-numeric">Térmico</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">14</td>
-							<td class="mdl-data-table__cell--non-numeric">Resorte</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">15</td>
-							<td class="mdl-data-table__cell--non-numeric">Doble Faz</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">16</td>
-							<td class="mdl-data-table__cell--non-numeric">Steel Safe</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">17</td>
-							<td class="mdl-data-table__cell--non-numeric">Westland</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">18</td>
-							<td class="mdl-data-table__cell--non-numeric">link Tech</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">19</td>
-							<td class="mdl-data-table__cell--non-numeric">Kimberly</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">20</td>
-							<td class="mdl-data-table__cell--non-numeric">Rayas</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">21</td>
-							<td class="mdl-data-table__cell--non-numeric">Estampado Incluido</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">A</td>
-							<td class="mdl-data-table__cell--non-numeric">Negro</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">AI</td>
-							<td class="mdl-data-table__cell--non-numeric">Agroinsumos Alfa</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">AP</td>
-							<td class="mdl-data-table__cell--non-numeric">Ardipieles</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">BP</td>
-							<td class="mdl-data-table__cell--non-numeric">Boton Promo</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">BR</td>
-							<td class="mdl-data-table__cell--non-numeric">La bota Roja</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">C</td>
-							<td class="mdl-data-table__cell--non-numeric">Cambio leve de diseño</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">CMV</td>
-							<td class="mdl-data-table__cell--non-numeric">Calzado Meyver</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">D</td>
-							<td class="mdl-data-table__cell--non-numeric">Micromax</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">DA</td>
-							<td class="mdl-data-table__cell--non-numeric">Dota Altura</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">DLR</td>
-							<td class="mdl-data-table__cell--non-numeric">Drogas la Rebaja</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">DM</td>
-							<td class="mdl-data-table__cell--non-numeric">Dilan Mahecha</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">FY</td>
-							<td class="mdl-data-table__cell--non-numeric">Calzado Factoria</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">I</td>
-							<td class="mdl-data-table__cell--non-numeric">ARSEG</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">IA</td>
-							<td class="mdl-data-table__cell--non-numeric">Inmadica Andina</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">IS</td>
-							<td class="mdl-data-table__cell--non-numeric">INDUSTRIAS SAFETY</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">M</td>
-							<td class="mdl-data-table__cell--non-numeric">Seguridad</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">MA</td>
-							<td class="mdl-data-table__cell--non-numeric">mangas abatibles</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">N</td>
-							<td class="mdl-data-table__cell--non-numeric">Ingeniero</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">PR</td>
-							<td class="mdl-data-table__cell--non-numeric">Puños Resortados</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">RP</td>
-							<td class="mdl-data-table__cell--non-numeric">Rain Power</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">RZ</td>
-							<td class="mdl-data-table__cell--non-numeric">Reforzado</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">S</td>
-							<td class="mdl-data-table__cell--non-numeric">Amarillo</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">SG</td>
-							<td class="mdl-data-table__cell--non-numeric">Segal Galleta Lafayette</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">SQ</td>
-							<td class="mdl-data-table__cell--non-numeric">Solmaq</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">ZT</td>
-							<td class="mdl-data-table__cell--non-numeric">Calzado Zatts </td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">V</td>
-							<td class="mdl-data-table__cell--non-numeric">Cuello V</td>
-						</tr>
-						<tr>
-							<td class="mdl-data-table__cell--non-numeric">EP</td>
-							<td class="mdl-data-table__cell--non-numeric">Estampado personalizado</td>
-						</tr>
-					</tbody>
-				</table>
-				<a href="#addSufijo" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
-					<i class="material-icons">add</i>
-				</a>
-			</h:panelGroup>
-		</h:panelGroup>
-	</main>
-	<aside id="subForm">
-		<h:form id="addCategoria" class="mdl-dialog">
-			<h3 class="mdl-dialog__title">Registrar categoría</h3>
-			<h:panelGroup layout="block" class="mdl-dialog__content">
-				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <h:inputText value="#{categoriaController.categoria.nombre}" class="mdl-textfield__input" p:maxlength="32" required="required" id="nombreCategoria" />
-                                        <h:outputLabel class="mdl-textfield__label" for="nombreCategoria">Nombre</h:outputLabel>
-				</h:panelGroup>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-dialog__actions">
-                            <h:commandButton action="#{categoriaController.registrar()}" id="mostrarCategoriaCreada" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Crear categoría" />
-				<h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
-			</h:panelGroup>
-		</h:form>
-		<h:form id="addSubcategoria" class="mdl-dialog">
-			<h3 class="mdl-dialog__title">Registrar subcategoría</h3>
-			<h:panelGroup layout="block" class="mdl-dialog__content">
-				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <h:inputText value="#{subcategoriaController.subcategoria.idSubcategoria}" class="mdl-textfield__input" p:maxlength="5" required="required" id="codigoSubcategoria" />
-					<h:outputLabel class="mdl-textfield__label" for="codigoSubcategoria">Código</h:outputLabel>
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:inputText class="mdl-textfield__input" p:maxlength="32" required="required" id="nombreSubcategoria" />
-					<h:outputLabel class="mdl-textfield__label" for="nombreSubcategoria">Nombre</h:outputLabel>
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-					<select class="mdl-selectfield__select" name="" id="clasificaCategoria" required="required">
-						<option value=""></option>
-						<option value="1">Prendas</option>
-						<option value="2">Seguridad industrial</option>
-					</select>
-					<h:outputLabel class="mdl-selectfield__label" for="clasificaCategoria">Clasificar categoría en</h:outputLabel>
-				</h:panelGroup>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-dialog__actions">
-                            <h:commandButton id="mostrarSubcategoriaCreada" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Crear subcategoría" />
-				<h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
-			</h:panelGroup>
-		</h:form>
-		<h:form id="addMaterial" class="mdl-dialog">
-			<h3 class="mdl-dialog__title">Registrar material</h3>
-			<h:panelGroup layout="block" class="mdl-dialog__content">
-				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:inputText class="mdl-textfield__input" p:maxlength="5" required="required" id="codigoMaterial" />
-					<h:outputLabel class="mdl-textfield__label" for="codigoMaterial">Código</h:outputLabel>
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:inputText class="mdl-textfield__input" p:maxlength="64" required="required" id="nombreMaterial" />
-					<h:outputLabel class="mdl-textfield__label" for="nombreMaterial">Nombre</h:outputLabel>
-				</h:panelGroup>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-dialog__actions">
-				<h:commandButton id="mostrarMaterialNuevo" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Crear material" />
-				<h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
-			</h:panelGroup>
-		</h:form>
-		<h:form id="addSufijo" class="mdl-dialog">
-			<h3 class="mdl-dialog__title">Registrar sufijo</h3>
-			<h:panelGroup layout="block" class="mdl-dialog__content">
-				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:inputText class="mdl-textfield__input" p:maxlength="10" required="required" id="sufijo" />
-					<h:outputLabel class="mdl-textfield__label" for="sufijo">Código</h:outputLabel>
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:inputText class="mdl-textfield__input" p:maxlength="500" required="required" id="descripcionFabricante" />
-					<h:outputLabel class="mdl-textfield__label" for="descripcionFabricante">Nombre</h:outputLabel>
-				</h:panelGroup>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-dialog__actions">
-				<h:commandButton id="mostrarSufijoNuevo" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Crear sufijo" />
-				<h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
-			</h:panelGroup>
-		</h:form>
-	</aside>
-	<aside>
-		<h:panelGroup layout="block" id="categoriaCreada" class="mdl-js-snackbar mdl-snackbar">
-			<h:panelGroup layout="block" class="mdl-snackbar__text"></h:panelGroup>
-			<button class="mdl-snackbar__action" type="button"></button>
-		</h:panelGroup>
-		<h:panelGroup layout="block" id="subcategoriaCreada" class="mdl-js-snackbar mdl-snackbar">
-			<h:panelGroup layout="block" class="mdl-snackbar__text"></h:panelGroup>
-			<button class="mdl-snackbar__action" type="button"></button>
-		</h:panelGroup>
-		<h:panelGroup layout="block" id="materialNuevo" class="mdl-js-snackbar mdl-snackbar">
-			<h:panelGroup layout="block" class="mdl-snackbar__text"></h:panelGroup>
-			<button class="mdl-snackbar__action" type="button"></button>
-		</h:panelGroup>
-		<h:panelGroup layout="block" id="sufijoNuevo" class="mdl-js-snackbar mdl-snackbar">
-			<h:panelGroup layout="block" class="mdl-snackbar__text"></h:panelGroup>
-			<button class="mdl-snackbar__action" type="button"></button>
-		</h:panelGroup>
-		<script>
-			(function() {
-				'use strict';
-				window['counter'] = 0;
-				var snackbarContainer = document.querySelector('#categoriaCreada');
-				var showToastButton = document.querySelector('#mostrarCategoriaCreada');
-				showToastButton.addEventListener('click', function() {
-					'use strict';
-					var data = {message: 'Categoría creada satisfactoriamente.',timeout: 5000};
-					snackbarContainer.MaterialSnackbar.showSnackbar(data);
-				});
-			}());
-			(function() {
-				'use strict';
-				window['counter'] = 0;
-				var snackbarContainer = document.querySelector('#subcategoriaCreada');
-				var showToastButton = document.querySelector('#mostrarSubcategoriaCreada');
-				showToastButton.addEventListener('click', function() {
-					'use strict';
-					var data = {message: 'Subcategoría creada satisfactoriamente.',timeout: 5000};
-					snackbarContainer.MaterialSnackbar.showSnackbar(data);
-				});
-			}());
-			(function() {
-				'use strict';
-				window['counter'] = 0;
-				var snackbarContainer = document.querySelector('#materialNuevo');
-				var showToastButton = document.querySelector('#mostrarMaterialNuevo');
-				showToastButton.addEventListener('click', function() {
-					'use strict';
-					var data = {message: 'Material creado satisfactoriamente.',timeout: 5000};
-					snackbarContainer.MaterialSnackbar.showSnackbar(data);
-				});
-			}());
-			(function() {
-				'use strict';
-				window['counter'] = 0;
-				var snackbarContainer = document.querySelector('#sufijoNuevo');
-				var showToastButton = document.querySelector('#mostrarSufijoNuevo');
-				showToastButton.addEventListener('click', function() {
-					'use strict';
-					var data = {message: 'Sufijo creado satisfactoriamente.',timeout: 5000};
-					snackbarContainer.MaterialSnackbar.showSnackbar(data);
-				});
-			}());
-		</script>
-	</aside>
+    <h:head>
+        <meta charset="UTF-8" />
+        <title>Conveniones | SEA</title>
+        <link rel="shortcut icon" href="/img/favicon.ico" />
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+        <h:outputStylesheet library="css" name="material.min.css" />
+        <h:outputStylesheet library="css" name="mdl-selectfield.min.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <h:outputStylesheet library="css" name="maquetacionBasica.css" />
+        <h:outputStylesheet library="css" name="administracion.css" />
+        <h:outputScript library="js" name="checkBrowser.js"></h:outputScript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <script src="https://use.fontawesome.com/a39256cab5.js"></script>
+        <h:outputScript library="js" name="mdl-selectfield.min.js"></h:outputScript>
+        <h:outputScript library="js" name="material.min.js"></h:outputScript>
+        <h:outputScript library="js" name="breadcrumbs.js"></h:outputScript>
+        <h:outputScript library="js" name="taksTabs.js"></h:outputScript>
+        <h:outputScript library="js" name="scrollup.js"></h:outputScript>
+        <h:outputScript library="js" name="toggleforms.js"></h:outputScript>
+    </h:head>
+    <h:body>
+        <header class="mdl-layout__header is-casting-shadow mdl-layout__header-row">
+            <a class="fa fa-bars mostrarNavbars" data-target="body > nav" aria-hidden="true" href="#"></a>
+            <nav id="navBreadcrumbs">
+                <ul id="breadcrumbs"></ul>
+            </nav>
+            <a class="fa fa-tasks mdl-badge mostrarNavbars" data-badge="4" data-target="#taskList" aria-hidden="true" href="#"></a>
+        </header>
+        <main id="convenciones">
+            <h:panelGroup layout="block" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect mdl-shadow--4dp">
+                <h:panelGroup layout="block" class="mdl-tabs__tab-bar">
+                    <a href="#categorias-panel" class="mdl-tabs__tab is-active">Categorías</a>
+                    <a href="#subcategorias-panel" class="mdl-tabs__tab">Subcategorías</a>
+                    <a href="#materiales-panel" class="mdl-tabs__tab">Materiales</a>
+                    <a href="#sufijos-panel" class="mdl-tabs__tab">Sufijos</a>
+                </h:panelGroup>
+                <h:panelGroup layout="block" class="mdl-tabs__panel is-active" id="categorias-panel">
+                    <h:form>
+                        <h:dataTable value="#{categoriaController.listaCategoria}" var="cat" cellpadding="1" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputLabel value="Nombre"/>
+                                </f:facet>
+                                <h:outputText value="#{cat.nombre}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputLabel value="Acciones"/>
+                                </f:facet>
+                                <h:panelGroup layout="block">
+                                    <h:commandButton action="#{categoriaController.Eliminar(cat)}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Eliminar"/>
+                                </h:panelGroup>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+                    <a href="#addCategoria" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
+                        <i class="material-icons">add</i>
+                    </a>
+                </h:panelGroup>
+                <h:panelGroup layout="block" class="mdl-tabs__panel" id="subcategorias-panel">
+                    <h:dataTable value="#{subcategoriaController.listaSubcategoria}" var="sub" cellpadding="1" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel value="Codigo"/>
+                            </f:facet>
+                            <h:outputText value="#{sub.codigo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel value="Nombre"/>
+                            </f:facet>
+                            <h:outputText value="#{sub.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel value="Clasificada en: "/>
+                            </f:facet>
+                            <h:outputText value="#{sub.tblCategoriaIdCategoria.nombre}"/>
+                        </h:column>
+                    </h:dataTable>
+                    <a href="#addSubcategoria" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
+                        <i class="material-icons">add</i>
+                    </a>
+                </h:panelGroup>
+                <h:panelGroup layout="block" class="mdl-tabs__panel" id="materiales-panel">
+                    <h:dataTable value="#{materialController.listaMateriales}" var="mat" cellpadding="1" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel value="Codigo"/>
+                            </f:facet>
+                            <h:outputText value="#{mat.codigo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel value="Nombre"/>
+                            </f:facet>
+                            <h:outputText value="#{mat.nombre}"/>
+                        </h:column>
+                    </h:dataTable>
+                    <a href="#addMaterial" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
+                        <i class="material-icons">add</i>
+                    </a>
+                </h:panelGroup>
+                <h:panelGroup layout="block" class="mdl-tabs__panel" id="sufijos-panel">
+                    <h:dataTable value="#{sufijoController.listaSufijos}" var="suf" cellpadding="1" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel value="Sufijo"/>
+                            </f:facet>
+                            <h:outputText value="#{suf.codigo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel value="Descripcion del fabricante"/>
+                            </f:facet>
+                            <h:outputText value="#{suf.descripcionFabricante}"/>
+                        </h:column>
+                    </h:dataTable>
+                    <a href="#addSufijo" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
+                        <i class="material-icons">add</i>
+                    </a>
+                </h:panelGroup>
+            </h:panelGroup>
+        </main>
+        <aside id="subForm">
+            <h:form id="addCategoria" class="mdl-dialog">
+                <h3 class="mdl-dialog__title">Registrar categoría</h3>
+                <h:panelGroup layout="block" class="mdl-dialog__content">
+                    <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <h:inputText value="#{categoriaController.categoria.nombre}" class="mdl-textfield__input" p:maxlength="32" required="required" id="nombreCategoria" />
+                        <h:outputLabel class="mdl-textfield__label" for="nombreCategoria">Nombre</h:outputLabel>
+                    </h:panelGroup>
+                </h:panelGroup>
+                <h:panelGroup layout="block" class="mdl-dialog__actions">
+                    <h:commandButton action="#{categoriaController.registrar()}" id="mostrarCategoriaCreada" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Crear categoría" />
+                    <h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
+                </h:panelGroup>
+            </h:form>
+            <h:form id="updateCategoria" class="mdl-dialog">
+                <h3 class="mdl-dialog__title">Modificar categoría</h3>
+                <h:panelGroup layout="block" class="mdl-dialog__content">
+                    <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <h:inputText value="#{categoriaController.categoria.nombre}" class="mdl-textfield__input" p:maxlength="32" required="required" id="nombreCategoria" />
+                        <h:outputLabel class="mdl-textfield__label" for="nombreCategoria">Nombre</h:outputLabel>
+                    </h:panelGroup>
+                </h:panelGroup>
+                <h:panelGroup layout="block" class="mdl-dialog__actions">
+                    <h:commandButton action="#{categoriaController.Modificar()}" id="mostrarCategoriaCreada" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Crear categoría" />
+                    <h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
+                </h:panelGroup>
+            </h:form>
+            <h:form id="addSubcategoria" class="mdl-dialog">
+                <h3 class="mdl-dialog__title">Registrar subcategoría</h3>
+                <h:panelGroup layout="block" class="mdl-dialog__content">
+                    <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <h:inputText class="mdl-textfield__input" value="#{subcategoriaController.subcategoria.nombre}" p:maxlength="32" required="required" id="nombreSubcategoria" />
+                        <h:outputLabel class="mdl-textfield__label" for="nombreSubcategoria">Nombre</h:outputLabel>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <h:inputText value="#{subcategoriaController.subcategoria.codigo}" class="mdl-textfield__input" p:maxlength="5" required="required" id="codigoSubcategoria" />
+                        <h:outputLabel class="mdl-textfield__label" for="codigoSubcategoria">Código</h:outputLabel>
+                    </h:panelGroup>
+                    <h:selectOneMenu id="categoriaIdCategoria" value="#{subcategoriaController.subcategoria.tblCategoriaIdCategoria}" title="Categorias" required="true" requiredMessage="Categoria creada">
+                        <f:selectItems value="#{categoriaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGroup>
+                <h:panelGroup layout="block" class="mdl-dialog__actions">
+                    <h:commandButton action="#{subcategoriaController.registrar()}" id="mostrarSubcategoriaCreada" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Crear subcategoría" />
+                    <h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
+                </h:panelGroup>
+            </h:form>
+            <h:form id="addMaterial" class="mdl-dialog">
+                <h3 class="mdl-dialog__title">Registrar material</h3>
+                <h:panelGroup layout="block" class="mdl-dialog__content">
+                    <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <h:inputText class="mdl-textfield__input" value="#{materialController.material.codigo}" p:maxlength="5" required="required" id="codigoMaterial" />
+                        <h:outputLabel class="mdl-textfield__label" for="codigoMaterial">Código</h:outputLabel>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <h:inputText class="mdl-textfield__input" value="#{materialController.material.nombre}" p:maxlength="64" required="required" id="nombreMaterial" />
+                        <h:outputLabel class="mdl-textfield__label" for="nombreMaterial">Nombre</h:outputLabel>
+                    </h:panelGroup>
+                </h:panelGroup>
+                <h:panelGroup layout="block" class="mdl-dialog__actions">
+                    <h:commandButton id="mostrarMaterialNuevo" action="#{materialController.registrar()}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Crear material" />
+                    <h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
+                </h:panelGroup>
+            </h:form>
+            <h:form id="addSufijo" class="mdl-dialog">
+                <h3 class="mdl-dialog__title">Registrar sufijo</h3>
+                <h:panelGroup layout="block" class="mdl-dialog__content">
+                    <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <h:inputText class="mdl-textfield__input" value="#{sufijoController.sufijo.codigo}" p:maxlength="10" required="required" id="sufijo" />
+                        <h:outputLabel class="mdl-textfield__label" for="sufijo">Sufijo</h:outputLabel>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <h:inputText class="mdl-textfield__input" value="#{sufijoController.sufijo.descripcionFabricante}" p:maxlength="500" required="required" id="descripcionFabricante" />
+                        <h:outputLabel class="mdl-textfield__label" for="descripcionFabricante">Descripcion</h:outputLabel>
+                    </h:panelGroup>
+                </h:panelGroup>
+                <h:panelGroup layout="block" class="mdl-dialog__actions">
+                    <h:commandButton id="mostrarSufijoNuevo" action="#{sufijoController.registrar()}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Crear sufijo" />
+                    <h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
+                </h:panelGroup>
+            </h:form>
+        </aside>
+        <aside>
+            <h:panelGroup layout="block" id="categoriaCreada" class="mdl-js-snackbar mdl-snackbar">
+                <h:panelGroup layout="block" class="mdl-snackbar__text"></h:panelGroup>
+                <button class="mdl-snackbar__action" type="button"></button>
+            </h:panelGroup>
+            <h:panelGroup layout="block" id="subcategoriaCreada" class="mdl-js-snackbar mdl-snackbar">
+                <h:panelGroup layout="block" class="mdl-snackbar__text"></h:panelGroup>
+                <button class="mdl-snackbar__action" type="button"></button>
+            </h:panelGroup>
+            <h:panelGroup layout="block" id="materialNuevo" class="mdl-js-snackbar mdl-snackbar">
+                <h:panelGroup layout="block" class="mdl-snackbar__text"></h:panelGroup>
+                <button class="mdl-snackbar__action" type="button"></button>
+            </h:panelGroup>
+            <h:panelGroup layout="block" id="sufijoNuevo" class="mdl-js-snackbar mdl-snackbar">
+                <h:panelGroup layout="block" class="mdl-snackbar__text"></h:panelGroup>
+                <button class="mdl-snackbar__action" type="button"></button>
+            </h:panelGroup>
+            <script>
+                (function () {
+                    'use strict';
+                    window['counter'] = 0;
+                    var snackbarContainer = document.querySelector('#categoriaCreada');
+                    var showToastButton = document.querySelector('#mostrarCategoriaCreada');
+                    showToastButton.addEventListener('click', function () {
+                        'use strict';
+                        var data = {message: 'Categoría creada satisfactoriamente.', timeout: 5000};
+                        snackbarContainer.MaterialSnackbar.showSnackbar(data);
+                    });
+                }());
+                (function () {
+                    'use strict';
+                    window['counter'] = 0;
+                    var snackbarContainer = document.querySelector('#subcategoriaCreada');
+                    var showToastButton = document.querySelector('#mostrarSubcategoriaCreada');
+                    showToastButton.addEventListener('click', function () {
+                        'use strict';
+                        var data = {message: 'Subcategoría creada satisfactoriamente.', timeout: 5000};
+                        snackbarContainer.MaterialSnackbar.showSnackbar(data);
+                    });
+                }());
+                (function () {
+                    'use strict';
+                    window['counter'] = 0;
+                    var snackbarContainer = document.querySelector('#materialNuevo');
+                    var showToastButton = document.querySelector('#mostrarMaterialNuevo');
+                    showToastButton.addEventListener('click', function () {
+                        'use strict';
+                        var data = {message: 'Material creado satisfactoriamente.', timeout: 5000};
+                        snackbarContainer.MaterialSnackbar.showSnackbar(data);
+                    });
+                }());
+                (function () {
+                    'use strict';
+                    window['counter'] = 0;
+                    var snackbarContainer = document.querySelector('#sufijoNuevo');
+                    var showToastButton = document.querySelector('#mostrarSufijoNuevo');
+                    showToastButton.addEventListener('click', function () {
+                        'use strict';
+                        var data = {message: 'Sufijo creado satisfactoriamente.', timeout: 5000};
+                        snackbarContainer.MaterialSnackbar.showSnackbar(data);
+                    });
+                }());
+            </script>
+        </aside>
 
-	<nav class="fixed-nav">
-		<h:panelGroup layout="block" id="logo"></h:panelGroup>
-		<h:panelGroup layout="block" id="user">
-			<h:panelGroup layout="block" id="userName">Depurador</h:panelGroup>
-			<h:panelGroup layout="block" id="userPosition">
-				<h:panelGroup>Administrador</h:panelGroup>
-				<button id="userActions" class="mdl-button mdl-js-button mdl-button--icon">
-					<i class="material-icons">arrow_drop_down</i>
-				</button>
-			</h:panelGroup>
-			<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="userActions">
-				<li class="mdl-menu__item"><a href="/administracion/configuracion.html">Configuración</a></li>
-				<li class="mdl-menu__item"><a href="/auth/">Cerrar sesión</a></li>
-			</ul>
-		</h:panelGroup>
-		<ul>
-			<li><a href="/" class="fa fa-home" aria-hidden="true">Inicio</a></li>
-			<li><a href="/cotizaciones" class="fa fa-shopping-cart" aria-hidden="true">Cotizaciones</a></li>
-			<li><a href="/produccion" class="fa fa-wpforms" aria-hidden="true">Producción</a></li>
-			<li><a href="/reportes" class="fa fa-area-chart" aria-hidden="true">Reportes</a></li>
-			<li><a href="/administracion" class="fa fa-cog" aria-hidden="true">Administración</a></li>
-			<li><a href="/calendario" class="fa fa-calendar" aria-hidden="true">Calendario</a></li>
-			<li><a href="https://github.com/Darhakexge/Interfaces-internas/issues/" class="fa fa-bug" aria-hidden="true">Reportar un error</a></li>
-			<li><a href="/sustentacion" class="fa logoSena" aria-hidden="true">Sustentación</a></li>
-		</ul>
-	</nav>
-	<aside id="taskList" class="fixed-nav" data-active="false">
-		<h:panelGroup layout="block" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-			<h:panelGroup layout="block" class="mdl-tabs__tab-bar">
-				<a href="#taskEventos" class="mdl-tabs__tab is-active">Eventos</a>
-				<a href="#taskNotificaciones" class="mdl-tabs__tab">Notificaciones</a>
-				<a href="#taskTareas" class="mdl-tabs__tab">Tareas</a>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-tabs__panel is-active" id="taskEventos"></h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-tabs__panel" id="taskNotificaciones"></h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-tabs__panel" id="taskTareas"></h:panelGroup>
-		</h:panelGroup>
-	</aside>
-	<h:panelGroup layout="block" id="ofuscador"></h:panelGroup>
-</h:body>
+        <nav class="fixed-nav">
+            <h:panelGroup layout="block" id="logo"></h:panelGroup>
+            <h:panelGroup layout="block" id="user">
+                <h:panelGroup layout="block" id="userName">Depurador</h:panelGroup>
+                <h:panelGroup layout="block" id="userPosition">
+                    <h:panelGroup>Administrador</h:panelGroup>
+                    <button id="userActions" class="mdl-button mdl-js-button mdl-button--icon">
+                        <i class="material-icons">arrow_drop_down</i>
+                    </button>
+                </h:panelGroup>
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="userActions">
+                    <li class="mdl-menu__item"><a href="/administracion/configuracion.html">Configuración</a></li>
+                    <li class="mdl-menu__item"><a href="/auth/">Cerrar sesión</a></li>
+                </ul>
+            </h:panelGroup>
+            <ul>
+                <li><a href="/" class="fa fa-home" aria-hidden="true">Inicio</a></li>
+                <li><a href="/cotizaciones" class="fa fa-shopping-cart" aria-hidden="true">Cotizaciones</a></li>
+                <li><a href="/produccion" class="fa fa-wpforms" aria-hidden="true">Producción</a></li>
+                <li><a href="/reportes" class="fa fa-area-chart" aria-hidden="true">Reportes</a></li>
+                <li><a href="/administracion" class="fa fa-cog" aria-hidden="true">Administración</a></li>
+                <li><a href="/calendario" class="fa fa-calendar" aria-hidden="true">Calendario</a></li>
+                <li><a href="https://github.com/Darhakexge/Interfaces-internas/issues/" class="fa fa-bug" aria-hidden="true">Reportar un error</a></li>
+                <li><a href="/sustentacion" class="fa logoSena" aria-hidden="true">Sustentación</a></li>
+            </ul>
+        </nav>
+        <aside id="taskList" class="fixed-nav" data-active="false">
+            <h:panelGroup layout="block" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+                <h:panelGroup layout="block" class="mdl-tabs__tab-bar">
+                    <a href="#taskEventos" class="mdl-tabs__tab is-active">Eventos</a>
+                    <a href="#taskNotificaciones" class="mdl-tabs__tab">Notificaciones</a>
+                    <a href="#taskTareas" class="mdl-tabs__tab">Tareas</a>
+                </h:panelGroup>
+                <h:panelGroup layout="block" class="mdl-tabs__panel is-active" id="taskEventos"></h:panelGroup>
+                <h:panelGroup layout="block" class="mdl-tabs__panel" id="taskNotificaciones"></h:panelGroup>
+                <h:panelGroup layout="block" class="mdl-tabs__panel" id="taskTareas"></h:panelGroup>
+            </h:panelGroup>
+        </aside>
+        <h:panelGroup layout="block" id="ofuscador"></h:panelGroup>
+    </h:body>
 </html>

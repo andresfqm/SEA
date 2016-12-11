@@ -34,7 +34,7 @@ public class ClienteFacade extends AbstractFacade<Cliente> implements ClienteFac
     }
 
     @Override
-    public List datosCliente(int idCliente) {
+    public Object datosCliente(int idCliente) {
         /*
         Nomenclatura de la consulta
         c: cliente
@@ -50,8 +50,8 @@ public class ClienteFacade extends AbstractFacade<Cliente> implements ClienteFac
         ci: ciudad
         de: departamento
         */
-        List datosCliente;
-        String consulta="SELECT ci.NOMBRE FROM " +
+   
+        String consulta="SELECT ci.NOMBRE,de.NOMBRE, e.email, t.numero_telefono FROM " +
                         "TBL_CLIENTE c " +
                         "INNER JOIN " +
                         "TBL_ORIGEN o ON c.TBL_ORIGEN_ID_ORIGEN = o.ID_ORIGEN AND c.ID_CLIENTE=?1 " +
@@ -77,7 +77,9 @@ public class ClienteFacade extends AbstractFacade<Cliente> implements ClienteFac
                         "TBL_DEPARTAMENTO de ON ci.TBL_DEPARTAMENTO_ID_DEPARTAMENTO = de.ID_DEPARTAMENTO";
         Query query = em.createNativeQuery(consulta);
         query.setParameter(1, idCliente);
-        datosCliente = query.getResultList();
+        //datosCliente = query.getResultList();
+        Object datosCliente = query.getSingleResult();
+        
         return datosCliente;
     }
 

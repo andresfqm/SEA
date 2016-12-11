@@ -6,7 +6,9 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.Subcategoria;
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -28,5 +30,6 @@ public class SubcategoriaFacade extends AbstractFacade<Subcategoria> implements 
     public SubcategoriaFacade() {
         super(Subcategoria.class);
     }
+    
     
 }

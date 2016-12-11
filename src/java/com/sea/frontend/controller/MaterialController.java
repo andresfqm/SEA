@@ -8,6 +8,7 @@ package com.sea.frontend.controller;
 import com.sea.backend.entities.Material;
 import com.sea.backend.model.MaterialFacadeLocal;
 import java.io.Serializable;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -25,6 +26,16 @@ public class MaterialController implements Serializable {
     private MaterialFacadeLocal materialEJB;
 
     private Material material;
+    private List<Material> listaMateriales;
+
+    public List<Material> getListaMateriales() {
+        listaMateriales = materialEJB.findAll();
+        return listaMateriales;
+    }
+
+    public void setListaMateriales(List<Material> listaMateriales) {
+        this.listaMateriales = listaMateriales;
+    }
 
     public Material getMaterial() {
         return material;

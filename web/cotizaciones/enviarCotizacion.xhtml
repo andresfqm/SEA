@@ -60,7 +60,7 @@
                         <h:outputLabel class="mdl-textfield__label" for="cliente">Empresa</h:outputLabel>
                         <p:outputLabel value="Empresa"/>
                         <p:selectOneMenu value="#{clienteController.idCliente}" filter="true" filterMatchMode="contains">
-                            <p:ajax event="valueChange" listener="#{clienteController.obtenerDatosCliente()}" update="ciudad" />
+                            <p:ajax event="valueChange" listener="#{clienteController.obtenerDatosCliente()}" update="ciudad,departamento,e-mail1,e-mail2,telefono1,telefono2" />
                             <f:selectItems value="#{clienteController.clientes}" var="cli" itemLabel="#{cli.nombreORazonSocial}" itemValue="#{cli.idCliente}"/>
                         </p:selectOneMenu>
                     </h:panelGroup>
@@ -69,23 +69,23 @@
                         <h:outputLabel class="mdl-textfield__label" for="ciudad">Ciudad</h:outputLabel>
                     </h:panelGroup>
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <h:inputText class="mdl-textfield__input" id="departamento" value="Bogotá" pt:disabled="true" />
+                        <h:inputText class="mdl-textfield__input" id="departamento" value="#{clienteController.cliente[1]}" pt:disabled="true" />
                         <h:outputLabel class="mdl-textfield__label" for="departamento">Departamento</h:outputLabel>
                     </h:panelGroup>
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <h:inputText class="mdl-textfield__input" p:type="email" id="e-mail1" value="info@dotacionesindustriales.net" pt:disabled="true" />
+                        <h:inputText class="mdl-textfield__input" p:type="email" id="e-mail1" value="#{clienteController.cliente[2]}" pt:disabled="true" />
                         <h:outputLabel class="mdl-textfield__label" for="e-mail1">e-mail 1</h:outputLabel>
                     </h:panelGroup>
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <h:inputText class="mdl-textfield__input" p:type="email" id="e-mail2"  pt:disabled="true" />
+                        <h:inputText class="mdl-textfield__input" p:type="email" id="e-mail2" value="#{clienteController.cliente[3]}"  pt:disabled="true" />
                         <h:outputLabel class="mdl-textfield__label" for="e-mail2">e-mail 2</h:outputLabel>
                     </h:panelGroup>
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <h:inputText class="mdl-textfield__input" p:type="tel" id="telefono1" value="3110715" pt:disabled="true" />
+                        <h:inputText class="mdl-textfield__input" p:type="tel" id="telefono1" value="#{clienteController.cliente[4]}" pt:disabled="true" />
                         <h:outputLabel class="mdl-textfield__label" for="telefono1">Teléfono 1</h:outputLabel>
                     </h:panelGroup>
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <h:inputText class="mdl-textfield__input" p:type="tel" id="telefono2" value="5453276" pt:disabled="true" />
+                        <h:inputText class="mdl-textfield__input" p:type="tel" id="telefono2" value="#{clienteController.cliente[5]}" pt:disabled="true" />
                         <h:outputLabel class="mdl-textfield__label" for="telefono2">Teléfono 2</h:outputLabel>
                     </h:panelGroup>
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">

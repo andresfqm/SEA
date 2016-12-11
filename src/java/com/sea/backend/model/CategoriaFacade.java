@@ -6,7 +6,9 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.Categoria;
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -28,5 +30,11 @@ public class CategoriaFacade extends AbstractFacade<Categoria> implements Catego
     public CategoriaFacade() {
         super(Categoria.class);
     }
+
+    @Override
+    public List<Categoria> findAll() {
+        return super.findAll();
+    }
+    
     
 }

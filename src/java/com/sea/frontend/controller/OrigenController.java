@@ -8,6 +8,7 @@ package com.sea.frontend.controller;
 import com.sea.backend.entities.Origen;
 import com.sea.backend.model.OrigenFacadeLocal;
 import java.io.Serializable;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -26,6 +27,16 @@ public class OrigenController implements Serializable {
     private OrigenFacadeLocal origenEJB;
 
     private Origen origen;
+    private List<Origen> listaOrigen;
+
+    public List<Origen> getListaOrigen() {
+        listaOrigen = origenEJB.findAll();
+        return listaOrigen;
+    }
+
+    public void setListaOrigen(List<Origen> listaOrigen) {
+        this.listaOrigen = listaOrigen;
+    }
 
     public Origen getOrigen() {
         return origen;
@@ -44,6 +55,16 @@ public class OrigenController implements Serializable {
     public void registrar() {
         try {
             origenEJB.create(origen);
+
+        } catch (Exception e) {
+
+        }
+
+    }
+    
+    public void Eliminar(Origen o) {
+        try {
+            origenEJB.remove(o);
 
         } catch (Exception e) {
 

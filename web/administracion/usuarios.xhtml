@@ -1,554 +1,550 @@
 <!DOCTYPE html>
-<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
-<h:head>
-	<meta charset="UTF-8" />
-	<title>Administración de usuarios | SEA</title>
-	<link rel="shortcut icon" href="/img/favicon.ico" />
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-	<h:outputStylesheet library="css" name="material.min.css" />
-	<h:outputStylesheet library="css" name="mdl-selectfield.min.css">
-	<h:outputStylesheet library="css" name="font-awesome.min.css" />
-	<h:outputStylesheet library="css" name="maquetacionBasica.css" />
-	<h:outputStylesheet library="css" name="administracion.css" />
-	<h:outputScript library="js" name="checkBrowser.js"></h:outputScript>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <script src="https://use.fontawesome.com/a39256cab5.js"></script>
-	<h:outputScript library="js" name="mdl-selectfield.min.js"></h:outputScript>
-	<h:outputScript library="js" name="material.min.js"></h:outputScript>
-	<h:outputScript library="js" name="breadcrumbs.js"></h:outputScript>
-	<h:outputScript library="js" name="taksTabs.js"></h:outputScript>
-	<h:outputScript library="js" name="scrollup.js"></h:outputScript>
-	<h:outputScript library="js" name="toggleforms.js"></h:outputScript>
-	<h:outputScript library="js" name="administracion.js"></h:outputScript>
-</h:head>
-<h:body>
-	<header class="mdl-layout__header is-casting-shadow mdl-layout__header-row">
-		<a class="fa fa-bars mostrarNavbars" data-target="body > nav" aria-hidden="true" href="#"></a>
-		<nav id="navBreadcrumbs">
-			<ul id="breadcrumbs"></ul>
-		</nav>
-		<a class="fa fa-tasks mdl-badge mostrarNavbars" data-badge="4" data-target="#taskList" aria-hidden="true" href="#"></a>
-	</header>
-	<main>
-		<section id="usuariosDashboard">
-			<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-				<thead>
-					<tr>
-						<th class="mdl-data-table__cell--non-numeric">Nombre</th>
-						<th class="mdl-data-table__cell--non-numeric">No. Documento</th>
-						<th class="mdl-data-table__cell--non-numeric">ID interno</th>
-						<th class="mdl-data-table__cell--non-numeric">Teléfono corporativo</th>
-						<th class="mdl-data-table__cell--non-numeric">Correo electrónico</th>
-						<th class="mdl-data-table__cell--non-numeric">Nombre de usuario</th>
-						<th class="mdl-data-table__cell--non-numeric">Cargo</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Ángel Torres</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">(+57) 3007036273</td>
-						<td class="mdl-data-table__cell--non-numeric">atorres@dotacionesindustriales.com</td>
-						<td class="mdl-data-table__cell--non-numeric">atorres</td>
-						<td class="mdl-data-table__cell--non-numeric">Gerente</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Carolina Cardona</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">(+57) 3173702083</td>
-						<td class="mdl-data-table__cell--non-numeric">comercial@dotacionesindustriales.com</td>
-						<td class="mdl-data-table__cell--non-numeric">ccordoba</td>
-						<td class="mdl-data-table__cell--non-numeric">Directora Comercial</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Yeimith Morales</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">(+57) 3173981633</td>
-						<td class="mdl-data-table__cell--non-numeric">info@dotacionesindustriales.com</td>
-						<td class="mdl-data-table__cell--non-numeric">ymorales</td>
-						<td class="mdl-data-table__cell--non-numeric">Asistente Comercial</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Javier Hernández</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">(+57) 3156718245</td>
-						<td class="mdl-data-table__cell--non-numeric">produccion@dotacionesindustriales.com</td>
-						<td class="mdl-data-table__cell--non-numeric">jhernandez</td>
-						<td class="mdl-data-table__cell--non-numeric">Jefe de Producción</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Asdrubal Cardenas</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">(+57) 3173981633</td>
-						<td class="mdl-data-table__cell--non-numeric">ventas@dotacionesindustriales.com</td>
-						<td class="mdl-data-table__cell--non-numeric">acardenas</td>
-						<td class="mdl-data-table__cell--non-numeric">Ejecutivo Comercial</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Nombre</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
-						<td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
-						<td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
-						<td class="mdl-data-table__cell--non-numeric">Cargo</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Nombre</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
-						<td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
-						<td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
-						<td class="mdl-data-table__cell--non-numeric">Cargo</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Nombre</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
-						<td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
-						<td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
-						<td class="mdl-data-table__cell--non-numeric">Cargo</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Nombre</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
-						<td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
-						<td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
-						<td class="mdl-data-table__cell--non-numeric">Cargo</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Nombre</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
-						<td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
-						<td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
-						<td class="mdl-data-table__cell--non-numeric">Cargo</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Ángel Torres</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">(+57) 3007036273</td>
-						<td class="mdl-data-table__cell--non-numeric">atorres@dotacionesindustriales.com</td>
-						<td class="mdl-data-table__cell--non-numeric">atorres</td>
-						<td class="mdl-data-table__cell--non-numeric">Gerente</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Carolina Cardona</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">(+57) 3173702083</td>
-						<td class="mdl-data-table__cell--non-numeric">comercial@dotacionesindustriales.com</td>
-						<td class="mdl-data-table__cell--non-numeric">ccordoba</td>
-						<td class="mdl-data-table__cell--non-numeric">Directora Comercial</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Yeimith Morales</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">(+57) 3173981633</td>
-						<td class="mdl-data-table__cell--non-numeric">info@dotacionesindustriales.com</td>
-						<td class="mdl-data-table__cell--non-numeric">ymorales</td>
-						<td class="mdl-data-table__cell--non-numeric">Asistente Comercial</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Javier Hernández</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">(+57) 3156718245</td>
-						<td class="mdl-data-table__cell--non-numeric">produccion@dotacionesindustriales.com</td>
-						<td class="mdl-data-table__cell--non-numeric">jhernandez</td>
-						<td class="mdl-data-table__cell--non-numeric">Jefe de Producción</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Asdrubal Cardenas</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">(+57) 3173981633</td>
-						<td class="mdl-data-table__cell--non-numeric">ventas@dotacionesindustriales.com</td>
-						<td class="mdl-data-table__cell--non-numeric">acardenas</td>
-						<td class="mdl-data-table__cell--non-numeric">Ejecutivo Comercial</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Nombre</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
-						<td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
-						<td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
-						<td class="mdl-data-table__cell--non-numeric">Cargo</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Nombre</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
-						<td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
-						<td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
-						<td class="mdl-data-table__cell--non-numeric">Cargo</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Nombre</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
-						<td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
-						<td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
-						<td class="mdl-data-table__cell--non-numeric">Cargo</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Nombre</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
-						<td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
-						<td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
-						<td class="mdl-data-table__cell--non-numeric">Cargo</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Nombre</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
-						<td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
-						<td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
-						<td class="mdl-data-table__cell--non-numeric">Cargo</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Ángel Torres</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">(+57) 3007036273</td>
-						<td class="mdl-data-table__cell--non-numeric">atorres@dotacionesindustriales.com</td>
-						<td class="mdl-data-table__cell--non-numeric">atorres</td>
-						<td class="mdl-data-table__cell--non-numeric">Gerente</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Carolina Cardona</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">(+57) 3173702083</td>
-						<td class="mdl-data-table__cell--non-numeric">comercial@dotacionesindustriales.com</td>
-						<td class="mdl-data-table__cell--non-numeric">ccordoba</td>
-						<td class="mdl-data-table__cell--non-numeric">Directora Comercial</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Yeimith Morales</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">(+57) 3173981633</td>
-						<td class="mdl-data-table__cell--non-numeric">info@dotacionesindustriales.com</td>
-						<td class="mdl-data-table__cell--non-numeric">ymorales</td>
-						<td class="mdl-data-table__cell--non-numeric">Asistente Comercial</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Javier Hernández</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">(+57) 3156718245</td>
-						<td class="mdl-data-table__cell--non-numeric">produccion@dotacionesindustriales.com</td>
-						<td class="mdl-data-table__cell--non-numeric">jhernandez</td>
-						<td class="mdl-data-table__cell--non-numeric">Jefe de Producción</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Asdrubal Cardenas</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">(+57) 3173981633</td>
-						<td class="mdl-data-table__cell--non-numeric">ventas@dotacionesindustriales.com</td>
-						<td class="mdl-data-table__cell--non-numeric">acardenas</td>
-						<td class="mdl-data-table__cell--non-numeric">Ejecutivo Comercial</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Nombre</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
-						<td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
-						<td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
-						<td class="mdl-data-table__cell--non-numeric">Cargo</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Nombre</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
-						<td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
-						<td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
-						<td class="mdl-data-table__cell--non-numeric">Cargo</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Nombre</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
-						<td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
-						<td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
-						<td class="mdl-data-table__cell--non-numeric">Cargo</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Nombre</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
-						<td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
-						<td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
-						<td class="mdl-data-table__cell--non-numeric">Cargo</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Nombre</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
-						<td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
-						<td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
-						<td class="mdl-data-table__cell--non-numeric">Cargo</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Ángel Torres</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">(+57) 3007036273</td>
-						<td class="mdl-data-table__cell--non-numeric">atorres@dotacionesindustriales.com</td>
-						<td class="mdl-data-table__cell--non-numeric">atorres</td>
-						<td class="mdl-data-table__cell--non-numeric">Gerente</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Carolina Cardona</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">(+57) 3173702083</td>
-						<td class="mdl-data-table__cell--non-numeric">comercial@dotacionesindustriales.com</td>
-						<td class="mdl-data-table__cell--non-numeric">ccordoba</td>
-						<td class="mdl-data-table__cell--non-numeric">Directora Comercial</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Yeimith Morales</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">(+57) 3173981633</td>
-						<td class="mdl-data-table__cell--non-numeric">info@dotacionesindustriales.com</td>
-						<td class="mdl-data-table__cell--non-numeric">ymorales</td>
-						<td class="mdl-data-table__cell--non-numeric">Asistente Comercial</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Javier Hernández</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">(+57) 3156718245</td>
-						<td class="mdl-data-table__cell--non-numeric">produccion@dotacionesindustriales.com</td>
-						<td class="mdl-data-table__cell--non-numeric">jhernandez</td>
-						<td class="mdl-data-table__cell--non-numeric">Jefe de Producción</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Asdrubal Cardenas</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">(+57) 3173981633</td>
-						<td class="mdl-data-table__cell--non-numeric">ventas@dotacionesindustriales.com</td>
-						<td class="mdl-data-table__cell--non-numeric">acardenas</td>
-						<td class="mdl-data-table__cell--non-numeric">Ejecutivo Comercial</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Nombre</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
-						<td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
-						<td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
-						<td class="mdl-data-table__cell--non-numeric">Cargo</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Nombre</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
-						<td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
-						<td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
-						<td class="mdl-data-table__cell--non-numeric">Cargo</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Nombre</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
-						<td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
-						<td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
-						<td class="mdl-data-table__cell--non-numeric">Cargo</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Nombre</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
-						<td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
-						<td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
-						<td class="mdl-data-table__cell--non-numeric">Cargo</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Nombre</td>
-						<td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">123456789</td>
-						<td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
-						<td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
-						<td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
-						<td class="mdl-data-table__cell--non-numeric">Cargo</td>
-					</tr>
-				</tbody>
-			</table>
-			<a href="#addUser" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
-				<i class="material-icons">person_add</i>
-			</a>
-		</section>
-		<aside id="subForm">
-			<h:form id="addUser" class="mdl-dialog">
-				<h3 class="mdl-dialog__title">Registrar usuario</h3>
-				<h:panelGroup layout="block" class="mdl-dialog__content">
-					<h:panelGroup layout="block" class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label fullWidth">
-						<select class="mdl-selectfield__select" id="tipoDocumento" required="required">
-							<option value=""></option>
-							<option value="1">Cédula de ciudadanía</option>
-							<option value="2">Cédula extrajera</option>
-							<option value="3">Número de identificación tributaria</option>
-							<option value="4">Número único de identificación personal</option>
-						</select>
-						<h:outputLabel class="mdl-selectfield__label" for="tipoDocumento">Tipo de documento</h:outputLabel>
-					</h:panelGroup>
-					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" p:type="number" p:min="1" p:step="1" p:maxlength="32" required="required" id="NoDocumento">
-						<h:outputLabel class="mdl-textfield__label" for="NoDocumento">Número de documento</h:outputLabel>
-					</h:panelGroup>
-					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" disabled="disabled" id="DV" p:maxlength="1" value=" ">
-						<h:outputLabel class="mdl-textfield__label" for="DV">Dígito de verificación</h:outputLabel>
-					</h:panelGroup>
-					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" p:maxlength="256" required="required" id="nombre">
-						<h:outputLabel class="mdl-textfield__label" for="nombre">Nombre</h:outputLabel>
-					</h:panelGroup>
-					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" p:maxlength="256" required="required" id="apellido">
-						<h:outputLabel class="mdl-textfield__label" for="apellido">Apellido</h:outputLabel>
-					</h:panelGroup>
-					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" p:type="tel" p:maxlength="64" required="required" id="telPersonal">
-						<h:outputLabel class="mdl-textfield__label" for="telPersonal">Teléfono personal</h:outputLabel>
-					</h:panelGroup>
-					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" p:type="tel" p:maxlength="64" required="required" id="telCorporativo">
-						<h:outputLabel class="mdl-textfield__label" for="telCorporativo">Teléfono corporativo</h:outputLabel>
-					</h:panelGroup>
-					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-						<h:inputText class="mdl-textfield__input" p:type="email" p:maxlength="64" required="required" id="email">
-						<h:outputLabel class="mdl-textfield__label" for="email">Correo electrónico</h:outputLabel>
-					</h:panelGroup>
-					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-						<h:inputText class="mdl-textfield__input" p:maxlength="128" required="required" id="direccion">
-						<h:outputLabel class="mdl-textfield__label" for="direccion">Dirección de residencia</h:outputLabel>
-					</h:panelGroup>
-					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" p:maxlength="32" required="required" id="IDInterno">
-						<h:outputLabel class="mdl-textfield__label" for="IDInterno">ID interno</h:outputLabel>
-					</h:panelGroup>
-					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" required="required" id="cargo">
-						<h:outputLabel class="mdl-textfield__label" for="cargo">Cargo</h:outputLabel>
-					</h:panelGroup>
-					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-						<h:inputText class="mdl-textfield__input" p:maxlength="45" required="required" id="nombreUsuario">
-						<h:outputLabel class="mdl-textfield__label" for="nombreUsuario">Nombre de usuario</h:outputLabel>
-					</h:panelGroup>
-					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-						<h:inputSecret class="mdl-textfield__input" p:maxlength="45" required="required" id="contrasena">
-						<h:outputLabel class="mdl-textfield__label" for="contrasena">Contraseña</h:outputLabel>
-					</h:panelGroup>
-					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-						<h:inputSecret class="mdl-textfield__input" p:maxlength="45" required="required" id="confirmacionContrasena">
-						<h:outputLabel class="mdl-textfield__label" for="confirmacionContrasena">Confirme la contraseña</h:outputLabel>
-					</h:panelGroup>
-					<h:outputLabel class="mdl-switch mdl-js-switch mdl-js-ripple-effect fullWidth" for="activo">
-						<h:selectBooleanCheckbox id="activo" class="mdl-switch__input">
-						<h:panelGroup class="mdl-switch__label">¿Activo?</h:panelGroup>
-					</h:outputLabel>
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-dialog__actions">
-					<h:commandButton id="mostrarUsuarioCreado" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" type="submit" value="Crear usuario" />
-					<h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
-				</h:panelGroup>
-			</h:form>
-		</aside>
-  <aside>
-    <h:panelGroup layout="block" id="usuarioCreado" class="mdl-js-snackbar mdl-snackbar">
-      <h:panelGroup layout="block" class="mdl-snackbar__text"></h:panelGroup>
-      <button class="mdl-snackbar__action" type="button"></button>
-    </h:panelGroup>
-    <script>
-      (function() {
-        'use strict';
-        window['counter'] = 0;
-        var snackbarContainer = document.querySelector('#usuarioCreado');
-        var showToastButton = document.querySelector('#mostrarUsuarioCreado');
-        var handler = function(event) {
-          console.log("Usuario eliminado");
-        };
-        showToastButton.addEventListener('click', function() {
-          'use strict';
-          var data = {message: 'Usuario creado satisfactriamente.',timeout: 5000,actionHandler: handler,actionText: 'Deshacer'};
-          snackbarContainer.MaterialSnackbar.showSnackbar(data);
-        });
-      }());
-    </script>
-  </aside>
-	</main>
-	<nav class="fixed-nav">
-		<h:panelGroup layout="block" id="logo"></h:panelGroup>
-		<h:panelGroup layout="block" id="user">
-			<h:panelGroup layout="block" id="userName">Depurador</h:panelGroup>
-			<h:panelGroup layout="block" id="userPosition">
-				<h:panelGroup>Administrador</h:panelGroup>
-				<button id="userActions" class="mdl-button mdl-js-button mdl-button--icon">
-					<i class="material-icons">arrow_drop_down</i>
-				</button>
-			</h:panelGroup>
-			<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="userActions">
-				<li class="mdl-menu__item"><a href="/administracion/configuracion.html">Configuración</a></li>
-				<li class="mdl-menu__item"><a href="/auth/">Cerrar sesión</a></li>
-			</ul>
-		</h:panelGroup>
-		<ul>
-			<li><a href="/" class="fa fa-home" aria-hidden="true">Inicio</a></li>
-			<li><a href="/cotizaciones" class="fa fa-shopping-cart" aria-hidden="true">Cotizaciones</a></li>
-			<li><a href="/produccion" class="fa fa-wpforms" aria-hidden="true">Producción</a></li>
-			<li><a href="/reportes" class="fa fa-area-chart" aria-hidden="true">Reportes</a></li>
-			<li><a href="/administracion" class="fa fa-cog" aria-hidden="true">Administración</a></li>
-			<li><a href="/calendario" class="fa fa-calendar" aria-hidden="true">Calendario</a></li>
-			<li><a href="https://github.com/Darhakexge/Interfaces-internas/issues/" class="fa fa-bug" aria-hidden="true">Reportar un error</a></li>
-			<li><a href="/sustentacion" class="fa logoSena" aria-hidden="true">Sustentación</a></li>
-		</ul>
-	</nav>
-	<aside id="taskList" class="fixed-nav" data-active="false">
-		<h:panelGroup layout="block" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-			<h:panelGroup layout="block" class="mdl-tabs__tab-bar">
-				<a href="#taskEventos" class="mdl-tabs__tab is-active">Eventos</a>
-				<a href="#taskNotificaciones" class="mdl-tabs__tab">Notificaciones</a>
-				<a href="#taskTareas" class="mdl-tabs__tab">Tareas</a>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-tabs__panel is-active" id="taskEventos"></h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-tabs__panel" id="taskNotificaciones"></h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-tabs__panel" id="taskTareas"></h:panelGroup>
-		</h:panelGroup>
-	</aside>
-	<h:panelGroup layout="block" id="ofuscador"></h:panelGroup>
-</h:body>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta charset="UTF-8" />
+        <title>Administración de usuarios | SEA</title>
+        <link rel="shortcut icon" href="/img/favicon.ico" />
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <h:outputStylesheet library="css" name="material.min.css" />
+        <h:outputStylesheet library="css" name="mdl-selectfield.min.css" />
+        <h:outputStylesheet library="css" name="font-awesome.min.css" />
+        <h:outputStylesheet library="css" name="maquetacionBasica.css" />
+        <h:outputStylesheet library="css" name="administracion.css" />
+        <h:outputScript library="js" name="checkBrowser.js"></h:outputScript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <script src="https://use.fontawesome.com/a39256cab5.js"></script>
+        <h:outputScript library="js" name="mdl-selectfield.min.js"></h:outputScript>
+        <h:outputScript library="js" name="material.min.js"></h:outputScript>
+        <h:outputScript library="js" name="breadcrumbs.js"></h:outputScript>
+        <h:outputScript library="js" name="taksTabs.js"></h:outputScript>
+        <h:outputScript library="js" name="scrollup.js"></h:outputScript>
+        <h:outputScript library="js" name="toggleforms.js"></h:outputScript>
+        <h:outputScript library="js" name="administracion.js"></h:outputScript>
+    </h:head>
+    <h:body>
+        <header class="mdl-layout__header is-casting-shadow mdl-layout__header-row">
+            <a class="fa fa-bars mostrarNavbars" data-target="body > nav" aria-hidden="true" href="#"></a>
+            <nav id="navBreadcrumbs">
+                <ul id="breadcrumbs"></ul>
+            </nav>
+            <a class="fa fa-tasks mdl-badge mostrarNavbars" data-badge="4" data-target="#taskList" aria-hidden="true" href="#"></a>
+        </header>
+        <main>
+            <section id="usuariosDashboard">
+                <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                    <thead>
+                        <tr>
+                            <th class="mdl-data-table__cell--non-numeric">Nombre</th>
+                            <th class="mdl-data-table__cell--non-numeric">No. Documento</th>
+                            <th class="mdl-data-table__cell--non-numeric">ID interno</th>
+                            <th class="mdl-data-table__cell--non-numeric">Teléfono corporativo</th>
+                            <th class="mdl-data-table__cell--non-numeric">Correo electrónico</th>
+                            <th class="mdl-data-table__cell--non-numeric">Nombre de usuario</th>
+                            <th class="mdl-data-table__cell--non-numeric">Cargo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Ángel Torres</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">(+57) 3007036273</td>
+                            <td class="mdl-data-table__cell--non-numeric">atorres@dotacionesindustriales.com</td>
+                            <td class="mdl-data-table__cell--non-numeric">atorres</td>
+                            <td class="mdl-data-table__cell--non-numeric">Gerente</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Carolina Cardona</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">(+57) 3173702083</td>
+                            <td class="mdl-data-table__cell--non-numeric">comercial@dotacionesindustriales.com</td>
+                            <td class="mdl-data-table__cell--non-numeric">ccordoba</td>
+                            <td class="mdl-data-table__cell--non-numeric">Directora Comercial</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Yeimith Morales</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">(+57) 3173981633</td>
+                            <td class="mdl-data-table__cell--non-numeric">info@dotacionesindustriales.com</td>
+                            <td class="mdl-data-table__cell--non-numeric">ymorales</td>
+                            <td class="mdl-data-table__cell--non-numeric">Asistente Comercial</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Javier Hernández</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">(+57) 3156718245</td>
+                            <td class="mdl-data-table__cell--non-numeric">produccion@dotacionesindustriales.com</td>
+                            <td class="mdl-data-table__cell--non-numeric">jhernandez</td>
+                            <td class="mdl-data-table__cell--non-numeric">Jefe de Producción</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Asdrubal Cardenas</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">(+57) 3173981633</td>
+                            <td class="mdl-data-table__cell--non-numeric">ventas@dotacionesindustriales.com</td>
+                            <td class="mdl-data-table__cell--non-numeric">acardenas</td>
+                            <td class="mdl-data-table__cell--non-numeric">Ejecutivo Comercial</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
+                            <td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
+                            <td class="mdl-data-table__cell--non-numeric">Cargo</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
+                            <td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
+                            <td class="mdl-data-table__cell--non-numeric">Cargo</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
+                            <td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
+                            <td class="mdl-data-table__cell--non-numeric">Cargo</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
+                            <td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
+                            <td class="mdl-data-table__cell--non-numeric">Cargo</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
+                            <td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
+                            <td class="mdl-data-table__cell--non-numeric">Cargo</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Ángel Torres</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">(+57) 3007036273</td>
+                            <td class="mdl-data-table__cell--non-numeric">atorres@dotacionesindustriales.com</td>
+                            <td class="mdl-data-table__cell--non-numeric">atorres</td>
+                            <td class="mdl-data-table__cell--non-numeric">Gerente</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Carolina Cardona</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">(+57) 3173702083</td>
+                            <td class="mdl-data-table__cell--non-numeric">comercial@dotacionesindustriales.com</td>
+                            <td class="mdl-data-table__cell--non-numeric">ccordoba</td>
+                            <td class="mdl-data-table__cell--non-numeric">Directora Comercial</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Yeimith Morales</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">(+57) 3173981633</td>
+                            <td class="mdl-data-table__cell--non-numeric">info@dotacionesindustriales.com</td>
+                            <td class="mdl-data-table__cell--non-numeric">ymorales</td>
+                            <td class="mdl-data-table__cell--non-numeric">Asistente Comercial</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Javier Hernández</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">(+57) 3156718245</td>
+                            <td class="mdl-data-table__cell--non-numeric">produccion@dotacionesindustriales.com</td>
+                            <td class="mdl-data-table__cell--non-numeric">jhernandez</td>
+                            <td class="mdl-data-table__cell--non-numeric">Jefe de Producción</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Asdrubal Cardenas</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">(+57) 3173981633</td>
+                            <td class="mdl-data-table__cell--non-numeric">ventas@dotacionesindustriales.com</td>
+                            <td class="mdl-data-table__cell--non-numeric">acardenas</td>
+                            <td class="mdl-data-table__cell--non-numeric">Ejecutivo Comercial</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
+                            <td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
+                            <td class="mdl-data-table__cell--non-numeric">Cargo</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
+                            <td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
+                            <td class="mdl-data-table__cell--non-numeric">Cargo</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
+                            <td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
+                            <td class="mdl-data-table__cell--non-numeric">Cargo</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
+                            <td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
+                            <td class="mdl-data-table__cell--non-numeric">Cargo</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
+                            <td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
+                            <td class="mdl-data-table__cell--non-numeric">Cargo</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Ángel Torres</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">(+57) 3007036273</td>
+                            <td class="mdl-data-table__cell--non-numeric">atorres@dotacionesindustriales.com</td>
+                            <td class="mdl-data-table__cell--non-numeric">atorres</td>
+                            <td class="mdl-data-table__cell--non-numeric">Gerente</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Carolina Cardona</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">(+57) 3173702083</td>
+                            <td class="mdl-data-table__cell--non-numeric">comercial@dotacionesindustriales.com</td>
+                            <td class="mdl-data-table__cell--non-numeric">ccordoba</td>
+                            <td class="mdl-data-table__cell--non-numeric">Directora Comercial</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Yeimith Morales</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">(+57) 3173981633</td>
+                            <td class="mdl-data-table__cell--non-numeric">info@dotacionesindustriales.com</td>
+                            <td class="mdl-data-table__cell--non-numeric">ymorales</td>
+                            <td class="mdl-data-table__cell--non-numeric">Asistente Comercial</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Javier Hernández</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">(+57) 3156718245</td>
+                            <td class="mdl-data-table__cell--non-numeric">produccion@dotacionesindustriales.com</td>
+                            <td class="mdl-data-table__cell--non-numeric">jhernandez</td>
+                            <td class="mdl-data-table__cell--non-numeric">Jefe de Producción</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Asdrubal Cardenas</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">(+57) 3173981633</td>
+                            <td class="mdl-data-table__cell--non-numeric">ventas@dotacionesindustriales.com</td>
+                            <td class="mdl-data-table__cell--non-numeric">acardenas</td>
+                            <td class="mdl-data-table__cell--non-numeric">Ejecutivo Comercial</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
+                            <td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
+                            <td class="mdl-data-table__cell--non-numeric">Cargo</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
+                            <td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
+                            <td class="mdl-data-table__cell--non-numeric">Cargo</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
+                            <td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
+                            <td class="mdl-data-table__cell--non-numeric">Cargo</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
+                            <td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
+                            <td class="mdl-data-table__cell--non-numeric">Cargo</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
+                            <td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
+                            <td class="mdl-data-table__cell--non-numeric">Cargo</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Ángel Torres</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">(+57) 3007036273</td>
+                            <td class="mdl-data-table__cell--non-numeric">atorres@dotacionesindustriales.com</td>
+                            <td class="mdl-data-table__cell--non-numeric">atorres</td>
+                            <td class="mdl-data-table__cell--non-numeric">Gerente</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Carolina Cardona</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">(+57) 3173702083</td>
+                            <td class="mdl-data-table__cell--non-numeric">comercial@dotacionesindustriales.com</td>
+                            <td class="mdl-data-table__cell--non-numeric">ccordoba</td>
+                            <td class="mdl-data-table__cell--non-numeric">Directora Comercial</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Yeimith Morales</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">(+57) 3173981633</td>
+                            <td class="mdl-data-table__cell--non-numeric">info@dotacionesindustriales.com</td>
+                            <td class="mdl-data-table__cell--non-numeric">ymorales</td>
+                            <td class="mdl-data-table__cell--non-numeric">Asistente Comercial</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Javier Hernández</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">(+57) 3156718245</td>
+                            <td class="mdl-data-table__cell--non-numeric">produccion@dotacionesindustriales.com</td>
+                            <td class="mdl-data-table__cell--non-numeric">jhernandez</td>
+                            <td class="mdl-data-table__cell--non-numeric">Jefe de Producción</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Asdrubal Cardenas</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">(+57) 3173981633</td>
+                            <td class="mdl-data-table__cell--non-numeric">ventas@dotacionesindustriales.com</td>
+                            <td class="mdl-data-table__cell--non-numeric">acardenas</td>
+                            <td class="mdl-data-table__cell--non-numeric">Ejecutivo Comercial</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
+                            <td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
+                            <td class="mdl-data-table__cell--non-numeric">Cargo</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
+                            <td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
+                            <td class="mdl-data-table__cell--non-numeric">Cargo</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
+                            <td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
+                            <td class="mdl-data-table__cell--non-numeric">Cargo</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
+                            <td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
+                            <td class="mdl-data-table__cell--non-numeric">Cargo</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre</td>
+                            <td class="mdl-data-table__cell--non-numeric">C.C. 123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">123456789</td>
+                            <td class="mdl-data-table__cell--non-numeric">Teléfono corporativo</td>
+                            <td class="mdl-data-table__cell--non-numeric">Correo electrónico</td>
+                            <td class="mdl-data-table__cell--non-numeric">Nombre de usuario</td>
+                            <td class="mdl-data-table__cell--non-numeric">Cargo</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="#addUser" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
+                    <i class="material-icons">person_add</i>
+                </a>
+            </section>
+            <aside id="subForm">
+                <h:form id="addUser" class="mdl-dialog">
+                    <h3 class="mdl-dialog__title">Registrar usuario</h3>
+                    <h:panelGroup layout="block" class="mdl-dialog__content">
+                        <h:panelGroup layout="block" class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label fullWidth">
+                            <h:selectOneMenu id="tipoDocumento" class="mdl-selectfield__select" value="#{usuarioController.usuario.tblTipoDocumentoIdTipoDocumento}" required="true">
+                                <f:selectItems value="#{tipoDocumentoController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <h:inputText class="mdl-textfield__input" value="#{usuarioController.usuario.numeroDocumento}" p:type="number" p:min="1" p:step="1" p:maxlength="32" required="required" id="NoDocumento" />
+                            <h:outputLabel class="mdl-textfield__label" for="NoDocumento">Número de documento</h:outputLabel>
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <h:inputText class="mdl-textfield__input" disabled="disabled" id="DV" p:maxlength="1" value=" " />
+                            <h:outputLabel class="mdl-textfield__label" for="DV">Dígito de verificación</h:outputLabel>
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <h:inputText class="mdl-textfield__input" value="#{usuarioController.usuario.nombre}" p:maxlength="256" required="required" id="nombre" />
+                            <h:outputLabel class="mdl-textfield__label" for="nombre">Nombre</h:outputLabel>
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <h:inputText class="mdl-textfield__input" value="#{usuarioController.usuario.apellido}" p:maxlength="256" required="required" id="apellido" />
+                            <h:outputLabel class="mdl-textfield__label" for="apellido">Apellido</h:outputLabel>
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <h:inputText class="mdl-textfield__input" p:type="tel" value="#{usuarioController.usuario.setTelefonoList(telefonoController.telefono.numeroTelefono)}" p:maxlength="64" required="required" id="telPersonal" />
+                            <h:outputLabel class="mdl-textfield__label" for="telPersonal">Teléfono personal</h:outputLabel>
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <h:inputText class="mdl-textfield__input" p:type="tel" value="#{usuarioController.usuario.setTelefonoList(telefonoController.telefono.numeroTelefono)}" p:maxlength="64" required="required" id="telCorporativo" />
+                            <h:outputLabel class="mdl-textfield__label" for="telCorporativo">Teléfono corporativo</h:outputLabel>
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
+                            <h:inputText class="mdl-textfield__input" p:type="email" value="#{usuarioController.usuario.setEmailList(emailList)}" p:maxlength="64" required="required" id="email" />
+                            <h:outputLabel class="mdl-textfield__label" for="email">Correo electrónico</h:outputLabel>
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
+                            <h:inputText class="mdl-textfield__input" value="#{usuarioController.usuario.tblTipoDocumentoIdTipoDocumento}" p:maxlength="128" required="required" id="direccion" />
+                            <h:outputLabel class="mdl-textfield__label" for="direccion">Dirección de residencia</h:outputLabel>
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <h:inputText class="mdl-textfield__input" value="#{usuarioController.usuario.idInterno}" p:maxlength="32" required="required" id="IDInterno" />
+                            <h:outputLabel class="mdl-textfield__label" for="IDInterno">ID interno</h:outputLabel>
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <h:inputText class="mdl-textfield__input" value="" required="required" id="cargo" />
+                            <h:outputLabel class="mdl-textfield__label" for="cargo">Cargo</h:outputLabel>
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
+                            <h:inputText class="mdl-textfield__input" p:maxlength="45" value="#{usuarioController.usuario.nombreUsuario}" required="required" id="nombreUsuario" />
+                            <h:outputLabel class="mdl-textfield__label" for="nombreUsuario">Nombre de usuario</h:outputLabel>
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
+                            <h:inputSecret class="mdl-textfield__input" p:maxlength="45" required="required" id="contrasena" />
+                            <h:outputLabel class="mdl-textfield__label" for="contrasena">Contraseña</h:outputLabel>
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
+                            <h:inputSecret class="mdl-textfield__input" p:maxlength="45" value="#{usuarioController.usuario.contrasena}"  required="required" id="confirmacionContrasena" />
+                            <h:outputLabel class="mdl-textfield__label" for="confirmacionContrasena">Confirme la contraseña</h:outputLabel>
+                        </h:panelGroup>
+                        <h:outputLabel class="mdl-switch mdl-js-switch mdl-js-ripple-effect fullWidth" for="activo">
+                            <h:selectBooleanCheckbox id="activo" value="#{usuarioController.usuario.habilitado}" class="mdl-switch__input" />
+                            <h:panelGroup class="mdl-switch__label">¿Activo?</h:panelGroup>
+                        </h:outputLabel>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" class="mdl-dialog__actions">
+                        <h:commandButton id="mostrarUsuarioCreado" action="#{usuarioController.registrar()}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" type="submit" value="Crear usuario" />
+                        <h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
+                    </h:panelGroup>
+                </h:form>
+            </aside>
+            <aside>
+                <h:panelGroup layout="block" id="usuarioCreado" class="mdl-js-snackbar mdl-snackbar">
+                    <h:panelGroup layout="block" class="mdl-snackbar__text"></h:panelGroup>
+                    <button class="mdl-snackbar__action" type="button"></button>
+                </h:panelGroup>
+                <script>
+                    (function () {
+                        'use strict';
+                        window['counter'] = 0;
+                        var snackbarContainer = document.querySelector('#usuarioCreado');
+                        var showToastButton = document.querySelector('#mostrarUsuarioCreado');
+                        var handler = function (event) {
+                            console.log("Usuario eliminado");
+                        };
+                        showToastButton.addEventListener('click', function () {
+                            'use strict';
+                            var data = {message: 'Usuario creado satisfactriamente.', timeout: 5000, actionHandler: handler, actionText: 'Deshacer'};
+                            snackbarContainer.MaterialSnackbar.showSnackbar(data);
+                        });
+                    }());
+                </script>
+            </aside>
+        </main>
+        <nav class="fixed-nav">
+            <h:panelGroup layout="block" id="logo"></h:panelGroup>
+            <h:panelGroup layout="block" id="user">
+                <h:panelGroup layout="block" id="userName">Depurador</h:panelGroup>
+                <h:panelGroup layout="block" id="userPosition">
+                    <h:panelGroup>Administrador</h:panelGroup>
+                    <button id="userActions" class="mdl-button mdl-js-button mdl-button--icon">
+                        <i class="material-icons">arrow_drop_down</i>
+                    </button>
+                </h:panelGroup>
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="userActions">
+                    <li class="mdl-menu__item"><a href="/administracion/configuracion.html">Configuración</a></li>
+                    <li class="mdl-menu__item"><a href="/auth/">Cerrar sesión</a></li>
+                </ul>
+            </h:panelGroup>
+            <ul>
+                <li><a href="/" class="fa fa-home" aria-hidden="true">Inicio</a></li>
+                <li><a href="/cotizaciones" class="fa fa-shopping-cart" aria-hidden="true">Cotizaciones</a></li>
+                <li><a href="/produccion" class="fa fa-wpforms" aria-hidden="true">Producción</a></li>
+                <li><a href="/reportes" class="fa fa-area-chart" aria-hidden="true">Reportes</a></li>
+                <li><a href="/administracion" class="fa fa-cog" aria-hidden="true">Administración</a></li>
+                <li><a href="/calendario" class="fa fa-calendar" aria-hidden="true">Calendario</a></li>
+                <li><a href="https://github.com/Darhakexge/Interfaces-internas/issues/" class="fa fa-bug" aria-hidden="true">Reportar un error</a></li>
+                <li><a href="/sustentacion" class="fa logoSena" aria-hidden="true">Sustentación</a></li>
+            </ul>
+        </nav>
+        <aside id="taskList" class="fixed-nav" data-active="false">
+            <h:panelGroup layout="block" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+                <h:panelGroup layout="block" class="mdl-tabs__tab-bar">
+                    <a href="#taskEventos" class="mdl-tabs__tab is-active">Eventos</a>
+                    <a href="#taskNotificaciones" class="mdl-tabs__tab">Notificaciones</a>
+                    <a href="#taskTareas" class="mdl-tabs__tab">Tareas</a>
+                </h:panelGroup>
+                <h:panelGroup layout="block" class="mdl-tabs__panel is-active" id="taskEventos"></h:panelGroup>
+                <h:panelGroup layout="block" class="mdl-tabs__panel" id="taskNotificaciones"></h:panelGroup>
+                <h:panelGroup layout="block" class="mdl-tabs__panel" id="taskTareas"></h:panelGroup>
+            </h:panelGroup>
+        </aside>
+        <h:panelGroup layout="block" id="ofuscador"></h:panelGroup>
+    </h:body>
 </html>

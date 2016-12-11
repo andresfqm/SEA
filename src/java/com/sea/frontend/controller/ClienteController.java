@@ -22,7 +22,7 @@ public class ClienteController implements Serializable {
     @EJB
     private ClienteFacadeLocal clienteEJB;
 
-    private List datosCliente;
+    private Object datosCliente;
     private int idCliente;
     private List<Cliente> clientes;
 
@@ -41,11 +41,11 @@ public class ClienteController implements Serializable {
         clientes = clienteEJB.findAll();
     }
 
-    public List getCliente() {
+    public Object getCliente() {
         return datosCliente;
     }
 
-    public void setCliente(List cliente) {
+    public void setCliente(Object cliente) {
         this.datosCliente = cliente;
     }
 
