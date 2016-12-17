@@ -8,6 +8,10 @@
             <file>file:/C:/Users/SENA/Documents/NetBeansProjects/SEA/web/administracion/convenciones.xhtml</file>
             <file>file:/C:/Users/SENA/Documents/NetBeansProjects/SEA/src/java/com/sea/frontend/controller/ClienteController.java</file>
             <file>file:/C:/Users/SENA/Documents/NetBeansProjects/SEA/src/java/com/sea/backend/model/DireccionFacade.java</file>
+            <file>file:/C:/Users/Depurador/Documents/NetBeansProjects/SEA/src/java/com/sea/backend/model/ClienteFacade.java</file>
+            <file>file:/C:/Users/Depurador/Documents/NetBeansProjects/SEA/web/cotizaciones/enviarCotizacion.xhtml</file>
+            <file>file:/C:/Users/Depurador/Documents/NetBeansProjects/SEA/src/java/com/sea/frontend/controller/ClienteController.java</file>
+            <file>file:/C:/Users/Depurador/Documents/NetBeansProjects/SEA/src/java/com/sea/backend/model/ClienteFacadeLocal.java</file>
         </group>
     </open-files>
 </project-private>

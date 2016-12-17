@@ -73,7 +73,7 @@ public class OrigenController implements Serializable {
         }
 
     }
-    
+
     public SelectItem[] getItemsAvailableSelectOne() {
         return Conversor.getSelectItems(origenEJB.findAll(), true);
     }
@@ -81,5 +81,4 @@ public class OrigenController implements Serializable {
     public Origen getOrigen(java.lang.Integer id) {
         return origenEJB.find(id);
     }
-
 }

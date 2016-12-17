@@ -1,7 +1,9 @@
-<!DOCTYPE html>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="es"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <meta charset="UTF-8" />
         <title>Inicio | SEA</title>
@@ -14,18 +16,24 @@
         <h:outputScript library="js" name="checkBrowser.js"></h:outputScript>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         <script src="https://use.fontawesome.com/a39256cab5.js"></script>
+        <h:outputScript library="js" name="material.min.js"></h:outputScript>
         <h:outputScript library="js" name="breadcrumbs.js"></h:outputScript>
         <h:outputScript library="js" name="taksTabs.js"></h:outputScript>
         <h:outputScript library="js" name="scrollup.js"></h:outputScript>
     </h:head>
-    <h:body>
-        <header class="mdl-layout__header is-casting-shadow mdl-layout__header-row">
-            <a class="fa fa-bars mostrarNavbars" data-target="body > nav" aria-hidden="true" href="#"></a>
-            <nav id="navBreadcrumbs">
-                <ul id="breadcrumbs"></ul>
-            </nav>
-            <a class="fa fa-tasks mdl-badge mostrarNavbars" data-badge="4" data-target="#taskList" aria-hidden="true" href="#"></a>
-        </header>
+    <body>
+
+        <ui:composition template="./WEB-INF/templates/header.xhtml">
+
+            <ui:define name="content">
+                content
+            </ui:define>
+
+        </ui:composition>
+
+
+
+        <ui:composition template="/SEA/WEB-INF/templates/Header.xhtml" />
         <main>
             <section id="estadisticas">
                 <a href="#" class="contenedorStat azul">
@@ -74,15 +82,18 @@
                     <h:panelGroup>Administrador</h:panelGroup>
                     <button id="userActions" class="mdl-button mdl-js-button mdl-button--icon">
                         <i class="material-icons">arrow_drop_down</i>
-                    </button>
+                    </button>}
+
                 </h:panelGroup>
-                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="userActions">
-                    <li class="mdl-menu__item"><a href="/administracion/configuracion.html">Configuración</a></li>
-                    <li class="mdl-menu__item"><a href="/usuariosdeventas/">Ventas</a></li>
-                    <li class="mdl-menu__item"><a href="/jefedeproduccion/">Producción</a></li>
-                    <li class="mdl-menu__item"><a href="/usuariosadministrativos/">Administrativos</a></li>
-                    <li class="mdl-menu__item"><a href="/auth/">Cerrar sesión</a></li>
-                </ul>
+                <h:form>
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="userActions">
+                        <li class="mdl-menu__item"><a href="/administracion/configuracion.html">Configuración</a></li>
+                        <li class="mdl-menu__item"><a href="/usuariosdeventas/">Ventas</a></li>
+                        <li class="mdl-menu__item"><a href="/jefedeproduccion/">Producción</a></li>
+                        <li class="mdl-menu__item"><a href="/usuariosadministrativos/">Administrativos</a></li>
+                        <li class="mdl-menu__item"><h:commandLink action="#{menuController.cerrarSesion()}" value="Cerrar sesión" /></li>
+                    </ul>
+                </h:form>
             </h:panelGroup>
             <ul>
                 <li><a href="/" class="fa fa-home" aria-hidden="true">Inicio</a></li>
@@ -111,6 +122,7 @@
         </aside>
         <h:panelGroup layout="block" id="ofuscador"></h:panelGroup>
         <br />
-        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
-    </h:body>
+        <!--<h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />-->
+
+    </body>
 </html>

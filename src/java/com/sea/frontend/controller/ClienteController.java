@@ -1,17 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.sea.frontend.controller;
 
 import com.sea.backend.entities.Cliente;
 import com.sea.backend.model.ClienteFacadeLocal;
+
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 /**
@@ -42,20 +39,46 @@ public class ClienteController implements Serializable {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    private Object datosCliente;
+    private int idCliente;
+    private List<Cliente> clientes;
+
+    //Obteniendo todos los datos del cliente
+    public void obtenerDatosCliente() throws Exception {
+        try {
+            datosCliente = clienteEJB.datosCliente(idCliente);
+        } catch (Exception e) {
+            throw e;
+        }
+
     }
 
     @PostConstruct
     public void init() {
-
-        cliente = new Cliente();
-
+        clientes = clienteEJB.findAll();
     }
 
-    public void registrar() {
-        clienteEJB.create(cliente);
-
+    public Object getCliente() {
+        return datosCliente;
     }
 
+    public void setCliente(Object cliente) {
+        this.datosCliente = cliente;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(List<Cliente> clientes) {
+        this.clientes = clientes;
+    }
 }
