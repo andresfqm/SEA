@@ -89,11 +89,8 @@ public class Categoria implements Serializable {
         this.subcategoriaList = subcategoriaList;
     }
 
-    @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (idCategoria != null ? idCategoria.hashCode() : 0);
-        return hash;
+        return nombre.hashCode();
     }
 
     @Override
@@ -111,7 +108,8 @@ public class Categoria implements Serializable {
 
     @Override
     public String toString() {
-        return "com.sea.backend.entities.Categoria[ idCategoria=" + idCategoria + " ]";
+        return nombre;
     }
+    
     
 }

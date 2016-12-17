@@ -1,6 +1,236 @@
 <!DOCTYPE html>
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta charset="UTF-8" />
+        <title>Administración de clientes | SEA</title>
+        <link rel="shortcut icon" href="/img/favicon.ico" />
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <h:outputStylesheet library="css" name="material.min.css" />
+        <h:outputStylesheet library="css" name="mdl-selectfield.min.css" />
+        <h:outputStylesheet library="css" name="font-awesome.min.css" />
+        <h:outputStylesheet library="css" name="maquetacionBasica.css" />
+        <h:outputStylesheet library="css" name="administracion.css" />
+        <h:outputScript library="js" name="checkBrowser.js"></h:outputScript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <script src="https://use.fontawesome.com/a39256cab5.js"></script>
+        <h:outputScript library="js" name="mdl-selectfield.min.js"></h:outputScript>
+        <h:outputScript library="js" name="material.min.js"></h:outputScript>
+        <h:outputScript library="js" name="breadcrumbs.js"></h:outputScript>
+        <h:outputScript library="js" name="taksTabs.js"></h:outputScript>
+        <h:outputScript library="js" name="scrollup.js"></h:outputScript>
+        <h:outputScript library="js" name="toggleforms.js"></h:outputScript>
+        <h:outputScript library="js" name="administracion.js"></h:outputScript>
+    </h:head>
+    <h:body>
+        <header class="mdl-layout__header is-casting-shadow mdl-layout__header-row">
+            <a class="fa fa-bars mostrarNavbars" data-target="body > nav" aria-hidden="true" href="#"></a>
+            <nav id="navBreadcrumbs">
+                <ul id="breadcrumbs"></ul>
+            </nav>
+            <a class="fa fa-tasks mdl-badge mostrarNavbars" data-badge="4" data-target="#taskList" aria-hidden="true" href="#"></a>
+        </header>
+        <main id="clientesDashboard">
+            <h:form>
+                <h:dataTable value="#{clienteController.listaClientes}" var="cl" cellpadding="1" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="No. Documento"/>
+                        </f:facet>
+                        <h:outputText value="#{cl.numeroDocumento}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Nombre/Razón social"/>
+                        </f:facet>
+                        <h:outputText value="#{cl.nombreORazonSocial}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Dirección"/>
+                        </f:facet>
+                        <h:outputText value=""/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Teléfono"/>
+                        </f:facet>
+                        <h:outputText value="#{clienteController}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Correo electrónico"/>
+                        </f:facet>
+                        <h:outputText value="#{cat.nombre}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Contacto"/>
+                        </f:facet>
+                        <h:outputText value="#{cat.nombre}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Asesor"/>
+                        </f:facet>
+                        <h:outputText value="#{cat.nombre}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Acciones"/>
+                        </f:facet>
+                        <h:panelGroup layout="block">
+                            <h:commandButton action="#{categoriaController.Eliminar(cat)}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Eliminar"/>
+                            <h:commandButton action="#{categoriaController.modificar}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Modificar"/>
+                        </h:panelGroup>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+            <a href="#addCliente" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
+                <i class="material-icons">person_add</i>
+            </a>
+        </main>
+        <aside id="subForm">
+            <h:form id="addCliente" class="mdl-dialog">
+                <h3 class="mdl-dialog__title">Registrar cliente</h3>
+                <h:panelGroup layout="block" class="mdl-dialog__content">
+                    <h:panelGroup layout="block" class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label fullWidth">
+                        <h:selectOneMenu id="documentoTipoDocumento" class="mdl-selectfield__select" value="#{clienteController.cliente.tblTipoDocumentoIdTipoDocumento}" required="true">
+                            <f:selectItems value="#{tipoDocumentoController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <h:inputText class="mdl-textfield__input" value="#{clienteController.cliente.numeroDocumento}" p:type="number" p:min="1" p:maxlength="32" p:step="1" required="required" id="NoDocumento" />
+                        <h:outputLabel class="mdl-textfield__label" for="NoDocumento">Número de documento</h:outputLabel>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <h:inputText class="mdl-textfield__input" value="#{clienteController.cliente.digitoVerificacion}" disabled="disabled" id="DV" />
+                        <h:outputLabel class="mdl-textfield__label" for="DV">Dígito de verificación</h:outputLabel>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
+                        <h:inputText class="mdl-textfield__input" value="#{clienteController.cliente.nombreORazonSocial}" p:maxlength="256" required="required" id="razonSocial" />
+                        <h:outputLabel class="mdl-textfield__label" for="razonSocial">Razón social</h:outputLabel>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <h:inputText class="mdl-textfield__input" value="#{clienteController.cliente.nombreORazonSocial}" p:maxlength="256" required="required" id="nombre" />
+                        <h:outputLabel class="mdl-textfield__label" for="nombre">Nombre</h:outputLabel>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <h:inputText class="mdl-textfield__input" value="#{clienteController.cliente.apellido}" p:maxlength="256" required="required" id="apellido" />
+                        <h:outputLabel class="mdl-textfield__label" for="apellido">Apellido</h:outputLabel>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <h:inputText class="mdl-textfield__input" value="#{clienteController.cliente.telefonoList}" p:type="tel" p:maxlength="64" required="required" id="telCorporativo" />
+                        <h:outputLabel class="mdl-textfield__label" for="telCorporativo">Teléfono corporativo</h:outputLabel>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <h:inputText class="mdl-textfield__input" p:type="tel" value="#{clienteController.cliente.telefonoList}" p:maxlength="64" required="required" id="telCartera" />
+                        <h:outputLabel class="mdl-textfield__label" for="telCartera">Teléfono de cartera</h:outputLabel>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
+                        <h:inputText class="mdl-textfield__input" p:type="email" value="#{clienteController.cliente.emailList}" p:maxlength="64" required="required" id="email" />
+                        <h:outputLabel class="mdl-textfield__label" for="email">Correo electrónico</h:outputLabel>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
+                        <h:inputText class="mdl-textfield__input" p:maxlength="128" value="#{clienteController.cliente.direccionList}" required="required" id="direccion" />
+                        <h:outputLabel class="mdl-textfield__label" for="direccion">Dirección fiscal</h:outputLabel>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <h:inputText class="mdl-textfield__input" p:maxlength="45" value="" required="required" id="departamento" />
+                        <h:outputLabel class="mdl-textfield__label" for="departamento">Departamento</h:outputLabel>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <h:inputText class="mdl-textfield__input" p:maxlength="45" required="required" id="ciudad" />
+                        <h:outputLabel class="mdl-textfield__label" for="ciudad">Ciudad</h:outputLabel>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
+                        <h:inputText class="mdl-textfield__input" p:maxlength="128" value="#{clienteController.cliente.nombreContacto}" required="required" id="personaContacto" />
+                        <h:outputLabel class="mdl-textfield__label" for="personaContacto">Persona de contacto</h:outputLabel>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label fullWidth">
+                        <h:selectOneMenu id="Asesor" class="mdl-selectfield__select" value="#{clienteController.cliente.tblUsuarioIdUsuario}" required="true">
+                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel class="mdl-selectfield__label" for="asesor">Asesor asignado</h:outputLabel>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label fullWidth">
+                        <h:selectOneMenu id="origenId" class="mdl-selectfield__select" value="#{clienteController.cliente.tblOrigenIdOrigen}" required="true">
+                            <f:selectItems value="#{origenController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel class="mdl-selectfield__label" for="origen">Origen</h:outputLabel>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
+                        <h:inputTextarea class="mdl-textfield__input" value="#{clienteController.cliente.tblComentarioCambioAsesorIdComentarioCambioAsesor}" p:maxlength="256" id="cambioAsesor"  />
+                        <h:outputLabel class="mdl-textfield__label" for="cambioAsesor">Comentarios por cambio de asesor</h:outputLabel>
+                    </h:panelGroup>
+                </h:panelGroup>
+                <h:panelGroup layout="block" class="mdl-dialog__actions">
+                    <h:commandButton id="mostrarClienteNuevo" action="#{clienteController.registrar()}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Crear cliente" />
+                    <h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
+                </h:panelGroup>
+            </h:form>
+        </aside>
+        <aside>
+            <h:panelGroup layout="block" id="clienteNuevo" class="mdl-js-snackbar mdl-snackbar">
+                <h:panelGroup layout="block" class="mdl-snackbar__text"></h:panelGroup>
+                <button class="mdl-snackbar__action" type="button"></button>
+            </h:panelGroup>
+            <script>
+                (function () {
+                    'use strict';
+                    window['counter'] = 0;
+                    var snackbarContainer = document.querySelector('#clienteNuevo');
+                    var showToastButton = document.querySelector('#mostrarClienteNuevo');
+                    showToastButton.addEventListener('click', function () {
+                        'use strict';
+                        var data = {message: 'Cliente creado satisfactoriamente.', timeout: 5000};
+                        snackbarContainer.MaterialSnackbar.showSnackbar(data);
+                    });
+                }());
+            </script>
+        </aside>
+        <nav class="fixed-nav">
+            <h:panelGroup layout="block" id="logo"></h:panelGroup>
+            <h:panelGroup layout="block" id="user">
+                <h:panelGroup layout="block" id="userName">Depurador</h:panelGroup>
+                <h:panelGroup layout="block" id="userPosition">
+                    <h:panelGroup>Administrador</h:panelGroup>
+                    <button id="userActions" class="mdl-button mdl-js-button mdl-button--icon">
+                        <i class="material-icons">arrow_drop_down</i>
+                    </button>
+                </h:panelGroup>
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="userActions">
+                    <li class="mdl-menu__item"><a href="/administracion/configuracion.html">Configuración</a></li>
+                    <li class="mdl-menu__item"><a href="/auth/">Cerrar sesión</a></li>
+                </ul>
+            </h:panelGroup>
+            <ul>
+                <li><a href="/" class="fa fa-home" aria-hidden="true">Inicio</a></li>
+                <li><a href="/cotizaciones" class="fa fa-shopping-cart" aria-hidden="true">Cotizaciones</a></li>
+                <li><a href="/produccion" class="fa fa-wpforms" aria-hidden="true">Producción</a></li>
+                <li><a href="/reportes" class="fa fa-area-chart" aria-hidden="true">Reportes</a></li>
+                <li><a href="/administracion" class="fa fa-cog" aria-hidden="true">Administración</a></li>
+                <li><a href="/calendario" class="fa fa-calendar" aria-hidden="true">Calendario</a></li>
+                <li><a href="https://github.com/Darhakexge/Interfaces-internas/issues/" class="fa fa-bug" aria-hidden="true">Reportar un error</a></li>
+                <li><a href="/sustentacion" class="fa logoSena" aria-hidden="true">Sustentación</a></li>
+            </ul>
+        </nav>
+        <aside id="taskList" class="fixed-nav" data-active="false">
+            <h:panelGroup layout="block" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+                <h:panelGroup layout="block" class="mdl-tabs__tab-bar">
+                    <a href="#taskEventos" class="mdl-tabs__tab is-active">Eventos</a>
+                    <a href="#taskNotificaciones" class="mdl-tabs__tab">Notificaciones</a>
+                    <a href="#taskTareas" class="mdl-tabs__tab">Tareas</a>
+                </h:panelGroup>
+                <h:panelGroup layout="block" class="mdl-tabs__panel is-active" id="taskEventos"></h:panelGroup>
+                <h:panelGroup layout="block" class="mdl-tabs__panel" id="taskNotificaciones"></h:panelGroup>
+                <h:panelGroup layout="block" class="mdl-tabs__panel" id="taskTareas"></h:panelGroup>
+            </h:panelGroup>
+        </aside>
+        <h:panelGroup layout="block" id="ofuscador"></h:panelGroup>
+    </h:body>
+=======
 <h:head>
 	<meta charset="UTF-8" />
 	<title>Administración de clientes | SEA</title>

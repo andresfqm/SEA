@@ -125,7 +125,7 @@ public class Origen implements Serializable {
 
     @Override
     public String toString() {
-        return "com.sea.backend.entities.Origen[ idOrigen=" + idOrigen + " ]";
+        return nombre;
     }
     
 }

@@ -77,6 +77,7 @@ public class ConsultaController implements Serializable {
 
     @PostConstruct
     public void init() {
+        //clientes = clienteEJB.findAll();
         ciudad = ciudadEJB.findAll();
         producto = productoEJB.findAll();
         //departamento = departamentoEJB.findAll();

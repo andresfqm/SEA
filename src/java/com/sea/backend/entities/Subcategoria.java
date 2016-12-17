@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -39,8 +41,8 @@ public class Subcategoria implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "ID_SUBCATEGORIA")
     private Integer idSubcategoria;
     @Basic(optional = false)
@@ -53,8 +55,6 @@ public class Subcategoria implements Serializable {
     @Size(min = 1, max = 5)
     @Column(name = "CODIGO")
     private String codigo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblSubcategoriaIdSubcategoria")
-    private List<Producto> productoList;
     @JoinColumn(name = "TBL_CATEGORIA_ID_CATEGORIA", referencedColumnName = "ID_CATEGORIA")
     @ManyToOne(optional = false)
     private Categoria tblCategoriaIdCategoria;
@@ -94,15 +94,6 @@ public class Subcategoria implements Serializable {
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
-    }
-
-    @XmlTransient
-    public List<Producto> getProductoList() {
-        return productoList;
-    }
-
-    public void setProductoList(List<Producto> productoList) {
-        this.productoList = productoList;
     }
 
     public Categoria getTblCategoriaIdCategoria() {

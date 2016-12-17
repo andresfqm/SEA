@@ -33,6 +33,50 @@
         </header>
         <main>
             <section id="usuariosDashboard">
+                <h:dataTable value="#{usuarioController.listaUsuarios}" var="usr" cellpadding="1" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Nombre"/>
+                        </f:facet>
+                        <h:outputText value="#{usr.nombre}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="No. Documento"/>
+                        </f:facet>
+                        <h:outputText value="#{usr.numeroDocumento}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="ID interno"/>
+                        </f:facet>
+                        <h:outputText value="#{usr.idInterno}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Teléfono corporativo"/>
+                        </f:facet>
+                        <h:outputText value="#{sub.codigo}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Correo electrónico"/>
+                        </f:facet>
+                        <h:outputText value="#{sub.nombre}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Nombre de usuario"/>
+                        </f:facet>
+                        <h:outputText value="#{sub.tblCategoriaIdCategoria.nombre}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Cargo"/>
+                        </f:facet>
+                        <h:outputText value="#{sub.tblCategoriaIdCategoria.nombre}"/>
+                    </h:column>
+                </h:dataTable>
                 <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
                     <thead>
                         <tr>
