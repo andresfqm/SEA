@@ -32,12 +32,6 @@ public class ClienteController implements Serializable {
     public void setListaClientes(List<Cliente> listaClientes) {
         this.listaClientes = listaClientes;
     }
-    
-    
-
-    public Cliente getCliente() {
-        return cliente;
-    }
 
     private Object datosCliente;
     private int idCliente;

@@ -6,11 +6,6 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
-
-
-
-
-
         <meta charset="UTF-8" />
         <h:outputStylesheet library="css" name="material.min.css" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -21,27 +16,15 @@
         <h:outputScript library="js" name="breadcrumbs.js"></h:outputScript>
         <h:outputScript library="js" name="taksTabs.js"></h:outputScript>
         <h:outputScript library="js" name="scrollup.js"></h:outputScript>
-
         <f:event type="preRenderView" listener="#{plantillaController.verificarSesion()}" />
-
     </h:head>
-
     <h:body>
-        <div id="top" class="top">
-            <header class="mdl-layout__header is-casting-shadow mdl-layout__header-row">
-                <a class="fa fa-bars mostrarNavbars" data-target="body > nav" aria-hidden="true" href="#"></a>
-                <nav id="navBreadcrumbs">
-                    <ul id="breadcrumbs"></ul>
-                </nav>
-                <a class="fa fa-tasks mdl-badge mostrarNavbars" data-badge="4" data-target="#taskList" aria-hidden="true" href="#"></a>
-            </header>
-            </div>
-        <div id="content" class="center_content">
-            <ui:insert name="content">Content</ui:insert>
-        </div>
-
-
-
+        <header class="mdl-layout__header is-casting-shadow mdl-layout__header-row">
+            <a class="fa fa-bars mostrarNavbars" data-target="body > nav" aria-hidden="true" href="#"></a>
+            <nav id="navBreadcrumbs">
+                <ul id="breadcrumbs"></ul>
+            </nav>
+            <a class="fa fa-tasks mdl-badge mostrarNavbars" data-badge="4" data-target="#taskList" aria-hidden="true" href="#"></a>
+        </header>
     </h:body>
-
 </html>

@@ -107,7 +107,7 @@ public class Conversor {
             if (object instanceof Usuario) {
                 Usuario o = (Usuario) object;
                 return getStringKey(o.getIdUsuario());
-
+            }
             if (object instanceof Subcategoria) {
                 Subcategoria o = (Subcategoria) object;
                 return getStringKey(o.getIdSubcategoria());

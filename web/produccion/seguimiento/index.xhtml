@@ -1,28 +1,14 @@
 <!DOCTYPE html>
-<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 	<meta charset="UTF-8" />
 	<title>Seguimiento de producción | SEA</title>
 	<link rel="shortcut icon" href="/img/favicon.ico" />
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
-	<h:outputStylesheet library="css" name="material.min.css" />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-	<h:outputStylesheet library="css" name="maquetacionBasica.css" />
-	<h:outputScript library="js" name="checkBrowser.js"></h:outputScript>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <script src="https://use.fontawesome.com/a39256cab5.js"></script>
-	<h:outputScript library="js" name="breadcrumbs.js"></h:outputScript>
-	<h:outputScript library="js" name="taksTabs.js"></h:outputScript>
-	<h:outputScript library="js" name="scrollup.js"></h:outputScript>
-</h:head>
-<h:body>
-	<header class="mdl-layout__header is-casting-shadow mdl-layout__header-row">
-		<a class="fa fa-bars mostrarNavbars" data-target="body > nav" aria-hidden="true" href="#"></a>
-		<nav id="navBreadcrumbs">
-			<ul id="breadcrumbs"></ul>
-		</nav>
-		<a class="fa fa-tasks mdl-badge mostrarNavbars" data-badge="4" data-target="#taskList" aria-hidden="true" href="#"></a>
-	</header>
+	</h:head>
+	<h:body>
+		<ui:composition template="/templates/header.xhtml" />
 	<main>
 		<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
 			<thead>
@@ -94,44 +80,8 @@
 			</tbody>
 		</table>
 	</main>
-	<nav class="fixed-nav">
-		<h:panelGroup layout="block" id="logo"></h:panelGroup>
-		<h:panelGroup layout="block" id="user">
-			<h:panelGroup layout="block" id="userName">Depurador</h:panelGroup>
-			<h:panelGroup layout="block" id="userPosition">
-				<h:panelGroup>Administrador</h:panelGroup>
-				<button id="userActions" class="mdl-button mdl-js-button mdl-button--icon">
-					<i class="material-icons">arrow_drop_down</i>
-				</button>
-			</h:panelGroup>
-			<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="userActions">
-				<li class="mdl-menu__item"><a href="/administracion/configuracion.html">Configuración</a></li>
-				<li class="mdl-menu__item"><a href="/auth/">Cerrar sesión</a></li>
-			</ul>
-		</h:panelGroup>
-		<ul>
-			<li><a href="/" class="fa fa-home" aria-hidden="true">Inicio</a></li>
-			<li><a href="/cotizaciones" class="fa fa-shopping-cart" aria-hidden="true">Cotizaciones</a></li>
-			<li><a href="/produccion" class="fa fa-wpforms" aria-hidden="true">Producción</a></li>
-			<li><a href="/reportes" class="fa fa-area-chart" aria-hidden="true">Reportes</a></li>
-			<li><a href="/administracion" class="fa fa-cog" aria-hidden="true">Administración</a></li>
-			<li><a href="/calendario" class="fa fa-calendar" aria-hidden="true">Calendario</a></li>
-			<li><a href="https://github.com/Darhakexge/Interfaces-internas/issues/" class="fa fa-bug" aria-hidden="true">Reportar un error</a></li>
-			<li><a href="/sustentacion" class="fa logoSena" aria-hidden="true">Sustentación</a></li>
-		</ul>
-	</nav>
-	<aside id="taskList" class="fixed-nav" data-active="false">
-		<h:panelGroup layout="block" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-			<h:panelGroup layout="block" class="mdl-tabs__tab-bar">
-				<a href="#taskEventos" class="mdl-tabs__tab is-active">Eventos</a>
-				<a href="#taskNotificaciones" class="mdl-tabs__tab">Notificaciones</a>
-				<a href="#taskTareas" class="mdl-tabs__tab">Tareas</a>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-tabs__panel is-active" id="taskEventos"></h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-tabs__panel" id="taskNotificaciones"></h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-tabs__panel" id="taskTareas"></h:panelGroup>
-		</h:panelGroup>
-	</aside>
-	<h:panelGroup layout="block" id="ofuscador"></h:panelGroup>
+	<ui:composition template="/templates/navGeneral.xhtml" />
+	<ui:composition template="/templates/taskTabs.xhtml" />
+
 </h:body>
 </html>
