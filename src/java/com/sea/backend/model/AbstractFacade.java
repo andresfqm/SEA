@@ -6,6 +6,7 @@
 package com.sea.backend.model;
 
 import java.util.List;
+import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
 
 /**
@@ -60,5 +61,5 @@ public abstract class AbstractFacade<T> {
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
     }
-    
+
 }

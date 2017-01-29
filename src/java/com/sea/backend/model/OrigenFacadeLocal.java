@@ -25,7 +25,7 @@ public interface OrigenFacadeLocal {
     Origen find(Object id);
 
     List<Origen> findAll();
-
+    
     List<Origen> findRange(int[] range);
 
     int count();

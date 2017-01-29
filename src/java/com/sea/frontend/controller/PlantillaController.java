@@ -28,7 +28,26 @@ public class PlantillaController implements Serializable {
 
             if (us == null) {
                 
-               context.getExternalContext().redirect("/auth/");
+               context.getExternalContext().redirect( "/SEA/auth");
+                
+
+            }   
+        } catch (Exception e) {
+            // log para guardar un registro de error
+        }
+
+    }
+    
+    public void verificarSesionLogin() {
+
+        try {
+            FacesContext context = FacesContext.getCurrentInstance();
+           
+            Usuario us = (Usuario) context.getExternalContext().getSessionMap().get("usuario");
+
+            if (us != null) {
+                
+            context.getExternalContext().redirect( "/SEA/index.xhtml");
                 
 
             }   

@@ -9,6 +9,7 @@ import com.sea.backend.entities.Menu;
 import com.sea.backend.entities.Usuario;
 import com.sea.backend.model.MenuFacadeLocal;
 import static com.sun.faces.facelets.util.Path.context;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -90,10 +91,10 @@ public class MenuController implements Serializable {
         }
     }
 */
-    public void cerrarSesion() {
+    public void cerrarSesion() throws IOException {
         FacesContext context = FacesContext.getCurrentInstance();
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        context.getExternalContext().redirect("/auth/");
+        context.getExternalContext().redirect("");
     }
 
 }

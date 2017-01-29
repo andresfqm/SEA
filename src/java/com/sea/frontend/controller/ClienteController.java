@@ -21,6 +21,17 @@ public class ClienteController implements Serializable {
 
     @EJB
     private ClienteFacadeLocal clienteEJB;
+    private List<Cliente> listaClientes;
+    private Cliente cliente;
+
+    public List<Cliente> getListaClientes() {
+        listaClientes = clienteEJB.findAll();
+        return listaClientes;
+    }
+
+    public void setListaClientes(List<Cliente> listaClientes) {
+        this.listaClientes = listaClientes;
+    }
 
     private Object datosCliente;
     private int idCliente;

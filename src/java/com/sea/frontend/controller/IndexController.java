@@ -42,17 +42,16 @@ public class IndexController implements Serializable {
         this.usuario = usuario;
     }
 
-    public String iniciarSesion() {
+    public void iniciarSesion() {
         Usuario us;
-        String redireccion = null;
 
         try {
             us = EJBUsuario.iniciarSesion(usuario);
             if (us != null) {
                  //Almacenar la sesión de JSF
                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);
-                redireccion = "/index.xhtml?faces-redirect=true";
-                
+            FacesContext contex = FacesContext.getCurrentInstance();
+            contex.getExternalContext().redirect( "/SEA/index.xhtml" );
 
            } else {
               FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Usuario o contraseña incorrectos"));
@@ -61,7 +60,6 @@ public class IndexController implements Serializable {
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error!"));
         }
-        return redireccion;
 
     }
 
