@@ -5,7 +5,9 @@
  */
 package com.sea.backend.model;
 
+import com.sea.backend.entities.Material;
 import com.sea.backend.entities.Producto;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -47,4 +49,7 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
         }
         return productoDescripcion;
     }
+      
+    
+    
 }

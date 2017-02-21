@@ -20,6 +20,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.metamodel.SingularAttribute;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -102,6 +103,10 @@ public class Cliente implements Serializable {
         this.numeroDocumento = numeroDocumento;
         this.nombreORazonSocial = nombreORazonSocial;
         this.nombreContacto = nombreContacto;
+    }
+
+    public Cliente(int idCliente, SingularAttribute<Cliente, String> numeroDocumento, SingularAttribute<Cliente, String> nombreORazonSocial, SingularAttribute<Cliente, String> nombreContacto) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public Integer getIdCliente() {

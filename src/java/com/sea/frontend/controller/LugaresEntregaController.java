@@ -8,6 +8,7 @@ package com.sea.frontend.controller;
 import com.sea.backend.entities.LugaresEntrega;
 import com.sea.backend.model.LugaresEntregaFacadeLocal;
 import java.io.Serializable;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -25,6 +26,15 @@ public class LugaresEntregaController implements Serializable {
     private LugaresEntregaFacadeLocal lugaresEntregaEJB;
 
     private LugaresEntrega lugaresE;
+    private List<LugaresEntrega> entregas;
+
+    public List<LugaresEntrega> getEntregas() {
+        return entregas;
+    }
+
+    public void setEntregas(List<LugaresEntrega> entregas) {
+        this.entregas = entregas;
+    }
 
     public LugaresEntrega getLugaresE() {
         return lugaresE;
@@ -37,6 +47,7 @@ public class LugaresEntregaController implements Serializable {
     @PostConstruct
     public void init() {
         lugaresE = new LugaresEntrega();
+        entregas = lugaresEntregaEJB.findAll();
 
     }
 

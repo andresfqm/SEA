@@ -10,6 +10,7 @@ import com.sea.backend.entities.Cliente;
 import com.sea.backend.entities.Departamento;
 import com.sea.backend.entities.Direccion;
 import com.sea.backend.entities.Email;
+import com.sea.backend.entities.Material;
 import com.sea.backend.entities.Producto;
 import com.sea.backend.entities.Telefono;
 import com.sea.backend.model.CiudadFacadeLocal;
@@ -17,10 +18,12 @@ import com.sea.backend.model.ClienteFacadeLocal;
 import com.sea.backend.model.DepartamentoFacadeLocal;
 import com.sea.backend.model.DireccionFacadeLocal;
 import com.sea.backend.model.EmailFacadeLocal;
+import com.sea.backend.model.MaterialFacadeLocal;
 import com.sea.backend.model.ProductoFacadeLocal;
 import com.sea.backend.model.TelefonoFacadeLocal;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -37,10 +40,14 @@ public class ConsultaController implements Serializable {
 
     @EJB
     private ProductoFacadeLocal productoEJB;
+    @EJB
+    private MaterialFacadeLocal materialEJB;
+
     private List<Producto> producto;
     private int idProducto;
     private Producto productoDescripcion;
     private int idCliente;
+    String listString;
 
     public List<Producto> getProducto() {
         return producto;
@@ -57,10 +64,39 @@ public class ConsultaController implements Serializable {
     public void setIdProducto(int idProducto) {
         this.idProducto = idProducto;
     }
+    private List<Material> listaMateriales;
+
+    public List<Material> getListaMateriales() {
+        return listaMateriales;
+    }
+
+    public void setListaMateriales(List<Material> listaMateriales) {
+        this.listaMateriales = listaMateriales;
+    }
+
+    private Material datosMaterial;
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public Material getDatosMaterial() {
+        return datosMaterial;
+    }
+
+    public void setDatosMaterial(Material datosMaterial) {
+        this.datosMaterial = datosMaterial;
+    }
 
     public void obtenerDescripcionReferencia() throws Exception {
         try {
+
             productoDescripcion = productoEJB.productoDescripcion(idProducto);
+            listaMateriales = materialEJB.datosMaterial(idProducto);
         } catch (Exception e) {
             throw e;
         }
@@ -118,5 +154,15 @@ public class ConsultaController implements Serializable {
     public void setDireccionCliente(Direccion direccionCliente) {
         this.direccionCliente = direccionCliente;
     }
+
+    public String getListString() {
+        return listString;
+    }
+
+    public void setListString(String listString) {
+        this.listString = listString;
+    }
+    
+    
 
 }

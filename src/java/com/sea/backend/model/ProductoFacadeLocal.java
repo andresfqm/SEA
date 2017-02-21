@@ -5,6 +5,7 @@
  */
 package com.sea.backend.model;
 
+import com.sea.backend.entities.Material;
 import com.sea.backend.entities.Producto;
 import java.util.List;
 import javax.ejb.Local;
@@ -31,5 +32,7 @@ public interface ProductoFacadeLocal {
     Producto productoDescripcion(int idProducto) throws Exception;
 
     int count();
+    
+    
     
 }

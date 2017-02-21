@@ -8,6 +8,7 @@ package com.sea.frontend.controller;
 import com.sea.backend.entities.DescuentoVolumen;
 import com.sea.backend.model.DescuentoVolumenFacadeLocal;
 import java.io.Serializable;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -25,6 +26,18 @@ public class DescuentoVolumenController implements Serializable {
     private DescuentoVolumenFacadeLocal descuentoVolumenEJB;
 
     private DescuentoVolumen descuentoV;
+    
+    private List<DescuentoVolumen> descuentoVolumen;
+
+    public List<DescuentoVolumen> getDescuentoVolumen() {
+        return descuentoVolumen;
+    }
+
+    public void setDescuentoVolumen(List<DescuentoVolumen> descuentoVolumen) {
+        this.descuentoVolumen = descuentoVolumen;
+    }
+    
+    
 
     public DescuentoVolumen getDescuentoV() {
         return descuentoV;
@@ -37,6 +50,8 @@ public class DescuentoVolumenController implements Serializable {
     @PostConstruct
     public void init() {
         descuentoV = new DescuentoVolumen();
+        
+        descuentoVolumen = descuentoVolumenEJB.findAll();
     }
 
     public void registrar() {

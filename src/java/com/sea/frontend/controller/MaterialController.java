@@ -27,6 +27,27 @@ public class MaterialController implements Serializable {
 
     private Material material;
     private List<Material> listaMateriales;
+    private int idProducto;
+    
+    String listString;
+
+    public int getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
+    }
+
+    public String getListString() {
+        return listString;
+    }
+
+    public void setListString(String listString) {
+        this.listString = listString;
+    }
+    
+    
 
     public List<Material> getListaMateriales() {
         listaMateriales = materialEJB.findAll();
@@ -59,5 +80,23 @@ public class MaterialController implements Serializable {
         }
 
     }
+    
+
+    public void obtenerMateriales() throws Exception {
+        try {
+
+            listaMateriales = materialEJB.datosMaterial(idProducto);
+            System.out.println(getListaMateriales());
+            listString = "";
+            for (Material s : listaMateriales) {
+                listString += s.getNombre() + ", ";
+                System.out.println(s.getNombre());
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+
+    }
+  
 
 }

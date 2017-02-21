@@ -1,4 +1,3 @@
-
 package com.sea.frontend.controller;
 
 import com.sea.backend.entities.Cliente;
@@ -50,6 +49,11 @@ public class ClienteController implements Serializable {
     @PostConstruct
     public void init() {
         clientes = clienteEJB.findAll();
+        cliente = new Cliente();
+        
+      
+     
+        
     }
 
     public Object getCliente() {

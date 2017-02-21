@@ -29,5 +29,6 @@ public interface FabricanteFacadeLocal {
     List<Fabricante> findRange(int[] range);
 
     int count();
+    Fabricante descripcionFabricante(int idProducto) throws Exception;
     
 }

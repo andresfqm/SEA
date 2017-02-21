@@ -5,10 +5,10 @@
  */
 package com.sea.frontend.controller;
 
-
 import com.sea.backend.entities.Ciudad;
 import com.sea.backend.model.CiudadFacadeLocal;
 import java.io.Serializable;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -22,11 +22,19 @@ import javax.inject.Named;
 @Named
 @ViewScoped
 public class CiudadController implements Serializable {
-    
+
     @EJB
     private CiudadFacadeLocal ciudadEJB;
-    
     private Ciudad ciudad;
+    private List<Ciudad> ciudades;
+
+    public List<Ciudad> getCiudades() {
+        return ciudades;
+    }
+
+    public void setCiudades(List<Ciudad> ciudades) {
+        this.ciudades = ciudades;
+    }
 
     public Ciudad getCiudad() {
         return ciudad;
@@ -36,17 +44,18 @@ public class CiudadController implements Serializable {
         this.ciudad = ciudad;
     }
     
-
     
+
     @PostConstruct
     public void init() {
         ciudad = new Ciudad();
-        
+        ciudades = ciudadEJB.findAll();
+
     }
-    
+
     public void registrar() {
         ciudadEJB.create(ciudad);
-        
+
     }
-    
+
 }

@@ -15,6 +15,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
+
 
 /**
  *
@@ -62,5 +64,20 @@ public class IndexController implements Serializable {
         }
 
     }
+    
+    public String mostrarNombreUsuario(){
+        HttpSession sesion =(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        Usuario u = (Usuario)sesion.getAttribute("usuario");
+        return u.getNombre()+" "+ u.getApellido();
+    }
+    
+    //Metodo para mostar el id Interno del usuario y el numero de cotizaci´´on correspondiente
+      public String mostrarIdInterno(){
+        HttpSession sesion =(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        Usuario u = (Usuario)sesion.getAttribute("usuario");
+        this.usuario = u;
+        return u.getIdInterno();
+    }
+    
 
 }

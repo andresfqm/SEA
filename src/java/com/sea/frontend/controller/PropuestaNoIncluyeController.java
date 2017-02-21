@@ -8,6 +8,8 @@ package com.sea.frontend.controller;
 import com.sea.backend.entities.PropuestaNoIncluye;
 import com.sea.backend.model.PropuestaNoIncluyeFacadeLocal;
 import java.io.Serializable;
+import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -25,6 +27,17 @@ public class PropuestaNoIncluyeController implements Serializable {
     
     private PropuestaNoIncluye propuestaNoI;
     
+    private List<PropuestaNoIncluye> propuestaNoIncluye;
+
+    public List<PropuestaNoIncluye> getPropuestaNoIncluye() {
+        return propuestaNoIncluye;
+    }
+
+    public void setPropuestaNoIncluye(List<PropuestaNoIncluye> propuestaNoIncluye) {
+        this.propuestaNoIncluye = propuestaNoIncluye;
+    }
+    
+    
     public PropuestaNoIncluye getPropuestaNoI() {
         return propuestaNoI;
     }
@@ -33,9 +46,12 @@ public class PropuestaNoIncluyeController implements Serializable {
         this.propuestaNoI = propuestaNoI;
     }
     
+    @PostConstruct
     public void init() {
         
         propuestaNoI = new PropuestaNoIncluye();
+        
+        propuestaNoIncluye = propuestoNoIncluyeEJB.findAll();
         
     }
     
