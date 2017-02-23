@@ -1,7 +1,25 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * The MIT License
+ *
+ * Copyright 2017 Depurador.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package com.sea.backend.entities;
 
@@ -25,91 +43,91 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author homero
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_tipo_telefono")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TipoTelefono.findAll", query = "SELECT t FROM TipoTelefono t"),
-    @NamedQuery(name = "TipoTelefono.findByIdTipoTelefono", query = "SELECT t FROM TipoTelefono t WHERE t.idTipoTelefono = :idTipoTelefono"),
-    @NamedQuery(name = "TipoTelefono.findByTipo", query = "SELECT t FROM TipoTelefono t WHERE t.tipo = :tipo")})
+	@NamedQuery(name = "TipoTelefono.findAll", query = "SELECT t FROM TipoTelefono t")
+	, @NamedQuery(name = "TipoTelefono.findByIdTipoTelefono", query = "SELECT t FROM TipoTelefono t WHERE t.idTipoTelefono = :idTipoTelefono")
+	, @NamedQuery(name = "TipoTelefono.findByTipo", query = "SELECT t FROM TipoTelefono t WHERE t.tipo = :tipo")})
 public class TipoTelefono implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
+	private static final long serialVersionUID = 1L;
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID_TIPO_TELEFONO")
-    private Integer idTipoTelefono;
-    @Basic(optional = false)
+	private Integer idTipoTelefono;
+	@Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 64)
     @Column(name = "TIPO")
-    private String tipo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblTipoTelefonoIdTipoTelefono")
-    private List<Telefono> telefonoList;
+	private String tipo;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblTipoTelefonoIdTipoTelefono")
+	private List<Telefono> telefonoList;
 
-    public TipoTelefono() {
-    }
+	public TipoTelefono() {
+	}
 
-    public TipoTelefono(Integer idTipoTelefono) {
-        this.idTipoTelefono = idTipoTelefono;
-    }
+	public TipoTelefono(Integer idTipoTelefono) {
+		this.idTipoTelefono = idTipoTelefono;
+	}
 
-    public TipoTelefono(Integer idTipoTelefono, String tipo) {
-        this.idTipoTelefono = idTipoTelefono;
-        this.tipo = tipo;
-    }
+	public TipoTelefono(Integer idTipoTelefono, String tipo) {
+		this.idTipoTelefono = idTipoTelefono;
+		this.tipo = tipo;
+	}
 
-    public Integer getIdTipoTelefono() {
-        return idTipoTelefono;
-    }
+	public Integer getIdTipoTelefono() {
+		return idTipoTelefono;
+	}
 
-    public void setIdTipoTelefono(Integer idTipoTelefono) {
-        this.idTipoTelefono = idTipoTelefono;
-    }
+	public void setIdTipoTelefono(Integer idTipoTelefono) {
+		this.idTipoTelefono = idTipoTelefono;
+	}
 
-    public String getTipo() {
-        return tipo;
-    }
+	public String getTipo() {
+		return tipo;
+	}
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 
-    @XmlTransient
-    public List<Telefono> getTelefonoList() {
-        return telefonoList;
-    }
+	@XmlTransient
+	public List<Telefono> getTelefonoList() {
+		return telefonoList;
+	}
 
-    public void setTelefonoList(List<Telefono> telefonoList) {
-        this.telefonoList = telefonoList;
-    }
+	public void setTelefonoList(List<Telefono> telefonoList) {
+		this.telefonoList = telefonoList;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idTipoTelefono != null ? idTipoTelefono.hashCode() : 0);
-        return hash;
-    }
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (idTipoTelefono != null ? idTipoTelefono.hashCode() : 0);
+		return hash;
+	}
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TipoTelefono)) {
-            return false;
-        }
-        TipoTelefono other = (TipoTelefono) object;
-        if ((this.idTipoTelefono == null && other.idTipoTelefono != null) || (this.idTipoTelefono != null && !this.idTipoTelefono.equals(other.idTipoTelefono))) {
-            return false;
-        }
-        return true;
-    }
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not set
+		if (!(object instanceof TipoTelefono)) {
+			return false;
+		}
+		TipoTelefono other = (TipoTelefono) object;
+		if ((this.idTipoTelefono == null && other.idTipoTelefono != null) || (this.idTipoTelefono != null && !this.idTipoTelefono.equals(other.idTipoTelefono))) {
+			return false;
+		}
+		return true;
+	}
 
-    @Override
-    public String toString() {
-        return "com.sea.backend.entities.TipoTelefono[ idTipoTelefono=" + idTipoTelefono + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return "com.sea.backend.entities.TipoTelefono[ idTipoTelefono=" + idTipoTelefono + " ]";
+	}
+	
 }

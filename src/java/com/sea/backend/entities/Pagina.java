@@ -1,7 +1,25 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * The MIT License
+ *
+ * Copyright 2017 Depurador.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package com.sea.backend.entities;
 
@@ -24,121 +42,121 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author homero
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_pagina")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Pagina.findAll", query = "SELECT p FROM Pagina p"),
-    @NamedQuery(name = "Pagina.findByIdPagina", query = "SELECT p FROM Pagina p WHERE p.idPagina = :idPagina"),
-    @NamedQuery(name = "Pagina.findByNombre", query = "SELECT p FROM Pagina p WHERE p.nombre = :nombre"),
-    @NamedQuery(name = "Pagina.findByUrl", query = "SELECT p FROM Pagina p WHERE p.url = :url")})
+	@NamedQuery(name = "Pagina.findAll", query = "SELECT p FROM Pagina p")
+	, @NamedQuery(name = "Pagina.findByIdPagina", query = "SELECT p FROM Pagina p WHERE p.idPagina = :idPagina")
+	, @NamedQuery(name = "Pagina.findByNombre", query = "SELECT p FROM Pagina p WHERE p.nombre = :nombre")
+	, @NamedQuery(name = "Pagina.findByUrl", query = "SELECT p FROM Pagina p WHERE p.url = :url")})
 public class Pagina implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
+	private static final long serialVersionUID = 1L;
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID_PAGINA")
-    private Integer idPagina;
-    @Basic(optional = false)
+	private Integer idPagina;
+	@Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "NOMBRE")
-    private String nombre;
-    @Basic(optional = false)
+	private String nombre;
+	@Basic(optional = false)
     @NotNull
     @Lob
     @Size(min = 1, max = 65535)
     @Column(name = "DESCRIPCION")
-    private String descripcion;
-    @Basic(optional = false)
+	private String descripcion;
+	@Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "URL")
-    private String url;
-    @JoinColumn(name = "TBL_MENU_ID_MENU", referencedColumnName = "ID_MENU")
+	private String url;
+	@JoinColumn(name = "TBL_MENU_ID_MENU", referencedColumnName = "ID_MENU")
     @ManyToOne(optional = false)
-    private Menu tblMenuIdMenu;
+	private Menu tblMenuIdMenu;
 
-    public Pagina() {
-    }
+	public Pagina() {
+	}
 
-    public Pagina(Integer idPagina) {
-        this.idPagina = idPagina;
-    }
+	public Pagina(Integer idPagina) {
+		this.idPagina = idPagina;
+	}
 
-    public Pagina(Integer idPagina, String nombre, String descripcion, String url) {
-        this.idPagina = idPagina;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.url = url;
-    }
+	public Pagina(Integer idPagina, String nombre, String descripcion, String url) {
+		this.idPagina = idPagina;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.url = url;
+	}
 
-    public Integer getIdPagina() {
-        return idPagina;
-    }
+	public Integer getIdPagina() {
+		return idPagina;
+	}
 
-    public void setIdPagina(Integer idPagina) {
-        this.idPagina = idPagina;
-    }
+	public void setIdPagina(Integer idPagina) {
+		this.idPagina = idPagina;
+	}
 
-    public String getNombre() {
-        return nombre;
-    }
+	public String getNombre() {
+		return nombre;
+	}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+	public String getDescripcion() {
+		return descripcion;
+	}
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
-    public String getUrl() {
-        return url;
-    }
+	public String getUrl() {
+		return url;
+	}
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
-    public Menu getTblMenuIdMenu() {
-        return tblMenuIdMenu;
-    }
+	public Menu getTblMenuIdMenu() {
+		return tblMenuIdMenu;
+	}
 
-    public void setTblMenuIdMenu(Menu tblMenuIdMenu) {
-        this.tblMenuIdMenu = tblMenuIdMenu;
-    }
+	public void setTblMenuIdMenu(Menu tblMenuIdMenu) {
+		this.tblMenuIdMenu = tblMenuIdMenu;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idPagina != null ? idPagina.hashCode() : 0);
-        return hash;
-    }
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (idPagina != null ? idPagina.hashCode() : 0);
+		return hash;
+	}
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Pagina)) {
-            return false;
-        }
-        Pagina other = (Pagina) object;
-        if ((this.idPagina == null && other.idPagina != null) || (this.idPagina != null && !this.idPagina.equals(other.idPagina))) {
-            return false;
-        }
-        return true;
-    }
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not set
+		if (!(object instanceof Pagina)) {
+			return false;
+		}
+		Pagina other = (Pagina) object;
+		if ((this.idPagina == null && other.idPagina != null) || (this.idPagina != null && !this.idPagina.equals(other.idPagina))) {
+			return false;
+		}
+		return true;
+	}
 
-    @Override
-    public String toString() {
-        return "com.sea.backend.entities.Pagina[ idPagina=" + idPagina + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return "com.sea.backend.entities.Pagina[ idPagina=" + idPagina + " ]";
+	}
+	
 }

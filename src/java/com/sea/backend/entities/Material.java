@@ -1,7 +1,25 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * The MIT License
+ *
+ * Copyright 2017 Depurador.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package com.sea.backend.entities;
 
@@ -26,123 +44,123 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author homero
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_material")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Material.findAll", query = "SELECT m FROM Material m"),
-    @NamedQuery(name = "Material.findByIdMaterial", query = "SELECT m FROM Material m WHERE m.idMaterial = :idMaterial"),
-    @NamedQuery(name = "Material.findByNombre", query = "SELECT m FROM Material m WHERE m.nombre = :nombre"),
-    @NamedQuery(name = "Material.findByCodigo", query = "SELECT m FROM Material m WHERE m.codigo = :codigo"),
-    @NamedQuery(name = "Material.findByCosto", query = "SELECT m FROM Material m WHERE m.costo = :costo")})
+	@NamedQuery(name = "Material.findAll", query = "SELECT m FROM Material m")
+	, @NamedQuery(name = "Material.findByIdMaterial", query = "SELECT m FROM Material m WHERE m.idMaterial = :idMaterial")
+	, @NamedQuery(name = "Material.findByNombre", query = "SELECT m FROM Material m WHERE m.nombre = :nombre")
+	, @NamedQuery(name = "Material.findByCodigo", query = "SELECT m FROM Material m WHERE m.codigo = :codigo")
+	, @NamedQuery(name = "Material.findByCosto", query = "SELECT m FROM Material m WHERE m.costo = :costo")})
 public class Material implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
+	private static final long serialVersionUID = 1L;
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID_MATERIAL")
-    private Integer idMaterial;
-    @Basic(optional = false)
+	private Integer idMaterial;
+	@Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 64)
     @Column(name = "NOMBRE")
-    private String nombre;
-    @Basic(optional = false)
+	private String nombre;
+	@Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 5)
     @Column(name = "CODIGO")
-    private String codigo;
-    @Basic(optional = false)
+	private String codigo;
+	@Basic(optional = false)
     @NotNull
     @Column(name = "COSTO")
-    private double costo;
-    @JoinTable(name = "producto_material", joinColumns = {
-        @JoinColumn(name = "TBL_MATERIAL_ID_MATERIAL", referencedColumnName = "ID_MATERIAL")}, inverseJoinColumns = {
-        @JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")})
+	private double costo;
+	@JoinTable(name = "tbl_producto_material", joinColumns = {
+    	@JoinColumn(name = "TBL_MATERIAL_ID_MATERIAL", referencedColumnName = "ID_MATERIAL")}, inverseJoinColumns = {
+    	@JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")})
     @ManyToMany
-    private List<Producto> productoList;
+	private List<Producto> productoList;
 
-    public Material() {
-    }
+	public Material() {
+	}
 
-    public Material(Integer idMaterial) {
-        this.idMaterial = idMaterial;
-    }
+	public Material(Integer idMaterial) {
+		this.idMaterial = idMaterial;
+	}
 
-    public Material(Integer idMaterial, String nombre, String codigo, double costo) {
-        this.idMaterial = idMaterial;
-        this.nombre = nombre;
-        this.codigo = codigo;
-        this.costo = costo;
-    }
+	public Material(Integer idMaterial, String nombre, String codigo, double costo) {
+		this.idMaterial = idMaterial;
+		this.nombre = nombre;
+		this.codigo = codigo;
+		this.costo = costo;
+	}
 
-    public Integer getIdMaterial() {
-        return idMaterial;
-    }
+	public Integer getIdMaterial() {
+		return idMaterial;
+	}
 
-    public void setIdMaterial(Integer idMaterial) {
-        this.idMaterial = idMaterial;
-    }
+	public void setIdMaterial(Integer idMaterial) {
+		this.idMaterial = idMaterial;
+	}
 
-    public String getNombre() {
-        return nombre;
-    }
+	public String getNombre() {
+		return nombre;
+	}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-    public String getCodigo() {
-        return codigo;
-    }
+	public String getCodigo() {
+		return codigo;
+	}
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
 
-    public double getCosto() {
-        return costo;
-    }
+	public double getCosto() {
+		return costo;
+	}
 
-    public void setCosto(double costo) {
-        this.costo = costo;
-    }
+	public void setCosto(double costo) {
+		this.costo = costo;
+	}
 
-    @XmlTransient
-    public List<Producto> getProductoList() {
-        return productoList;
-    }
+	@XmlTransient
+	public List<Producto> getProductoList() {
+		return productoList;
+	}
 
-    public void setProductoList(List<Producto> productoList) {
-        this.productoList = productoList;
-    }
+	public void setProductoList(List<Producto> productoList) {
+		this.productoList = productoList;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idMaterial != null ? idMaterial.hashCode() : 0);
-        return hash;
-    }
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (idMaterial != null ? idMaterial.hashCode() : 0);
+		return hash;
+	}
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Material)) {
-            return false;
-        }
-        Material other = (Material) object;
-        if ((this.idMaterial == null && other.idMaterial != null) || (this.idMaterial != null && !this.idMaterial.equals(other.idMaterial))) {
-            return false;
-        }
-        return true;
-    }
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not set
+		if (!(object instanceof Material)) {
+			return false;
+		}
+		Material other = (Material) object;
+		if ((this.idMaterial == null && other.idMaterial != null) || (this.idMaterial != null && !this.idMaterial.equals(other.idMaterial))) {
+			return false;
+		}
+		return true;
+	}
 
-    @Override
-    public String toString() {
-        return "com.sea.backend.entities.Material[ idMaterial=" + idMaterial + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return "com.sea.backend.entities.Material[ idMaterial=" + idMaterial + " ]";
+	}
+	
 }

@@ -1,7 +1,25 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * The MIT License
+ *
+ * Copyright 2017 Depurador.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package com.sea.backend.entities;
 
@@ -31,215 +49,215 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author homero
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_orden_produccion")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "OrdenProduccion.findAll", query = "SELECT o FROM OrdenProduccion o"),
-    @NamedQuery(name = "OrdenProduccion.findByIdOrdenProduccion", query = "SELECT o FROM OrdenProduccion o WHERE o.idOrdenProduccion = :idOrdenProduccion"),
-    @NamedQuery(name = "OrdenProduccion.findByFechaExpedicion", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaExpedicion = :fechaExpedicion"),
-    @NamedQuery(name = "OrdenProduccion.findByCiudadExpedicion", query = "SELECT o FROM OrdenProduccion o WHERE o.ciudadExpedicion = :ciudadExpedicion"),
-    @NamedQuery(name = "OrdenProduccion.findByTotalPrendas", query = "SELECT o FROM OrdenProduccion o WHERE o.totalPrendas = :totalPrendas"),
-    @NamedQuery(name = "OrdenProduccion.findByAprobada", query = "SELECT o FROM OrdenProduccion o WHERE o.aprobada = :aprobada"),
-    @NamedQuery(name = "OrdenProduccion.findByFechaEntrega1", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaEntrega1 = :fechaEntrega1"),
-    @NamedQuery(name = "OrdenProduccion.findByFechaEntrega2", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaEntrega2 = :fechaEntrega2"),
-    @NamedQuery(name = "OrdenProduccion.findByFechaEntregaFinal", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaEntregaFinal = :fechaEntregaFinal")})
+	@NamedQuery(name = "OrdenProduccion.findAll", query = "SELECT o FROM OrdenProduccion o")
+	, @NamedQuery(name = "OrdenProduccion.findByIdOrdenProduccion", query = "SELECT o FROM OrdenProduccion o WHERE o.idOrdenProduccion = :idOrdenProduccion")
+	, @NamedQuery(name = "OrdenProduccion.findByFechaExpedicion", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaExpedicion = :fechaExpedicion")
+	, @NamedQuery(name = "OrdenProduccion.findByCiudadExpedicion", query = "SELECT o FROM OrdenProduccion o WHERE o.ciudadExpedicion = :ciudadExpedicion")
+	, @NamedQuery(name = "OrdenProduccion.findByTotalPrendas", query = "SELECT o FROM OrdenProduccion o WHERE o.totalPrendas = :totalPrendas")
+	, @NamedQuery(name = "OrdenProduccion.findByAprobada", query = "SELECT o FROM OrdenProduccion o WHERE o.aprobada = :aprobada")
+	, @NamedQuery(name = "OrdenProduccion.findByFechaEntrega1", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaEntrega1 = :fechaEntrega1")
+	, @NamedQuery(name = "OrdenProduccion.findByFechaEntrega2", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaEntrega2 = :fechaEntrega2")
+	, @NamedQuery(name = "OrdenProduccion.findByFechaEntregaFinal", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaEntregaFinal = :fechaEntregaFinal")})
 public class OrdenProduccion implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
+	private static final long serialVersionUID = 1L;
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID_ORDEN_PRODUCCION")
-    private Integer idOrdenProduccion;
-    @Basic(optional = false)
+	private Integer idOrdenProduccion;
+	@Basic(optional = false)
     @NotNull
     @Column(name = "FECHA_EXPEDICION")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaExpedicion;
-    @Basic(optional = false)
+	private Date fechaExpedicion;
+	@Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 64)
     @Column(name = "CIUDAD_EXPEDICION")
-    private String ciudadExpedicion;
-    @Lob
+	private String ciudadExpedicion;
+	@Lob
     @Size(max = 65535)
     @Column(name = "OBSERVACIONES")
-    private String observaciones;
-    @Basic(optional = false)
+	private String observaciones;
+	@Basic(optional = false)
     @NotNull
     @Column(name = "TOTAL_PRENDAS")
-    private int totalPrendas;
-    @Column(name = "APROBADA")
-    private Boolean aprobada;
-    @Column(name = "FECHA_ENTREGA_1")
+	private int totalPrendas;
+	@Column(name = "APROBADA")
+	private Boolean aprobada;
+	@Column(name = "FECHA_ENTREGA_1")
     @Temporal(TemporalType.DATE)
-    private Date fechaEntrega1;
-    @Column(name = "FECHA_ENTREGA_2")
+	private Date fechaEntrega1;
+	@Column(name = "FECHA_ENTREGA_2")
     @Temporal(TemporalType.DATE)
-    private Date fechaEntrega2;
-    @Basic(optional = false)
+	private Date fechaEntrega2;
+	@Basic(optional = false)
     @NotNull
     @Column(name = "FECHA_ENTREGA_FINAL")
     @Temporal(TemporalType.DATE)
-    private Date fechaEntregaFinal;
-    @JoinColumn(name = "TBL_COTIZACION_NUMERO_COTIZACION", referencedColumnName = "NUMERO_COTIZACION")
+	private Date fechaEntregaFinal;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblOrdenProduccionIdOrdenProduccion")
+	private List<ProductoEspecificacion> productoEspecificacionList;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblOrdenProduccionIdOrdenProduccion")
+	private List<Devolucion> devolucionList;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblOrdenProduccionIdOrdenProduccion")
+	private List<ObservacionesOrdenProduccion> observacionesOrdenProduccionList;
+	@JoinColumn(name = "TBL_COTIZACION_NUMERO_COTIZACION", referencedColumnName = "NUMERO_COTIZACION")
     @ManyToOne(optional = false)
-    private Cotizacion tblCotizacionNumeroCotizacion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblOrdenProduccionIdOrdenProduccion")
-    private List<ObservacionesOrdenProduccion> observacionesOrdenProduccionList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblOrdenProduccionIdOrdenProduccion")
-    private List<Devolucion> devolucionList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblOrdenProduccionIdOrdenProduccion")
-    private List<ProductoEspecificacion> productoEspecificacionList;
+	private Cotizacion tblCotizacionNumeroCotizacion;
 
-    public OrdenProduccion() {
-    }
+	public OrdenProduccion() {
+	}
 
-    public OrdenProduccion(Integer idOrdenProduccion) {
-        this.idOrdenProduccion = idOrdenProduccion;
-    }
+	public OrdenProduccion(Integer idOrdenProduccion) {
+		this.idOrdenProduccion = idOrdenProduccion;
+	}
 
-    public OrdenProduccion(Integer idOrdenProduccion, Date fechaExpedicion, String ciudadExpedicion, int totalPrendas, Date fechaEntregaFinal) {
-        this.idOrdenProduccion = idOrdenProduccion;
-        this.fechaExpedicion = fechaExpedicion;
-        this.ciudadExpedicion = ciudadExpedicion;
-        this.totalPrendas = totalPrendas;
-        this.fechaEntregaFinal = fechaEntregaFinal;
-    }
+	public OrdenProduccion(Integer idOrdenProduccion, Date fechaExpedicion, String ciudadExpedicion, int totalPrendas, Date fechaEntregaFinal) {
+		this.idOrdenProduccion = idOrdenProduccion;
+		this.fechaExpedicion = fechaExpedicion;
+		this.ciudadExpedicion = ciudadExpedicion;
+		this.totalPrendas = totalPrendas;
+		this.fechaEntregaFinal = fechaEntregaFinal;
+	}
 
-    public Integer getIdOrdenProduccion() {
-        return idOrdenProduccion;
-    }
+	public Integer getIdOrdenProduccion() {
+		return idOrdenProduccion;
+	}
 
-    public void setIdOrdenProduccion(Integer idOrdenProduccion) {
-        this.idOrdenProduccion = idOrdenProduccion;
-    }
+	public void setIdOrdenProduccion(Integer idOrdenProduccion) {
+		this.idOrdenProduccion = idOrdenProduccion;
+	}
 
-    public Date getFechaExpedicion() {
-        return fechaExpedicion;
-    }
+	public Date getFechaExpedicion() {
+		return fechaExpedicion;
+	}
 
-    public void setFechaExpedicion(Date fechaExpedicion) {
-        this.fechaExpedicion = fechaExpedicion;
-    }
+	public void setFechaExpedicion(Date fechaExpedicion) {
+		this.fechaExpedicion = fechaExpedicion;
+	}
 
-    public String getCiudadExpedicion() {
-        return ciudadExpedicion;
-    }
+	public String getCiudadExpedicion() {
+		return ciudadExpedicion;
+	}
 
-    public void setCiudadExpedicion(String ciudadExpedicion) {
-        this.ciudadExpedicion = ciudadExpedicion;
-    }
+	public void setCiudadExpedicion(String ciudadExpedicion) {
+		this.ciudadExpedicion = ciudadExpedicion;
+	}
 
-    public String getObservaciones() {
-        return observaciones;
-    }
+	public String getObservaciones() {
+		return observaciones;
+	}
 
-    public void setObservaciones(String observaciones) {
-        this.observaciones = observaciones;
-    }
+	public void setObservaciones(String observaciones) {
+		this.observaciones = observaciones;
+	}
 
-    public int getTotalPrendas() {
-        return totalPrendas;
-    }
+	public int getTotalPrendas() {
+		return totalPrendas;
+	}
 
-    public void setTotalPrendas(int totalPrendas) {
-        this.totalPrendas = totalPrendas;
-    }
+	public void setTotalPrendas(int totalPrendas) {
+		this.totalPrendas = totalPrendas;
+	}
 
-    public Boolean getAprobada() {
-        return aprobada;
-    }
+	public Boolean getAprobada() {
+		return aprobada;
+	}
 
-    public void setAprobada(Boolean aprobada) {
-        this.aprobada = aprobada;
-    }
+	public void setAprobada(Boolean aprobada) {
+		this.aprobada = aprobada;
+	}
 
-    public Date getFechaEntrega1() {
-        return fechaEntrega1;
-    }
+	public Date getFechaEntrega1() {
+		return fechaEntrega1;
+	}
 
-    public void setFechaEntrega1(Date fechaEntrega1) {
-        this.fechaEntrega1 = fechaEntrega1;
-    }
+	public void setFechaEntrega1(Date fechaEntrega1) {
+		this.fechaEntrega1 = fechaEntrega1;
+	}
 
-    public Date getFechaEntrega2() {
-        return fechaEntrega2;
-    }
+	public Date getFechaEntrega2() {
+		return fechaEntrega2;
+	}
 
-    public void setFechaEntrega2(Date fechaEntrega2) {
-        this.fechaEntrega2 = fechaEntrega2;
-    }
+	public void setFechaEntrega2(Date fechaEntrega2) {
+		this.fechaEntrega2 = fechaEntrega2;
+	}
 
-    public Date getFechaEntregaFinal() {
-        return fechaEntregaFinal;
-    }
+	public Date getFechaEntregaFinal() {
+		return fechaEntregaFinal;
+	}
 
-    public void setFechaEntregaFinal(Date fechaEntregaFinal) {
-        this.fechaEntregaFinal = fechaEntregaFinal;
-    }
+	public void setFechaEntregaFinal(Date fechaEntregaFinal) {
+		this.fechaEntregaFinal = fechaEntregaFinal;
+	}
 
-    public Cotizacion getTblCotizacionNumeroCotizacion() {
-        return tblCotizacionNumeroCotizacion;
-    }
+	@XmlTransient
+	public List<ProductoEspecificacion> getProductoEspecificacionList() {
+		return productoEspecificacionList;
+	}
 
-    public void setTblCotizacionNumeroCotizacion(Cotizacion tblCotizacionNumeroCotizacion) {
-        this.tblCotizacionNumeroCotizacion = tblCotizacionNumeroCotizacion;
-    }
+	public void setProductoEspecificacionList(List<ProductoEspecificacion> productoEspecificacionList) {
+		this.productoEspecificacionList = productoEspecificacionList;
+	}
 
-    @XmlTransient
-    public List<ObservacionesOrdenProduccion> getObservacionesOrdenProduccionList() {
-        return observacionesOrdenProduccionList;
-    }
+	@XmlTransient
+	public List<Devolucion> getDevolucionList() {
+		return devolucionList;
+	}
 
-    public void setObservacionesOrdenProduccionList(List<ObservacionesOrdenProduccion> observacionesOrdenProduccionList) {
-        this.observacionesOrdenProduccionList = observacionesOrdenProduccionList;
-    }
+	public void setDevolucionList(List<Devolucion> devolucionList) {
+		this.devolucionList = devolucionList;
+	}
 
-    @XmlTransient
-    public List<Devolucion> getDevolucionList() {
-        return devolucionList;
-    }
+	@XmlTransient
+	public List<ObservacionesOrdenProduccion> getObservacionesOrdenProduccionList() {
+		return observacionesOrdenProduccionList;
+	}
 
-    public void setDevolucionList(List<Devolucion> devolucionList) {
-        this.devolucionList = devolucionList;
-    }
+	public void setObservacionesOrdenProduccionList(List<ObservacionesOrdenProduccion> observacionesOrdenProduccionList) {
+		this.observacionesOrdenProduccionList = observacionesOrdenProduccionList;
+	}
 
-    @XmlTransient
-    public List<ProductoEspecificacion> getProductoEspecificacionList() {
-        return productoEspecificacionList;
-    }
+	public Cotizacion getTblCotizacionNumeroCotizacion() {
+		return tblCotizacionNumeroCotizacion;
+	}
 
-    public void setProductoEspecificacionList(List<ProductoEspecificacion> productoEspecificacionList) {
-        this.productoEspecificacionList = productoEspecificacionList;
-    }
+	public void setTblCotizacionNumeroCotizacion(Cotizacion tblCotizacionNumeroCotizacion) {
+		this.tblCotizacionNumeroCotizacion = tblCotizacionNumeroCotizacion;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idOrdenProduccion != null ? idOrdenProduccion.hashCode() : 0);
-        return hash;
-    }
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (idOrdenProduccion != null ? idOrdenProduccion.hashCode() : 0);
+		return hash;
+	}
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof OrdenProduccion)) {
-            return false;
-        }
-        OrdenProduccion other = (OrdenProduccion) object;
-        if ((this.idOrdenProduccion == null && other.idOrdenProduccion != null) || (this.idOrdenProduccion != null && !this.idOrdenProduccion.equals(other.idOrdenProduccion))) {
-            return false;
-        }
-        return true;
-    }
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not set
+		if (!(object instanceof OrdenProduccion)) {
+			return false;
+		}
+		OrdenProduccion other = (OrdenProduccion) object;
+		if ((this.idOrdenProduccion == null && other.idOrdenProduccion != null) || (this.idOrdenProduccion != null && !this.idOrdenProduccion.equals(other.idOrdenProduccion))) {
+			return false;
+		}
+		return true;
+	}
 
-    @Override
-    public String toString() {
-        return "com.sea.backend.entities.OrdenProduccion[ idOrdenProduccion=" + idOrdenProduccion + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return "com.sea.backend.entities.OrdenProduccion[ idOrdenProduccion=" + idOrdenProduccion + " ]";
+	}
+	
 }
