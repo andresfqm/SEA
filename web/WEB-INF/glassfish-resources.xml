@@ -6,11 +6,13 @@
         <property name="portNumber" value="3306"/>
         <property name="databaseName" value="fulldotaciones"/>
         <property name="User" value="root"/>
-        <property name="Password" value=""/>
+        <property name="Password" value="5050"/>
         <property name="URL" value="jdbc:mysql://localhost:3306/fulldotaciones?zeroDateTimeBehavior=convertToNull"/>
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
     </jdbc-connection-pool>
     <jdbc-resource enabled="true" jndi-name="java:app/SEA" object-type="user" pool-name="mysql_fulldotaciones_rootPool"/>
     <jdbc-resource enabled="true" jndi-name="java:app/pull/SEA" object-type="user" pool-name="mysql_fulldotaciones_rootPool"/>
+    <jdbc-resource enabled="true" jndi-name="java:app/SEA" object-type="user" pool-name="mysql_fulldotaciones_rootPool"/>
+    <jdbc-resource enabled="true" jndi-name="java:app/SEA" object-type="user" pool-name="mysql_fulldotaciones_rootPool"/>
     <jdbc-resource enabled="true" jndi-name="java:app/SEA" object-type="user" pool-name="mysql_fulldotaciones_rootPool"/>
 </resources>

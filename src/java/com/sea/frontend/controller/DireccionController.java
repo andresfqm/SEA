@@ -26,6 +26,23 @@ public class DireccionController implements Serializable {
     private DireccionFacadeLocal direccionEJB;
 
     private Direccion direccion;
+    private int idCliente;
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public Direccion getDireccionCliente() {
+        return direccionCliente;
+    }
+
+    public void setDireccionCliente(Direccion direccionCliente) {
+        this.direccionCliente = direccionCliente;
+    }
 
     public Direccion getDireccion() {
         return direccion;
@@ -33,6 +50,17 @@ public class DireccionController implements Serializable {
 
     public void setDireccion(Direccion direccion) {
         this.direccion = direccion;
+    }
+
+    private Direccion direccionCliente;
+
+    public void obtenerDireccionCliente() throws Exception {
+        try {
+            direccionCliente = direccionEJB.direccionCliente(idCliente);
+        } catch (Exception e) {
+            throw e;
+        }
+
     }
 
     @PostConstruct

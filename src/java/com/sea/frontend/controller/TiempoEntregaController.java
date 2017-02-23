@@ -8,6 +8,7 @@ package com.sea.frontend.controller;
 import com.sea.backend.entities.TiempoEntrega;
 import com.sea.backend.model.TiempoEntregaFacadeLocal;
 import java.io.Serializable;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -26,6 +27,16 @@ public class TiempoEntregaController implements Serializable {
     
     private TiempoEntrega tiempoE;
     
+    private List<TiempoEntrega> tiempoEntregas;
+
+    public List<TiempoEntrega> getTiempoEntregas() {
+        return tiempoEntregas;
+    }
+
+    public void setTiempoEntregas(List<TiempoEntrega> tiempoEntregas) {
+        this.tiempoEntregas = tiempoEntregas;
+    }
+    
     public TiempoEntrega getTiempoE() {
         return tiempoE;
     }
@@ -37,6 +48,7 @@ public class TiempoEntregaController implements Serializable {
     @PostConstruct
     public void init() {
         tiempoE = new TiempoEntrega();
+        tiempoEntregas = tiempoEntregaEJB.findAll();
         
     }
     

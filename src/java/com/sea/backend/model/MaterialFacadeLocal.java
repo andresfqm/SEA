@@ -30,4 +30,8 @@ public interface MaterialFacadeLocal {
 
     int count();
     
+    List<Material> datosMaterial(int idProducto) throws Exception;
+    
+    
+    
 }
