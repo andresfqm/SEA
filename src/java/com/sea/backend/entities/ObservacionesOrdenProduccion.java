@@ -58,23 +58,23 @@ public class ObservacionesOrdenProduccion implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "ID_OBSERVACIONES")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "ID_OBSERVACIONES")
 	private Integer idObservaciones;
 	@Basic(optional = false)
-    @NotNull
-    @Column(name = "FECHA_OBSERVACION")
-    @Temporal(TemporalType.TIMESTAMP)
+	@NotNull
+	@Column(name = "FECHA_OBSERVACION")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaObservacion;
 	@Basic(optional = false)
-    @NotNull
-    @Lob
-    @Size(min = 1, max = 65535)
-    @Column(name = "DESCRIPCION")
+	@NotNull
+	@Lob
+	@Size(min = 1, max = 65535)
+	@Column(name = "DESCRIPCION")
 	private String descripcion;
 	@JoinColumn(name = "TBL_ORDEN_PRODUCCION_ID_ORDEN_PRODUCCION", referencedColumnName = "ID_ORDEN_PRODUCCION")
-    @ManyToOne(optional = false)
+	@ManyToOne(optional = false)
 	private OrdenProduccion tblOrdenProduccionIdOrdenProduccion;
 
 	public ObservacionesOrdenProduccion() {
@@ -146,5 +146,5 @@ public class ObservacionesOrdenProduccion implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.ObservacionesOrdenProduccion[ idObservaciones=" + idObservaciones + " ]";
 	}
-	
+
 }

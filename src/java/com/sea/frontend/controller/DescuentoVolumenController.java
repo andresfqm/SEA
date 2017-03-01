@@ -22,46 +22,44 @@ import javax.inject.Named;
 @ViewScoped
 public class DescuentoVolumenController implements Serializable {
 
-    @EJB
-    private DescuentoVolumenFacadeLocal descuentoVolumenEJB;
+	@EJB
+	private DescuentoVolumenFacadeLocal descuentoVolumenEJB;
 
-    private DescuentoVolumen descuentoV;
-    
-    private List<DescuentoVolumen> descuentoVolumen;
+	private DescuentoVolumen descuentoV;
 
-    public List<DescuentoVolumen> getDescuentoVolumen() {
-        return descuentoVolumen;
-    }
+	private List<DescuentoVolumen> descuentoVolumen;
 
-    public void setDescuentoVolumen(List<DescuentoVolumen> descuentoVolumen) {
-        this.descuentoVolumen = descuentoVolumen;
-    }
-    
-    
+	public List<DescuentoVolumen> getDescuentoVolumen() {
+		return descuentoVolumen;
+	}
 
-    public DescuentoVolumen getDescuentoV() {
-        return descuentoV;
-    }
+	public void setDescuentoVolumen(List<DescuentoVolumen> descuentoVolumen) {
+		this.descuentoVolumen = descuentoVolumen;
+	}
 
-    public void setDescuentoV(DescuentoVolumen descuentoV) {
-        this.descuentoV = descuentoV;
-    }
+	public DescuentoVolumen getDescuentoV() {
+		return descuentoV;
+	}
 
-    @PostConstruct
-    public void init() {
-        descuentoV = new DescuentoVolumen();
-        
-        descuentoVolumen = descuentoVolumenEJB.findAll();
-    }
+	public void setDescuentoV(DescuentoVolumen descuentoV) {
+		this.descuentoV = descuentoV;
+	}
 
-    public void registrar() {
-        try {
-            descuentoVolumenEJB.create(descuentoV);
+	@PostConstruct
+	public void init() {
+		descuentoV = new DescuentoVolumen();
 
-        } catch (Exception e) {
+		descuentoVolumen = descuentoVolumenEJB.findAll();
+	}
 
-        }
+	public void registrar() {
+		try {
+			descuentoVolumenEJB.create(descuentoV);
 
-    }
+		} catch (Exception e) {
+
+		}
+
+	}
 
 }

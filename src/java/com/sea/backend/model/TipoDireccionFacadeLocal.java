@@ -47,5 +47,5 @@ public interface TipoDireccionFacadeLocal {
 	List<TipoDireccion> findRange(int[] range);
 
 	int count();
-	
+
 }

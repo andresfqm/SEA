@@ -10,5 +10,5 @@ package com.sea.frontend.converters;
  * @author homero
  */
 public class prueba {
-    
+
 }

@@ -19,32 +19,32 @@ import javax.inject.Named;
 @Named
 @ViewScoped
 public class PerfilController implements Serializable {
-    
-    @EJB
-    private PerfilFacadeLocal perfilEJB;
-    private Perfil perfil;
-    
-    public Perfil getPerfil() {
-        return perfil;
-    }
-    
-    public void setPerfil(Perfil perfil) {
-        this.perfil = perfil;
-    }
-    
-    public void init() {
-        perfil = new Perfil();
-        
-    }
-    
-    public void registrar() {
-        try {
-            perfilEJB.create(perfil);
-            
-        } catch (Exception e) {
-            
-        }
-        
-    }
-    
+
+	@EJB
+	private PerfilFacadeLocal perfilEJB;
+	private Perfil perfil;
+
+	public Perfil getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
+	}
+
+	public void init() {
+		perfil = new Perfil();
+
+	}
+
+	public void registrar() {
+		try {
+			perfilEJB.create(perfil);
+
+		} catch (Exception e) {
+
+		}
+
+	}
+
 }

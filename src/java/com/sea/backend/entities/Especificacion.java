@@ -55,15 +55,15 @@ public class Especificacion implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "ID_ESPECIFICACION")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "ID_ESPECIFICACION")
 	private Integer idEspecificacion;
 	@Basic(optional = false)
-    @NotNull
-    @Lob
-    @Size(min = 1, max = 65535)
-    @Column(name = "DESCRIPCION")
+	@NotNull
+	@Lob
+	@Size(min = 1, max = 65535)
+	@Column(name = "DESCRIPCION")
 	private String descripcion;
 	@ManyToMany(mappedBy = "especificacionList")
 	private List<Producto> productoList;
@@ -129,5 +129,5 @@ public class Especificacion implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Especificacion[ idEspecificacion=" + idEspecificacion + " ]";
 	}
-	
+
 }

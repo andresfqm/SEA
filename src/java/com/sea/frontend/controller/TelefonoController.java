@@ -21,32 +21,32 @@ import javax.inject.Named;
 @ViewScoped
 public class TelefonoController implements Serializable {
 
-    @EJB
-    private TelefonoFacadeLocal telefonoEJB;
+	@EJB
+	private TelefonoFacadeLocal telefonoEJB;
 
-    private Telefono telefono;
+	private Telefono telefono;
 
-    public Telefono getTelefono() {
-        return telefono;
-    }
+	public Telefono getTelefono() {
+		return telefono;
+	}
 
-    public void setTelefono(Telefono telefono) {
-        this.telefono = telefono;
-    }
+	public void setTelefono(Telefono telefono) {
+		this.telefono = telefono;
+	}
 
-    @PostConstruct
-    public void init() {
-        telefono = new Telefono();
-    }
+	@PostConstruct
+	public void init() {
+		telefono = new Telefono();
+	}
 
-    public void registrar() {
-        try {
-            telefonoEJB.create(telefono);
+	public void registrar() {
+		try {
+			telefonoEJB.create(telefono);
 
-        } catch (Exception e) {
+		} catch (Exception e) {
 
-        }
+		}
 
-    }
+	}
 
 }

@@ -56,28 +56,28 @@ public class Pagina implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "ID_PAGINA")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "ID_PAGINA")
 	private Integer idPagina;
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "NOMBRE")
+	@NotNull
+	@Size(min = 1, max = 45)
+	@Column(name = "NOMBRE")
 	private String nombre;
 	@Basic(optional = false)
-    @NotNull
-    @Lob
-    @Size(min = 1, max = 65535)
-    @Column(name = "DESCRIPCION")
+	@NotNull
+	@Lob
+	@Size(min = 1, max = 65535)
+	@Column(name = "DESCRIPCION")
 	private String descripcion;
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "URL")
+	@NotNull
+	@Size(min = 1, max = 45)
+	@Column(name = "URL")
 	private String url;
 	@JoinColumn(name = "TBL_MENU_ID_MENU", referencedColumnName = "ID_MENU")
-    @ManyToOne(optional = false)
+	@ManyToOne(optional = false)
 	private Menu tblMenuIdMenu;
 
 	public Pagina() {
@@ -158,5 +158,5 @@ public class Pagina implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Pagina[ idPagina=" + idPagina + " ]";
 	}
-	
+
 }

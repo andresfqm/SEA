@@ -58,14 +58,14 @@ public class CotizacionProducto implements Serializable {
 	@Column(name = "PRECIO_PARA_CLIENTE")
 	private Double precioParaCliente;
 	@Basic(optional = false)
-    @NotNull
-    @Column(name = "CANTIDAD")
+	@NotNull
+	@Column(name = "CANTIDAD")
 	private int cantidad;
 	@JoinColumn(name = "TBL_COTIZACION_NUMERO_COTIZACION", referencedColumnName = "NUMERO_COTIZACION", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
+	@ManyToOne(optional = false)
 	private Cotizacion cotizacion;
 	@JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
+	@ManyToOne(optional = false)
 	private Producto producto;
 
 	public CotizacionProducto() {
@@ -148,5 +148,5 @@ public class CotizacionProducto implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.CotizacionProducto[ cotizacionProductoPK=" + cotizacionProductoPK + " ]";
 	}
-	
+
 }

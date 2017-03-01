@@ -47,5 +47,5 @@ public interface TipoEmailFacadeLocal {
 	List<TipoEmail> findRange(int[] range);
 
 	int count();
-	
+
 }

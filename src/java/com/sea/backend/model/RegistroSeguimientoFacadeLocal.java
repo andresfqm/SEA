@@ -47,5 +47,5 @@ public interface RegistroSeguimientoFacadeLocal {
 	List<RegistroSeguimiento> findRange(int[] range);
 
 	int count();
-	
+
 }

@@ -21,31 +21,31 @@ import javax.inject.Named;
 @ViewScoped
 public class EspecificacionController implements Serializable {
 
-    private EspecificacionFacadeLocal especificacionEJB;
+	private EspecificacionFacadeLocal especificacionEJB;
 
-    private Especificacion especificacion;
+	private Especificacion especificacion;
 
-    public Especificacion getEspecificacion() {
-        return especificacion;
-    }
+	public Especificacion getEspecificacion() {
+		return especificacion;
+	}
 
-    public void setEspecificacion(Especificacion especificacion) {
-        this.especificacion = especificacion;
-    }
+	public void setEspecificacion(Especificacion especificacion) {
+		this.especificacion = especificacion;
+	}
 
-    @PostConstruct
-    public void init() {
+	@PostConstruct
+	public void init() {
 
-        especificacion = new Especificacion();
+		especificacion = new Especificacion();
 
-    }
+	}
 
-    public void registrar() {
-        try {
-            especificacionEJB.create(especificacion);
-        } catch (Exception e) {
+	public void registrar() {
+		try {
+			especificacionEJB.create(especificacion);
+		} catch (Exception e) {
 
-        }
+		}
 
-    }
+	}
 }

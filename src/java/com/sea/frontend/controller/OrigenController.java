@@ -25,60 +25,60 @@ import javax.inject.Named;
 @ViewScoped
 public class OrigenController implements Serializable {
 
-    @EJB
-    private OrigenFacadeLocal origenEJB;
+	@EJB
+	private OrigenFacadeLocal origenEJB;
 
-    private Origen origen;
-    private List<Origen> listaOrigen;
+	private Origen origen;
+	private List<Origen> listaOrigen;
 
-    public List<Origen> getListaOrigen() {
-        listaOrigen = origenEJB.findAll();
-        return listaOrigen;
-    }
+	public List<Origen> getListaOrigen() {
+		listaOrigen = origenEJB.findAll();
+		return listaOrigen;
+	}
 
-    public void setListaOrigen(List<Origen> listaOrigen) {
-        this.listaOrigen = listaOrigen;
-    }
+	public void setListaOrigen(List<Origen> listaOrigen) {
+		this.listaOrigen = listaOrigen;
+	}
 
-    public Origen getOrigen() {
-        return origen;
-    }
+	public Origen getOrigen() {
+		return origen;
+	}
 
-    public void setOrigen(Origen origen) {
-        this.origen = origen;
-    }
+	public void setOrigen(Origen origen) {
+		this.origen = origen;
+	}
 
-    @PostConstruct
-    public void init() {
-        origen = new Origen();
+	@PostConstruct
+	public void init() {
+		origen = new Origen();
 
-    }
+	}
 
-    public void registrar() {
-        try {
-            origenEJB.create(origen);
+	public void registrar() {
+		try {
+			origenEJB.create(origen);
 
-        } catch (Exception e) {
+		} catch (Exception e) {
 
-        }
+		}
 
-    }
-    
-    public void Eliminar(Origen o) {
-        try {
-            origenEJB.remove(o);
+	}
 
-        } catch (Exception e) {
+	public void Eliminar(Origen o) {
+		try {
+			origenEJB.remove(o);
 
-        }
+		} catch (Exception e) {
 
-    }
+		}
 
-    public SelectItem[] getItemsAvailableSelectOne() {
-        return Conversor.getSelectItems(origenEJB.findAll(), true);
-    }
-    
-    public Origen getOrigen(java.lang.Integer id) {
-        return origenEJB.find(id);
-    }
+	}
+
+	public SelectItem[] getItemsAvailableSelectOne() {
+		return Conversor.getSelectItems(origenEJB.findAll(), true);
+	}
+
+	public Origen getOrigen(java.lang.Integer id) {
+		return origenEJB.find(id);
+	}
 }

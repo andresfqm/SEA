@@ -47,5 +47,5 @@ public interface SufijoFacadeLocal {
 	List<Sufijo> findRange(int[] range);
 
 	int count();
-	
+
 }

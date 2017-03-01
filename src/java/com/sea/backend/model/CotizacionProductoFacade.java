@@ -46,5 +46,5 @@ public class CotizacionProductoFacade extends AbstractFacade<CotizacionProducto>
 	public CotizacionProductoFacade() {
 		super(CotizacionProducto.class);
 	}
-	
+
 }

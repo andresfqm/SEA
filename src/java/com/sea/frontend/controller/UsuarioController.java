@@ -23,52 +23,52 @@ import javax.inject.Named;
 @Named
 @ViewScoped
 public class UsuarioController implements Serializable {
-    
-    @EJB
-    private UsuarioFacadeLocal usuarioEJB;
-    
-    private Usuario usuario;
-    private List<Usuario> listaUsuarios;
 
-    public List<Usuario> getListaUsuarios() {
-        listaUsuarios = usuarioEJB.findAll();
-        return listaUsuarios;
-    }
+	@EJB
+	private UsuarioFacadeLocal usuarioEJB;
 
-    public void setListaUsuarios(List<Usuario> listaUsuarios) {
-        this.listaUsuarios = listaUsuarios;
-    }
-    
-    public Usuario getUsuario() {
-        return usuario;
-    }
-    
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-    
-    @PostConstruct
-    public void init() {
-        usuario = new Usuario();
-        
-    }
-    
-    public void registrar() {
-        try {
-            usuarioEJB.create(usuario);
-            
-        } catch (Exception e) {
-            
-        }
-        
-    }
-    
-    public SelectItem[] getItemsAvailableSelectOne() {
-        return Conversor.getSelectItems(usuarioEJB.findAll(), true);
-    }
-    
-    public Usuario getUsuario(java.lang.Integer id) {
-        return usuarioEJB.find(id);
-    }
-    
+	private Usuario usuario;
+	private List<Usuario> listaUsuarios;
+
+	public List<Usuario> getListaUsuarios() {
+		listaUsuarios = usuarioEJB.findAll();
+		return listaUsuarios;
+	}
+
+	public void setListaUsuarios(List<Usuario> listaUsuarios) {
+		this.listaUsuarios = listaUsuarios;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	@PostConstruct
+	public void init() {
+		usuario = new Usuario();
+
+	}
+
+	public void registrar() {
+		try {
+			usuarioEJB.create(usuario);
+
+		} catch (Exception e) {
+
+		}
+
+	}
+
+	public SelectItem[] getItemsAvailableSelectOne() {
+		return Conversor.getSelectItems(usuarioEJB.findAll(), true);
+	}
+
+	public Usuario getUsuario(java.lang.Integer id) {
+		return usuarioEJB.find(id);
+	}
+
 }

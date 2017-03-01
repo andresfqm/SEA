@@ -29,40 +29,39 @@ import org.primefaces.model.menu.MenuModel;
 @ViewScoped
 public class MenuController implements Serializable {
 
-    @EJB
-    private MenuFacadeLocal EJBMenu;
-    private List<Menu> lista;
-    private MenuModel model;
+	@EJB
+	private MenuFacadeLocal EJBMenu;
+	private List<Menu> lista;
+	private MenuModel model;
 
-    @PostConstruct
-    public void init() {
-        this.listarMenus();
-        model = new DefaultMenuModel();
-       // this.establecerPermisos();
+	@PostConstruct
+	public void init() {
+		this.listarMenus();
+		model = new DefaultMenuModel();
+		// this.establecerPermisos();
 
-    }
+	}
 
-    public void listarMenus() {
+	public void listarMenus() {
 
-        try {
-            lista = EJBMenu.findAll();
-        } catch (Exception e) {
-            //mensaje de jsf
+		try {
+			lista = EJBMenu.findAll();
+		} catch (Exception e) {
+			//mensaje de jsf
 
-        }
+		}
 
-    }
+	}
 
-    public MenuModel getModel() {
-        return model;
-    }
+	public MenuModel getModel() {
+		return model;
+	}
 
-    public void setModel(MenuModel model) {
-        this.model = model;
-    }
+	public void setModel(MenuModel model) {
+		this.model = model;
+	}
 
-   
-   /* public void establecerPermisos() {
+	/* public void establecerPermisos() {
 
         Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
         for (Menu m : lista) {
@@ -90,11 +89,11 @@ public class MenuController implements Serializable {
 
         }
     }
-*/
-    public void cerrarSesion() throws IOException {
-        FacesContext context = FacesContext.getCurrentInstance();
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        context.getExternalContext().redirect("");
-    }
+	 */
+	public void cerrarSesion() throws IOException {
+		FacesContext context = FacesContext.getCurrentInstance();
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		context.getExternalContext().redirect("");
+	}
 
 }

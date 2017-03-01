@@ -20,34 +20,34 @@ import javax.inject.Named;
 @Named
 @ViewScoped
 public class TipoTelefonoController implements Serializable {
-    
-    @EJB
-    private TipoTelefonoFacadeLocal tipoTelefonoEJB;
-    
-    private TipoTelefono tipoT;
-    
-    public TipoTelefono getTipoT() {
-        return tipoT;
-    }
-    
-    public void setTipoT(TipoTelefono tipoT) {
-        this.tipoT = tipoT;
-    }
-    
-    @PostConstruct
-    public void init() {
-        tipoT = new TipoTelefono();
-        
-    }
-    
-    public void registrar() {
-        try {
-            tipoTelefonoEJB.create(tipoT);
-            
-        } catch (Exception e) {
-            
-        }
-        
-    }
-    
+
+	@EJB
+	private TipoTelefonoFacadeLocal tipoTelefonoEJB;
+
+	private TipoTelefono tipoT;
+
+	public TipoTelefono getTipoT() {
+		return tipoT;
+	}
+
+	public void setTipoT(TipoTelefono tipoT) {
+		this.tipoT = tipoT;
+	}
+
+	@PostConstruct
+	public void init() {
+		tipoT = new TipoTelefono();
+
+	}
+
+	public void registrar() {
+		try {
+			tipoTelefonoEJB.create(tipoT);
+
+		} catch (Exception e) {
+
+		}
+
+	}
+
 }

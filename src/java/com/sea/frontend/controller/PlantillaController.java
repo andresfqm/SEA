@@ -19,42 +19,40 @@ import javax.inject.Named;
 @ViewScoped
 public class PlantillaController implements Serializable {
 
-    public void verificarSesion() {
+	public void verificarSesion() {
 
-        try {
-            FacesContext context = FacesContext.getCurrentInstance();
-           
-            Usuario us = (Usuario) context.getExternalContext().getSessionMap().get("usuario");
+		try {
+			FacesContext context = FacesContext.getCurrentInstance();
 
-            if (us == null) {
-                
-               context.getExternalContext().redirect( "/SEA/auth");
-                
+			Usuario us = (Usuario) context.getExternalContext().getSessionMap().get("usuario");
 
-            }   
-        } catch (Exception e) {
-            // log para guardar un registro de error
-        }
+			if (us == null) {
 
-    }
-    
-    public void verificarSesionLogin() {
+				context.getExternalContext().redirect("/SEA/auth");
 
-        try {
-            FacesContext context = FacesContext.getCurrentInstance();
-           
-            Usuario us = (Usuario) context.getExternalContext().getSessionMap().get("usuario");
+			}
+		} catch (Exception e) {
+			// log para guardar un registro de error
+		}
 
-            if (us != null) {
-                
-            context.getExternalContext().redirect( "/SEA/index.xhtml");
-                
+	}
 
-            }   
-        } catch (Exception e) {
-            // log para guardar un registro de error
-        }
+	public void verificarSesionLogin() {
 
-    }
+		try {
+			FacesContext context = FacesContext.getCurrentInstance();
+
+			Usuario us = (Usuario) context.getExternalContext().getSessionMap().get("usuario");
+
+			if (us != null) {
+
+				context.getExternalContext().redirect("/SEA/index.xhtml");
+
+			}
+		} catch (Exception e) {
+			// log para guardar un registro de error
+		}
+
+	}
 
 }

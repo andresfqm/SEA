@@ -319,20 +319,20 @@
                     <button class="mdl-snackbar__action" type="button"></button>
                 </h:panelGroup>
                 <script>
-                    (function () {
-                        'use strict';
-                        window['counter'] = 0;
-                        var snackbarContainer = document.querySelector('#articuloAgregado');
-                        var showToastButton = document.querySelector('#mostrarArticuloAgregado');
-                        var handler = function (event) {
-                            console.log("artículo removido");
-                        };
-                        showToastButton.addEventListener('click', function () {
-                            'use strict';
-                            var data = {message: 'Artículo añadido a la cotización.', timeout: 5000, actionHandler: handler, actionText: 'Deshacer'};
-                            snackbarContainer.MaterialSnackbar.showSnackbar(data);
-                        });
-                    }());
+					(function () {
+						'use strict';
+						window['counter'] = 0;
+						var snackbarContainer = document.querySelector('#articuloAgregado');
+						var showToastButton = document.querySelector('#mostrarArticuloAgregado');
+						var handler = function (event) {
+							console.log("artículo removido");
+						};
+						showToastButton.addEventListener('click', function () {
+							'use strict';
+							var data = {message: 'Artículo añadido a la cotización.', timeout: 5000, actionHandler: handler, actionText: 'Deshacer'};
+							snackbarContainer.MaterialSnackbar.showSnackbar(data);
+						});
+					}());
                 </script>
             </aside>
 

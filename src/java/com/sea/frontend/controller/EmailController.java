@@ -22,32 +22,32 @@ import javax.inject.Named;
 @ViewScoped
 public class EmailController implements Serializable {
 
-    @EJB
-    private EmailFacadeLocal emailEJB;
+	@EJB
+	private EmailFacadeLocal emailEJB;
 
-    private Email email;
+	private Email email;
 
-    public Email getEmail() {
-        return email;
-    }
+	public Email getEmail() {
+		return email;
+	}
 
-    public void setEmail(Email email) {
-        this.email = email;
-    }
+	public void setEmail(Email email) {
+		this.email = email;
+	}
 
-    @PostConstruct
-    public void init() {
+	@PostConstruct
+	public void init() {
 
-        email = new Email();
-    }
+		email = new Email();
+	}
 
-    public void registrar() {
-        try {
-            emailEJB.create(email);
-        } catch (Exception e) {
+	public void registrar() {
+		try {
+			emailEJB.create(email);
+		} catch (Exception e) {
 
-        }
+		}
 
-    }
+	}
 
 }

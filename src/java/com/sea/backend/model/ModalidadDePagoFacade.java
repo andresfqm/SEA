@@ -46,5 +46,5 @@ public class ModalidadDePagoFacade extends AbstractFacade<ModalidadDePago> imple
 	public ModalidadDePagoFacade() {
 		super(ModalidadDePago.class);
 	}
-	
+
 }

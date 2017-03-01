@@ -24,7 +24,6 @@ import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 
-
 /**
  *
  * @author homero
@@ -32,52 +31,50 @@ import javax.faces.view.ViewScoped;
 @Named
 @ViewScoped
 public class SubcategoriaController implements Serializable {
-    
-    @EJB
-    private SubcategoriaFacadeLocal SubcategoriaEJB;
-    private Subcategoria subcategoria;
-    private List<Subcategoria> listaSubcategoria;
 
-    public List<Subcategoria> getListaSubcategoria() {
-        listaSubcategoria = SubcategoriaEJB.findAll();
-        return listaSubcategoria;
-    }
+	@EJB
+	private SubcategoriaFacadeLocal SubcategoriaEJB;
+	private Subcategoria subcategoria;
+	private List<Subcategoria> listaSubcategoria;
 
-    public void setListaSubcategoria(List<Subcategoria> listaSubcategoria) {
-        this.listaSubcategoria = listaSubcategoria;
-    }
-    
-    
-    public Subcategoria getSubcategoria() {
-        return subcategoria;
-    }
-    
-    public void setSubcategoria(Subcategoria subcategoria) {
-        this.subcategoria = subcategoria;
-    }
-    
-    @PostConstruct
-    public void init() {
-        subcategoria = new Subcategoria();
-        
-    }
-    
-    public String registrar() {
-        try {
-            SubcategoriaEJB.create(subcategoria);
-            return ("Categoria creada");
-        } catch (Exception e) {
-            return ("PersistenceErrorOccured");
-        }
-    }
-    
-    public SelectItem[] getItemsAvailableSelectOne() {
-        return Conversor.getSelectItems(SubcategoriaEJB.findAll(), true);
-    }
-    
-    public Subcategoria getSubcategoria(java.lang.Integer id) {
-        return SubcategoriaEJB.find(id);
-    }
-        
-    
+	public List<Subcategoria> getListaSubcategoria() {
+		listaSubcategoria = SubcategoriaEJB.findAll();
+		return listaSubcategoria;
+	}
+
+	public void setListaSubcategoria(List<Subcategoria> listaSubcategoria) {
+		this.listaSubcategoria = listaSubcategoria;
+	}
+
+	public Subcategoria getSubcategoria() {
+		return subcategoria;
+	}
+
+	public void setSubcategoria(Subcategoria subcategoria) {
+		this.subcategoria = subcategoria;
+	}
+
+	@PostConstruct
+	public void init() {
+		subcategoria = new Subcategoria();
+
+	}
+
+	public String registrar() {
+		try {
+			SubcategoriaEJB.create(subcategoria);
+			return ("Categoria creada");
+		} catch (Exception e) {
+			return ("PersistenceErrorOccured");
+		}
+	}
+
+	public SelectItem[] getItemsAvailableSelectOne() {
+		return Conversor.getSelectItems(SubcategoriaEJB.findAll(), true);
+	}
+
+	public Subcategoria getSubcategoria(java.lang.Integer id) {
+		return SubcategoriaEJB.find(id);
+	}
+
 }

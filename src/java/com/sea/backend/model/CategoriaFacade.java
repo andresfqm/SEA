@@ -47,9 +47,9 @@ public class CategoriaFacade extends AbstractFacade<Categoria> implements Catego
 	public CategoriaFacade() {
 		super(Categoria.class);
 	}
-	
+
 	@Override
-    public List<Categoria> findAll() {
-        return super.findAll();
-}
+	public List<Categoria> findAll() {
+		return super.findAll();
+	}
 }

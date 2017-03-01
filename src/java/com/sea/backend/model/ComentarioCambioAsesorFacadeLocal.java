@@ -47,5 +47,5 @@ public interface ComentarioCambioAsesorFacadeLocal {
 	List<ComentarioCambioAsesor> findRange(int[] range);
 
 	int count();
-	
+
 }

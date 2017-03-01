@@ -46,5 +46,5 @@ public class EspecificacionFacade extends AbstractFacade<Especificacion> impleme
 	public EspecificacionFacade() {
 		super(Especificacion.class);
 	}
-	
+
 }

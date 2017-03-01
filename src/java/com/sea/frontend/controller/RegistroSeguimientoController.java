@@ -17,35 +17,35 @@ import javax.inject.Named;
  *
  * @author homero
  */
-
 @Named
 @ViewScoped
-public class RegistroSeguimientoController implements Serializable{
-    
-    @EJB
-   private RegistroSeguimientoFacadeLocal registroSeguimientoEJB;
-    
-   private RegistroSeguimiento registroS;
+public class RegistroSeguimientoController implements Serializable {
 
-    public RegistroSeguimiento getRegistroS() {
-        return registroS;
-    }
+	@EJB
+	private RegistroSeguimientoFacadeLocal registroSeguimientoEJB;
 
-    public void setRegistroS(RegistroSeguimiento registroS) {
-        this.registroS = registroS;
-    }
-   
-    @PostConstruct
-   public void init(){
-       registroS = new RegistroSeguimiento();
-   }
-   public void registrar(){
-        try{
-            registroSeguimientoEJB.create(registroS);
-            
-        }catch(Exception e){
-        
-        }
-    
-    }
+	private RegistroSeguimiento registroS;
+
+	public RegistroSeguimiento getRegistroS() {
+		return registroS;
+	}
+
+	public void setRegistroS(RegistroSeguimiento registroS) {
+		this.registroS = registroS;
+	}
+
+	@PostConstruct
+	public void init() {
+		registroS = new RegistroSeguimiento();
+	}
+
+	public void registrar() {
+		try {
+			registroSeguimientoEJB.create(registroS);
+
+		} catch (Exception e) {
+
+		}
+
+	}
 }

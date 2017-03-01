@@ -46,5 +46,5 @@ public class PerfilFacade extends AbstractFacade<Perfil> implements PerfilFacade
 	public PerfilFacade() {
 		super(Perfil.class);
 	}
-	
+
 }

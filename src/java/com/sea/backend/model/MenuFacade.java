@@ -46,5 +46,5 @@ public class MenuFacade extends AbstractFacade<Menu> implements MenuFacadeLocal 
 	public MenuFacade() {
 		super(Menu.class);
 	}
-	
+
 }

@@ -47,5 +47,5 @@ public interface CotizacionFacadeLocal {
 	List<Cotizacion> findRange(int[] range);
 
 	int count();
-	
+
 }

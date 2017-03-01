@@ -71,35 +71,35 @@ public class Cotizacion implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 32)
-    @Column(name = "NUMERO_COTIZACION")
+	@Basic(optional = false)
+	@NotNull
+	@Size(min = 1, max = 32)
+	@Column(name = "NUMERO_COTIZACION")
 	private String numeroCotizacion;
 	@Basic(optional = false)
-    @NotNull
-    @Column(name = "FECHA_EMISION")
-    @Temporal(TemporalType.DATE)
+	@NotNull
+	@Column(name = "FECHA_EMISION")
+	@Temporal(TemporalType.DATE)
 	private Date fechaEmision;
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 32)
-    @Column(name = "LUGAR_EMISION")
+	@NotNull
+	@Size(min = 1, max = 32)
+	@Column(name = "LUGAR_EMISION")
 	private String lugarEmision;
 	@Basic(optional = false)
-    @NotNull
-    @Column(name = "VALIDEZ_OFERTA")
+	@NotNull
+	@Column(name = "VALIDEZ_OFERTA")
 	private int validezOferta;
 	@Basic(optional = false)
-    @NotNull
-    @Column(name = "DESCUENTO")
+	@NotNull
+	@Column(name = "DESCUENTO")
 	private float descuento;
 	@Basic(optional = false)
-    @NotNull
-    @Column(name = "IVA")
+	@NotNull
+	@Column(name = "IVA")
 	private float iva;
 	@Column(name = "FECHA_CIERRE_EFECTIVO")
-    @Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaCierreEfectivo;
 	@Column(name = "CANCELADA")
 	private Boolean cancelada;
@@ -108,36 +108,36 @@ public class Cotizacion implements Serializable {
 	@Column(name = "PRESTAMO_MUESTRA")
 	private Boolean prestamoMuestra;
 	@Lob
-    @Size(max = 65535)
-    @Column(name = "RELACION_MUESTRA")
+	@Size(max = 65535)
+	@Column(name = "RELACION_MUESTRA")
 	private String relacionMuestra;
 	@Size(max = 16)
-    @Column(name = "NUMERO_REMISION")
+	@Column(name = "NUMERO_REMISION")
 	private String numeroRemision;
 	@Column(name = "CIERRE_EFECTIVO")
 	private Boolean cierreEfectivo;
 	@Column(name = "FECHA_FACTURACION")
-    @Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaFacturacion;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cotizacion")
 	private List<CotizacionProducto> cotizacionProductoList;
 	@JoinColumn(name = "TBL_CLIENTE_ID_CLIENTE", referencedColumnName = "ID_CLIENTE")
-    @ManyToOne(optional = false)
+	@ManyToOne(optional = false)
 	private Cliente tblClienteIdCliente;
 	@JoinColumn(name = "TBL_DESCUENTO_VOLUMEN_ID_DESCUENTO_VOLUMEN", referencedColumnName = "ID_DESCUENTO_VOLUMEN")
-    @ManyToOne(optional = false)
+	@ManyToOne(optional = false)
 	private DescuentoVolumen tblDescuentoVolumenIdDescuentoVolumen;
 	@JoinColumn(name = "TBL_LUGARES_ENTREGA_ID_LUGARES_ENTREGA", referencedColumnName = "ID_LUGARES_ENTREGA")
-    @ManyToOne(optional = false)
+	@ManyToOne(optional = false)
 	private LugaresEntrega tblLugaresEntregaIdLugaresEntrega;
 	@JoinColumn(name = "TBL_MODALIDAD_DE_PAGO_ID_MODALIDAD_DE_PAGO", referencedColumnName = "ID_MODALIDAD_DE_PAGO")
-    @ManyToOne(optional = false)
+	@ManyToOne(optional = false)
 	private ModalidadDePago tblModalidadDePagoIdModalidadDePago;
 	@JoinColumn(name = "TBL_PROPUESTA_NO_INCLUYE_ID_PROPUESTA_NO_INCLUYE", referencedColumnName = "ID_PROPUESTA_NO_INCLUYE")
-    @ManyToOne(optional = false)
+	@ManyToOne(optional = false)
 	private PropuestaNoIncluye tblPropuestaNoIncluyeIdPropuestaNoIncluye;
 	@JoinColumn(name = "TBL_TIEMPO_ENTREGA_ID_TIEMPO_ENTREGA", referencedColumnName = "ID_TIEMPO_ENTREGA")
-    @ManyToOne(optional = false)
+	@ManyToOne(optional = false)
 	private TiempoEntrega tblTiempoEntregaIdTiempoEntrega;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblCotizacionNumeroCotizacion")
 	private List<OrdenProduccion> ordenProduccionList;
@@ -371,5 +371,5 @@ public class Cotizacion implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Cotizacion[ numeroCotizacion=" + numeroCotizacion + " ]";
 	}
-	
+
 }

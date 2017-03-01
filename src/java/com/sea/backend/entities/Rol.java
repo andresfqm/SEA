@@ -57,19 +57,19 @@ public class Rol implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "ID_ROL")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "ID_ROL")
 	private Integer idRol;
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "NOMBRE")
+	@NotNull
+	@Size(min = 1, max = 45)
+	@Column(name = "NOMBRE")
 	private String nombre;
 	@JoinTable(name = "tbl_usuario_rol", joinColumns = {
-    	@JoinColumn(name = "TBL_ROL_ID_ROL", referencedColumnName = "ID_ROL")}, inverseJoinColumns = {
-    	@JoinColumn(name = "TBL_USUARIO_ID_USUARIO", referencedColumnName = "ID_USUARIO")})
-    @ManyToMany
+		@JoinColumn(name = "TBL_ROL_ID_ROL", referencedColumnName = "ID_ROL")}, inverseJoinColumns = {
+		@JoinColumn(name = "TBL_USUARIO_ID_USUARIO", referencedColumnName = "ID_USUARIO")})
+	@ManyToMany
 	private List<Usuario> usuarioList;
 
 	public Rol() {
@@ -133,5 +133,5 @@ public class Rol implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Rol[ idRol=" + idRol + " ]";
 	}
-	
+
 }

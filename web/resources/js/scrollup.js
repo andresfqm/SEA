@@ -1,10 +1,10 @@
 //https://www.kirupa.com/html5/animated_scroll_to_top_with_easing.htm
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 	"use strict"
 	var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
 	var bodyElement = document.querySelector("body");
-	var element=document.createElement("div");
+	var element = document.createElement("div");
 	element.setAttribute("id", "scrollButton");
 	element.setAttribute("class", "fa fa-angle-up");
 	element.setAttribute("aria-hidden", "true");
@@ -78,12 +78,12 @@ document.addEventListener("DOMContentLoaded", function() {
 		return changeInValue * (Math.pow(currentIteration / totalIterations - 1, 3) + 1) + startValue;
 	}
 	//Evento para mostrar el botón
-	function showButton(){
+	function showButton() {
 		var scrollButton = document.querySelector("#scrollButton");
-		if(window.pageYOffset >= window.innerHeight){
+		if (window.pageYOffset >= window.innerHeight) {
 			console.info("100vh");
 			scrollButton.classList.add("visible");
-		}else {
+		} else {
 			scrollButton.classList.remove("visible");
 		}
 	}

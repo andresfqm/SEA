@@ -21,45 +21,45 @@ import javax.inject.Named;
 @Named
 @ViewScoped
 public class TiempoEntregaController implements Serializable {
-    
-    @EJB
-    private TiempoEntregaFacadeLocal tiempoEntregaEJB;
-    
-    private TiempoEntrega tiempoE;
-    
-    private List<TiempoEntrega> tiempoEntregas;
 
-    public List<TiempoEntrega> getTiempoEntregas() {
-        return tiempoEntregas;
-    }
+	@EJB
+	private TiempoEntregaFacadeLocal tiempoEntregaEJB;
 
-    public void setTiempoEntregas(List<TiempoEntrega> tiempoEntregas) {
-        this.tiempoEntregas = tiempoEntregas;
-    }
-    
-    public TiempoEntrega getTiempoE() {
-        return tiempoE;
-    }
-    
-    public void setTiempoE(TiempoEntrega tiempoE) {
-        this.tiempoE = tiempoE;
-    }
-    
-    @PostConstruct
-    public void init() {
-        tiempoE = new TiempoEntrega();
-        tiempoEntregas = tiempoEntregaEJB.findAll();
-        
-    }
-    
-    public void registrar() {
-        try {
-            tiempoEntregaEJB.create(tiempoE);
-            
-        } catch (Exception e) {
-            
-        }
-        
-    }
-    
+	private TiempoEntrega tiempoE;
+
+	private List<TiempoEntrega> tiempoEntregas;
+
+	public List<TiempoEntrega> getTiempoEntregas() {
+		return tiempoEntregas;
+	}
+
+	public void setTiempoEntregas(List<TiempoEntrega> tiempoEntregas) {
+		this.tiempoEntregas = tiempoEntregas;
+	}
+
+	public TiempoEntrega getTiempoE() {
+		return tiempoE;
+	}
+
+	public void setTiempoE(TiempoEntrega tiempoE) {
+		this.tiempoE = tiempoE;
+	}
+
+	@PostConstruct
+	public void init() {
+		tiempoE = new TiempoEntrega();
+		tiempoEntregas = tiempoEntregaEJB.findAll();
+
+	}
+
+	public void registrar() {
+		try {
+			tiempoEntregaEJB.create(tiempoE);
+
+		} catch (Exception e) {
+
+		}
+
+	}
+
 }

@@ -20,33 +20,33 @@ import javax.inject.Named;
 @Named
 @ViewScoped
 public class RolController implements Serializable {
-    
-    @EJB
-    private RolFacadeLocal rolEJB;
-    private Rol rol;
-    
-    public Rol getRol() {
-        return rol;
-    }
-    
-    public void setRol(Rol rol) {
-        this.rol = rol;
-    }
-    
-    @PostConstruct
-    public void init() {
-        rol = new Rol();
-        
-    }
-    
-    public void registrar() {
-        try {
-            rolEJB.create(rol);
-            
-        } catch (Exception e) {
-            
-        }
-        
-    }
-    
+
+	@EJB
+	private RolFacadeLocal rolEJB;
+	private Rol rol;
+
+	public Rol getRol() {
+		return rol;
+	}
+
+	public void setRol(Rol rol) {
+		this.rol = rol;
+	}
+
+	@PostConstruct
+	public void init() {
+		rol = new Rol();
+
+	}
+
+	public void registrar() {
+		try {
+			rolEJB.create(rol);
+
+		} catch (Exception e) {
+
+		}
+
+	}
+
 }

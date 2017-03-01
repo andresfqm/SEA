@@ -46,5 +46,5 @@ public class TallaFacade extends AbstractFacade<Talla> implements TallaFacadeLoc
 	public TallaFacade() {
 		super(Talla.class);
 	}
-	
+
 }

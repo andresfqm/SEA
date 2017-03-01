@@ -47,5 +47,5 @@ public interface TallaFacadeLocal {
 	List<Talla> findRange(int[] range);
 
 	int count();
-	
+
 }

@@ -59,27 +59,27 @@ public class CondicionesGarantia implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "ID_CONDICIONES_GARANTIA")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "ID_CONDICIONES_GARANTIA")
 	private Integer idCondicionesGarantia;
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 128)
-    @Column(name = "NOMBRE")
+	@NotNull
+	@Size(min = 1, max = 128)
+	@Column(name = "NOMBRE")
 	private String nombre;
 	@Basic(optional = false)
-    @NotNull
-    @Lob
-    @Size(min = 1, max = 65535)
-    @Column(name = "DESCRIPCION")
+	@NotNull
+	@Lob
+	@Size(min = 1, max = 65535)
+	@Column(name = "DESCRIPCION")
 	private String descripcion;
 	@Column(name = "ACTIVO")
 	private Boolean activo;
 	@JoinTable(name = "tbl_devolucion_condiciones_garantia", joinColumns = {
-    	@JoinColumn(name = "TBL_CONDICIONES_GARANTIA_ID_CONDICIONES_GARANTIA", referencedColumnName = "ID_CONDICIONES_GARANTIA")}, inverseJoinColumns = {
-    	@JoinColumn(name = "TBL_DEVOLUCION_ID_DEVOLUCION", referencedColumnName = "ID_DEVOLUCION")})
-    @ManyToMany
+		@JoinColumn(name = "TBL_CONDICIONES_GARANTIA_ID_CONDICIONES_GARANTIA", referencedColumnName = "ID_CONDICIONES_GARANTIA")}, inverseJoinColumns = {
+		@JoinColumn(name = "TBL_DEVOLUCION_ID_DEVOLUCION", referencedColumnName = "ID_DEVOLUCION")})
+	@ManyToMany
 	private List<Devolucion> devolucionList;
 
 	public CondicionesGarantia() {
@@ -160,5 +160,5 @@ public class CondicionesGarantia implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.CondicionesGarantia[ idCondicionesGarantia=" + idCondicionesGarantia + " ]";
 	}
-	
+
 }

@@ -1,6 +1,6 @@
-document.addEventListener("DOMContentLoaded", function() {
-	var botonesNotificacion=document.querySelectorAll(".notificacion");
-	for(var i = 0; i < botonesNotificacion.length; i++){
+document.addEventListener("DOMContentLoaded", function () {
+	var botonesNotificacion = document.querySelectorAll(".notificacion");
+	for (var i = 0; i < botonesNotificacion.length; i++) {
 		botonesNotificacion[i].addEventListener("click", pruebaNotificacion)
 	}
 	function pruebaNotificacion() {
@@ -14,11 +14,14 @@ document.addEventListener("DOMContentLoaded", function() {
 				body: "Así se mostrarán las notificaciones durante la ejecución del sistema.\nHaga clic aquí para ir a la sección de reportes"
 			}
 			var notificacion = new Notification(title, cuerpo)
-			notificacion.onclick = function() {
+			notificacion.onclick = function () {
 				var win = window.open("/reportes/", '_blank');
 				win.focus();
 			}
-			setTimeout( function() { notificacion.close() }, 10000)
+			setTimeout(function () {
+				notificacion.close()
+			}, 10000)
 		}
-	};
+	}
+	;
 });

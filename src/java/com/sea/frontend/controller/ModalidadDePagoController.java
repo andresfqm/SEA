@@ -23,42 +23,42 @@ import javax.inject.Named;
 @ViewScoped
 public class ModalidadDePagoController implements Serializable {
 
-    @EJB
-    private ModalidadDePagoFacadeLocal modalidadPagoEJB;
+	@EJB
+	private ModalidadDePagoFacadeLocal modalidadPagoEJB;
 
-    private ModalidadDePago modalidadP;
+	private ModalidadDePago modalidadP;
 
-    private List<ModalidadDePago> modalidad;
+	private List<ModalidadDePago> modalidad;
 
-    public List<ModalidadDePago> getModalidad() {
-        return modalidad;
-    }
+	public List<ModalidadDePago> getModalidad() {
+		return modalidad;
+	}
 
-    public void setModalidad(List<ModalidadDePago> modalidad) {
-        this.modalidad = modalidad;
-    }
+	public void setModalidad(List<ModalidadDePago> modalidad) {
+		this.modalidad = modalidad;
+	}
 
-    public ModalidadDePago getModalidadP() {
-        return modalidadP;
-    }
+	public ModalidadDePago getModalidadP() {
+		return modalidadP;
+	}
 
-    public void setModalidadP(ModalidadDePago modalidadP) {
-        this.modalidadP = modalidadP;
-    }
+	public void setModalidadP(ModalidadDePago modalidadP) {
+		this.modalidadP = modalidadP;
+	}
 
-    @PostConstruct
-    public void init() {
-        modalidadP = new ModalidadDePago();
-        modalidad = modalidadPagoEJB.findAll();
-    }
+	@PostConstruct
+	public void init() {
+		modalidadP = new ModalidadDePago();
+		modalidad = modalidadPagoEJB.findAll();
+	}
 
-    public void registrar() {
-        try {
-            modalidadPagoEJB.create(modalidadP);
-        } catch (Exception e) {
+	public void registrar() {
+		try {
+			modalidadPagoEJB.create(modalidadP);
+		} catch (Exception e) {
 
-        }
+		}
 
-    }
+	}
 
 }

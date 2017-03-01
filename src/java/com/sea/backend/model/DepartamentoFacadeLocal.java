@@ -47,5 +47,5 @@ public interface DepartamentoFacadeLocal {
 	List<Departamento> findRange(int[] range);
 
 	int count();
-	
+
 }

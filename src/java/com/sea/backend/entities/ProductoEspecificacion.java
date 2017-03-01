@@ -60,35 +60,35 @@ public class ProductoEspecificacion implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "ID_PRODUCTO_ESPECIFICACION")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "ID_PRODUCTO_ESPECIFICACION")
 	private Integer idProductoEspecificacion;
 	@Lob
-    @Size(max = 65535)
-    @Column(name = "DESCRIPCION")
+	@Size(max = 65535)
+	@Column(name = "DESCRIPCION")
 	private String descripcion;
 	@Lob
-    @Column(name = "LOGOTIPO")
+	@Column(name = "LOGOTIPO")
 	private byte[] logotipo;
 	@Basic(optional = false)
-    @NotNull
-    @Column(name = "CANTIDAD_ARTICULOS")
+	@NotNull
+	@Column(name = "CANTIDAD_ARTICULOS")
 	private int cantidadArticulos;
 	@Basic(optional = false)
-    @NotNull
-    @Lob
-    @Column(name = "DIAGRAMA_DISE\u251c\u00e6O")
+	@NotNull
+	@Lob
+	@Column(name = "DIAGRAMA_DISE\u251c\u00e6O")
 	private byte[] dIAGRAMADISEæO;
 	@Column(name = "NECESITA_BORDADO")
 	private Boolean necesitaBordado;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "productoEspecificacion")
 	private List<ProductoEspecificacionTalla> productoEspecificacionTallaList;
 	@JoinColumn(name = "TBL_ORDEN_PRODUCCION_ID_ORDEN_PRODUCCION", referencedColumnName = "ID_ORDEN_PRODUCCION")
-    @ManyToOne(optional = false)
+	@ManyToOne(optional = false)
 	private OrdenProduccion tblOrdenProduccionIdOrdenProduccion;
 	@JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")
-    @ManyToOne(optional = false)
+	@ManyToOne(optional = false)
 	private Producto tblProductoIdProducto;
 
 	public ProductoEspecificacion() {
@@ -201,5 +201,5 @@ public class ProductoEspecificacion implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.ProductoEspecificacion[ idProductoEspecificacion=" + idProductoEspecificacion + " ]";
 	}
-	
+
 }

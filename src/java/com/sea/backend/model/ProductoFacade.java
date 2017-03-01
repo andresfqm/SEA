@@ -47,22 +47,22 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
 	public ProductoFacade() {
 		super(Producto.class);
 	}
-	
-    @Override
-    public Producto productoDescripcion(int idProducto) throws Exception {
-        Producto productoDescripcion = null;
-        String consulta;
 
-        try {
-            consulta = "FROM Producto p WHERE p.idProducto = ?1";
+	@Override
+	public Producto productoDescripcion(int idProducto) throws Exception {
+		Producto productoDescripcion = null;
+		String consulta;
 
-            Query query = em.createQuery(consulta);
-            query.setParameter(1, idProducto);
-            productoDescripcion = (Producto) query.getSingleResult();
-            System.out.println(productoDescripcion);
-        } catch (Exception e) {
-            throw e;
-        }
-        return productoDescripcion;
-}
+		try {
+			consulta = "FROM Producto p WHERE p.idProducto = ?1";
+
+			Query query = em.createQuery(consulta);
+			query.setParameter(1, idProducto);
+			productoDescripcion = (Producto) query.getSingleResult();
+			System.out.println(productoDescripcion);
+		} catch (Exception e) {
+			throw e;
+		}
+		return productoDescripcion;
+	}
 }

@@ -46,5 +46,5 @@ public class TipoDireccionFacade extends AbstractFacade<TipoDireccion> implement
 	public TipoDireccionFacade() {
 		super(TipoDireccion.class);
 	}
-	
+
 }

@@ -209,55 +209,55 @@
                 <button class="mdl-snackbar__action" type="button"></button>
             </h:panelGroup>
             <script>
-                (function () {
-                    'use strict';
-                    window['counter'] = 0;
-                    var snackbarContainer = document.querySelector('#categoriaCreada');
-                    var showToastButton = document.querySelector('#mostrarCategoriaCreada');
-                    showToastButton.addEventListener('click', function () {
-                        'use strict';
-                        var data = {message: 'Categoría creada satisfactoriamente.', timeout: 5000};
-                        snackbarContainer.MaterialSnackbar.showSnackbar(data);
-                    });
-                }());
-                (function () {
-                    'use strict';
-                    window['counter'] = 0;
-                    var snackbarContainer = document.querySelector('#subcategoriaCreada');
-                    var showToastButton = document.querySelector('#mostrarSubcategoriaCreada');
-                    showToastButton.addEventListener('click', function () {
-                        'use strict';
-                        var data = {message: 'Subcategoría creada satisfactoriamente.', timeout: 5000};
-                        snackbarContainer.MaterialSnackbar.showSnackbar(data);
-                    });
-                }());
-                (function () {
-                    'use strict';
-                    window['counter'] = 0;
-                    var snackbarContainer = document.querySelector('#materialNuevo');
-                    var showToastButton = document.querySelector('#mostrarMaterialNuevo');
-                    showToastButton.addEventListener('click', function () {
-                        'use strict';
-                        var data = {message: 'Material creado satisfactoriamente.', timeout: 5000};
-                        snackbarContainer.MaterialSnackbar.showSnackbar(data);
-                    });
-                }());
-                (function () {
-                    'use strict';
-                    window['counter'] = 0;
-                    var snackbarContainer = document.querySelector('#sufijoNuevo');
-                    var showToastButton = document.querySelector('#mostrarSufijoNuevo');
-                    showToastButton.addEventListener('click', function () {
-                        'use strict';
-                        var data = {message: 'Sufijo creado satisfactoriamente.', timeout: 5000};
-                        snackbarContainer.MaterialSnackbar.showSnackbar(data);
-                    });
-                }());
+				(function () {
+					'use strict';
+					window['counter'] = 0;
+					var snackbarContainer = document.querySelector('#categoriaCreada');
+					var showToastButton = document.querySelector('#mostrarCategoriaCreada');
+					showToastButton.addEventListener('click', function () {
+						'use strict';
+						var data = {message: 'Categoría creada satisfactoriamente.', timeout: 5000};
+						snackbarContainer.MaterialSnackbar.showSnackbar(data);
+					});
+				}());
+				(function () {
+					'use strict';
+					window['counter'] = 0;
+					var snackbarContainer = document.querySelector('#subcategoriaCreada');
+					var showToastButton = document.querySelector('#mostrarSubcategoriaCreada');
+					showToastButton.addEventListener('click', function () {
+						'use strict';
+						var data = {message: 'Subcategoría creada satisfactoriamente.', timeout: 5000};
+						snackbarContainer.MaterialSnackbar.showSnackbar(data);
+					});
+				}());
+				(function () {
+					'use strict';
+					window['counter'] = 0;
+					var snackbarContainer = document.querySelector('#materialNuevo');
+					var showToastButton = document.querySelector('#mostrarMaterialNuevo');
+					showToastButton.addEventListener('click', function () {
+						'use strict';
+						var data = {message: 'Material creado satisfactoriamente.', timeout: 5000};
+						snackbarContainer.MaterialSnackbar.showSnackbar(data);
+					});
+				}());
+				(function () {
+					'use strict';
+					window['counter'] = 0;
+					var snackbarContainer = document.querySelector('#sufijoNuevo');
+					var showToastButton = document.querySelector('#mostrarSufijoNuevo');
+					showToastButton.addEventListener('click', function () {
+						'use strict';
+						var data = {message: 'Sufijo creado satisfactoriamente.', timeout: 5000};
+						snackbarContainer.MaterialSnackbar.showSnackbar(data);
+					});
+				}());
             </script>
         </aside>
 
 		<ui:composition template="/templates/navGeneral.xhtml" />
-	<ui:composition template="/templates/taskTabs.xhtml" />
+		<ui:composition template="/templates/taskTabs.xhtml" />
 
     </h:body>
 </html>

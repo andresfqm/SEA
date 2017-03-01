@@ -47,5 +47,5 @@ public interface LugaresEntregaFacadeLocal {
 	List<LugaresEntrega> findRange(int[] range);
 
 	int count();
-	
+
 }

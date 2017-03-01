@@ -22,81 +22,77 @@ import javax.inject.Named;
 @ViewScoped
 public class MaterialController implements Serializable {
 
-    @EJB
-    private MaterialFacadeLocal materialEJB;
+	@EJB
+	private MaterialFacadeLocal materialEJB;
 
-    private Material material;
-    private List<Material> listaMateriales;
-    private int idProducto;
-    
-    String listString;
+	private Material material;
+	private List<Material> listaMateriales;
+	private int idProducto;
 
-    public int getIdProducto() {
-        return idProducto;
-    }
+	String listString;
 
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
-    }
+	public int getIdProducto() {
+		return idProducto;
+	}
 
-    public String getListString() {
-        return listString;
-    }
+	public void setIdProducto(int idProducto) {
+		this.idProducto = idProducto;
+	}
 
-    public void setListString(String listString) {
-        this.listString = listString;
-    }
-    
-    
+	public String getListString() {
+		return listString;
+	}
 
-    public List<Material> getListaMateriales() {
-        listaMateriales = materialEJB.findAll();
-        return listaMateriales;
-    }
+	public void setListString(String listString) {
+		this.listString = listString;
+	}
 
-    public void setListaMateriales(List<Material> listaMateriales) {
-        this.listaMateriales = listaMateriales;
-    }
+	public List<Material> getListaMateriales() {
+		listaMateriales = materialEJB.findAll();
+		return listaMateriales;
+	}
 
-    public Material getMaterial() {
-        return material;
-    }
+	public void setListaMateriales(List<Material> listaMateriales) {
+		this.listaMateriales = listaMateriales;
+	}
 
-    public void setMaterial(Material material) {
-        this.material = material;
-    }
+	public Material getMaterial() {
+		return material;
+	}
 
-    @PostConstruct
-    public void init() {
-        material = new Material();
+	public void setMaterial(Material material) {
+		this.material = material;
+	}
 
-    }
+	@PostConstruct
+	public void init() {
+		material = new Material();
 
-    public void registrar() {
-        try {
-            materialEJB.create(material);
-        } catch (Exception e) {
+	}
 
-        }
+	public void registrar() {
+		try {
+			materialEJB.create(material);
+		} catch (Exception e) {
 
-    }
-    
+		}
 
-    public void obtenerMateriales() throws Exception {
-        try {
+	}
 
-            listaMateriales = materialEJB.datosMaterial(idProducto);
-            System.out.println(getListaMateriales());
-            listString = "";
-            for (Material s : listaMateriales) {
-                listString += s.getNombre() + ", ";
-                System.out.println(s.getNombre());
-            }
-        } catch (Exception e) {
-            throw e;
-        }
+	public void obtenerMateriales() throws Exception {
+		try {
 
-    }
-  
+			listaMateriales = materialEJB.datosMaterial(idProducto);
+			System.out.println(getListaMateriales());
+			listString = "";
+			for (Material s : listaMateriales) {
+				listString += s.getNombre() + ", ";
+				System.out.println(s.getNombre());
+			}
+		} catch (Exception e) {
+			throw e;
+		}
+
+	}
 
 }

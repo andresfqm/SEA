@@ -46,5 +46,5 @@ public class EmailFacade extends AbstractFacade<Email> implements EmailFacadeLoc
 	public EmailFacade() {
 		super(Email.class);
 	}
-	
+
 }

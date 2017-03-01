@@ -57,22 +57,22 @@ public class Descuento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "ID_DESCUENTO")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "ID_DESCUENTO")
 	private Integer idDescuento;
 	@Basic(optional = false)
-    @NotNull
-    @Column(name = "DESCUENTO")
+	@NotNull
+	@Column(name = "DESCUENTO")
 	private float descuento;
 	@Basic(optional = false)
-    @NotNull
-    @Column(name = "CANTIDAD_MINIMA")
+	@NotNull
+	@Column(name = "CANTIDAD_MINIMA")
 	private int cantidadMinima;
 	@JoinTable(name = "tbl_producto_descuento", joinColumns = {
-    	@JoinColumn(name = "TBL_DESCUENTO_ID_DESCUENTO", referencedColumnName = "ID_DESCUENTO")}, inverseJoinColumns = {
-    	@JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")})
-    @ManyToMany
+		@JoinColumn(name = "TBL_DESCUENTO_ID_DESCUENTO", referencedColumnName = "ID_DESCUENTO")}, inverseJoinColumns = {
+		@JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")})
+	@ManyToMany
 	private List<Producto> productoList;
 
 	public Descuento() {
@@ -145,5 +145,5 @@ public class Descuento implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Descuento[ idDescuento=" + idDescuento + " ]";
 	}
-	
+
 }

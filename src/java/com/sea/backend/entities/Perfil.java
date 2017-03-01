@@ -57,21 +57,21 @@ public class Perfil implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "ID_PERFIL")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "ID_PERFIL")
 	private Integer idPerfil;
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 32)
-    @Column(name = "NOMBRE")
+	@NotNull
+	@Size(min = 1, max = 32)
+	@Column(name = "NOMBRE")
 	private String nombre;
 	@ManyToMany(mappedBy = "perfilList")
 	private List<Menu> menuList;
 	@JoinTable(name = "tbl_usuario_perfil", joinColumns = {
-    	@JoinColumn(name = "TBL_PERFIL_ID_PERFIL", referencedColumnName = "ID_PERFIL")}, inverseJoinColumns = {
-    	@JoinColumn(name = "TBL_USUARIO_ID_USUARIO", referencedColumnName = "ID_USUARIO")})
-    @ManyToMany
+		@JoinColumn(name = "TBL_PERFIL_ID_PERFIL", referencedColumnName = "ID_PERFIL")}, inverseJoinColumns = {
+		@JoinColumn(name = "TBL_USUARIO_ID_USUARIO", referencedColumnName = "ID_USUARIO")})
+	@ManyToMany
 	private List<Usuario> usuarioList;
 
 	public Perfil() {
@@ -144,5 +144,5 @@ public class Perfil implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Perfil[ idPerfil=" + idPerfil + " ]";
 	}
-	
+
 }

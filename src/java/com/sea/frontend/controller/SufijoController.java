@@ -22,41 +22,41 @@ import javax.inject.Named;
 @ViewScoped
 public class SufijoController implements Serializable {
 
-    @EJB
-    private SufijoFacadeLocal sufijoEJB;
-    private Sufijo sufijo;
-    private List<Sufijo> listaSufijos;
+	@EJB
+	private SufijoFacadeLocal sufijoEJB;
+	private Sufijo sufijo;
+	private List<Sufijo> listaSufijos;
 
-    public List<Sufijo> getListaSufijos() {
-        listaSufijos = sufijoEJB.findAll();
-        return listaSufijos;
-    }
+	public List<Sufijo> getListaSufijos() {
+		listaSufijos = sufijoEJB.findAll();
+		return listaSufijos;
+	}
 
-    public void setListaSufijos(List<Sufijo> listaSufijos) {
-        this.listaSufijos = listaSufijos;
-    }
+	public void setListaSufijos(List<Sufijo> listaSufijos) {
+		this.listaSufijos = listaSufijos;
+	}
 
-    public Sufijo getSufijo() {
-        return sufijo;
-    }
+	public Sufijo getSufijo() {
+		return sufijo;
+	}
 
-    public void setSufijo(Sufijo sufijo) {
-        this.sufijo = sufijo;
-    }
+	public void setSufijo(Sufijo sufijo) {
+		this.sufijo = sufijo;
+	}
 
-    @PostConstruct
-    public void init() {
-        sufijo = new Sufijo();
+	@PostConstruct
+	public void init() {
+		sufijo = new Sufijo();
 
-    }
+	}
 
-    public void registrar() {
-        try {
-            sufijoEJB.create(sufijo);
-        } catch (Exception e) {
+	public void registrar() {
+		try {
+			sufijoEJB.create(sufijo);
+		} catch (Exception e) {
 
-        }
+		}
 
-    }
+	}
 
 }

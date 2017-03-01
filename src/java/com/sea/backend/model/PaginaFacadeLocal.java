@@ -47,5 +47,5 @@ public interface PaginaFacadeLocal {
 	List<Pagina> findRange(int[] range);
 
 	int count();
-	
+
 }

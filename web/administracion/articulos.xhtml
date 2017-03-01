@@ -792,21 +792,21 @@
 				<button class="mdl-snackbar__action" type="button"></button>
 			</h:panelGroup>
 			<script>
-				(function() {
-				'use strict';
-				window['counter'] = 0;
-				var snackbarContainer = document.querySelector('#articuloNuevo');
-				var showToastButton = document.querySelector('#mostrarArticuloNuevo');
-				showToastButton.addEventListener('click', function() {
-				'use strict';
-				var data = {message: 'Artículo creado satisfactoriamente.',timeout: 5000};
-				snackbarContainer.MaterialSnackbar.showSnackbar(data);
-				});
+				(function () {
+					'use strict';
+					window['counter'] = 0;
+					var snackbarContainer = document.querySelector('#articuloNuevo');
+					var showToastButton = document.querySelector('#mostrarArticuloNuevo');
+					showToastButton.addEventListener('click', function () {
+						'use strict';
+						var data = {message: 'Artículo creado satisfactoriamente.', timeout: 5000};
+						snackbarContainer.MaterialSnackbar.showSnackbar(data);
+					});
 				}());
 			</script>
 		</aside>
 		<ui:composition template="/templates/navGeneral.xhtml" />
-	<ui:composition template="/templates/taskTabs.xhtml" />
+		<ui:composition template="/templates/taskTabs.xhtml" />
 
 	</h:body>
 </html>

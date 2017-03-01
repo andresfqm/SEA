@@ -1,35 +1,41 @@
 <!DOCTYPE html>
-<html lang="es">
-<h:head>
-	<meta charset="UTF-8" />
-	<title>Recuperar contraseña | SEA</title>
-	<link rel="shortcut icon" href="/auth/img/favicon.ico" />
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
-	<link rel="stylesheet" href="/css/material.min.css" />
-	<link rel="stylesheet" href="/auth/css/login.css" />
-	<script src="/auth/js/material.min.js"></h:outputScript>
-	<script src="/auth/js/checkBrowser.js"></h:outputScript>
+<html lang="es"
+      xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:pt="http://java.sun.com/jsf/passthrough"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	<h:head>
+		<meta charset="UTF-8" />
+		<title>Recuperar contraseña | SEA</title>
+		<link rel="shortcut icon" href="/auth/img/favicon.ico" />
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+        <h:outputStylesheet library="css" name="material.min.css" />
+        <h:outputStylesheet library="css" name="login.css" />
+        <h:outputScript library="js" name="material.min.js"></h:outputScript>
+        <h:outputScript library="js" name="checkBrowser.js"></h:outputScript>
+        <f:event type="preRenderView" listener="#{plantillaController.verificarSesionLogin()}" />
 	</h:head>
 	<h:body>
-	<main class="mdl-shadow--4dp">
-		<h1 class="mdl-typography--display-1">Recuperar contraseña</h1>
-		<form action="/auth/reset.html" method="GET">
-			<div class="mdl-textfield mdl-textfield--floating-label mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-				<input class="mdl-textfield__input" type="text" id="userName" required />
-				<label class="mdl-textfield__label" for="userName">Nombre de usuario</label>
-			</div>
-			<div class="mdl-textfield mdl-textfield--floating-label mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-				<input class="mdl-textfield__input" type="text" id="IDInterno" required />
-				<label class="mdl-textfield__label" for="IDInterno">ID interno</label>
-			</div>
+		<main class="mdl-shadow--4dp">
+			<h1 class="mdl-typography--display-1">Recuperar contraseña</h1>
+			<form action="/auth/reset.html" method="GET">
+				<div class="mdl-textfield mdl-textfield--floating-label mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="text" id="userName" required />
+					<label class="mdl-textfield__label" for="userName">Nombre de usuario</label>
+				</div>
+				<div class="mdl-textfield mdl-textfield--floating-label mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="text" id="IDInterno" required />
+					<label class="mdl-textfield__label" for="IDInterno">ID interno</label>
+				</div>
+				<div>
+					<a href="/auth/">Autenticarme</a>
+				</div>
+				<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Recuperar contraseña</button>
+			</form>
 			<div>
-				<a href="/auth/">Autenticarme</a>
+				<span>SEA &copy; 2016 - Todos los derechos reservados - v0.2.160628</span>
 			</div>
-			<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Recuperar contraseña</button>
-		</form>
-		<div>
-			<span>SEA &copy; 2016 - Todos los derechos reservados - v0.2.160628</span>
-		</div>
-	</main>
-</h:body>
+		</main>
+	</h:body>
 </html>

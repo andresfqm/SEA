@@ -47,5 +47,5 @@ public interface EspecificacionFacadeLocal {
 	List<Especificacion> findRange(int[] range);
 
 	int count();
-	
+
 }

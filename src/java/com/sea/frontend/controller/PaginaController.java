@@ -21,34 +21,34 @@ import javax.inject.Named;
 @ViewScoped
 public class PaginaController implements Serializable {
 
-    @EJB
-    private PaginaFacadeLocal paginaEJB;
+	@EJB
+	private PaginaFacadeLocal paginaEJB;
 
-    private Pagina pagina;
+	private Pagina pagina;
 
-    public Pagina getPagina() {
-        return pagina;
-    }
+	public Pagina getPagina() {
+		return pagina;
+	}
 
-    public void setPagina(Pagina pagina) {
-        this.pagina = pagina;
-    }
+	public void setPagina(Pagina pagina) {
+		this.pagina = pagina;
+	}
 
-    @PostConstruct
-    public void init() {
+	@PostConstruct
+	public void init() {
 
-        pagina = new Pagina();
+		pagina = new Pagina();
 
-    }
-    
-    public void registrar(){
-        try{
-            
-            paginaEJB.create(pagina);
-        }catch(Exception e){
-        
-        }
-    
-    }
+	}
+
+	public void registrar() {
+		try {
+
+			paginaEJB.create(pagina);
+		} catch (Exception e) {
+
+		}
+
+	}
 
 }
