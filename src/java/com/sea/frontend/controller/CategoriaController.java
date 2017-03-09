@@ -7,7 +7,6 @@ package com.sea.frontend.controller;
 
 import com.sea.backend.entities.Categoria;
 import com.sea.backend.model.CategoriaFacadeLocal;
-import com.sea.frontend.converters.Conversor;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -35,9 +34,28 @@ public class CategoriaController implements Serializable {
 
 	private List<Categoria> ListaCategoria;
 
+	private String accion;
+	private String categori="";
+
 	public List<Categoria> getListaCategoria() {
 		ListaCategoria = categoriaEJB.findAll();
 		return ListaCategoria;
+	}
+
+	public String getCategori() {
+		return categori;
+	}
+
+	public void setCategori(String categori) {
+		this.categori = categori;
+	}
+	
+	public String getAccion() {
+		return accion;
+	}
+
+	public void setAccion(String accion) {
+		this.accion = accion;
 	}
 
 	public void setListaCategoria(List<Categoria> ListaCategoria) {
@@ -55,17 +73,19 @@ public class CategoriaController implements Serializable {
 	@PostConstruct
 	public void init() {
 		categoria = new Categoria();
-
+		ListaCategoria = categoriaEJB.findAll();
+		categori = "";
 	}
 
 	public void registrar() {
 		try {
+			getAccion();
 			categoriaEJB.create(categoria);
 		} catch (Exception e) {
 		}
 	}
 
-	public void Eliminar(Categoria c) {
+	public void eliminar(Categoria c) {
 		try {
 			categoriaEJB.remove(c);
 		} catch (Exception e) {
@@ -73,64 +93,24 @@ public class CategoriaController implements Serializable {
 		}
 	}
 
-	public void Modificar() {
+	public void modificar() {
 		try {
+			getAccion();
 			categoriaEJB.edit(categoria);
 		} catch (Exception e) {
 
 		}
+		categoria.setNombre(categori);
+	}
+	
+	public void limpiar() {
+
+		categoria.setNombre(categori);
 	}
 
-	public SelectItem[] getItemsAvailableSelectMany() {
-		return Conversor.getSelectItems(categoriaEJB.findAll(), false);
-	}
-
-	public SelectItem[] getItemsAvailableSelectOne() {
-		return Conversor.getSelectItems(categoriaEJB.findAll(), true);
-	}
-
-	public Categoria getCategoria(java.lang.Integer id) {
-		return categoriaEJB.find(id);
-	}
-
-	@FacesConverter(forClass = Categoria.class)
-	public static class CategoriaControllerConverter implements Converter {
-
-		@Override
-		public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
-			if (value == null || value.length() == 0) {
-				return null;
-			}
-			CategoriaController controller = (CategoriaController) facesContext.getApplication().getELResolver().
-					getValue(facesContext.getELContext(), null, "categoriaController");
-			return controller.getCategoria(getKey(value));
-		}
-
-		java.lang.Integer getKey(String value) {
-			java.lang.Integer key;
-			key = Integer.valueOf(value);
-			return key;
-		}
-
-		String getStringKey(java.lang.Integer value) {
-			StringBuilder sb = new StringBuilder();
-			sb.append(value);
-			return sb.toString();
-		}
-
-		@Override
-		public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
-			if (object == null) {
-				return null;
-			}
-			if (object instanceof Categoria) {
-				Categoria o = (Categoria) object;
-				return getStringKey(o.getIdCategoria());
-			} else {
-				throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Categoria.class.getName());
-			}
-		}
-
+	public void leerId(Categoria categoria) {
+		this.categoria = categoria;
+		setAccion("Modificar");
 	}
 
 }
