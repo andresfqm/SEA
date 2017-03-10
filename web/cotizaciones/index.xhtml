@@ -18,7 +18,7 @@
 					Registre y envíe cotizaciones.
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-					<a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" href="enviarCotizacion.html">Enviar cotización</a>
+					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="enviarCotizacion.xhtml">Enviar cotización</h:outputLink>
 				</h:panelGroup>
 			</h:panelGroup>
 			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
@@ -29,7 +29,7 @@
 					Realice actualizaciones y programe alertas.
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-					<a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" href="./seguimiento/">Actualizar cotización</a>
+					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="./seguimiento/">Actualizar cotización</h:outputLink>
 				</h:panelGroup>
 			</h:panelGroup>
 			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
@@ -40,7 +40,7 @@
 					Genere órdenes de producción.
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-					<a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" href="generarOrden.html">Generar orden de producción</a>
+					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="generarOrden.xhtml">Generar orden de producción</h:outputLink>
 				</h:panelGroup>
 			</h:panelGroup>
 			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
@@ -51,12 +51,11 @@
 					Corrija las órdenes de producción que no han sido aprobadas.
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-					<a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" href="corregirOrden.html">Corregir orden de producción</a>
+					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="corregirOrden.xhtml">Corregir orden de producción</h:outputLink>
 				</h:panelGroup>
 			</h:panelGroup>
 		</main>
 		<ui:composition template="/templates/navGeneral.xhtml" />
 		<ui:composition template="/templates/taskTabs.xhtml" />
-
 	</h:body>
 </html>
