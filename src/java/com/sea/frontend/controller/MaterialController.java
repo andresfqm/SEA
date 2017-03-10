@@ -28,6 +28,8 @@ public class MaterialController implements Serializable {
 	private Material material;
 	private List<Material> listaMateriales;
 	private int idProducto;
+	private String accion;
+	private String subcat = "";
 
 	String listString;
 
@@ -64,6 +66,22 @@ public class MaterialController implements Serializable {
 		this.material = material;
 	}
 
+	public String getAccion() {
+		return accion;
+	}
+
+	public void setAccion(String accion) {
+		this.accion = accion;
+	}
+
+	public String getSubcat() {
+		return subcat;
+	}
+
+	public void setSubcat(String subcat) {
+		this.subcat = subcat;
+	}
+
 	@PostConstruct
 	public void init() {
 		material = new Material();
@@ -72,11 +90,39 @@ public class MaterialController implements Serializable {
 
 	public void registrar() {
 		try {
+			getAccion();
 			materialEJB.create(material);
+		} catch (Exception e) {
+		}
+	}
+
+	public void eliminar(Material material) {
+		try {
+			materialEJB.remove(material);
 		} catch (Exception e) {
 
 		}
+	}
 
+	public void modificar() {
+		try {
+			getAccion();
+			materialEJB.edit(material);
+		} catch (Exception e) {
+
+		}
+		material.setNombre(subcat);
+		material.setCodigo(subcat);
+	}
+
+	public void limpiar() {
+		material.setCodigo(subcat);
+		material.setNombre(subcat);
+	}
+
+	public void leerId(Material material) {
+		this.material = material;
+		setAccion("Modificar");
 	}
 
 	public void obtenerMateriales() throws Exception {

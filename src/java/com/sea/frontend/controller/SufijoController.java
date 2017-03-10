@@ -26,6 +26,24 @@ public class SufijoController implements Serializable {
 	private SufijoFacadeLocal sufijoEJB;
 	private Sufijo sufijo;
 	private List<Sufijo> listaSufijos;
+	private String accion;
+	private String subcat="";
+
+	public SufijoFacadeLocal getSufijoEJB() {
+		return sufijoEJB;
+	}
+
+	public void setSufijoEJB(SufijoFacadeLocal sufijoEJB) {
+		this.sufijoEJB = sufijoEJB;
+	}
+
+	public String getAccion() {
+		return accion;
+	}
+
+	public void setAccion(String accion) {
+		this.accion = accion;
+	}
 
 	public List<Sufijo> getListaSufijos() {
 		listaSufijos = sufijoEJB.findAll();
@@ -52,11 +70,40 @@ public class SufijoController implements Serializable {
 
 	public void registrar() {
 		try {
+			getAccion();
 			sufijoEJB.create(sufijo);
+		} catch (Exception e) {
+		}
+	}
+
+	public void eliminar(Sufijo sufijo) {
+		try {
+			sufijoEJB.remove(sufijo);
 		} catch (Exception e) {
 
 		}
+	}
 
+	public void modificar() {
+		try {
+			getAccion();
+			sufijoEJB.edit(sufijo);
+		} catch (Exception e) {
+
+		}
+		sufijo.setCodigo(subcat);
+		sufijo.setDescripcionFabricante(subcat);
+	}
+	
+	public void limpiar() {
+
+		sufijo.setCodigo(subcat);
+		sufijo.setDescripcionFabricante(subcat);
+	}
+
+	public void leerId(Sufijo sufijo) {
+		this.sufijo = sufijo;
+		setAccion("Modificar");
 	}
 
 }

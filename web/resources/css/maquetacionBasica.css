@@ -345,6 +345,24 @@ body > nav{
 		table td{
 		white-space: pre-wrap;
 		}
+		.ui-datatable tr, .ui-datatable th, .ui-datatable td{
+			border: 1px solid rgba(0, 0, 0, 0.12);
+		}
+		.ui-datatable th:not(:first-child), .ui-datatable td:not(:first-child){
+			border-left: none;
+		}
+		.ui-datatable th:not(:last-child), .ui-datatable td:not(:last-child){
+			border-right: none;
+		}
+		.ui-datatable thead th,.ui-datatable tbody td {
+    position: relative;
+    vertical-align: middle;
+    height: 48px;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    padding-top: 12px;
+    box-sizing: border-box
+		}
 		.mdl-data-table th{
 		text-align: center;
 		}

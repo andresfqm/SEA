@@ -31,4 +31,8 @@
 		</exception-type>
 		<location>/errorPages/500.xhtml</location>
 	</error-page>
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>none</param-value>
+	</context-param>
 </web-app>

@@ -5,23 +5,14 @@
  */
 package com.sea.frontend.controller;
 
+import com.sea.backend.entities.Categoria;
 import com.sea.backend.entities.Subcategoria;
-import com.sea.backend.model.CategoriaFacade;
-import com.sea.backend.model.SubcategoriaFacade;
 import com.sea.backend.model.SubcategoriaFacadeLocal;
-import com.sea.frontend.converters.Conversor;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.convert.Converter;
-import javax.faces.convert.FacesConverter;
-import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
-import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 
 /**
@@ -36,6 +27,17 @@ public class SubcategoriaController implements Serializable {
 	private SubcategoriaFacadeLocal SubcategoriaEJB;
 	private Subcategoria subcategoria;
 	private List<Subcategoria> listaSubcategoria;
+	private String accion;
+	private String subcat = "";
+	private Categoria idCategoria;
+
+	public Categoria getIdCategoria() {
+		return idCategoria;
+	}
+
+	public void setIdCategoria(Categoria idCategoria) {
+		this.idCategoria = idCategoria;
+	}
 
 	public List<Subcategoria> getListaSubcategoria() {
 		listaSubcategoria = SubcategoriaEJB.findAll();
@@ -57,24 +59,63 @@ public class SubcategoriaController implements Serializable {
 	@PostConstruct
 	public void init() {
 		subcategoria = new Subcategoria();
+		listaSubcategoria = SubcategoriaEJB.findAll();
+		idCategoria = new Categoria();
 
 	}
 
-	public String registrar() {
+	public String getAccion() {
+		return accion;
+	}
+
+	public void setAccion(String accion) {
+		this.accion = accion;
+	}
+
+	public String getSubcat() {
+		return subcat;
+	}
+
+	public void setSubcat(String subcat) {
+		this.subcat = subcat;
+	}
+
+	public void registrar() {
 		try {
+			getAccion();
+			subcategoria.setTblCategoriaIdCategoria(idCategoria);
 			SubcategoriaEJB.create(subcategoria);
-			return ("Categoria creada");
 		} catch (Exception e) {
-			return ("PersistenceErrorOccured");
 		}
 	}
 
-	public SelectItem[] getItemsAvailableSelectOne() {
-		return Conversor.getSelectItems(SubcategoriaEJB.findAll(), true);
+	public void eliminar(Subcategoria sub) {
+		try {
+			SubcategoriaEJB.remove(sub);
+		} catch (Exception e) {
+
+		}
 	}
 
-	public Subcategoria getSubcategoria(java.lang.Integer id) {
-		return SubcategoriaEJB.find(id);
+	public void modificar() {
+		try {
+			getAccion();
+			SubcategoriaEJB.edit(subcategoria);
+		} catch (Exception e) {
+
+		}
+		subcategoria.setCodigo(subcat);
+		subcategoria.setNombre(subcat);
+	}
+
+	public void limpiar() {
+		subcategoria.setCodigo(subcat);
+		subcategoria.setNombre(subcat);
+	}
+
+	public void leerId(Subcategoria sub) {
+		this.subcategoria = sub;
+		setAccion("Modificar");
 	}
 
 }
