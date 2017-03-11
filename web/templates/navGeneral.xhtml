@@ -1,43 +1,47 @@
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-	  xmlns:pt="http://java.sun.com/jsf/passthrough">
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:body>
-		<ui:composition>
-			<nav class="fixed-nav">
-				<h:panelGroup layout="block" id="logo"></h:panelGroup>
-				<h:panelGroup layout="block" id="user">
-					<h:panelGroup layout="block" id="userName">Depurador</h:panelGroup>
-					<h:panelGroup layout="block" id="userPosition">
-						<h:panelGroup>Administrador</h:panelGroup>
-						<button id="userActions" class="mdl-button mdl-js-button mdl-button--icon">
-							<i class="material-icons">arrow_drop_down</i>
-						</button>
+<ui:composition>
+        <nav class="fixed-nav">
+            <h:panelGroup layout="block" id="logo"></h:panelGroup>
+            <h:panelGroup layout="block" id="user">
+                <h:panelGroup layout="block" id="userName">Depurador</h:panelGroup>
+                <h:panelGroup layout="block" id="userPosition">
+                    <h:panelGroup>Administrador</h:panelGroup>
+                    <button id="userActions" class="mdl-button mdl-js-button mdl-button--icon">
+                        <i class="material-icons">arrow_drop_down</i>
+                    </button>
 
-					</h:panelGroup>
-					<h:form>
-						<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="userActions">
-							<li class="mdl-menu__item"><a href="/administracion/configuracion.html">Configuración</a></li>
-							<li class="mdl-menu__item"><h:commandLink action="#{menuController.cerrarSesion()}" value="Cerrar sesión" /></li>
-						</ul>
-					</h:form>
-				</h:panelGroup>
-				<ul>
-					<li><h:outputLink value="/SEA/" class="fa fa-home" pt:aria-hidden="true">Inicio</h:outputLink></li>
-					<li><h:outputLink value="/SEA/cotizaciones" class="fa fa-shopping-cart" pt:aria-hidden="true">Cotizaciones</h:outputLink></li>
-					<li><h:outputLink value="/SEA/produccion" class="fa fa-wpforms" pt:aria-hidden="true">Producción</h:outputLink></li>
-					<li><h:outputLink value="/SEA/reportes" class="fa fa-area-chart" pt:aria-hidden="true">Reportes</h:outputLink></li>
-					<li><h:outputLink value="/SEA/administracion" class="fa fa-cog" pt:aria-hidden="true">Administración</h:outputLink></li>
-					<li><h:outputLink value="/SEA/calendario" class="fa fa-calendar" pt:aria-hidden="true">Calendario</h:outputLink></li>
-					<li><h:outputLink value="/SEA/documentacion" class="fa fa-info" pt:aria-hidden="true">Ayuda</h:outputLink></li>
-					<li><a href="https://github.com/Darhakexge/sea/issues" target="_blank" class="fa fa-github" pt:aria-hidden="true">Reportar un error</a></li>
-					<li><h:outputLink value="/SEA/sustentacion" class="fa logoSena" pt:aria-hidden="true">Sustentación</h:outputLink></li>
-				</ul>
-			</nav>
-			<h:panelGroup layout="block" id="ofuscador"></h:panelGroup>
-		</ui:composition>
-
+                </h:panelGroup>
+                <h:form>
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="userActions">
+                        <li class="mdl-menu__item"><a href="/administracion/configuracion.html">Configuración</a></li>
+                        <li class="mdl-menu__item"><a href="/usuariosdeventas/">Ventas</a></li>
+                        <li class="mdl-menu__item"><a href="/jefedeproduccion/">Producción</a></li>
+                        <li class="mdl-menu__item"><a href="/usuariosadministrativos/">Administrativos</a></li>
+                        <li class="mdl-menu__item"><h:commandLink action="#{loginController.cerrarSesion()}" value="Cerrar sesión" /></li>
+                    </ul>
+                </h:form>
+            </h:panelGroup>
+            <ul>
+                <li><a href="/" class="fa fa-home" aria-hidden="true">Inicio</a></li>
+                <li><a href="/cotizaciones" class="fa fa-shopping-cart" aria-hidden="true">Cotizaciones</a></li>
+                <li><a href="/produccion" class="fa fa-wpforms" aria-hidden="true">Producción</a></li>
+                <li><a href="/reportes" class="fa fa-area-chart" aria-hidden="true">Reportes</a></li>
+                <li><a href="/administracion" class="fa fa-cog" aria-hidden="true">Administración</a></li>
+                <li><a href="/calendario" class="fa fa-calendar" aria-hidden="true">Calendario</a></li>
+                <li><a href="/documentacion" class="fa fa-info" aria-hidden="true">Ayuda</a></li>
+                <li><a href="/500.html" class="fa fa-bug" aria-hidden="true">Reportar un error</a></li>
+                <li><a href="/sustentacion" class="fa logoSena" aria-hidden="true">Sustentación</a></li>
+                <li><a href="https://github.com/Darhakexge/Interfaces-internas/issues/" target="_blank" class="fa fa-github" aria-hidden="true">Github issues</a></li>
+            </ul>
+        </nav>
+    <h:panelGroup layout="block" id="ofuscador"></h:panelGroup>
+</ui:composition>
+        
 
     </h:body>
 

@@ -29,40 +29,40 @@ import org.primefaces.model.menu.MenuModel;
 @ViewScoped
 public class MenuController implements Serializable {
 
-	@EJB
-	private MenuFacadeLocal EJBMenu;
-	private List<Menu> lista;
-	private MenuModel model;
+    @EJB
+    private MenuFacadeLocal EJBMenu;
+    private List<Menu> lista;
+    private MenuModel model;
 
-	@PostConstruct
-	public void init() {
-		this.listarMenus();
-		model = new DefaultMenuModel();
-		// this.establecerPermisos();
+    @PostConstruct
+    public void init() {
+        this.listarMenus();
+        model = new DefaultMenuModel();
+       // this.establecerPermisos();
 
-	}
+    }
 
-	public void listarMenus() {
+    public void listarMenus() {
 
-		try {
-			lista = EJBMenu.findAll();
-		} catch (Exception e) {
-			//mensaje de jsf
+        try {
+            lista = EJBMenu.findAll();
+        } catch (Exception e) {
+            //mensaje de jsf
 
-		}
+        }
 
-	}
+    }
 
-	public MenuModel getModel() {
-		return model;
-	}
+    public MenuModel getModel() {
+        return model;
+    }
 
-	public void setModel(MenuModel model) {
-		this.model = model;
-	}
+    public void setModel(MenuModel model) {
+        this.model = model;
+    }
 
-	/* public void establecerPermisos() {
-
+   
+   /* public void establecerPermisos() {
         Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
         for (Menu m : lista) {
             if (m.getPerfilList().equals("S") && m.getTipoUsuario().equals(us.getTipo())) {
@@ -74,9 +74,7 @@ public class MenuController implements Serializable {
                             DefaultMenuItem item = new DefaultMenuItem(i.getNombre());
                             item.setUrl(i.getUrl());
                             firstSubmenu.addElement(item);
-
                         }
-
                     }
                 }
                 model.addElement(firstSubmenu);
@@ -84,16 +82,9 @@ public class MenuController implements Serializable {
                 DefaultMenuItem item = new DefaultMenuItem(m.getNombre());
                 item.setUrl(m.getUrl());
                 model.addElement(item);
-
             }
-
         }
     }
-	 */
-	public void cerrarSesion() throws IOException {
-		FacesContext context = FacesContext.getCurrentInstance();
-		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		context.getExternalContext().redirect("");
-	}
+*/
 
 }
