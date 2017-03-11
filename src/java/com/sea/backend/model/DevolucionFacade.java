@@ -46,5 +46,5 @@ public class DevolucionFacade extends AbstractFacade<Devolucion> implements Devo
 	public DevolucionFacade() {
 		super(Devolucion.class);
 	}
-	
+
 }

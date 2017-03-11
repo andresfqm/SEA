@@ -47,5 +47,5 @@ public interface SubcategoriaFacadeLocal {
 	List<Subcategoria> findRange(int[] range);
 
 	int count();
-	
+
 }

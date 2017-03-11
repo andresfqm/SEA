@@ -47,5 +47,5 @@ public interface ModalidadDePagoFacadeLocal {
 	List<ModalidadDePago> findRange(int[] range);
 
 	int count();
-	
+
 }

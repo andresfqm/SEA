@@ -27,6 +27,4 @@ public class ClienteController implements Serializable {
 		cliente = new Cliente();
 
 	}
-	
-	
 }

@@ -68,40 +68,40 @@ public class OrdenProduccion implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "ID_ORDEN_PRODUCCION")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "ID_ORDEN_PRODUCCION")
 	private Integer idOrdenProduccion;
 	@Basic(optional = false)
-    @NotNull
-    @Column(name = "FECHA_EXPEDICION")
-    @Temporal(TemporalType.TIMESTAMP)
+	@NotNull
+	@Column(name = "FECHA_EXPEDICION")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaExpedicion;
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 64)
-    @Column(name = "CIUDAD_EXPEDICION")
+	@NotNull
+	@Size(min = 1, max = 64)
+	@Column(name = "CIUDAD_EXPEDICION")
 	private String ciudadExpedicion;
 	@Lob
-    @Size(max = 65535)
-    @Column(name = "OBSERVACIONES")
+	@Size(max = 65535)
+	@Column(name = "OBSERVACIONES")
 	private String observaciones;
 	@Basic(optional = false)
-    @NotNull
-    @Column(name = "TOTAL_PRENDAS")
+	@NotNull
+	@Column(name = "TOTAL_PRENDAS")
 	private int totalPrendas;
 	@Column(name = "APROBADA")
 	private Boolean aprobada;
 	@Column(name = "FECHA_ENTREGA_1")
-    @Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.DATE)
 	private Date fechaEntrega1;
 	@Column(name = "FECHA_ENTREGA_2")
-    @Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.DATE)
 	private Date fechaEntrega2;
 	@Basic(optional = false)
-    @NotNull
-    @Column(name = "FECHA_ENTREGA_FINAL")
-    @Temporal(TemporalType.DATE)
+	@NotNull
+	@Column(name = "FECHA_ENTREGA_FINAL")
+	@Temporal(TemporalType.DATE)
 	private Date fechaEntregaFinal;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblOrdenProduccionIdOrdenProduccion")
 	private List<ProductoEspecificacion> productoEspecificacionList;
@@ -110,7 +110,7 @@ public class OrdenProduccion implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblOrdenProduccionIdOrdenProduccion")
 	private List<ObservacionesOrdenProduccion> observacionesOrdenProduccionList;
 	@JoinColumn(name = "TBL_COTIZACION_NUMERO_COTIZACION", referencedColumnName = "NUMERO_COTIZACION")
-    @ManyToOne(optional = false)
+	@ManyToOne(optional = false)
 	private Cotizacion tblCotizacionNumeroCotizacion;
 
 	public OrdenProduccion() {
@@ -259,5 +259,5 @@ public class OrdenProduccion implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.OrdenProduccion[ idOrdenProduccion=" + idOrdenProduccion + " ]";
 	}
-	
+
 }

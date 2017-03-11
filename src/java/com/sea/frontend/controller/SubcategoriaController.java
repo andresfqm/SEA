@@ -5,25 +5,15 @@
  */
 package com.sea.frontend.controller;
 
+import com.sea.backend.entities.Categoria;
 import com.sea.backend.entities.Subcategoria;
-import com.sea.backend.model.CategoriaFacade;
-import com.sea.backend.model.SubcategoriaFacade;
 import com.sea.backend.model.SubcategoriaFacadeLocal;
-import com.sea.frontend.converters.Conversor;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.convert.Converter;
-import javax.faces.convert.FacesConverter;
-import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
-import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
-
 
 /**
  *
@@ -32,52 +22,100 @@ import javax.faces.view.ViewScoped;
 @Named
 @ViewScoped
 public class SubcategoriaController implements Serializable {
-    
-    @EJB
-    private SubcategoriaFacadeLocal SubcategoriaEJB;
-    private Subcategoria subcategoria;
-    private List<Subcategoria> listaSubcategoria;
 
-    public List<Subcategoria> getListaSubcategoria() {
-        listaSubcategoria = SubcategoriaEJB.findAll();
-        return listaSubcategoria;
-    }
+	@EJB
+	private SubcategoriaFacadeLocal SubcategoriaEJB;
+	private Subcategoria subcategoria;
+	private List<Subcategoria> listaSubcategoria;
+	private String accion;
+	private String subcat = "";
+	private Categoria idCategoria;
 
-    public void setListaSubcategoria(List<Subcategoria> listaSubcategoria) {
-        this.listaSubcategoria = listaSubcategoria;
-    }
-    
-    
-    public Subcategoria getSubcategoria() {
-        return subcategoria;
-    }
-    
-    public void setSubcategoria(Subcategoria subcategoria) {
-        this.subcategoria = subcategoria;
-    }
-    
-    @PostConstruct
-    public void init() {
-        subcategoria = new Subcategoria();
-        
-    }
-    
-    public String registrar() {
-        try {
-            SubcategoriaEJB.create(subcategoria);
-            return ("Categoria creada");
-        } catch (Exception e) {
-            return ("PersistenceErrorOccured");
-        }
-    }
-    
-    public SelectItem[] getItemsAvailableSelectOne() {
-        return Conversor.getSelectItems(SubcategoriaEJB.findAll(), true);
-    }
-    
-    public Subcategoria getSubcategoria(java.lang.Integer id) {
-        return SubcategoriaEJB.find(id);
-    }
-        
-    
+	public Categoria getIdCategoria() {
+		return idCategoria;
+	}
+
+	public void setIdCategoria(Categoria idCategoria) {
+		this.idCategoria = idCategoria;
+	}
+
+	public List<Subcategoria> getListaSubcategoria() {
+		listaSubcategoria = SubcategoriaEJB.findAll();
+		return listaSubcategoria;
+	}
+
+	public void setListaSubcategoria(List<Subcategoria> listaSubcategoria) {
+		this.listaSubcategoria = listaSubcategoria;
+	}
+
+	public Subcategoria getSubcategoria() {
+		return subcategoria;
+	}
+
+	public void setSubcategoria(Subcategoria subcategoria) {
+		this.subcategoria = subcategoria;
+	}
+
+	@PostConstruct
+	public void init() {
+		subcategoria = new Subcategoria();
+		listaSubcategoria = SubcategoriaEJB.findAll();
+		idCategoria = new Categoria();
+
+	}
+
+	public String getAccion() {
+		return accion;
+	}
+
+	public void setAccion(String accion) {
+		this.accion = accion;
+	}
+
+	public String getSubcat() {
+		return subcat;
+	}
+
+	public void setSubcat(String subcat) {
+		this.subcat = subcat;
+	}
+
+	public void registrar() {
+		try {
+			getAccion();
+			subcategoria.setTblCategoriaIdCategoria(idCategoria);
+			SubcategoriaEJB.create(subcategoria);
+		} catch (Exception e) {
+		}
+	}
+
+	public void eliminar(Subcategoria sub) {
+		try {
+			SubcategoriaEJB.remove(sub);
+		} catch (Exception e) {
+
+		}
+	}
+
+	public void modificar() {
+		try {
+			getAccion();
+			SubcategoriaEJB.edit(subcategoria);
+		} catch (Exception e) {
+
+		}
+		subcategoria.setCodigo(subcat);
+		subcategoria.setNombre(subcat);
+	}
+
+	public void limpiar() {
+		subcategoria.setCodigo(subcat);
+		subcategoria.setNombre(subcat);
+	}
+
+	public void leerId(Subcategoria sub) {
+		this.subcategoria = sub;
+		setAccion("Modificar");
+	}
+
 }

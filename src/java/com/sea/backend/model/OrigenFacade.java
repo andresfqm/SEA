@@ -46,5 +46,5 @@ public class OrigenFacade extends AbstractFacade<Origen> implements OrigenFacade
 	public OrigenFacade() {
 		super(Origen.class);
 	}
-	
+
 }

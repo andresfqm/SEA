@@ -53,14 +53,14 @@ public class TipoEmail implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "ID_TIPO_EMAIL")
+	@Basic(optional = false)
+	@NotNull
+	@Column(name = "ID_TIPO_EMAIL")
 	private Integer idTipoEmail;
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 64)
-    @Column(name = "TIPO")
+	@NotNull
+	@Size(min = 1, max = 64)
+	@Column(name = "TIPO")
 	private String tipo;
 	@OneToMany(mappedBy = "tblTipoEmailIdTipoEmail")
 	private List<Email> emailList;
@@ -126,5 +126,5 @@ public class TipoEmail implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.TipoEmail[ idTipoEmail=" + idTipoEmail + " ]";
 	}
-	
+
 }

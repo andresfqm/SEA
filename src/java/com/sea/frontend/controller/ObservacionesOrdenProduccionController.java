@@ -21,32 +21,32 @@ import javax.inject.Named;
 @ViewScoped
 public class ObservacionesOrdenProduccionController implements Serializable {
 
-    @EJB
-    private ObservacionesOrdenProduccionFacadeLocal observacionesOPEJB;
+	@EJB
+	private ObservacionesOrdenProduccionFacadeLocal observacionesOPEJB;
 
-    private ObservacionesOrdenProduccion observacionesOP;
+	private ObservacionesOrdenProduccion observacionesOP;
 
-    public ObservacionesOrdenProduccion getObservacionesOP() {
-        return observacionesOP;
-    }
+	public ObservacionesOrdenProduccion getObservacionesOP() {
+		return observacionesOP;
+	}
 
-    public void setObservacionesOP(ObservacionesOrdenProduccion observacionesOP) {
-        this.observacionesOP = observacionesOP;
-    }
+	public void setObservacionesOP(ObservacionesOrdenProduccion observacionesOP) {
+		this.observacionesOP = observacionesOP;
+	}
 
-    @PostConstruct
-    public void init() {
-        observacionesOP = new ObservacionesOrdenProduccion();
+	@PostConstruct
+	public void init() {
+		observacionesOP = new ObservacionesOrdenProduccion();
 
-    }
+	}
 
-    public void registrar() {
-        try {
-            observacionesOPEJB.create(observacionesOP);
+	public void registrar() {
+		try {
+			observacionesOPEJB.create(observacionesOP);
 
-        } catch (Exception e) {
+		} catch (Exception e) {
 
-        }
+		}
 
-    }
+	}
 }

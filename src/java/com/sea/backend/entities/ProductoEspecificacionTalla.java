@@ -54,14 +54,14 @@ public class ProductoEspecificacionTalla implements Serializable {
 	@EmbeddedId
 	protected ProductoEspecificacionTallaPK productoEspecificacionTallaPK;
 	@Basic(optional = false)
-    @NotNull
-    @Column(name = "CANTIDAD")
+	@NotNull
+	@Column(name = "CANTIDAD")
 	private int cantidad;
 	@JoinColumn(name = "TBL_TALLA_ID_TALLA", referencedColumnName = "ID_TALLA", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
+	@ManyToOne(optional = false)
 	private Talla talla;
 	@JoinColumn(name = "TBL_PRODUCTO_ESPECIFICACION_ID_PRODUCTO_ESPECIFICACION", referencedColumnName = "ID_PRODUCTO_ESPECIFICACION", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
+	@ManyToOne(optional = false)
 	private ProductoEspecificacion productoEspecificacion;
 
 	public ProductoEspecificacionTalla() {
@@ -136,5 +136,5 @@ public class ProductoEspecificacionTalla implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.ProductoEspecificacionTalla[ productoEspecificacionTallaPK=" + productoEspecificacionTallaPK + " ]";
 	}
-	
+
 }

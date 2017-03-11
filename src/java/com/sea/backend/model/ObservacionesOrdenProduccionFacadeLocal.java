@@ -47,5 +47,5 @@ public interface ObservacionesOrdenProduccionFacadeLocal {
 	List<ObservacionesOrdenProduccion> findRange(int[] range);
 
 	int count();
-	
+
 }

@@ -46,5 +46,5 @@ public class DescuentoVolumenFacade extends AbstractFacade<DescuentoVolumen> imp
 	public DescuentoVolumenFacade() {
 		super(DescuentoVolumen.class);
 	}
-	
+
 }

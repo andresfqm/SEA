@@ -10,5 +10,5 @@ package com.sea.frontend.validator;
  * @author homero
  */
 public class prueba {
-    
+
 }

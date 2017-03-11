@@ -46,5 +46,5 @@ public class TipoDocumentoFacade extends AbstractFacade<TipoDocumento> implement
 	public TipoDocumentoFacade() {
 		super(TipoDocumento.class);
 	}
-	
+
 }

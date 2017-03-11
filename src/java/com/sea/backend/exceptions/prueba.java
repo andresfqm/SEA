@@ -10,5 +10,5 @@ package com.sea.backend.exceptions;
  * @author homero
  */
 public class prueba {
-    
+
 }

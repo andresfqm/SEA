@@ -60,10 +60,11 @@ form > div:nth-child(3) a{
 form > button[type="submit"]{
 	grid-area: submit;
 }
-.mdl-button.mdl-button--raised{
+.mdl-button.mdl-button--raised.ui-button-text-only .ui-button-text{
 	width: 100%;
 	margin: 16px 0;
 }
+
 .mdl-textfield__input[required] + .mdl-textfield__label::before, .mdl-selectfield__select[required] + .mdl-selectfield__label::before{
 	content: "(*) ";
 	color: #d50000;

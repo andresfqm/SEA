@@ -60,24 +60,24 @@ public class Menu implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "ID_MENU")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "ID_MENU")
 	private Integer idMenu;
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "NOMBRE")
+	@NotNull
+	@Size(min = 1, max = 45)
+	@Column(name = "NOMBRE")
 	private String nombre;
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "URL")
+	@NotNull
+	@Size(min = 1, max = 45)
+	@Column(name = "URL")
 	private String url;
 	@JoinTable(name = "tbl_perfil_menu", joinColumns = {
-    	@JoinColumn(name = "TBL_MENU_ID_MENU", referencedColumnName = "ID_MENU")}, inverseJoinColumns = {
-    	@JoinColumn(name = "TBL_PERFIL_ID_PERFIL", referencedColumnName = "ID_PERFIL")})
-    @ManyToMany
+		@JoinColumn(name = "TBL_MENU_ID_MENU", referencedColumnName = "ID_MENU")}, inverseJoinColumns = {
+		@JoinColumn(name = "TBL_PERFIL_ID_PERFIL", referencedColumnName = "ID_PERFIL")})
+	@ManyToMany
 	private List<Perfil> perfilList;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblMenuIdMenu")
 	private List<Pagina> paginaList;
@@ -161,5 +161,5 @@ public class Menu implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Menu[ idMenu=" + idMenu + " ]";
 	}
-	
+
 }

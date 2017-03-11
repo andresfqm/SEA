@@ -21,32 +21,32 @@ import javax.inject.Named;
 @ViewScoped
 public class ComentarioCambioAsesorController implements Serializable {
 
-    @EJB
-    private ComentarioCambioAsesorFacadeLocal cambioAsesorEJB;
+	@EJB
+	private ComentarioCambioAsesorFacadeLocal cambioAsesorEJB;
 
-    private ComentarioCambioAsesor cambioA;
+	private ComentarioCambioAsesor cambioA;
 
-    public ComentarioCambioAsesor getCambioA() {
-        return cambioA;
-    }
+	public ComentarioCambioAsesor getCambioA() {
+		return cambioA;
+	}
 
-    public void setCambioA(ComentarioCambioAsesor cambioA) {
-        this.cambioA = cambioA;
-    }
+	public void setCambioA(ComentarioCambioAsesor cambioA) {
+		this.cambioA = cambioA;
+	}
 
-    @PostConstruct
-    public void init() {
-        cambioA = new ComentarioCambioAsesor();
+	@PostConstruct
+	public void init() {
+		cambioA = new ComentarioCambioAsesor();
 
-    }
+	}
 
-    public void registrar() {
-        try {
-            cambioAsesorEJB.create(cambioA);
-        } catch (Exception e) {
+	public void registrar() {
+		try {
+			cambioAsesorEJB.create(cambioA);
+		} catch (Exception e) {
 
-        }
+		}
 
-    }
+	}
 
 }

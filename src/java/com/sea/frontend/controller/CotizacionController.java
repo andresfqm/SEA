@@ -55,10 +55,13 @@ public class CotizacionController implements Serializable {
 	private CiudadFacadeLocal ciudadEJB;
 	private int idCiudadEmision;
 
-	//Ejb de la foranea PropuestaNoIncluye
 	@EJB
 	private PropuestaNoIncluyeFacadeLocal propuestaEJB;
 	private int idPropuestaNoIncluye;
+
+	public void setCotizacion(Cotizacion cotizacion) {
+		this.cotizacion = cotizacion;
+	}
 
 	//Ejb de la foranea TiempoEntrega
 	@EJB
@@ -78,6 +81,15 @@ public class CotizacionController implements Serializable {
 	private LugaresEntregaFacadeLocal lugaresEEJB;
 	private int idLugaresEntrega;
 
+	@PostConstruct
+	public void init() {
+
+		cotizacion = new Cotizacion();
+		cotizacion.setFechaEmision(new Date());
+		clientes = clienteEJB.findAll();
+
+	}
+
 	public List<Cliente> getListaClientes() {
 		return listaClientes;
 	}
@@ -88,10 +100,6 @@ public class CotizacionController implements Serializable {
 
 	public Cotizacion getCotizacion() {
 		return cotizacion;
-	}
-
-	public void setCotizacion(Cotizacion cotizacion) {
-		this.cotizacion = cotizacion;
 	}
 
 	public void setIdLugaresEntrega(int idLugaresEntrega) {
@@ -146,15 +154,6 @@ public class CotizacionController implements Serializable {
 		this.idCliente = idCliente;
 	}
 
-	@PostConstruct
-	public void init() {
-
-		cotizacion = new Cotizacion();
-		cotizacion.setFechaEmision(new Date());
-		clientes = clienteEJB.findAll();
-
-	}
-
 	public Object getCliente() {
 		return datosCliente;
 	}
@@ -187,7 +186,6 @@ public class CotizacionController implements Serializable {
 		} catch (Exception e) {
 			throw e;
 		}
-
 	}
 
 	public void registrarCotización() {
@@ -201,5 +199,4 @@ public class CotizacionController implements Serializable {
 		cotizacionEJB.create(cotizacion);
 
 	}
-
 }

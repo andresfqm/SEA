@@ -46,5 +46,5 @@ public class ComentarioCambioAsesorFacade extends AbstractFacade<ComentarioCambi
 	public ComentarioCambioAsesorFacade() {
 		super(ComentarioCambioAsesor.class);
 	}
-	
+
 }

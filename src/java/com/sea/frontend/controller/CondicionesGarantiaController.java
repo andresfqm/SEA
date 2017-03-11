@@ -21,34 +21,34 @@ import javax.inject.Named;
 @ViewScoped
 public class CondicionesGarantiaController implements Serializable {
 
-    @EJB
-    private CondicionesGarantiaFacadeLocal condicionesGarantiaEJB;
+	@EJB
+	private CondicionesGarantiaFacadeLocal condicionesGarantiaEJB;
 
-    private CondicionesGarantia condicionesg;
+	private CondicionesGarantia condicionesg;
 
-    public CondicionesGarantia getCondicionesg() {
-        return condicionesg;
-    }
+	public CondicionesGarantia getCondicionesg() {
+		return condicionesg;
+	}
 
-    public void setCondicionesg(CondicionesGarantia condicionesg) {
-        this.condicionesg = condicionesg;
-    }
+	public void setCondicionesg(CondicionesGarantia condicionesg) {
+		this.condicionesg = condicionesg;
+	}
 
-    public void init() {
+	public void init() {
 
-        condicionesg = new CondicionesGarantia();
+		condicionesg = new CondicionesGarantia();
 
-    }
+	}
 
-    @PostConstruct
-    public void registrar() {
-        try {
-            condicionesGarantiaEJB.create(condicionesg);
+	@PostConstruct
+	public void registrar() {
+		try {
+			condicionesGarantiaEJB.create(condicionesg);
 
-        } catch (Exception e) {
+		} catch (Exception e) {
 
-        }
+		}
 
-    }
+	}
 
 }

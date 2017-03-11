@@ -3,7 +3,7 @@
     <h:head>
         <meta charset="UTF-8" />
         <title>Administración de usuarios | SEA</title>
-        <link rel="shortcut icon" href="/img/favicon.ico" />
+        <link rel="shortcut icon" href="#{request.contextPath}/img/favicon.ico"/>
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
         <h:outputStylesheet library="css" name="mdl-selectfield.min.css" />
         <h:outputStylesheet library="css" name="administracion.css" />
@@ -516,25 +516,25 @@
                     <button class="mdl-snackbar__action" type="button"></button>
                 </h:panelGroup>
                 <script>
-                    (function () {
-                        'use strict';
-                        window['counter'] = 0;
-                        var snackbarContainer = document.querySelector('#usuarioCreado');
-                        var showToastButton = document.querySelector('#mostrarUsuarioCreado');
-                        var handler = function (event) {
-                            console.log("Usuario eliminado");
-                        };
-                        showToastButton.addEventListener('click', function () {
-                            'use strict';
-                            var data = {message: 'Usuario creado satisfactriamente.', timeout: 5000, actionHandler: handler, actionText: 'Deshacer'};
-                            snackbarContainer.MaterialSnackbar.showSnackbar(data);
-                        });
-                    }());
+					(function () {
+						'use strict';
+						window['counter'] = 0;
+						var snackbarContainer = document.querySelector('#usuarioCreado');
+						var showToastButton = document.querySelector('#mostrarUsuarioCreado');
+						var handler = function (event) {
+							console.log("Usuario eliminado");
+						};
+						showToastButton.addEventListener('click', function () {
+							'use strict';
+							var data = {message: 'Usuario creado satisfactriamente.', timeout: 5000, actionHandler: handler, actionText: 'Deshacer'};
+							snackbarContainer.MaterialSnackbar.showSnackbar(data);
+						});
+					}());
                 </script>
             </aside>
         </main>
 		<ui:composition template="/templates/navGeneral.xhtml" />
-	<ui:composition template="/templates/taskTabs.xhtml" />
+		<ui:composition template="/templates/taskTabs.xhtml" />
 
     </h:body>
 </html>

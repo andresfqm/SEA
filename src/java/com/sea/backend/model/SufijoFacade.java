@@ -46,5 +46,5 @@ public class SufijoFacade extends AbstractFacade<Sufijo> implements SufijoFacade
 	public SufijoFacade() {
 		super(Sufijo.class);
 	}
-	
+
 }

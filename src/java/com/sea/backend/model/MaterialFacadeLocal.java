@@ -47,7 +47,7 @@ public interface MaterialFacadeLocal {
 	List<Material> findRange(int[] range);
 
 	int count();
-	
+
 	List<Material> datosMaterial(int idProducto) throws Exception;
-	
+
 }

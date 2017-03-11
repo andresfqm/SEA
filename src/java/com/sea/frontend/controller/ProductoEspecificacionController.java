@@ -18,33 +18,33 @@ import javax.inject.Named;
  */
 @Named
 @ViewScoped
-public class ProductoEspecificacionController implements Serializable{
-   
-    @EJB
-   private ProductoEspecificacionFacadeLocal productoEspecificacionEJB;
-   private ProductoEspecificacion productoE;
+public class ProductoEspecificacionController implements Serializable {
 
-    public ProductoEspecificacion getProductosE() {
-        return productoE;
-    }
+	@EJB
+	private ProductoEspecificacionFacadeLocal productoEspecificacionEJB;
+	private ProductoEspecificacion productoE;
 
-    public void setProductosE(ProductoEspecificacion productosE) {
-        this.productoE = productosE;
-    }
-   
-   public void init(){
-       productoE = new ProductoEspecificacion();
-   
-   }
-   
-   public void registrar(){
-        try{
-            productoEspecificacionEJB.create(productoE);
-            
-        }catch(Exception e){
-        
-        }
-    
-    }
-    
+	public ProductoEspecificacion getProductosE() {
+		return productoE;
+	}
+
+	public void setProductosE(ProductoEspecificacion productosE) {
+		this.productoE = productosE;
+	}
+
+	public void init() {
+		productoE = new ProductoEspecificacion();
+
+	}
+
+	public void registrar() {
+		try {
+			productoEspecificacionEJB.create(productoE);
+
+		} catch (Exception e) {
+
+		}
+
+	}
+
 }

@@ -47,5 +47,5 @@ public interface MenuFacadeLocal {
 	List<Menu> findRange(int[] range);
 
 	int count();
-	
+
 }

@@ -46,5 +46,5 @@ public class PropuestaNoIncluyeFacade extends AbstractFacade<PropuestaNoIncluye>
 	public PropuestaNoIncluyeFacade() {
 		super(PropuestaNoIncluye.class);
 	}
-	
+
 }

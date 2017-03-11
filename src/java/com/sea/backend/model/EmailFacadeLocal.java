@@ -47,5 +47,5 @@ public interface EmailFacadeLocal {
 	List<Email> findRange(int[] range);
 
 	int count();
-	
+
 }

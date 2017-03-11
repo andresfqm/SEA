@@ -20,32 +20,32 @@ import javax.inject.Named;
 @ViewScoped
 public class OrdenProduccionController implements Serializable {
 
-    @Named
-    private OrdenProduccionFacadeLocal ordenPruduccionEJB;
+	@Named
+	private OrdenProduccionFacadeLocal ordenPruduccionEJB;
 
-    private OrdenProduccion ordenP;
+	private OrdenProduccion ordenP;
 
-    public OrdenProduccion getOrdenP() {
-        return ordenP;
-    }
+	public OrdenProduccion getOrdenP() {
+		return ordenP;
+	}
 
-    public void setOrdenP(OrdenProduccion ordenP) {
-        this.ordenP = ordenP;
-    }
+	public void setOrdenP(OrdenProduccion ordenP) {
+		this.ordenP = ordenP;
+	}
 
-    @PostConstruct
-    public void init() {
-        ordenP = new OrdenProduccion();
+	@PostConstruct
+	public void init() {
+		ordenP = new OrdenProduccion();
 
-    }
+	}
 
-    public void registrar() {
-        try {
-            ordenPruduccionEJB.create(ordenP);
-        } catch (Exception e) {
+	public void registrar() {
+		try {
+			ordenPruduccionEJB.create(ordenP);
+		} catch (Exception e) {
 
-        }
+		}
 
-    }
+	}
 
 }

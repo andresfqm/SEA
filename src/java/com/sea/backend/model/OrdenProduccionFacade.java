@@ -46,5 +46,5 @@ public class OrdenProduccionFacade extends AbstractFacade<OrdenProduccion> imple
 	public OrdenProduccionFacade() {
 		super(OrdenProduccion.class);
 	}
-	
+
 }

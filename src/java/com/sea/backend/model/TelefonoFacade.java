@@ -46,5 +46,5 @@ public class TelefonoFacade extends AbstractFacade<Telefono> implements Telefono
 	public TelefonoFacade() {
 		super(Telefono.class);
 	}
-	
+
 }

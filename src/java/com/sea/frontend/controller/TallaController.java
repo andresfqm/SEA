@@ -19,33 +19,33 @@ import javax.inject.Named;
 @Named
 @ViewScoped
 public class TallaController implements Serializable {
-    
-    @EJB
-    private TallaFacadeLocal tallaEJB;
-    
-    private Talla talla;
-    
-    public Talla getTalla() {
-        return talla;
-    }
-    
-    public void setTalla(Talla talla) {
-        this.talla = talla;
-    }
-    
-    public void init() {
-        talla = new Talla();
-        
-    }
-    
-    public void registrar() {
-        try {
-            tallaEJB.create(talla);
-            
-        } catch (Exception e) {
-            
-        }
-        
-    }
-    
+
+	@EJB
+	private TallaFacadeLocal tallaEJB;
+
+	private Talla talla;
+
+	public Talla getTalla() {
+		return talla;
+	}
+
+	public void setTalla(Talla talla) {
+		this.talla = talla;
+	}
+
+	public void init() {
+		talla = new Talla();
+
+	}
+
+	public void registrar() {
+		try {
+			tallaEJB.create(talla);
+
+		} catch (Exception e) {
+
+		}
+
+	}
+
 }

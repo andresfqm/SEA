@@ -47,5 +47,5 @@ public interface RegistroCostoFacadeLocal {
 	List<RegistroCosto> findRange(int[] range);
 
 	int count();
-	
+
 }

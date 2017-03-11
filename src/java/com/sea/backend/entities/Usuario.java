@@ -67,51 +67,51 @@ public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "ID_USUARIO")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "ID_USUARIO")
 	private Integer idUsuario;
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 32)
-    @Column(name = "NUMERO_DOCUMENTO")
+	@NotNull
+	@Size(min = 1, max = 32)
+	@Column(name = "NUMERO_DOCUMENTO")
 	private String numeroDocumento;
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 256)
-    @Column(name = "NOMBRE")
+	@NotNull
+	@Size(min = 1, max = 256)
+	@Column(name = "NOMBRE")
 	private String nombre;
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 256)
-    @Column(name = "APELLIDO")
+	@NotNull
+	@Size(min = 1, max = 256)
+	@Column(name = "APELLIDO")
 	private String apellido;
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 32)
-    @Column(name = "ID_INTERNO")
+	@NotNull
+	@Size(min = 1, max = 32)
+	@Column(name = "ID_INTERNO")
 	private String idInterno;
 	@Basic(optional = false)
-    @NotNull
-    @Column(name = "CONSECUTIVO_COTIZACION")
+	@NotNull
+	@Column(name = "CONSECUTIVO_COTIZACION")
 	private int consecutivoCotizacion;
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "NOMBRE_USUARIO")
+	@NotNull
+	@Size(min = 1, max = 45)
+	@Column(name = "NOMBRE_USUARIO")
 	private String nombreUsuario;
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 32)
-    @Column(name = "CONTRASENA")
+	@NotNull
+	@Size(min = 1, max = 32)
+	@Column(name = "CONTRASENA")
 	private String contrasena;
 	@Basic(optional = false)
-    @NotNull
-    @Column(name = "HABILITADO")
+	@NotNull
+	@Column(name = "HABILITADO")
 	private boolean habilitado;
 	@Basic(optional = false)
-    @NotNull
-    @Column(name = "AUTENTICADO")
+	@NotNull
+	@Column(name = "AUTENTICADO")
 	private boolean autenticado;
 	@ManyToMany(mappedBy = "usuarioList")
 	private List<Rol> rolList;
@@ -124,7 +124,7 @@ public class Usuario implements Serializable {
 	@OneToMany(mappedBy = "tblUsuarioIdUsuario")
 	private List<Direccion> direccionList;
 	@JoinColumn(name = "TBL_TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO", referencedColumnName = "ID_TIPO_DOCUMENTO")
-    @ManyToOne(optional = false)
+	@ManyToOne(optional = false)
 	private TipoDocumento tblTipoDocumentoIdTipoDocumento;
 	@OneToMany(mappedBy = "tblUsuarioIdUsuario")
 	private List<Email> emailList;
@@ -315,5 +315,5 @@ public class Usuario implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Usuario[ idUsuario=" + idUsuario + " ]";
 	}
-	
+
 }

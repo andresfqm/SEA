@@ -46,5 +46,5 @@ public class TiempoEntregaFacade extends AbstractFacade<TiempoEntrega> implement
 	public TiempoEntregaFacade() {
 		super(TiempoEntrega.class);
 	}
-	
+
 }

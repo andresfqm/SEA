@@ -46,5 +46,5 @@ public class CondicionesGarantiaFacade extends AbstractFacade<CondicionesGaranti
 	public CondicionesGarantiaFacade() {
 		super(CondicionesGarantia.class);
 	}
-	
+
 }

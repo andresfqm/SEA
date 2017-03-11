@@ -21,48 +21,47 @@ import javax.inject.Named;
 @Named
 @ViewScoped
 public class PropuestaNoIncluyeController implements Serializable {
-    
-    @EJB
-    private PropuestaNoIncluyeFacadeLocal propuestoNoIncluyeEJB;
-    
-    private PropuestaNoIncluye propuestaNoI;
-    
-    private List<PropuestaNoIncluye> propuestaNoIncluye;
 
-    public List<PropuestaNoIncluye> getPropuestaNoIncluye() {
-        return propuestaNoIncluye;
-    }
+	@EJB
+	private PropuestaNoIncluyeFacadeLocal propuestoNoIncluyeEJB;
 
-    public void setPropuestaNoIncluye(List<PropuestaNoIncluye> propuestaNoIncluye) {
-        this.propuestaNoIncluye = propuestaNoIncluye;
-    }
-    
-    
-    public PropuestaNoIncluye getPropuestaNoI() {
-        return propuestaNoI;
-    }
-    
-    public void setPropuestaNoI(PropuestaNoIncluye propuestaNoI) {
-        this.propuestaNoI = propuestaNoI;
-    }
-    
-    @PostConstruct
-    public void init() {
-        
-        propuestaNoI = new PropuestaNoIncluye();
-        
-        propuestaNoIncluye = propuestoNoIncluyeEJB.findAll();
-        
-    }
-    
-    public void registrar() {
-        try {
-            propuestoNoIncluyeEJB.create(propuestaNoI);
-            
-        } catch (Exception e) {
-            
-        }
-        
-    }
-    
+	private PropuestaNoIncluye propuestaNoI;
+
+	private List<PropuestaNoIncluye> propuestaNoIncluye;
+
+	public List<PropuestaNoIncluye> getPropuestaNoIncluye() {
+		return propuestaNoIncluye;
+	}
+
+	public void setPropuestaNoIncluye(List<PropuestaNoIncluye> propuestaNoIncluye) {
+		this.propuestaNoIncluye = propuestaNoIncluye;
+	}
+
+	public PropuestaNoIncluye getPropuestaNoI() {
+		return propuestaNoI;
+	}
+
+	public void setPropuestaNoI(PropuestaNoIncluye propuestaNoI) {
+		this.propuestaNoI = propuestaNoI;
+	}
+
+	@PostConstruct
+	public void init() {
+
+		propuestaNoI = new PropuestaNoIncluye();
+
+		propuestaNoIncluye = propuestoNoIncluyeEJB.findAll();
+
+	}
+
+	public void registrar() {
+		try {
+			propuestoNoIncluyeEJB.create(propuestaNoI);
+
+		} catch (Exception e) {
+
+		}
+
+	}
+
 }

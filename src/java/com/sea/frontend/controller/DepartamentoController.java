@@ -22,31 +22,31 @@ import javax.inject.Named;
 @ViewScoped
 public class DepartamentoController implements Serializable {
 
-    @EJB
-    private DepartamentoFacadeLocal departamentoEJB;
+	@EJB
+	private DepartamentoFacadeLocal departamentoEJB;
 
-    private Departamento departamento;
+	private Departamento departamento;
 
-    public Departamento getDepartamento() {
-        return departamento;
-    }
+	public Departamento getDepartamento() {
+		return departamento;
+	}
 
-    public void setDepartamento(Departamento departamento) {
-        this.departamento = departamento;
-    }
+	public void setDepartamento(Departamento departamento) {
+		this.departamento = departamento;
+	}
 
-    @PostConstruct
-    public void init() {
-        departamento = new Departamento();
+	@PostConstruct
+	public void init() {
+		departamento = new Departamento();
 
-    }
+	}
 
-    public void registrar() {
-        try {
-            departamentoEJB.create(departamento);
-        } catch (Exception e) {
+	public void registrar() {
+		try {
+			departamentoEJB.create(departamento);
+		} catch (Exception e) {
 
-        }
+		}
 
-    }
+	}
 }

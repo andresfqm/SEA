@@ -47,5 +47,5 @@ public interface TiempoEntregaFacadeLocal {
 	List<TiempoEntrega> findRange(int[] range);
 
 	int count();
-	
+
 }

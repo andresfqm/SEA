@@ -23,39 +23,37 @@ import javax.inject.Named;
 @ViewScoped
 public class CiudadController implements Serializable {
 
-    @EJB
-    private CiudadFacadeLocal ciudadEJB;
-    private Ciudad ciudad;
-    private List<Ciudad> ciudades;
+	@EJB
+	private CiudadFacadeLocal ciudadEJB;
+	private Ciudad ciudad;
+	private List<Ciudad> ciudades;
 
-    public List<Ciudad> getCiudades() {
-        return ciudades;
-    }
+	public List<Ciudad> getCiudades() {
+		return ciudades;
+	}
 
-    public void setCiudades(List<Ciudad> ciudades) {
-        this.ciudades = ciudades;
-    }
+	public void setCiudades(List<Ciudad> ciudades) {
+		this.ciudades = ciudades;
+	}
 
-    public Ciudad getCiudad() {
-        return ciudad;
-    }
+	public Ciudad getCiudad() {
+		return ciudad;
+	}
 
-    public void setCiudad(Ciudad ciudad) {
-        this.ciudad = ciudad;
-    }
-    
-    
+	public void setCiudad(Ciudad ciudad) {
+		this.ciudad = ciudad;
+	}
 
-    @PostConstruct
-    public void init() {
-        ciudad = new Ciudad();
-        ciudades = ciudadEJB.findAll();
+	@PostConstruct
+	public void init() {
+		ciudad = new Ciudad();
+		ciudades = ciudadEJB.findAll();
 
-    }
+	}
 
-    public void registrar() {
-        ciudadEJB.create(ciudad);
+	public void registrar() {
+		ciudadEJB.create(ciudad);
 
-    }
+	}
 
 }

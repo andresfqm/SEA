@@ -1,73 +1,61 @@
 <!DOCTYPE html>
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-<h:head>
-	<meta charset="UTF-8" />
-	<title>Producción | SEA</title>
-	<link rel="shortcut icon" href="/img/favicon.ico" />
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+	<h:head>
+		<meta charset="UTF-8" />
+		<title>Producción | SEA</title>
+		<link rel="shortcut icon" href="#{request.contextPath}/img/favicon.ico"/>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
 	</h:head>
 	<h:body>
 		<ui:composition template="/templates/header.xhtml" />
-	<main class="menuGeneral">
-		<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
-			<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
-				<h2 class="mdl-card__title-text">Aprobar orden de producción</h2>
+		<main class="menuGeneral">
+			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
+				<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
+					<h2 class="mdl-card__title-text">Aprobar orden de producción</h2>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-card__supporting-text">
+					Analice las órdenes de producción enviadas y apruebelas o rechácelas.
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
+					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="aprobarOrden.xhtml">Verificar y aprobar orden de producción</h:outputLink>
+				</h:panelGroup>
 			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__supporting-text">
-				Analice las órdenes de producción enviadas y apruebelas o rechácelas.
+			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
+				<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
+					<h2 class="mdl-card__title-text">Seguimiento de producción</h2>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-card__supporting-text">
+					Actualice el estado de las órdenes de producción.
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
+					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="./seguimiento/">Actualizar orden de producción</h:outputLink>
+				</h:panelGroup>
 			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-				<a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" href="aprobarOrden.html">Verificar y aprobar orden de producción</a>
+			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
+				<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
+					<h2 class="mdl-card__title-text">Devoluciones</h2>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-card__supporting-text">
+					Gestione las devoluciones recibidas.
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
+					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="./devoluciones.xhtml">Gestionar devolución</h:outputLink>
+				</h:panelGroup>
 			</h:panelGroup>
-		</h:panelGroup>
-		<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
-			<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
-				<h2 class="mdl-card__title-text">Seguimiento de producción</h2>
+			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
+				<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
+					<h2 class="mdl-card__title-text">Generar orden de producción</h2>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-card__supporting-text">
+					Genere órdenes de producción.
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
+					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="generarOrden.xhtml">Generar orden de producción</h:outputLink>
+				</h:panelGroup>
 			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__supporting-text">
-				Actualice el estado de las órdenes de producción.
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-				<a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" href="./seguimiento/">Actualizar orden de producción</a>
-			</h:panelGroup>
-		</h:panelGroup>
-		<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
-			<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
-				<h2 class="mdl-card__title-text">Devoluciones</h2>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__supporting-text">
-				Gestione las devoluciones recibidas.
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-				<a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" href="./devoluciones.html">Gestionar devolución</a>
-			</h:panelGroup>
-		</h:panelGroup>
-		<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
-			<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
-				<h2 class="mdl-card__title-text">Generar orden de producción</h2>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__supporting-text">
-				Genere órdenes de producción.
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-				<a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" href="generarOrden.html">Generar orden de producción</a>
-			</h:panelGroup>
-		</h:panelGroup>
-		<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
-			<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
-				<h2 class="mdl-card__title-text">Control de existencias</h2>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__supporting-text">
-				Actualice las existencias de los artículos.
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-				<a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" href="./controlExistencias.html">Actualizar inventario</a>
-			</h:panelGroup>
-		</h:panelGroup>
-	</main>
-	<ui:composition template="/templates/navGeneral.xhtml" />
-	<ui:composition template="/templates/taskTabs.xhtml" />
-
-</h:body>
+		</main>
+		<ui:composition template="/templates/navGeneral.xhtml" />
+		<ui:composition template="/templates/taskTabs.xhtml" />
+	</h:body>
 </html>

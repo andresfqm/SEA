@@ -46,5 +46,5 @@ public class TipoEmailFacade extends AbstractFacade<TipoEmail> implements TipoEm
 	public TipoEmailFacade() {
 		super(TipoEmail.class);
 	}
-	
+
 }
