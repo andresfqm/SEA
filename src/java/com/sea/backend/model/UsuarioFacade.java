@@ -48,29 +48,29 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 	public UsuarioFacade() {
 		super(Usuario.class);
 	}
-	
-    @Override
-    public Usuario iniciarSesion(Usuario us) {
 
-        Usuario usuario = null;
-        String consulta;
-        try {
-            consulta = "FROM Usuario u WHERE u.nombreUsuario = ?1 and u.contrasena = ?2";
-            
-            Query query = em.createQuery(consulta);
-            query.setParameter(1, us.getNombreUsuario());
-            query.setParameter(2, us.getContrasena());
+	@Override
+	public Usuario iniciarSesion(Usuario us) {
 
-            List<Usuario> lista = query.getResultList();
-            if (!lista.isEmpty()) {
-                usuario = lista.get(0);
-            }
-        } catch (Exception e) {
+		Usuario usuario = null;
+		String consulta;
+		try {
+			consulta = "FROM Usuario u WHERE u.nombreUsuario = ?1 and u.contrasena = ?2";
 
-            throw e;
+			Query query = em.createQuery(consulta);
+			query.setParameter(1, us.getNombreUsuario());
+			query.setParameter(2, us.getContrasena());
 
-        }
-        return usuario;
-}
-	
+			List<Usuario> lista = query.getResultList();
+			if (!lista.isEmpty()) {
+				usuario = lista.get(0);
+			}
+		} catch (Exception e) {
+
+			throw e;
+
+		}
+		return usuario;
+	}
+
 }

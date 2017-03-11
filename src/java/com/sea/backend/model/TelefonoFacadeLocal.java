@@ -47,5 +47,5 @@ public interface TelefonoFacadeLocal {
 	List<Telefono> findRange(int[] range);
 
 	int count();
-	
+
 }

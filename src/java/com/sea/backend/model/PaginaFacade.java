@@ -46,5 +46,5 @@ public class PaginaFacade extends AbstractFacade<Pagina> implements PaginaFacade
 	public PaginaFacade() {
 		super(Pagina.class);
 	}
-	
+
 }

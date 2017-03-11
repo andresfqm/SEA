@@ -18,65 +18,62 @@ import javax.inject.Named;
 @ViewScoped
 public class ClienteController implements Serializable {
 
-    @EJB
-    private ClienteFacadeLocal clienteEJB;
-    private List<Cliente> listaClientes;
-    private Cliente cliente;
+	@EJB
+	private ClienteFacadeLocal clienteEJB;
+	private List<Cliente> listaClientes;
+	private Cliente cliente;
 
-    public List<Cliente> getListaClientes() {
-        listaClientes = clienteEJB.findAll();
-        return listaClientes;
-    }
+	public List<Cliente> getListaClientes() {
+		listaClientes = clienteEJB.findAll();
+		return listaClientes;
+	}
 
-    public void setListaClientes(List<Cliente> listaClientes) {
-        this.listaClientes = listaClientes;
-    }
+	public void setListaClientes(List<Cliente> listaClientes) {
+		this.listaClientes = listaClientes;
+	}
 
-    private Object datosCliente;
-    private int idCliente;
-    private List<Cliente> clientes;
+	private Object datosCliente;
+	private int idCliente;
+	private List<Cliente> clientes;
 
-    //Obteniendo todos los datos del cliente
-    public void obtenerDatosCliente() throws Exception {
-        try {
-            datosCliente = clienteEJB.datosCliente(idCliente);
-        } catch (Exception e) {
-            throw e;
-        }
+	//Obteniendo todos los datos del cliente
+	public void obtenerDatosCliente() throws Exception {
+		try {
+			datosCliente = clienteEJB.datosCliente(idCliente);
+		} catch (Exception e) {
+			throw e;
+		}
 
-    }
+	}
 
-    @PostConstruct
-    public void init() {
-        clientes = clienteEJB.findAll();
-        cliente = new Cliente();
-        
-      
-     
-        
-    }
+	@PostConstruct
+	public void init() {
+		clientes = clienteEJB.findAll();
+		cliente = new Cliente();
 
-    public Object getCliente() {
-        return datosCliente;
-    }
+	}
 
-    public void setCliente(Object cliente) {
-        this.datosCliente = cliente;
-    }
+	public Object getCliente() {
+		return datosCliente;
+	}
 
-    public int getIdCliente() {
-        return idCliente;
-    }
+	public void setCliente(Object cliente) {
+		this.datosCliente = cliente;
+	}
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
+	public int getIdCliente() {
+		return idCliente;
+	}
 
-    public List<Cliente> getClientes() {
-        return clientes;
-    }
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
+	}
 
-    public void setClientes(List<Cliente> clientes) {
-        this.clientes = clientes;
-    }
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
+	}
 }

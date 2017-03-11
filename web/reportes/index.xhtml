@@ -1,117 +1,116 @@
 <!DOCTYPE html>
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-<h:head>
-	<meta charset="UTF-8" />
-	<title>Reportes | SEA</title>
-	<link rel="shortcut icon" href="/img/favicon.ico" />
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+	<h:head>
+		<meta charset="UTF-8" />
+		<title>Reportes | SEA</title>
+		<link rel="shortcut icon" href="#{request.contextPath}/img/favicon.ico"/>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
 	</h:head>
 	<h:body>
 		<ui:composition template="/templates/header.xhtml" />
-	<main class="menuGeneral">
-		<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
-			<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
-				<h2 class="mdl-card__title-text">Seguimiento comercial</h2>
+		<main class="menuGeneral">
+			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
+				<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
+					<h2 class="mdl-card__title-text">Seguimiento comercial</h2>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-card__supporting-text">
+					Consulte el estado de las cotizaciones enviadas.
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
+					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="./seguimientoComercial.html">Ver reporte</h:outputLink>
+				</h:panelGroup>
 			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__supporting-text">
-				Consulte el estado de las cotizaciones enviadas.
+			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
+				<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
+					<h2 class="mdl-card__title-text">Cotizaciones enviadas</h2>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-card__supporting-text">
+					Consulte todas las cotizaciones individuales que han sido enviadas.
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
+					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="./cotizacionesEnviadas.html">Ver reporte</h:outputLink>
+				</h:panelGroup>
 			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-				<a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" href="./seguimientoComercial.html">Ver reporte</a>
+			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
+				<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
+					<h2 class="mdl-card__title-text">Control órdenes de producción</h2>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-card__supporting-text">
+					Consulte el estado actual de las órdenes de producción.
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
+					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="./controlOP.html">Ver reporte</h:outputLink>
+				</h:panelGroup>
 			</h:panelGroup>
-		</h:panelGroup>
-		<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
-			<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
-				<h2 class="mdl-card__title-text">Cotizaciones enviadas</h2>
+			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
+				<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
+					<h2 class="mdl-card__title-text">Órdenes de producción</h2>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-card__supporting-text">
+					Consulte los detalles de una orden de producción.
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
+					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="./detalleOP.html">Ver reporte</h:outputLink>
+				</h:panelGroup>
 			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__supporting-text">
-				Consulte todas las cotizaciones individuales que han sido enviadas.
+			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
+				<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
+					<h2 class="mdl-card__title-text">Histórico de ventas</h2>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-card__supporting-text">
+					Consulte y filtre el histórico de ventas.
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
+					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="./historicoVentas.html">Ver reporte</h:outputLink>
+				</h:panelGroup>
 			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-				<a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" href="./cotizacionesEnviadas.html">Ver reporte</a>
+			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
+				<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
+					<h2 class="mdl-card__title-text">Lista de precios</h2>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-card__supporting-text">
+					Consulte la lista de precios.
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
+					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="listaDePrecios.html">Ver reporte</h:outputLink>
+				</h:panelGroup>
 			</h:panelGroup>
-		</h:panelGroup>
-		<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
-			<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
-				<h2 class="mdl-card__title-text">Control órdenes de producción</h2>
+			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
+				<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
+					<h2 class="mdl-card__title-text">Control de existencias</h2>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-card__supporting-text">
+					Consulte las existencias en el inventario.
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
+					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="./existencias.html">Ver reporte</h:outputLink>
+				</h:panelGroup>
 			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__supporting-text">
-				Consulte el estado actual de las órdenes de producción.
+			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
+				<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
+					<h2 class="mdl-card__title-text">Devoluciones</h2>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-card__supporting-text">
+					Consulte todas las devoluciones reportadas y su estado actual.
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
+					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="./devoluciones.html">Ver reporte</h:outputLink>
+				</h:panelGroup>
 			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-				<a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" href="./controlOP.html">Ver reporte</a>
+			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
+				<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
+					<h2 class="mdl-card__title-text">Usuarios online</h2>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-card__supporting-text">
+					Consulte cuales son los usuarios que están usando el sistema en tiempo real.
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
+					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="./usuarios.html">Ver reporte</h:outputLink>
+				</h:panelGroup>
 			</h:panelGroup>
-		</h:panelGroup>
-		<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
-			<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
-				<h2 class="mdl-card__title-text">Órdenes de producción</h2>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__supporting-text">
-				Consulte los detalles de una orden de producción.
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-				<a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" href="./detalleOP.html">Ver reporte</a>
-			</h:panelGroup>
-		</h:panelGroup>
-		<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
-			<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
-				<h2 class="mdl-card__title-text">Histórico de ventas</h2>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__supporting-text">
-				Consulte y filtre el histórico de ventas.
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-				<a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" href="./historicoVentas.html">Ver reporte</a>
-			</h:panelGroup>
-		</h:panelGroup>
-		<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
-			<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
-				<h2 class="mdl-card__title-text">Lista de precios</h2>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__supporting-text">
-				Consulte la lista de precios.
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-				<a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" href="listaDePrecios.html">Ver reporte</a>
-			</h:panelGroup>
-		</h:panelGroup>
-		<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
-			<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
-				<h2 class="mdl-card__title-text">Control de existencias</h2>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__supporting-text">
-				Consulte las existencias en el inventario.
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-				<a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" href="./existencias.html">Ver reporte</a>
-			</h:panelGroup>
-		</h:panelGroup>
-		<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
-			<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
-				<h2 class="mdl-card__title-text">Devoluciones</h2>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__supporting-text">
-				Consulte todas las devoluciones reportadas y su estado actual.
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-				<a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" href="./devoluciones.html">Ver reporte</a>
-			</h:panelGroup>
-		</h:panelGroup>
-		<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
-			<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
-				<h2 class="mdl-card__title-text">Usuarios online</h2>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__supporting-text">
-				Consulte cuales son los usuarios que están usando el sistema en tiempo real.
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-				<a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" href="./usuarios.html">Ver reporte</a>
-			</h:panelGroup>
-		</h:panelGroup>
-	</main>
-	<ui:composition template="/templates/navGeneral.xhtml" />
-	<ui:composition template="/templates/taskTabs.xhtml" />
-
-</h:body>
+		</main>
+		<ui:composition template="/templates/navGeneral.xhtml" />
+		<ui:composition template="/templates/taskTabs.xhtml" />
+	</h:body>
 </html>

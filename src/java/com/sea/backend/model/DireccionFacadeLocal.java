@@ -47,6 +47,6 @@ public interface DireccionFacadeLocal {
 	List<Direccion> findRange(int[] range);
 
 	int count();
-	
+
 	Direccion direccionCliente(int idCliente) throws Exception;
 }

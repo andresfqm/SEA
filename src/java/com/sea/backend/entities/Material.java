@@ -53,34 +53,29 @@ import javax.xml.bind.annotation.XmlTransient;
 	@NamedQuery(name = "Material.findAll", query = "SELECT m FROM Material m")
 	, @NamedQuery(name = "Material.findByIdMaterial", query = "SELECT m FROM Material m WHERE m.idMaterial = :idMaterial")
 	, @NamedQuery(name = "Material.findByNombre", query = "SELECT m FROM Material m WHERE m.nombre = :nombre")
-	, @NamedQuery(name = "Material.findByCodigo", query = "SELECT m FROM Material m WHERE m.codigo = :codigo")
-	, @NamedQuery(name = "Material.findByCosto", query = "SELECT m FROM Material m WHERE m.costo = :costo")})
+	, @NamedQuery(name = "Material.findByCodigo", query = "SELECT m FROM Material m WHERE m.codigo = :codigo")})
 public class Material implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "ID_MATERIAL")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "ID_MATERIAL")
 	private Integer idMaterial;
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 64)
-    @Column(name = "NOMBRE")
+	@NotNull
+	@Size(min = 1, max = 64)
+	@Column(name = "NOMBRE")
 	private String nombre;
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 5)
-    @Column(name = "CODIGO")
+	@NotNull
+	@Size(min = 1, max = 5)
+	@Column(name = "CODIGO")
 	private String codigo;
-	@Basic(optional = false)
-    @NotNull
-    @Column(name = "COSTO")
-	private double costo;
 	@JoinTable(name = "tbl_producto_material", joinColumns = {
-    	@JoinColumn(name = "TBL_MATERIAL_ID_MATERIAL", referencedColumnName = "ID_MATERIAL")}, inverseJoinColumns = {
-    	@JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")})
-    @ManyToMany
+		@JoinColumn(name = "TBL_MATERIAL_ID_MATERIAL", referencedColumnName = "ID_MATERIAL")}, inverseJoinColumns = {
+		@JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")})
+	@ManyToMany
 	private List<Producto> productoList;
 
 	public Material() {
@@ -94,7 +89,6 @@ public class Material implements Serializable {
 		this.idMaterial = idMaterial;
 		this.nombre = nombre;
 		this.codigo = codigo;
-		this.costo = costo;
 	}
 
 	public Integer getIdMaterial() {
@@ -119,14 +113,6 @@ public class Material implements Serializable {
 
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
-	}
-
-	public double getCosto() {
-		return costo;
-	}
-
-	public void setCosto(double costo) {
-		this.costo = costo;
 	}
 
 	@XmlTransient
@@ -162,5 +148,5 @@ public class Material implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Material[ idMaterial=" + idMaterial + " ]";
 	}
-	
+
 }

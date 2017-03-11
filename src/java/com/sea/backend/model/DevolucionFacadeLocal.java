@@ -47,5 +47,5 @@ public interface DevolucionFacadeLocal {
 	List<Devolucion> findRange(int[] range);
 
 	int count();
-	
+
 }

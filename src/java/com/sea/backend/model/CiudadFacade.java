@@ -46,5 +46,5 @@ public class CiudadFacade extends AbstractFacade<Ciudad> implements CiudadFacade
 	public CiudadFacade() {
 		super(Ciudad.class);
 	}
-	
+
 }

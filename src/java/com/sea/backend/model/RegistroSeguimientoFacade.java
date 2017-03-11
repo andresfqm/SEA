@@ -46,5 +46,5 @@ public class RegistroSeguimientoFacade extends AbstractFacade<RegistroSeguimient
 	public RegistroSeguimientoFacade() {
 		super(RegistroSeguimiento.class);
 	}
-	
+
 }

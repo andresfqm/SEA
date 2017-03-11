@@ -38,13 +38,13 @@ import javax.validation.constraints.Size;
 public class CotizacionProductoPK implements Serializable {
 
 	@Basic(optional = false)
-    @NotNull
-    @Column(name = "TBL_PRODUCTO_ID_PRODUCTO")
+	@NotNull
+	@Column(name = "TBL_PRODUCTO_ID_PRODUCTO")
 	private int tblProductoIdProducto;
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 32)
-    @Column(name = "TBL_COTIZACION_NUMERO_COTIZACION")
+	@NotNull
+	@Size(min = 1, max = 32)
+	@Column(name = "TBL_COTIZACION_NUMERO_COTIZACION")
 	private String tblCotizacionNumeroCotizacion;
 
 	public CotizacionProductoPK() {
@@ -99,5 +99,5 @@ public class CotizacionProductoPK implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.CotizacionProductoPK[ tblProductoIdProducto=" + tblProductoIdProducto + ", tblCotizacionNumeroCotizacion=" + tblCotizacionNumeroCotizacion + " ]";
 	}
-	
+
 }

@@ -46,5 +46,5 @@ public class LugaresEntregaFacade extends AbstractFacade<LugaresEntrega> impleme
 	public LugaresEntregaFacade() {
 		super(LugaresEntrega.class);
 	}
-	
+
 }

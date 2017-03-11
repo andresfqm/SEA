@@ -47,5 +47,5 @@ public interface OrigenFacadeLocal {
 	List<Origen> findRange(int[] range);
 
 	int count();
-	
+
 }

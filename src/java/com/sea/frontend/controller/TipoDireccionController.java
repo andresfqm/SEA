@@ -21,33 +21,33 @@ import javax.inject.Named;
 @ViewScoped
 public class TipoDireccionController implements Serializable {
 
-    @EJB
-    private TipoDireccionFacadeLocal tipoDireccionEJB;
+	@EJB
+	private TipoDireccionFacadeLocal tipoDireccionEJB;
 
-    private TipoDireccion tipoD;
+	private TipoDireccion tipoD;
 
-    public TipoDireccion getTipoD() {
-        return tipoD;
-    }
+	public TipoDireccion getTipoD() {
+		return tipoD;
+	}
 
-    public void setTipoD(TipoDireccion tipoD) {
-        this.tipoD = tipoD;
-    }
+	public void setTipoD(TipoDireccion tipoD) {
+		this.tipoD = tipoD;
+	}
 
-    @PostConstruct
-    public void init() {
-        tipoD = new TipoDireccion();
+	@PostConstruct
+	public void init() {
+		tipoD = new TipoDireccion();
 
-    }
-    
-    public void registrar(){
-        try{
-            tipoDireccionEJB.create(tipoD);
-            
-        }catch(Exception e){
-        
-        }
-    
-    }
+	}
+
+	public void registrar() {
+		try {
+			tipoDireccionEJB.create(tipoD);
+
+		} catch (Exception e) {
+
+		}
+
+	}
 
 }

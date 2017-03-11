@@ -20,33 +20,33 @@ import javax.inject.Named;
 @Named
 @ViewScoped
 public class TipoEmailController implements Serializable {
-    
-    @EJB
-    private TipoEmailFacadeLocal tipoEmailEJB;
-    
-    private TipoEmail tipoE;
-    
-    public TipoEmail getTipoE() {
-        return tipoE;
-    }
-    
-    public void setTipoE(TipoEmail tipoE) {
-        this.tipoE = tipoE;
-    }
-    
-    @PostConstruct
-    public void init() {
-        tipoE = new TipoEmail();
-    }
-    
-    public void registrar() {
-        try {
-            tipoEmailEJB.create(tipoE);
-            
-        } catch (Exception e) {
-            
-        }
-        
-    }
-    
+
+	@EJB
+	private TipoEmailFacadeLocal tipoEmailEJB;
+
+	private TipoEmail tipoE;
+
+	public TipoEmail getTipoE() {
+		return tipoE;
+	}
+
+	public void setTipoE(TipoEmail tipoE) {
+		this.tipoE = tipoE;
+	}
+
+	@PostConstruct
+	public void init() {
+		tipoE = new TipoEmail();
+	}
+
+	public void registrar() {
+		try {
+			tipoEmailEJB.create(tipoE);
+
+		} catch (Exception e) {
+
+		}
+
+	}
+
 }

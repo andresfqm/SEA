@@ -46,5 +46,5 @@ public class CotizacionFacade extends AbstractFacade<Cotizacion> implements Coti
 	public CotizacionFacade() {
 		super(Cotizacion.class);
 	}
-	
+
 }

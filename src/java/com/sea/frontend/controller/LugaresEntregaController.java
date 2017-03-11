@@ -22,43 +22,43 @@ import javax.inject.Named;
 @ViewScoped
 public class LugaresEntregaController implements Serializable {
 
-    @EJB
-    private LugaresEntregaFacadeLocal lugaresEntregaEJB;
+	@EJB
+	private LugaresEntregaFacadeLocal lugaresEntregaEJB;
 
-    private LugaresEntrega lugaresE;
-    private List<LugaresEntrega> entregas;
+	private LugaresEntrega lugaresE;
+	private List<LugaresEntrega> entregas;
 
-    public List<LugaresEntrega> getEntregas() {
-        return entregas;
-    }
+	public List<LugaresEntrega> getEntregas() {
+		return entregas;
+	}
 
-    public void setEntregas(List<LugaresEntrega> entregas) {
-        this.entregas = entregas;
-    }
+	public void setEntregas(List<LugaresEntrega> entregas) {
+		this.entregas = entregas;
+	}
 
-    public LugaresEntrega getLugaresE() {
-        return lugaresE;
-    }
+	public LugaresEntrega getLugaresE() {
+		return lugaresE;
+	}
 
-    public void setLugaresE(LugaresEntrega lugaresE) {
-        this.lugaresE = lugaresE;
-    }
+	public void setLugaresE(LugaresEntrega lugaresE) {
+		this.lugaresE = lugaresE;
+	}
 
-    @PostConstruct
-    public void init() {
-        lugaresE = new LugaresEntrega();
-        entregas = lugaresEntregaEJB.findAll();
+	@PostConstruct
+	public void init() {
+		lugaresE = new LugaresEntrega();
+		entregas = lugaresEntregaEJB.findAll();
 
-    }
+	}
 
-    public void registrar() {
-        try {
+	public void registrar() {
+		try {
 
-            lugaresEntregaEJB.create(lugaresE);
-        } catch (Exception e) {
+			lugaresEntregaEJB.create(lugaresE);
+		} catch (Exception e) {
 
-        }
+		}
 
-    }
+	}
 
 }

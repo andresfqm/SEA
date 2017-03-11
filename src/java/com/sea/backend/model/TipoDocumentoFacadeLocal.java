@@ -47,5 +47,5 @@ public interface TipoDocumentoFacadeLocal {
 	List<TipoDocumento> findRange(int[] range);
 
 	int count();
-	
+
 }

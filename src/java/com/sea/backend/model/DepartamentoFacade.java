@@ -46,5 +46,5 @@ public class DepartamentoFacade extends AbstractFacade<Departamento> implements 
 	public DepartamentoFacade() {
 		super(Departamento.class);
 	}
-	
+
 }

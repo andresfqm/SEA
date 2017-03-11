@@ -62,42 +62,42 @@ public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "ID_CLIENTE")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "ID_CLIENTE")
 	private Integer idCliente;
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 32)
-    @Column(name = "NUMERO_DOCUMENTO")
+	@NotNull
+	@Size(min = 1, max = 32)
+	@Column(name = "NUMERO_DOCUMENTO")
 	private String numeroDocumento;
 	@Size(max = 1)
-    @Column(name = "DIGITO_VERIFICACION")
+	@Column(name = "DIGITO_VERIFICACION")
 	private String digitoVerificacion;
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 64)
-    @Column(name = "NOMBRE_O_RAZON_SOCIAL")
+	@NotNull
+	@Size(min = 1, max = 64)
+	@Column(name = "NOMBRE_O_RAZON_SOCIAL")
 	private String nombreORazonSocial;
 	@Size(max = 64)
-    @Column(name = "APELLIDO")
+	@Column(name = "APELLIDO")
 	private String apellido;
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 128)
-    @Column(name = "NOMBRE_CONTACTO")
+	@NotNull
+	@Size(min = 1, max = 128)
+	@Column(name = "NOMBRE_CONTACTO")
 	private String nombreContacto;
 	@JoinColumn(name = "TBL_COMENTARIO_CAMBIO_ASESOR_ID_COMENTARIO_CAMBIO_ASESOR", referencedColumnName = "ID_COMENTARIO_CAMBIO_ASESOR")
-    @ManyToOne
+	@ManyToOne
 	private ComentarioCambioAsesor tblComentarioCambioAsesorIdComentarioCambioAsesor;
 	@JoinColumn(name = "TBL_ORIGEN_ID_ORIGEN", referencedColumnName = "ID_ORIGEN")
-    @ManyToOne(optional = false)
+	@ManyToOne(optional = false)
 	private Origen tblOrigenIdOrigen;
 	@JoinColumn(name = "TBL_TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO", referencedColumnName = "ID_TIPO_DOCUMENTO")
-    @ManyToOne(optional = false)
+	@ManyToOne(optional = false)
 	private TipoDocumento tblTipoDocumentoIdTipoDocumento;
 	@JoinColumn(name = "TBL_USUARIO_ID_USUARIO", referencedColumnName = "ID_USUARIO")
-    @ManyToOne(optional = false)
+	@ManyToOne(optional = false)
 	private Usuario tblUsuarioIdUsuario;
 	@OneToMany(mappedBy = "tblClienteIdCliente")
 	private List<Telefono> telefonoList;
@@ -262,5 +262,5 @@ public class Cliente implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Cliente[ idCliente=" + idCliente + " ]";
 	}
-	
+
 }

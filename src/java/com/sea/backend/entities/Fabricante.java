@@ -54,12 +54,12 @@ public class Fabricante implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "ID_FABRICANTE")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "ID_FABRICANTE")
 	private Integer idFabricante;
 	@Size(max = 64)
-    @Column(name = "NOMBRE")
+	@Column(name = "NOMBRE")
 	private String nombre;
 	@OneToMany(mappedBy = "tblFabricanteIdFabricante")
 	private List<Producto> productoList;
@@ -120,5 +120,5 @@ public class Fabricante implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Fabricante[ idFabricante=" + idFabricante + " ]";
 	}
-	
+
 }

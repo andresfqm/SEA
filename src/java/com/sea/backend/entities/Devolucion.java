@@ -59,32 +59,32 @@ public class Devolucion implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "ID_DEVOLUCION")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "ID_DEVOLUCION")
 	private Integer idDevolucion;
 	@Basic(optional = false)
-    @NotNull
-    @Lob
-    @Size(min = 1, max = 65535)
-    @Column(name = "MOTIVO_DEVOLUCION")
+	@NotNull
+	@Lob
+	@Size(min = 1, max = 65535)
+	@Column(name = "MOTIVO_DEVOLUCION")
 	private String motivoDevolucion;
 	@Basic(optional = false)
-    @NotNull
-    @Column(name = "ACEPTADA")
+	@NotNull
+	@Column(name = "ACEPTADA")
 	private boolean aceptada;
 	@Basic(optional = false)
-    @NotNull
-    @Column(name = "VALOR_DEVOLUCION")
+	@NotNull
+	@Column(name = "VALOR_DEVOLUCION")
 	private double valorDevolucion;
 	@Lob
-    @Size(max = 65535)
-    @Column(name = "COMENTARIOS")
+	@Size(max = 65535)
+	@Column(name = "COMENTARIOS")
 	private String comentarios;
 	@ManyToMany(mappedBy = "devolucionList")
 	private List<CondicionesGarantia> condicionesGarantiaList;
 	@JoinColumn(name = "TBL_ORDEN_PRODUCCION_ID_ORDEN_PRODUCCION", referencedColumnName = "ID_ORDEN_PRODUCCION")
-    @ManyToOne(optional = false)
+	@ManyToOne(optional = false)
 	private OrdenProduccion tblOrdenProduccionIdOrdenProduccion;
 
 	public Devolucion() {
@@ -182,5 +182,5 @@ public class Devolucion implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Devolucion[ idDevolucion=" + idDevolucion + " ]";
 	}
-	
+
 }

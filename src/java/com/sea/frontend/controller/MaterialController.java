@@ -22,81 +22,123 @@ import javax.inject.Named;
 @ViewScoped
 public class MaterialController implements Serializable {
 
-    @EJB
-    private MaterialFacadeLocal materialEJB;
+	@EJB
+	private MaterialFacadeLocal materialEJB;
 
-    private Material material;
-    private List<Material> listaMateriales;
-    private int idProducto;
-    
-    String listString;
+	private Material material;
+	private List<Material> listaMateriales;
+	private int idProducto;
+	private String accion;
+	private String subcat = "";
 
-    public int getIdProducto() {
-        return idProducto;
-    }
+	String listString;
 
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
-    }
+	public int getIdProducto() {
+		return idProducto;
+	}
 
-    public String getListString() {
-        return listString;
-    }
+	public void setIdProducto(int idProducto) {
+		this.idProducto = idProducto;
+	}
 
-    public void setListString(String listString) {
-        this.listString = listString;
-    }
-    
-    
+	public String getListString() {
+		return listString;
+	}
 
-    public List<Material> getListaMateriales() {
-        listaMateriales = materialEJB.findAll();
-        return listaMateriales;
-    }
+	public void setListString(String listString) {
+		this.listString = listString;
+	}
 
-    public void setListaMateriales(List<Material> listaMateriales) {
-        this.listaMateriales = listaMateriales;
-    }
+	public List<Material> getListaMateriales() {
+		listaMateriales = materialEJB.findAll();
+		return listaMateriales;
+	}
 
-    public Material getMaterial() {
-        return material;
-    }
+	public void setListaMateriales(List<Material> listaMateriales) {
+		this.listaMateriales = listaMateriales;
+	}
 
-    public void setMaterial(Material material) {
-        this.material = material;
-    }
+	public Material getMaterial() {
+		return material;
+	}
 
-    @PostConstruct
-    public void init() {
-        material = new Material();
+	public void setMaterial(Material material) {
+		this.material = material;
+	}
 
-    }
+	public String getAccion() {
+		return accion;
+	}
 
-    public void registrar() {
-        try {
-            materialEJB.create(material);
-        } catch (Exception e) {
+	public void setAccion(String accion) {
+		this.accion = accion;
+	}
 
-        }
+	public String getSubcat() {
+		return subcat;
+	}
 
-    }
-    
+	public void setSubcat(String subcat) {
+		this.subcat = subcat;
+	}
 
-    public void obtenerMateriales() throws Exception {
-        try {
+	@PostConstruct
+	public void init() {
+		material = new Material();
 
-            listaMateriales = materialEJB.datosMaterial(idProducto);
-            System.out.println(getListaMateriales());
-            listString = "";
-            for (Material s : listaMateriales) {
-                listString += s.getNombre() + ", ";
-                System.out.println(s.getNombre());
-            }
-        } catch (Exception e) {
-            throw e;
-        }
+	}
 
-    }
-  
+	public void registrar() {
+		try {
+			getAccion();
+			materialEJB.create(material);
+		} catch (Exception e) {
+		}
+	}
+
+	public void eliminar(Material material) {
+		try {
+			materialEJB.remove(material);
+		} catch (Exception e) {
+
+		}
+	}
+
+	public void modificar() {
+		try {
+			getAccion();
+			materialEJB.edit(material);
+		} catch (Exception e) {
+
+		}
+		material.setNombre(subcat);
+		material.setCodigo(subcat);
+	}
+
+	public void limpiar() {
+		material.setCodigo(subcat);
+		material.setNombre(subcat);
+	}
+
+	public void leerId(Material material) {
+		this.material = material;
+		setAccion("Modificar");
+	}
+
+	public void obtenerMateriales() throws Exception {
+		try {
+
+			listaMateriales = materialEJB.datosMaterial(idProducto);
+			System.out.println(getListaMateriales());
+			listString = "";
+			for (Material s : listaMateriales) {
+				listString += s.getNombre() + ", ";
+				System.out.println(s.getNombre());
+			}
+		} catch (Exception e) {
+			throw e;
+		}
+
+	}
 
 }

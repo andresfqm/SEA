@@ -47,5 +47,5 @@ public interface ProductoEspecificacionFacadeLocal {
 	List<ProductoEspecificacion> findRange(int[] range);
 
 	int count();
-	
+
 }

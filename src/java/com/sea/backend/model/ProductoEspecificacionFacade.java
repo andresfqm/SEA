@@ -46,5 +46,5 @@ public class ProductoEspecificacionFacade extends AbstractFacade<ProductoEspecif
 	public ProductoEspecificacionFacade() {
 		super(ProductoEspecificacion.class);
 	}
-	
+
 }

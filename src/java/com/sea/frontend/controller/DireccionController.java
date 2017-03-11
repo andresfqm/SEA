@@ -22,62 +22,62 @@ import javax.inject.Named;
 @ViewScoped
 public class DireccionController implements Serializable {
 
-    @EJB
-    private DireccionFacadeLocal direccionEJB;
+	@EJB
+	private DireccionFacadeLocal direccionEJB;
 
-    private Direccion direccion;
-    private int idCliente;
+	private Direccion direccion;
+	private int idCliente;
 
-    public int getIdCliente() {
-        return idCliente;
-    }
+	public int getIdCliente() {
+		return idCliente;
+	}
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
+	}
 
-    public Direccion getDireccionCliente() {
-        return direccionCliente;
-    }
+	public Direccion getDireccionCliente() {
+		return direccionCliente;
+	}
 
-    public void setDireccionCliente(Direccion direccionCliente) {
-        this.direccionCliente = direccionCliente;
-    }
+	public void setDireccionCliente(Direccion direccionCliente) {
+		this.direccionCliente = direccionCliente;
+	}
 
-    public Direccion getDireccion() {
-        return direccion;
-    }
+	public Direccion getDireccion() {
+		return direccion;
+	}
 
-    public void setDireccion(Direccion direccion) {
-        this.direccion = direccion;
-    }
+	public void setDireccion(Direccion direccion) {
+		this.direccion = direccion;
+	}
 
-    private Direccion direccionCliente;
+	private Direccion direccionCliente;
 
-    public void obtenerDireccionCliente() throws Exception {
-        try {
-            direccionCliente = direccionEJB.direccionCliente(idCliente);
-        } catch (Exception e) {
-            throw e;
-        }
+	public void obtenerDireccionCliente() throws Exception {
+		try {
+			direccionCliente = direccionEJB.direccionCliente(idCliente);
+		} catch (Exception e) {
+			throw e;
+		}
 
-    }
+	}
 
-    @PostConstruct
-    public void init() {
+	@PostConstruct
+	public void init() {
 
-        direccion = new Direccion();
+		direccion = new Direccion();
 
-    }
+	}
 
-    public void registrar() {
+	public void registrar() {
 
-        try {
-            direccionEJB.create(direccion);
-        } catch (Exception e) {
+		try {
+			direccionEJB.create(direccion);
+		} catch (Exception e) {
 
-        }
+		}
 
-    }
+	}
 
 }

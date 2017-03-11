@@ -47,5 +47,5 @@ public interface DescuentoVolumenFacadeLocal {
 	List<DescuentoVolumen> findRange(int[] range);
 
 	int count();
-	
+
 }

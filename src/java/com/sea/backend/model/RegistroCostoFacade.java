@@ -46,5 +46,5 @@ public class RegistroCostoFacade extends AbstractFacade<RegistroCosto> implement
 	public RegistroCostoFacade() {
 		super(RegistroCosto.class);
 	}
-	
+
 }

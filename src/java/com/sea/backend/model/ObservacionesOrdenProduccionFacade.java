@@ -46,5 +46,5 @@ public class ObservacionesOrdenProduccionFacade extends AbstractFacade<Observaci
 	public ObservacionesOrdenProduccionFacade() {
 		super(ObservacionesOrdenProduccion.class);
 	}
-	
+
 }

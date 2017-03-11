@@ -56,14 +56,14 @@ public class Departamento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "ID_DEPARTAMENTO")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "ID_DEPARTAMENTO")
 	private Integer idDepartamento;
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "NOMBRE")
+	@NotNull
+	@Size(min = 1, max = 50)
+	@Column(name = "NOMBRE")
 	private String nombre;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblDepartamentoIdDepartamento")
 	private List<Ciudad> ciudadList;
@@ -129,5 +129,5 @@ public class Departamento implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Departamento[ idDepartamento=" + idDepartamento + " ]";
 	}
-	
+
 }

@@ -47,5 +47,5 @@ public interface CondicionesGarantiaFacadeLocal {
 	List<CondicionesGarantia> findRange(int[] range);
 
 	int count();
-	
+
 }

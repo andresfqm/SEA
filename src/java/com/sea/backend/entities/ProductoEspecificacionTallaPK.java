@@ -37,12 +37,12 @@ import javax.validation.constraints.NotNull;
 public class ProductoEspecificacionTallaPK implements Serializable {
 
 	@Basic(optional = false)
-    @NotNull
-    @Column(name = "TBL_TALLA_ID_TALLA")
+	@NotNull
+	@Column(name = "TBL_TALLA_ID_TALLA")
 	private int tblTallaIdTalla;
 	@Basic(optional = false)
-    @NotNull
-    @Column(name = "TBL_PRODUCTO_ESPECIFICACION_ID_PRODUCTO_ESPECIFICACION")
+	@NotNull
+	@Column(name = "TBL_PRODUCTO_ESPECIFICACION_ID_PRODUCTO_ESPECIFICACION")
 	private int tblProductoEspecificacionIdProductoEspecificacion;
 
 	public ProductoEspecificacionTallaPK() {
@@ -97,5 +97,5 @@ public class ProductoEspecificacionTallaPK implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.ProductoEspecificacionTallaPK[ tblTallaIdTalla=" + tblTallaIdTalla + ", tblProductoEspecificacionIdProductoEspecificacion=" + tblProductoEspecificacionIdProductoEspecificacion + " ]";
 	}
-	
+
 }

@@ -21,34 +21,34 @@ import javax.inject.Named;
 @ViewScoped
 public class DescuentoController implements Serializable {
 
-    @EJB
-    private DescuentoFacadeLocal descuentoEJB;
+	@EJB
+	private DescuentoFacadeLocal descuentoEJB;
 
-    private Descuento descuento;
+	private Descuento descuento;
 
-    public Descuento getDescuento() {
-        return descuento;
-    }
+	public Descuento getDescuento() {
+		return descuento;
+	}
 
-    public void setDescuento(Descuento descuento) {
-        this.descuento = descuento;
-    }
+	public void setDescuento(Descuento descuento) {
+		this.descuento = descuento;
+	}
 
-    @PostConstruct
-    public void init() {
+	@PostConstruct
+	public void init() {
 
-        descuento = new Descuento();
+		descuento = new Descuento();
 
-    }
+	}
 
-    public void registrar() {
-        try {
-            descuentoEJB.create(descuento);
+	public void registrar() {
+		try {
+			descuentoEJB.create(descuento);
 
-        } catch (Exception e) {
+		} catch (Exception e) {
 
-        }
+		}
 
-    }
+	}
 
 }

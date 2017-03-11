@@ -57,20 +57,20 @@ public class Origen implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "ID_ORIGEN")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "ID_ORIGEN")
 	private Integer idOrigen;
 	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "NOMBRE")
+	@NotNull
+	@Size(min = 1, max = 45)
+	@Column(name = "NOMBRE")
 	private String nombre;
 	@Basic(optional = false)
-    @NotNull
-    @Lob
-    @Size(min = 1, max = 65535)
-    @Column(name = "DESCRIPCION")
+	@NotNull
+	@Lob
+	@Size(min = 1, max = 65535)
+	@Column(name = "DESCRIPCION")
 	private String descripcion;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblOrigenIdOrigen")
 	private List<Cliente> clienteList;
@@ -145,5 +145,5 @@ public class Origen implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Origen[ idOrigen=" + idOrigen + " ]";
 	}
-	
+
 }

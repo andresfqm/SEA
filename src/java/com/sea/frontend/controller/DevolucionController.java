@@ -21,32 +21,32 @@ import javax.inject.Named;
 @ViewScoped
 public class DevolucionController implements Serializable {
 
-    @EJB
-    private DevolucionFacadeLocal devolucionEJB;
+	@EJB
+	private DevolucionFacadeLocal devolucionEJB;
 
-    private Devolucion devolucion;
+	private Devolucion devolucion;
 
-    public Devolucion getDevolucion() {
-        return devolucion;
-    }
+	public Devolucion getDevolucion() {
+		return devolucion;
+	}
 
-    public void setDevolucion(Devolucion devolucion) {
-        this.devolucion = devolucion;
-    }
+	public void setDevolucion(Devolucion devolucion) {
+		this.devolucion = devolucion;
+	}
 
-    @PostConstruct
-    public void init() {
-        devolucion = new Devolucion();
+	@PostConstruct
+	public void init() {
+		devolucion = new Devolucion();
 
-    }
+	}
 
-    public void registrar() {
-        try {
+	public void registrar() {
+		try {
 
-            devolucionEJB.create(devolucion);
-        } catch (Exception e) {
+			devolucionEJB.create(devolucion);
+		} catch (Exception e) {
 
-        }
-    }
+		}
+	}
 
 }

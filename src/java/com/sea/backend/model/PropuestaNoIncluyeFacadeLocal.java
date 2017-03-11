@@ -47,5 +47,5 @@ public interface PropuestaNoIncluyeFacadeLocal {
 	List<PropuestaNoIncluye> findRange(int[] range);
 
 	int count();
-	
+
 }

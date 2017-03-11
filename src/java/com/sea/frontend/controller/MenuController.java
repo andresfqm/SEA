@@ -63,7 +63,6 @@ public class MenuController implements Serializable {
 
    
    /* public void establecerPermisos() {
-
         Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
         for (Menu m : lista) {
             if (m.getPerfilList().equals("S") && m.getTipoUsuario().equals(us.getTipo())) {
@@ -75,9 +74,7 @@ public class MenuController implements Serializable {
                             DefaultMenuItem item = new DefaultMenuItem(i.getNombre());
                             item.setUrl(i.getUrl());
                             firstSubmenu.addElement(item);
-
                         }
-
                     }
                 }
                 model.addElement(firstSubmenu);
@@ -85,9 +82,7 @@ public class MenuController implements Serializable {
                 DefaultMenuItem item = new DefaultMenuItem(m.getNombre());
                 item.setUrl(m.getUrl());
                 model.addElement(item);
-
             }
-
         }
     }
 */

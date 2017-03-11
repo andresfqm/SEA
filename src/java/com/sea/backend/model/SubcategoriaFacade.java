@@ -46,5 +46,5 @@ public class SubcategoriaFacade extends AbstractFacade<Subcategoria> implements 
 	public SubcategoriaFacade() {
 		super(Subcategoria.class);
 	}
-	
+
 }

@@ -47,6 +47,6 @@ public interface ClienteFacadeLocal {
 	List<Cliente> findRange(int[] range);
 
 	int count();
-	
-	Object datosCliente (int idCliente) throws Exception;
+
+	Object datosCliente(int idCliente) throws Exception;
 }

@@ -4,7 +4,7 @@
 	<h:head>
 		<meta charset="UTF-8" />
 		<title>Artículos | SEA</title>
-		<link rel="shortcut icon" href="/img/favicon.ico" />
+		<link rel="shortcut icon" href="#{request.contextPath}/img/favicon.ico"/>
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
 		<h:outputStylesheet library="css" name="administracion.css" />
 		<h:outputScript library="js" name="toggleforms.js"></h:outputScript>
@@ -792,21 +792,21 @@
 				<button class="mdl-snackbar__action" type="button"></button>
 			</h:panelGroup>
 			<script>
-				(function() {
-				'use strict';
-				window['counter'] = 0;
-				var snackbarContainer = document.querySelector('#articuloNuevo');
-				var showToastButton = document.querySelector('#mostrarArticuloNuevo');
-				showToastButton.addEventListener('click', function() {
-				'use strict';
-				var data = {message: 'Artículo creado satisfactoriamente.',timeout: 5000};
-				snackbarContainer.MaterialSnackbar.showSnackbar(data);
-				});
+				(function () {
+					'use strict';
+					window['counter'] = 0;
+					var snackbarContainer = document.querySelector('#articuloNuevo');
+					var showToastButton = document.querySelector('#mostrarArticuloNuevo');
+					showToastButton.addEventListener('click', function () {
+						'use strict';
+						var data = {message: 'Artículo creado satisfactoriamente.', timeout: 5000};
+						snackbarContainer.MaterialSnackbar.showSnackbar(data);
+					});
 				}());
 			</script>
 		</aside>
 		<ui:composition template="/templates/navGeneral.xhtml" />
-	<ui:composition template="/templates/taskTabs.xhtml" />
+		<ui:composition template="/templates/taskTabs.xhtml" />
 
 	</h:body>
 </html>
