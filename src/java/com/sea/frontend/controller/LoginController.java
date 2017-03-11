@@ -7,6 +7,7 @@ package com.sea.frontend.controller;
 
 import com.sea.backend.entities.Usuario;
 import com.sea.backend.model.UsuarioFacadeLocal;
+import java.io.IOException;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
@@ -25,7 +26,7 @@ import javax.servlet.http.HttpSession;
 
 @Named
 @ViewScoped
-public class IndexController implements Serializable {
+public class LoginController implements Serializable {
 
     @EJB
     private UsuarioFacadeLocal EJBUsuario;
@@ -76,7 +77,49 @@ public class IndexController implements Serializable {
         HttpSession sesion =(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
         Usuario u = (Usuario)sesion.getAttribute("usuario");
         this.usuario = u;
-        return u.getIdInterno();
+        return u.getIdInterno()+" -"+ u.getConsecutivoCotizacion();
+    }
+    public void verificarSesion() {
+
+        try {
+            FacesContext context = FacesContext.getCurrentInstance();
+           
+            Usuario us = (Usuario) context.getExternalContext().getSessionMap().get("usuario");
+
+            if (us == null) {
+                
+               context.getExternalContext().redirect( "/SEA/auth");
+                
+
+            }   
+        } catch (Exception e) {
+            // log para guardar un registro de error
+        }
+
+    }
+    
+    public void verificarSesionLogin() {
+
+        try {
+            FacesContext context = FacesContext.getCurrentInstance();
+           
+            Usuario us = (Usuario) context.getExternalContext().getSessionMap().get("usuario");
+
+            if (us != null) {
+                
+            context.getExternalContext().redirect( "/SEA/index.xhtml");
+                
+
+            }   
+        } catch (Exception e) {
+            // log para guardar un registro de error
+        }
+
+    }
+    public void cerrarSesion() throws IOException {
+        FacesContext context = FacesContext.getCurrentInstance();
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        context.getExternalContext().redirect("");
     }
     
 

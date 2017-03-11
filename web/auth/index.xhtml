@@ -13,7 +13,7 @@
         <h:outputStylesheet library="css" name="login.css" />
         <h:outputScript library="js" name="material.min.js"></h:outputScript>
         <h:outputScript library="js" name="checkBrowser.js"></h:outputScript>
-        <f:event type="preRenderView" listener="#{plantillaController.verificarSesionLogin()}" />
+        <f:event type="preRenderView" listener="#{loginController.verificarSesionLogin()}" />
     </h:head>
 	<h:body>
         <main class="mdl-shadow--4dp">
@@ -21,11 +21,11 @@
             <h:form>
 
                     <h:panelGroup layout="block" class="mdl-textfield mdl-textfield--floating-label mdl-textfield mdl-js-textfield mdl-textfield--floating-label" >
-                        <h:inputText class="mdl-textfield__input" h:type="text" id="userName" h:name="userName" value="#{indexController.usuario.nombreUsuario}" required="true" />
+                        <h:inputText class="mdl-textfield__input" h:type="text" id="userName" h:name="userName" value="#{loginController.usuario.nombreUsuario}" required="true" />
                         <h:outputLabel class="mdl-textfield__label" for="userName">Nombre de usuario</h:outputLabel>
                     </h:panelGroup>
                     <h:panelGroup layout="block" class="mdl-textfield mdl-textfield--floating-label mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <h:inputSecret class="mdl-textfield__input" id="password" value="#{indexController.usuario.contrasena}" required="true" />
+                        <h:inputSecret class="mdl-textfield__input" id="password" value="#{loginController.usuario.contrasena}" required="true" />
                         <h:outputLabel class="mdl-textfield__label" for="password">Contraseña</h:outputLabel>
                     </h:panelGroup>
                     <h:panelGroup layout="block">
@@ -35,7 +35,7 @@
                         </h:outputLabel>
                         <a href="/auth/forgot.html">¿Olvidó su contraseña?</a>
                     </h:panelGroup>
-                    <h:commandButton type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" action="#{indexController.iniciarSesion()}" value="Ingresar"/>
+                    <h:commandButton type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" action="#{loginController.iniciarSesion()}" value="Ingresar"/>
             </h:form>
 
         </main>

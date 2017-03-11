@@ -91,10 +91,5 @@ public class MenuController implements Serializable {
         }
     }
 */
-    public void cerrarSesion() throws IOException {
-        FacesContext context = FacesContext.getCurrentInstance();
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        context.getExternalContext().redirect("");
-    }
 
 }
