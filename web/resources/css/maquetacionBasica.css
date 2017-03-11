@@ -28,7 +28,7 @@ body{
 	background-color: #FAFAFA;
 }
 .fa{
-	font-family: var(--FuentesDelSistema);
+	font-family: var(--FuentesDelSistema) !important;
 }
 .fa::before{
 	font-family: FontAwesome;
