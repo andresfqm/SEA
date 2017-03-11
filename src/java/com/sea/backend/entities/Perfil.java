@@ -24,8 +24,10 @@
 package com.sea.backend.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,6 +38,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -54,6 +57,9 @@ import javax.xml.bind.annotation.XmlTransient;
 	, @NamedQuery(name = "Perfil.findByIdPerfil", query = "SELECT p FROM Perfil p WHERE p.idPerfil = :idPerfil")
 	, @NamedQuery(name = "Perfil.findByNombre", query = "SELECT p FROM Perfil p WHERE p.nombre = :nombre")})
 public class Perfil implements Serializable {
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblPerfilIdPerfil")
+	private Collection<UsuarioPerfil> usuarioPerfilCollection;
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -143,6 +149,15 @@ public class Perfil implements Serializable {
 	@Override
 	public String toString() {
 		return "com.sea.backend.entities.Perfil[ idPerfil=" + idPerfil + " ]";
+	}
+
+	@XmlTransient
+	public Collection<UsuarioPerfil> getUsuarioPerfilCollection() {
+		return usuarioPerfilCollection;
+	}
+
+	public void setUsuarioPerfilCollection(Collection<UsuarioPerfil> usuarioPerfilCollection) {
+		this.usuarioPerfilCollection = usuarioPerfilCollection;
 	}
 
 }

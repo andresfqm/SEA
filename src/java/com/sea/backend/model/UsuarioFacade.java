@@ -73,4 +73,22 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 		return usuario;
 	}
 
+	@Override
+	public List<Usuario> listaUsuario() {
+		List<Usuario> lista;
+			String jpql = "select u.nombre, u.numero_documento, u.id_interno, t.numero_telefono, c.email, u.nombre_usuario, p.nombre from tbl_usuario as u\n"
+					+ "inner join tbl_telefono as t\n"
+					+ "on u.id_usuario = t.tbl_usuario_id_usuario\n"
+					+ "inner join tbl_email as c\n"
+					+ "on u.id_usuario = c.tbl_usuario_id_usuario\n"
+					+ "inner join tbl_usuario_perfil as pe\n"
+					+ "on u.id_usuario = pe.tbl_usuario_id_usuario\n"
+					+ "inner join tbl_perfil as p\n"
+					+ "on pe.tbl_perfil_id_perfil = p.id_perfil";
+			Query query = em.createNativeQuery(jpql);
+			lista = query.getResultList();
+
+		return lista;
+	}
+
 }
