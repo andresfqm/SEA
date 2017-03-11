@@ -121,6 +121,4 @@ public class LoginController implements Serializable {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         context.getExternalContext().redirect("");
     }
-    
-
 }
