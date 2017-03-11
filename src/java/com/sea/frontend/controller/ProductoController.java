@@ -28,147 +28,169 @@ import javax.inject.Named;
 @ViewScoped
 public class ProductoController implements Serializable {
 
-    @EJB
-    private ProductoFacadeLocal productoEJB;
-    @EJB
-    private MaterialFacadeLocal materialEJB;
-    @EJB
-    private FabricanteFacadeLocal fabricanteEJB;
-    private List<Producto> producto;
-    private List<Material> listaMateriales;
-    private int idProducto;
-    private int idFabricante;
-    private int idMaterial;
-    private Producto productoDescripcion;
-    private int idCliente;
-    String listString;
-    private Fabricante descripcionFabricante;
+	@EJB
+	private ProductoFacadeLocal productoEJB;
+	@EJB
+	private MaterialFacadeLocal materialEJB;
+	@EJB
+	private FabricanteFacadeLocal fabricanteEJB;
+	private List<Producto> producto;
+	private List<Material> listaMateriales;
+	private List<Fabricante> listaFabricante;
+	private List<Producto> listaProductoPrecio;
+	private int idProducto;
+	private int idFabricante;
+	private int idMaterial;
+	private Producto productoDescripcion;
+	private int idCliente;
+	String listString;
+	private Fabricante descripcionFabricante;
 
-    
-    
-    public Fabricante getDescripcionFabricante() {
-        return descripcionFabricante;
-    }
+	public List<Producto> getListaProductoPrecio() {
+		return listaProductoPrecio;
+	}
 
-    public void setDescripcionFabricante(Fabricante descripcionFabricante) {
-        this.descripcionFabricante = descripcionFabricante;
-    }
+	public void setListaProductoPrecio(List<Producto> listaProductoPrecio) {
+		this.listaProductoPrecio = listaProductoPrecio;
+	}
 
-    public int getIdFabricante() {
-        return idFabricante;
-    }
+	
+	
+	public List<Fabricante> getListaFabricante() {
+		return listaFabricante;
+	}
 
-    public void setIdFabricante(int idFabricante) {
-        this.idFabricante = idFabricante;
-    }
+	public void setListaFabricante(List<Fabricante> listaFabricante) {
+		this.listaFabricante = listaFabricante;
+	}
 
-    public int getIdMaterial() {
-        return idMaterial;
-    }
+	public Fabricante getDescripcionFabricante() {
+		return descripcionFabricante;
+	}
 
-    public void setIdMaterial(int idMaterial) {
-        this.idMaterial = idMaterial;
-    }
+	public void setDescripcionFabricante(Fabricante descripcionFabricante) {
+		this.descripcionFabricante = descripcionFabricante;
+	}
 
-    public List<Producto> getProducto() {
-        return producto;
-    }
+	public int getIdFabricante() {
+		return idFabricante;
+	}
 
-    public void setProducto(List<Producto> producto) {
-        this.producto = producto;
-    }
+	public void setIdFabricante(int idFabricante) {
+		this.idFabricante = idFabricante;
+	}
 
-    public int getIdProducto() {
-        return idProducto;
-    }
+	public int getIdMaterial() {
+		return idMaterial;
+	}
 
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
-    }
+	public void setIdMaterial(int idMaterial) {
+		this.idMaterial = idMaterial;
+	}
 
-    public List<Material> getListaMateriales() {
-        return listaMateriales;
-    }
+	public List<Producto> getProducto() {
+		return producto;
+	}
 
-    public void setListaMateriales(List<Material> listaMateriales) {
-        this.listaMateriales = listaMateriales;
-    }
+	public void setProducto(List<Producto> producto) {
+		this.producto = producto;
+	}
 
-    private Material datosMaterial;
+	public int getIdProducto() {
+		return idProducto;
+	}
 
-    public int getIdCliente() {
-        return idCliente;
-    }
+	public void setIdProducto(int idProducto) {
+		this.idProducto = idProducto;
+	}
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
+	public List<Material> getListaMateriales() {
+		return listaMateriales;
+	}
 
-    public Material getDatosMaterial() {
-        return datosMaterial;
-    }
+	public void setListaMateriales(List<Material> listaMateriales) {
+		this.listaMateriales = listaMateriales;
+	}
 
-    public void setDatosMaterial(Material datosMaterial) {
-        this.datosMaterial = datosMaterial;
-    }
+	private Material datosMaterial;
 
-    public void obtenerDescripcionReferencia() throws Exception {
-        try {
+	public int getIdCliente() {
+		return idCliente;
+	}
 
-            productoDescripcion = productoEJB.productoDescripcion(idProducto);
-            listaMateriales = materialEJB.datosMaterial(idProducto);
-            descripcionFabricante = fabricanteEJB.descripcionFabricante(idProducto);
-        } catch (Exception e) {
-            throw e;
-        }
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
+	}
 
-    }
+	public Material getDatosMaterial() {
+		return datosMaterial;
+	}
 
-    public Producto getProductoDescripcion() {
-        return productoDescripcion;
-    }
+	public void setDatosMaterial(Material datosMaterial) {
+		this.datosMaterial = datosMaterial;
+	}
 
-    public void setProductoDescripcion(Producto productoDescripcion) {
-        this.productoDescripcion = productoDescripcion;
-    }
+	public void obtenerDescripcionReferencia() throws Exception {
+		try {
 
-    @PostConstruct
-    public void init() {
+			productoDescripcion = productoEJB.productoDescripcion(idProducto);
+			listaMateriales = materialEJB.datosMaterial(idProducto);
+			listaFabricante = fabricanteEJB.descripcionFabricante(idProducto);
+			listaProductoPrecio = productoEJB.productoPrecio(idProducto);
+			
+		} catch (Exception e) {
+			throw e;
+		}
 
-        producto = productoEJB.findAll();
-        //departamento = departamentoEJB.findAll();
-        //email = emailEJB.findAll();
-        //telefono = telefonoEJB.findAll();
+	}
 
-    }
+	public Producto getProductoDescripcion() {
+		return productoDescripcion;
+	}
 
-    @EJB
-    private DireccionFacadeLocal direccionEJB;
-    private Direccion direccionCliente;
+	public void setProductoDescripcion(Producto productoDescripcion) {
+		this.productoDescripcion = productoDescripcion;
+	}
 
-    public void obtenerDireccionCliente() throws Exception {
-        try {
-            direccionCliente = direccionEJB.direccionCliente(idCliente);
-        } catch (Exception e) {
-            throw e;
-        }
+	@PostConstruct
+	public void init() {
 
-    }
+		producto = productoEJB.findAll();
+		//departamento = departamentoEJB.findAll();
+		//email = emailEJB.findAll();
+		//telefono = telefonoEJB.findAll();
+		listaFabricante = fabricanteEJB.findAll();
 
-    public Direccion getDireccionCliente() {
-        return direccionCliente;
-    }
+	}
 
-    public void setDireccionCliente(Direccion direccionCliente) {
-        this.direccionCliente = direccionCliente;
-    }
+	@EJB
+	private DireccionFacadeLocal direccionEJB;
+	private Direccion direccionCliente;
 
-    public String getListString() {
-        return listString;
-    }
+	public void obtenerDireccionCliente() throws Exception {
+		try {
+			direccionCliente = direccionEJB.direccionCliente(idCliente);
+		} catch (Exception e) {
+			throw e;
+		}
 
-    public void setListString(String listString) {
-        this.listString = listString;
-    }
+	}
+
+	public Direccion getDireccionCliente() {
+		return direccionCliente;
+	}
+
+	public void setDireccionCliente(Direccion direccionCliente) {
+		this.direccionCliente = direccionCliente;
+	}
+
+	public String getListString() {
+		return listString;
+	}
+
+	public void setListString(String listString) {
+		this.listString = listString;
+	}
+	
 
 }

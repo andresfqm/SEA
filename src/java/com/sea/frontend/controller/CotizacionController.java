@@ -35,133 +35,171 @@ import javax.inject.Named;
 @Named
 @ViewScoped
 public class CotizacionController implements Serializable {
-    
-    @EJB
-    private CotizacionFacadeLocal cotizacionEJB;
-    
-    private Cotizacion cotizacion;
-    
-    public Cotizacion getCotizacion() {
-        return cotizacion;
-    }
-    
-    public void setCotizacion(Cotizacion cotizacion) {
-        this.cotizacion = cotizacion;
-    }
-    
-    @PostConstruct
-    public void init() {
-        
-        cotizacion = new Cotizacion();
-        cotizacion.setFechaEmision(new Date());
-        clientes = clienteEJB.findAll();
-        
-    }
 
-    //Ejb de las foraneas, ejb de Cliente
-    @EJB
-    private ClienteFacadeLocal clienteEJB;
-    private List<Cliente> clientes;
-    private int idCliente;
+	@EJB
+	private CotizacionFacadeLocal cotizacionEJB;
 
-    //Ejb de las foraneas, ejb de ciudadEmision
-    @EJB
-    private CiudadFacadeLocal ciudadEJB;
-    private int idCiudadEmision;
+	private Cotizacion cotizacion;
+	//Ejb de las foraneas, ejb de Cliente
+	@EJB
+	private ClienteFacadeLocal clienteEJB;
+	private List<Cliente> listaClientes;
+	private Cliente cliente;
+	private Cliente datoscl;
+	private Object datosCliente;
+	private int idCliente;
+	private List<Cliente> clientes;
 
-    //Ejb de la foranea PropuestaNoIncluye
-    @EJB
-    private PropuestaNoIncluyeFacadeLocal propuestaEJB;
-    private int idPropuestaNoIncluye;
+	//Ejb de las foraneas, ejb de ciudadEmision
+	@EJB
+	private CiudadFacadeLocal ciudadEJB;
+	private int idCiudadEmision;
 
-    //Ejb de la foranea TiempoEntrega
-    @EJB
-    private TiempoEntregaFacadeLocal tiempoEJB;
-    private int idTiempoEntrega;
+	//Ejb de la foranea PropuestaNoIncluye
+	@EJB
+	private PropuestaNoIncluyeFacadeLocal propuestaEJB;
+	private int idPropuestaNoIncluye;
 
-    //Ejb de la foranea DescuentoVolen
-    @EJB
-    private DescuentoVolumenFacadeLocal descuentoVEJB;
-    private int idDescuentoVulumen;
-    
-    @EJB
-    private ModalidadDePagoFacadeLocal modalidadPEJB;
-    private int idModalidadPago;
-    
-    @EJB
-    private LugaresEntregaFacadeLocal lugaresEEJB;
-    private int idLugaresEntrega;
-    
-    public void setIdLugaresEntrega(int idLugaresEntrega) {
-        this.idLugaresEntrega = idLugaresEntrega;
-    }
-    
-    public int getIdModalidadPago() {
-        return idModalidadPago;
-    }
-    
-    public void setIdModalidadPago(int idModalidadPago) {
-        this.idModalidadPago = idModalidadPago;
-    }
-    
-    public int getIdDescuentoVulumen() {
-        return idDescuentoVulumen;
-    }
-    
-    public void setIdDescuentoVulumen(int idDescuentoVulumen) {
-        this.idDescuentoVulumen = idDescuentoVulumen;
-    }
-    
-    public int getIdTiempoEntrega() {
-        return idTiempoEntrega;
-    }
-    
-    public void setIdTiempoEntrega(int idTiempoEntrega) {
-        this.idTiempoEntrega = idTiempoEntrega;
-    }
-    
-    public int getIdPropuestaNoIncluye() {
-        return idPropuestaNoIncluye;
-    }
-    
-    public void setIdPropuestaNoIncluye(int idPropuestaNoIncluye) {
-        this.idPropuestaNoIncluye = idPropuestaNoIncluye;
-    }
-    
-    public int getIdCiudadEmision() {
-        return idCiudadEmision;
-    }
-    
-    public void setIdCiudadEmision(int idCiudadEmision) {
-        this.idCiudadEmision = idCiudadEmision;
-    }
-    
-    public List<Cliente> getClientes() {
-        return clientes;
-    }
-    
-    public void setClientes(List<Cliente> clientes) {
-        this.clientes = clientes;
-    }
-    
-    public int getIdCliente() {
-        return idCliente;
-    }
-    
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
-    
-    public void registrarCotización() {
-        //Se carga los objetos de las clases correspondientes a las llaves foraneas
-        cotizacion.setTblClienteIdCliente(clienteEJB.find(idCliente));
-        cotizacion.setTblPropuestaNoIncluyeIdPropuestaNoIncluye(propuestaEJB.find(idPropuestaNoIncluye));
-        cotizacion.setTblTiempoEntregaIdTiempoEntrega(tiempoEJB.find(idTiempoEntrega));
-        cotizacion.setTblDescuentoVolumenIdDescuentoVolumen(descuentoVEJB.find(idDescuentoVulumen));
-        cotizacion.setTblModalidadDePagoIdModalidadDePago(modalidadPEJB.find(idModalidadPago));
-        cotizacion.setTblLugaresEntregaIdLugaresEntrega(lugaresEEJB.find(idLugaresEntrega));
-        cotizacionEJB.create(cotizacion);
-        
-    }
-    
+	//Ejb de la foranea TiempoEntrega
+	@EJB
+	private TiempoEntregaFacadeLocal tiempoEJB;
+	private int idTiempoEntrega;
+
+	//Ejb de la foranea DescuentoVolen
+	@EJB
+	private DescuentoVolumenFacadeLocal descuentoVEJB;
+	private int idDescuentoVulumen;
+
+	@EJB
+	private ModalidadDePagoFacadeLocal modalidadPEJB;
+	private int idModalidadPago;
+
+	@EJB
+	private LugaresEntregaFacadeLocal lugaresEEJB;
+	private int idLugaresEntrega;
+
+	public List<Cliente> getListaClientes() {
+		return listaClientes;
+	}
+
+	public void setListaClientes(List<Cliente> listaClientes) {
+		this.listaClientes = listaClientes;
+	}
+
+	public Cotizacion getCotizacion() {
+		return cotizacion;
+	}
+
+	public void setCotizacion(Cotizacion cotizacion) {
+		this.cotizacion = cotizacion;
+	}
+
+	public void setIdLugaresEntrega(int idLugaresEntrega) {
+		this.idLugaresEntrega = idLugaresEntrega;
+	}
+
+	public int getIdModalidadPago() {
+		return idModalidadPago;
+	}
+
+	public void setIdModalidadPago(int idModalidadPago) {
+		this.idModalidadPago = idModalidadPago;
+	}
+
+	public int getIdDescuentoVulumen() {
+		return idDescuentoVulumen;
+	}
+
+	public void setIdDescuentoVulumen(int idDescuentoVulumen) {
+		this.idDescuentoVulumen = idDescuentoVulumen;
+	}
+
+	public int getIdTiempoEntrega() {
+		return idTiempoEntrega;
+	}
+
+	public void setIdTiempoEntrega(int idTiempoEntrega) {
+		this.idTiempoEntrega = idTiempoEntrega;
+	}
+
+	public int getIdPropuestaNoIncluye() {
+		return idPropuestaNoIncluye;
+	}
+
+	public void setIdPropuestaNoIncluye(int idPropuestaNoIncluye) {
+		this.idPropuestaNoIncluye = idPropuestaNoIncluye;
+	}
+
+	public int getIdCiudadEmision() {
+		return idCiudadEmision;
+	}
+
+	public void setIdCiudadEmision(int idCiudadEmision) {
+		this.idCiudadEmision = idCiudadEmision;
+	}
+
+	public int getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
+	}
+
+	@PostConstruct
+	public void init() {
+
+		cotizacion = new Cotizacion();
+		cotizacion.setFechaEmision(new Date());
+		clientes = clienteEJB.findAll();
+
+	}
+
+	public Object getCliente() {
+		return datosCliente;
+	}
+
+	public void setCliente(Object cliente) {
+		this.datosCliente = cliente;
+	}
+
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
+	}
+
+	public Object getDatosCliente() {
+		return datosCliente;
+	}
+
+	public void setDatosCliente(Object datosCliente) {
+		this.datosCliente = datosCliente;
+	}
+
+	//Obteniendo todos los datos del cliente
+	public void obtenerDatosCliente() throws Exception {
+		try {
+
+			datosCliente = clienteEJB.datosCliente(idCliente);
+		} catch (Exception e) {
+			throw e;
+		}
+
+	}
+
+	public void registrarCotización() {
+		//Se carga los objetos de las clases correspondientes a las llaves foraneas
+		cotizacion.setTblClienteIdCliente(clienteEJB.find(idCliente));
+		cotizacion.setTblPropuestaNoIncluyeIdPropuestaNoIncluye(propuestaEJB.find(idPropuestaNoIncluye));
+		cotizacion.setTblTiempoEntregaIdTiempoEntrega(tiempoEJB.find(idTiempoEntrega));
+		cotizacion.setTblDescuentoVolumenIdDescuentoVolumen(descuentoVEJB.find(idDescuentoVulumen));
+		cotizacion.setTblModalidadDePagoIdModalidadDePago(modalidadPEJB.find(idModalidadPago));
+		cotizacion.setTblLugaresEntregaIdLugaresEntrega(lugaresEEJB.find(idLugaresEntrega));
+		cotizacionEJB.create(cotizacion);
+
+	}
+
 }

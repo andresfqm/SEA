@@ -24,6 +24,7 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.Fabricante;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -48,27 +49,19 @@ public class FabricanteFacade extends AbstractFacade<Fabricante> implements Fabr
 		super(Fabricante.class);
 	}
 
-    @Override
-    public Fabricante descripcionFabricante(int idProducto) throws Exception {
-        Fabricante descripcioFabricante = null;
-        String consulta2;
+	@Override
+	public List<Fabricante> descripcionFabricante(int idProducto) throws Exception {
+		List<Fabricante> listaFabricante;
+		String consulta2 = "SELECT fa.nombre FROM tbl_producto AS P\n"
+				+ "					 INNER JOIN tbl_fabricante AS fa \n"
+				+ "					 ON p.tbl_fabricante_id_fabricante = fa.id_fabricante\n"
+				+ "					where p.id_producto= ?1;";
 
-        try {
-            consulta2 = "SELECT fa.nombre FROM tbl_producto AS P\n"
-                    + "INNER JOIN tbl_fabricante AS fa \n"
-                    + "ON p.tbl_fabricante_id_fabricante = fa.id_fabricante\n"
-                    + "where p.id_producto= ?1";
+		Query query = em.createNativeQuery(consulta2);
+		query.setParameter(1, idProducto);
 
-            Query query = em.createNativeQuery(consulta2);
-            query.setParameter(1, idProducto);
+		listaFabricante = query.getResultList();
+		return listaFabricante;
+	}
 
-            descripcioFabricante = (Fabricante) query.getSingleResult();
-            //System.out.println(descripcioFabricante);
-
-        } catch (Exception e) {
-
-        }
-        return descripcioFabricante;
-}
-	
 }
