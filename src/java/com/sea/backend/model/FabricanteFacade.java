@@ -57,13 +57,16 @@ public class FabricanteFacade extends AbstractFacade<Fabricante> implements Fabr
 				+ "					 ON p.tbl_fabricante_id_fabricante = fa.id_fabricante\n"
 				+ "					where p.id_producto= ?1;";
 
-		try {
-			consulta2 = "SELECT fa.nombre FROM tbl_producto AS P\n"
-					+ "INNER JOIN tbl_fabricante AS fa \n"
-					+ "ON p.tbl_fabricante_id_fabricante = fa.id_fabricante\n"
-					+ "where p.id_producto= ?1";
+		consulta2 = "SELECT fa.nombre FROM tbl_producto AS P\n"
+				+ "INNER JOIN tbl_fabricante AS fa \n"
+				+ "ON p.tbl_fabricante_id_fabricante = fa.id_fabricante\n"
+				+ "where p.id_producto= ?1";
 
+		Query query = em.createNativeQuery(consulta2);
+		query.setParameter(1, idProducto);
+		listaFabricante = query.getResultList();
 
-			Query query = em.createNativeQuery(consulta2);
-			query.setParameter(1, idProducto);
+		return listaFabricante;
+
+	}
 }
