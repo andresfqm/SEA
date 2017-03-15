@@ -49,5 +49,5 @@ public interface ProductoFacadeLocal {
 	int count();
 
 	Producto productoDescripcion(int idProducto) throws Exception;
-
+	List<Producto> productoPrecio(int idProducto) throws Exception;
 }

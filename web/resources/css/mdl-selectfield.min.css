@@ -32,20 +32,17 @@
     border-style: none;
 }
 .ui-datatable tbody td{border-color: rgba(0, 0, 0, .12);}
-.ui-dialog{
-    padding: 0!important;
-    position: fixed!important;
-    border: 0!important;
-}
-.ui-datatable{
-	
-}
 .ui-dialog .ui-dialog-content {
-    position: relative;
+    position: fixed !important;
     border: 0!important;
     padding: 0!important;
-    background: 0;
-    overflow: auto;
-    zoom: 1;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow-x: none;
+}
+.ui-selectonemenu-panel .ui-selectonemenu-list{
+	background-color: #fff;
 }
 /*# sourceMappingURL=mdl-selectfield.min.css.map */

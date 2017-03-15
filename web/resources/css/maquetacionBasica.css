@@ -410,10 +410,13 @@ body > nav{
 		fieldset[disabled] .mdl-textfield .mdl-textfield__input, .mdl-textfield.is-disabled .mdl-textfield__input {
 		color: rgba(0,0,0,.5);
 		}
+		.mdl-textfield--floating-label .mdl-textfield__label, .mdl-selectfield--floating-label .mdl-selectfield__label {
+			top: 4px;
+		}
 		/**********************************************************************
 		Formularios complejos
 		**********************************************************************/
-		#subForm{
+		#subForm, .ui-dialog{
 		position: fixed;
 		top: 0;
 		right: 0;
@@ -421,20 +424,20 @@ body > nav{
 		left: 0;
 		z-index: 100;
 		background-color: rgba(0,0,0,0.4);
-		opacity: 0;
+		/*opacity: 0;
 		pointer-events: none;
-		transition: opacity .7s ease;
+		transition: opacity .7s ease;*/
 		}
 		#subForm.mostrar, #subForm.mostrar form.mostrar{
 		opacity: 1;
 		pointer-events: auto;
 		}
-		#subForm form, #subForm .mdl-dialog__content{
+		#subForm form, form.mdl-dialog{
 		display: grid;
 		grid-template-columns: 1fr;
 		grid-gap: 15px;
 		}
-		#subForm form{
+		#subForm form, form.mdl-dialog{
 		--height: 30px;
 		position: absolute;
 		top: 50%;
@@ -443,15 +446,15 @@ body > nav{
 		width: 700px;
 		min-height: auto;
 		max-height: calc(100vh - (var(--height) * 2));
-		overflow: auto;
+		overflow-x: hidden;
 		background-color: #fff;
 		transform: translate(-50%, -50%);
-		opacity: 0;
+		/*opacity: 0;
 		pointer-events: none;
-		transition: opacity .7s ease;
+		transition: opacity .7s ease;*/
 		}
 		@media all and (max-width: 640px){
-		#subForm form{
+		#subForm form, form.mdl-dialog{
 		--height: 0;
 		width: 100%;
 		height: 100vh;

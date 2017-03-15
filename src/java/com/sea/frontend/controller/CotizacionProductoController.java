@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,33 +21,49 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.sea.backend.model;
+package com.sea.frontend.controller;
 
-import com.sea.backend.entities.Fabricante;
-import java.util.List;
-import javax.ejb.Local;
+import com.sea.backend.entities.CotizacionProducto;
+import com.sea.backend.model.CotizacionProductoFacadeLocal;
+import java.io.Serializable;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
-@Local
-public interface FabricanteFacadeLocal {
-
-	void create(Fabricante fabricante);
-
-	void edit(Fabricante fabricante);
-
-	void remove(Fabricante fabricante);
-
-	Fabricante find(Object id);
-
-	List<Fabricante> findAll();
-
-	List<Fabricante> findRange(int[] range);
-
-	int count();
+@Named
+@ViewScoped
+public class CotizacionProductoController implements Serializable{
 	
-	List<Fabricante> descripcionFabricante(int idProducto) throws Exception;
+	@EJB
+	private CotizacionProductoFacadeLocal cotizacionpEJB;
+	private CotizacionProducto cotizacionP;
+
+	public CotizacionProducto getCotizacionP() {
+		return cotizacionP;
+	}
+
+	public void setCotizacionP(CotizacionProducto cotizacionP) {
+		this.cotizacionP = cotizacionP;
+	}
+	
+	@PostConstruct
+	public void init(){
+	  cotizacionP = new CotizacionProducto();
+	}
+	
+	
+	public void registrarCotizacionProducto(){
+		try {
+			cotizacionpEJB.create(cotizacionP);
+		} catch (Exception e) {
+		}
+	
+	}
+	
 	
 }
