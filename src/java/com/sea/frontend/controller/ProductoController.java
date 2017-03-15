@@ -36,6 +36,8 @@ public class ProductoController implements Serializable {
 	private FabricanteFacadeLocal fabricanteEJB;
 	private List<Producto> producto;
 	private List<Material> listaMateriales;
+	private List<Fabricante> listaFabricante;
+	private List<Producto> listaProductoPrecio;
 	private int idProducto;
 	private int idFabricante;
 	private int idMaterial;
@@ -43,29 +45,11 @@ public class ProductoController implements Serializable {
 	private int idCliente;
 	String listString;
 	private Fabricante descripcionFabricante;
+	private Material datosMaterial;
 
-	public Fabricante getDescripcionFabricante() {
-		return descripcionFabricante;
-	}
+	public List<Producto> getListaProductoPrecio() {
+		return listaProductoPrecio;
 
-	public void setDescripcionFabricante(Fabricante descripcionFabricante) {
-		this.descripcionFabricante = descripcionFabricante;
-	}
-
-	public int getIdFabricante() {
-		return idFabricante;
-	}
-
-	public void setIdFabricante(int idFabricante) {
-		this.idFabricante = idFabricante;
-	}
-
-	public int getIdMaterial() {
-		return idMaterial;
-	}
-
-	public void setIdMaterial(int idMaterial) {
-		this.idMaterial = idMaterial;
 	}
 
 	public List<Producto> getProducto() {
@@ -76,14 +60,6 @@ public class ProductoController implements Serializable {
 		this.producto = producto;
 	}
 
-	public int getIdProducto() {
-		return idProducto;
-	}
-
-	public void setIdProducto(int idProducto) {
-		this.idProducto = idProducto;
-	}
-
 	public List<Material> getListaMateriales() {
 		return listaMateriales;
 	}
@@ -92,34 +68,20 @@ public class ProductoController implements Serializable {
 		this.listaMateriales = listaMateriales;
 	}
 
-	private Material datosMaterial;
-
-	public int getIdCliente() {
-		return idCliente;
+	public List<Fabricante> getListaFabricante() {
+		return listaFabricante;
 	}
 
-	public void setIdCliente(int idCliente) {
-		this.idCliente = idCliente;
+	public void setListaFabricante(List<Fabricante> listaFabricante) {
+		this.listaFabricante = listaFabricante;
 	}
 
-	public Material getDatosMaterial() {
-		return datosMaterial;
+	public int getIdFabricante() {
+		return idFabricante;
 	}
 
-	public void setDatosMaterial(Material datosMaterial) {
-		this.datosMaterial = datosMaterial;
-	}
-
-	public void obtenerDescripcionReferencia() throws Exception {
-		try {
-
-			productoDescripcion = productoEJB.productoDescripcion(idProducto);
-			listaMateriales = materialEJB.datosMaterial(idProducto);
-			descripcionFabricante = fabricanteEJB.descripcionFabricante(idProducto);
-		} catch (Exception e) {
-			throw e;
-		}
-
+	public void setIdFabricante(int idFabricante) {
+		this.idFabricante = idFabricante;
 	}
 
 	public Producto getProductoDescripcion() {
@@ -130,6 +92,77 @@ public class ProductoController implements Serializable {
 		this.productoDescripcion = productoDescripcion;
 	}
 
+	public int getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
+	}
+
+	public String getListString() {
+		return listString;
+	}
+
+	public void setListString(String listString) {
+		this.listString = listString;
+	}
+
+	public Fabricante getDescripcionFabricante() {
+		return descripcionFabricante;
+	}
+
+	public void setDescripcionFabricante(Fabricante descripcionFabricante) {
+		this.descripcionFabricante = descripcionFabricante;
+	}
+
+	public Material getDatosMaterial() {
+		return datosMaterial;
+	}
+
+	public void setDatosMaterial(Material datosMaterial) {
+		this.datosMaterial = datosMaterial;
+	}
+
+	public Direccion getDireccionCliente() {
+		return direccionCliente;
+	}
+
+	public void setDireccionCliente(Direccion direccionCliente) {
+		this.direccionCliente = direccionCliente;
+	}
+
+	public void obtenerDescripcionReferencia() throws Exception {
+		try {
+
+			productoDescripcion = productoEJB.productoDescripcion(idProducto);
+			listaMateriales = materialEJB.datosMaterial(idProducto);
+			listaFabricante = fabricanteEJB.descripcionFabricante(idProducto);
+			listaProductoPrecio = productoEJB.productoPrecio(idProducto);
+		} catch (Exception e) {
+			throw e;
+		}
+
+	}
+
+	public int getIdProducto() {
+		return idProducto;
+	}
+
+	public void setIdProducto(int idProducto) {
+		this.idProducto = idProducto;
+	}
+
+	public int getIdMaterial() {
+		return idMaterial;
+	}
+
+	public void setIdMaterial(int idMaterial) {
+		this.idMaterial = idMaterial;
+	}
+
+	
+	
 	@PostConstruct
 	public void init() {
 
@@ -152,21 +185,7 @@ public class ProductoController implements Serializable {
 		}
 
 	}
-
-	public Direccion getDireccionCliente() {
-		return direccionCliente;
-	}
-
-	public void setDireccionCliente(Direccion direccionCliente) {
-		this.direccionCliente = direccionCliente;
-	}
-
-	public String getListString() {
-		return listString;
-	}
-
-	public void setListString(String listString) {
-		this.listString = listString;
-	}
+	
+	
 
 }
