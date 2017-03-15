@@ -15,7 +15,7 @@
 	<h:body>
 		<ui:composition template="/templates/header.xhtml" />
         <main>
-            <h:panelGroup layout="block" id="usuariosDashboard">
+            <h:panelGroup >
 				<h:form id="usform" >
 					<p:dataTable value="#{usuarioController.lista}" var="usr" styleClass="mdl-data-table mdl-js-data-table mdl-shadow--2dp" rowStyleClass="mdl-data-table__cell--non-numeric" id="Table">
 						<p:column>
@@ -70,8 +70,11 @@
                 <h:form id="addUser" class="mdl-dialog">
                     <h3 class="mdl-dialog__title">Registrar usuario</h3>
                     <h:panelGroup layout="block" class="mdl-dialog__content">
-                        <h:panelGroup layout="block" class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label fullWidth">
-                        </h:panelGroup>
+                        <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+							<p:selectOneMenu id="tipoDocumento" value="#{usuarioController.tipoDocumento.idTipoDocumento}" >
+								<f:selectItems value="#{tipoDocumentoController.listaTipoD}" var="lisD" itemLabel="#{lisD.tipo}" itemValue="#{lisD.idTipoDocumento}" />
+							</p:selectOneMenu>
+							</h:panelGroup>
                         <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <h:inputText class="mdl-textfield__input" value="#{usuarioController.usuario.numeroDocumento}" p:type="number" p:min="1" p:step="1" p:maxlength="32" required="required" id="NoDocumento" />
                             <h:outputLabel class="mdl-textfield__label" for="NoDocumento">Número de documento</h:outputLabel>
@@ -89,24 +92,31 @@
                             <h:outputLabel class="mdl-textfield__label" for="apellido">Apellido</h:outputLabel>
                         </h:panelGroup>
 						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<p:selectOneMenu id="tipoTelefono" value="#{usuarioController.telefono.tblTipoTelefonoIdTipoTelefono}" >
+							<p:selectOneMenu id="tipoTelefono" value="#{usuarioController.tipoTelefono.idTipoTelefono}" >
 								<f:selectItems value="#{tipoTelefonoController.listaTipos}" var="lis" itemLabel="#{lis.tipo}" itemValue="#{lis.idTipoTelefono}" />
 							</p:selectOneMenu>
 							</h:panelGroup>
                         <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <h:inputText class="mdl-textfield__input" p:type="tel" value="#{usuarioController.telefono.numeroTelefono}" p:maxlength="64" required="required" id="telPersonal" />
-                            <h:outputLabel class="mdl-textfield__label" for="telPersonal">Teléfono personal</h:outputLabel>
+                            <h:outputLabel class="mdl-textfield__label" for="telPersonal">Teléfono</h:outputLabel>
                         </h:panelGroup>
-                        <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <h:inputText class="mdl-textfield__input" p:type="tel" value="#{usuarioController.usuario.setTelefonoList(telefonoController.telefono.numeroTelefono)}" p:maxlength="64" required="required" id="telCorporativo" />
-                            <h:outputLabel class="mdl-textfield__label" for="telCorporativo">Teléfono corporativo</h:outputLabel>
-                        </h:panelGroup>
+						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+							<p:selectOneMenu id="tipoEmail" value="#{usuarioController.tipoEmail.idTipoEmail}" >
+								<f:selectItems value="#{tipoEmailController.listaTipoE}" var="lise" itemLabel="#{lise.tipo}" itemValue="#{lise.idTipoEmail}" />
+							</p:selectOneMenu>
+							</h:panelGroup>
                         <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-                            <h:inputText class="mdl-textfield__input" p:type="email" value="#{usuarioController.usuario.setEmailList(emailList)}" p:maxlength="64" required="required" id="email" />
+                            <h:inputText class="mdl-textfield__input" p:type="email" value="#{usuarioController.correo.email}" p:maxlength="64" required="required" id="email" />
                             <h:outputLabel class="mdl-textfield__label" for="email">Correo electrónico</h:outputLabel>
                         </h:panelGroup>
+						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+							<p:selectOneMenu id="tipoDireccion" value="#{usuarioController.tipoDireccion.idTipoDireccion}" >
+								<f:selectItems value="#{tipoDireccionController.listaTipoD}" var="lisd" itemLabel="#{lisd.tipo}" itemValue="#{lisd.idTipoDireccion}" />
+							</p:selectOneMenu>
+							<h:outputLabel class="mdl-textfield__label" for="tipoDireccion">Tipo de direccion</h:outputLabel>
+							</h:panelGroup>
                         <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-                            <h:inputText class="mdl-textfield__input" value="#{usuarioController.usuario.tblTipoDocumentoIdTipoDocumento}" p:maxlength="128" required="required" id="direccion" />
+                            <h:inputText class="mdl-textfield__input" value="#{usuarioController.direccion.direccion}" p:maxlength="128" required="required" id="direccion" />
                             <h:outputLabel class="mdl-textfield__label" for="direccion">Dirección de residencia</h:outputLabel>
                         </h:panelGroup>
                         <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -114,15 +124,16 @@
                             <h:outputLabel class="mdl-textfield__label" for="IDInterno">ID interno</h:outputLabel>
                         </h:panelGroup>
                         <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <h:inputText class="mdl-textfield__input" value="" required="required" id="cargo" />
-                            <h:outputLabel class="mdl-textfield__label" for="cargo">Cargo</h:outputLabel>
-                        </h:panelGroup>
+							<p:selectOneMenu id="tipoPerfil" value="#{usuarioController.perfilt.idPerfil}" >
+								<f:selectItems value="#{perfilController.listaPerfiles}" var="lisp" itemLabel="#{lisp.nombre}" itemValue="#{lisp.idPerfil}" />
+							</p:selectOneMenu>
+							</h:panelGroup>
                         <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
                             <h:inputText class="mdl-textfield__input" p:maxlength="45" value="#{usuarioController.usuario.nombreUsuario}" required="required" id="nombreUsuario" />
                             <h:outputLabel class="mdl-textfield__label" for="nombreUsuario">Nombre de usuario</h:outputLabel>
                         </h:panelGroup>
                         <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-                            <h:inputSecret class="mdl-textfield__input" p:maxlength="45" required="required" id="contrasena" />
+                            <h:inputSecret class="mdl-textfield__input" p:maxlength="45" required="required" id="contrasena" value="#{usuarioController.usuario.contrasena}"/>
                             <h:outputLabel class="mdl-textfield__label" for="contrasena">Contraseña</h:outputLabel>
                         </h:panelGroup>
                         <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
@@ -135,8 +146,8 @@
                         </h:outputLabel>
                     </h:panelGroup>
                     <h:panelGroup layout="block" class="mdl-dialog__actions">
-                        <h:commandButton id="mostrarUsuarioCreado" action="#{usuarioController.registrar()}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" type="submit" value="Crear usuario" />
-                        <h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
+                        <p:commandButton actionListener="#{usuarioController.registrar()}" oncomplete="PF('dlg1').hide();" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" type="submit" value="Crear usuario" update=":usform:Table"/>
+                        <p:commandButton styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" onclick="PF('dlg1').hide();"/>
                     </h:panelGroup>
                 </h:form>
 			</p:dialog>

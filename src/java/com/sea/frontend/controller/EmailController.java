@@ -8,6 +8,7 @@ package com.sea.frontend.controller;
 import com.sea.backend.entities.Email;
 import com.sea.backend.model.EmailFacadeLocal;
 import java.io.Serializable;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -24,6 +25,8 @@ public class EmailController implements Serializable {
 
 	@EJB
 	private EmailFacadeLocal emailEJB;
+	
+	private List<Email> listaEmail;
 
 	private Email email;
 
@@ -37,8 +40,16 @@ public class EmailController implements Serializable {
 
 	@PostConstruct
 	public void init() {
-
+		listaEmail = emailEJB.findAll();
 		email = new Email();
+	}
+
+	public List<Email> getListaEmail() {
+		return listaEmail;
+	}
+
+	public void setListaEmail(List<Email> listaEmail) {
+		this.listaEmail = listaEmail;
 	}
 
 	public void registrar() {

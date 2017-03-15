@@ -48,4 +48,5 @@ public interface CiudadFacadeLocal {
 
 	int count();
 
+	List<Ciudad> listaCiudades(Ciudad ci);
 }
