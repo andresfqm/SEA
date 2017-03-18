@@ -5,8 +5,6 @@
  */
 package com.sea.frontend.controller;
 
-import com.sea.backend.entities.Ciudad;
-import com.sea.backend.entities.Departamento;
 import com.sea.backend.entities.Direccion;
 import com.sea.backend.entities.Email;
 import com.sea.backend.entities.Perfil;
@@ -17,8 +15,6 @@ import com.sea.backend.entities.TipoEmail;
 import com.sea.backend.entities.TipoTelefono;
 import com.sea.backend.entities.Usuario;
 import com.sea.backend.entities.UsuarioPerfil;
-import com.sea.backend.model.CiudadFacadeLocal;
-import com.sea.backend.model.DepartamentoFacadeLocal;
 import com.sea.backend.model.DireccionFacadeLocal;
 import com.sea.backend.model.EmailFacadeLocal;
 import com.sea.backend.model.PerfilFacadeLocal;
@@ -84,35 +80,10 @@ public class UsuarioController implements Serializable {
 	@EJB
 	private DireccionFacadeLocal direccionEJB;
 	private Direccion direccion;
-	
-	@EJB
-	private DepartamentoFacadeLocal departamentoEJB;
-	private Departamento departamento;
-	
-	@EJB
-	private CiudadFacadeLocal ciudadEJB;
-	private Ciudad ciudad;
-	private List<Ciudad> ciudades;
 
 	@EJB
 	private TipoDocumentoFacadeLocal tipoDocumentoEJB;
 	private TipoDocumento tipoDocumento;
-
-	public Departamento getDepartamento() {
-		return departamento;
-	}
-
-	public void setDepartamento(Departamento departamento) {
-		this.departamento = departamento;
-	}
-
-	public Ciudad getCiudad() {
-		return ciudad;
-	}
-
-	public void setCiudad(Ciudad ciudad) {
-		this.ciudad = ciudad;
-	}
 
 	public Email getCorreo() {
 		return correo;
@@ -192,17 +163,6 @@ public class UsuarioController implements Serializable {
 		tipoDireccion = new TipoDireccion();
 		tipoEmail = new TipoEmail();
 		tipoDocumento = new TipoDocumento();
-		departamento = new Departamento();
-		ciudad = new Ciudad();
-		ciudades = ciudadEJB.findAll();
-	}
-
-	public List<Ciudad> getCiudades() {
-		return ciudades;
-	}
-
-	public void setCiudades(List<Ciudad> ciudades) {
-		this.ciudades = ciudades;
 	}
 
 	public TipoDocumento getTipoDocumento() {
@@ -268,18 +228,11 @@ public class UsuarioController implements Serializable {
 			usuarioPerfilEJB.create(perfil);
 			direccion.setTblTipoDireccionIdTipoDireccion(tipoDireccionEJB.find(tipoDireccion.getIdTipoDireccion()));
 			direccion.setTblUsuarioIdUsuario(usuarioEJB.find(usuario.getIdUsuario()));
-			direccion.setTblCiudadIdCiudad(ciudadEJB.listaCiudad(ciudad.getNombre()));
 			direccionEJB.create(direccion);
 		} catch (Exception e) {
 
 		}
 		lista = usuarioEJB.listaUsuario();
-	}
-	
-	
-	public void obtenerCiudad() {
-		ciudades = ciudadEJB.listaCiudades(departamento);
-
 	}
 
 	public void modificar() {
@@ -306,9 +259,8 @@ public class UsuarioController implements Serializable {
 		lista = usuarioEJB.listaUsuario();
 	}
 
-	public void leerID(int usuario) throws Exception {
-		this.usuario = usuarioEJB.find(usuario);
-		this.direccion = usuarioEJB.actualizarCiudad(usuarioEJB.find(usuario));
+	public void leerID(Usuario usuario) {
+		this.usuario = usuario;
 		setAccion("Modificar");
 	}
 
@@ -317,7 +269,6 @@ public class UsuarioController implements Serializable {
 		usuario.setNombre(limpieza);
 		usuario.setApellido(limpieza);
 		telefono.setNumeroTelefono(limpieza);
-		direccion.setDireccion(limpieza);
 
 	}
 

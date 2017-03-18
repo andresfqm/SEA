@@ -60,14 +60,6 @@
 							</f:facet>
 							<h:outputText value="#{usr[6]}"/>
 						</p:column>
-						<p:column>
-								<f:facet name="header">
-									<h:outputLabel value="Acciones"/>
-								</f:facet>
-								<h:panelGroup layout="block">
-									<p:commandButton actionListener="#{usuarioController.leerID(usr[7])}" ajax="true" immediate="true" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Modificar" oncomplete="PF('dlg1').show();" update="usuario"/>
-								</h:panelGroup>
-							</p:column>
 					</p:dataTable>
 					<p:commandLink type="button" onclick="PF('dlg1').show();" styleClass="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm" actionListener="#{usuarioController.setAccion('Nuevo')}" update="addUser" action="#{usuarioController.limpiar()}">
 						<i class="material-icons">person_add</i>
@@ -118,20 +110,6 @@
                             <h:outputLabel class="mdl-textfield__label" for="email">Correo electrónico</h:outputLabel>
                         </h:panelGroup>
 						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <h:outputLabel class="mdl-textfield__label" for="Departamento">Departamento</h:outputLabel>
-                            <p:selectOneMenu id="Departamento" value="#{usuarioController.departamento.idDepartamento}" filter="true" filterMatchMode="contains" style="width: 100%">
-                                <p:ajax listener="#{usuarioController.obtenerCiudad()}" update="ciudad" />
-								<f:selectItem itemValue="" itemLabel="Seleccione" />
-                                <f:selectItems value="#{departamentoController.listaDepartametos}" var="dep" itemLabel="#{dep.nombre}" itemValue="#{dep.idDepartamento}"/>
-                            </p:selectOneMenu>
-                        </h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<p:selectOneMenu value="#{usuarioController.ciudad.nombre}" id="ciudad" >
-								<f:selectItems value="#{usuarioController.ciudades}" var="ciu" itemLabel="#{ciu}" itemValue="#{ciu}"/>
-							</p:selectOneMenu>
-							<h:outputLabel class="mdl-textfield__label" for="ciudad">Ciudad</h:outputLabel>
-							</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 							<p:selectOneMenu id="tipoDireccion" value="#{usuarioController.tipoDireccion.idTipoDireccion}" >
 								<f:selectItems value="#{tipoDireccionController.listaTipoD}" var="lisd" itemLabel="#{lisd.tipo}" itemValue="#{lisd.idTipoDireccion}" />
 							</p:selectOneMenu>
@@ -147,7 +125,7 @@
                         </h:panelGroup>
                         <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 							<p:selectOneMenu id="tipoPerfil" value="#{usuarioController.perfilt.idPerfil}" >
-								<f:selectItems value="#{perfilController.listaPerfiles}" var="lisperfil" itemLabel="#{lisperfil.nombre}" itemValue="#{lisperfil.idPerfil}" />
+								<f:selectItems value="#{perfilController.listaPerfiles}" var="lisp" itemLabel="#{lisp.nombre}" itemValue="#{lisp.idPerfil}" />
 							</p:selectOneMenu>
 							</h:panelGroup>
                         <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
@@ -169,7 +147,7 @@
                     </h:panelGroup>
                     <h:panelGroup layout="block" class="mdl-dialog__actions">
                         <p:commandButton actionListener="#{usuarioController.registrar()}" oncomplete="PF('dlg1').hide();" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" type="submit" value="Crear usuario" update=":usform:Table"/>
-                        <p:commandButton styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" onclick="PF('dlg1').hide();" actionListener="#{usuarioController.limpiar()}"/>
+                        <p:commandButton styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" onclick="PF('dlg1').hide();"/>
                     </h:panelGroup>
                 </h:form>
 			</p:dialog>

@@ -8,7 +8,6 @@ package com.sea.frontend.controller;
 import com.sea.backend.entities.Departamento;
 import com.sea.backend.model.DepartamentoFacadeLocal;
 import java.io.Serializable;
-import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -27,8 +26,6 @@ public class DepartamentoController implements Serializable {
 	private DepartamentoFacadeLocal departamentoEJB;
 
 	private Departamento departamento;
-	
-	private List<Departamento> listaDepartametos;
 
 	public Departamento getDepartamento() {
 		return departamento;
@@ -41,15 +38,7 @@ public class DepartamentoController implements Serializable {
 	@PostConstruct
 	public void init() {
 		departamento = new Departamento();
-		listaDepartametos = departamentoEJB.findAll();
-	}
 
-	public List<Departamento> getListaDepartametos() {
-		return listaDepartametos;
-	}
-
-	public void setListaDepartametos(List<Departamento> listaDepartametos) {
-		this.listaDepartametos = listaDepartametos;
 	}
 
 	public void registrar() {

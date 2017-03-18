@@ -23,7 +23,6 @@
  */
 package com.sea.backend.model;
 
-import com.sea.backend.entities.Direccion;
 import com.sea.backend.entities.Usuario;
 import java.util.List;
 import javax.ejb.Local;
@@ -52,9 +51,5 @@ public interface UsuarioFacadeLocal {
 	Usuario iniciarSesion(Usuario us);
 	
 	List<Usuario> listaUsuario();
-	
-	public Usuario listaUsuario(String us);
-	
-	Direccion actualizarCiudad(Usuario ci);
 
 }

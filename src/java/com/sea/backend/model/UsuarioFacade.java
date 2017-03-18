@@ -23,8 +23,6 @@
  */
 package com.sea.backend.model;
 
-import com.sea.backend.entities.Ciudad;
-import com.sea.backend.entities.Direccion;
 import com.sea.backend.entities.Usuario;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -78,44 +76,19 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 	@Override
 	public List<Usuario> listaUsuario() {
 		List<Usuario> lista;
-		String jpql = "select u.nombre, u.numeroDocumento, u.idInterno, t.numeroTelefono, c.email, u.nombreUsuario, pe.nombre, u.idUsuario from Usuario  u\n"
-				+ "join u.telefonoList t\n"
-				+ "join u.emailList c\n"
-				+ "join u.perfilList pe\n";
-		Query query = em.createQuery(jpql);
-		lista = query.getResultList();
+			String jpql = "select u.nombre, u.numero_documento, u.id_interno, t.numero_telefono, c.email, u.nombre_usuario, p.nombre from tbl_usuario as u\n"
+					+ "inner join tbl_telefono as t\n"
+					+ "on u.id_usuario = t.tbl_usuario_id_usuario\n"
+					+ "inner join tbl_email as c\n"
+					+ "on u.id_usuario = c.tbl_usuario_id_usuario\n"
+					+ "inner join tbl_usuario_perfil as pe\n"
+					+ "on u.id_usuario = pe.tbl_usuario_id_usuario\n"
+					+ "inner join tbl_perfil as p\n"
+					+ "on pe.tbl_perfil_id_perfil = p.id_perfil";
+			Query query = em.createNativeQuery(jpql);
+			lista = query.getResultList();
 
 		return lista;
-	}
-	
-	@Override
-	public Usuario listaUsuario(String us) {
-		Usuario usuario = null;
-		List<Usuario> lista;
-		String jpql = "FROM Usuario u where u.nombre = ?1";
-		Query query = em.createQuery(jpql);
-		query.setParameter(1, us);
-		lista = query.getResultList();
-		if (!lista.isEmpty()) {
-				usuario = lista.get(0);
-			}
-
-		return usuario;
-	}
-	
-	@Override
-	public Direccion actualizarCiudad(Usuario ci) {
-		Direccion direccion = null;
-		List<Direccion> lista;
-		String jpql = "FROM Direccion d where d.tblUsuarioIdUsuario = ?1";
-		Query query = em.createQuery(jpql);
-		query.setParameter(1, ci);
-		lista = query.getResultList();
-		if (!lista.isEmpty()) {
-				direccion = lista.get(0);
-			}
-
-		return direccion;
 	}
 
 }

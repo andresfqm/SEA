@@ -79,7 +79,6 @@ public class LoginController implements Serializable {
         this.usuario = u;
         return u.getIdInterno()+" -"+ u.getConsecutivoCotizacion();
     }
-	  
     public void verificarSesion() {
 
         try {
