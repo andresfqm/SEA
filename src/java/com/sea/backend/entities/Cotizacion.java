@@ -69,6 +69,12 @@ import javax.xml.bind.annotation.XmlTransient;
 	, @NamedQuery(name = "Cotizacion.findByFechaFacturacion", query = "SELECT c FROM Cotizacion c WHERE c.fechaFacturacion = :fechaFacturacion")})
 public class Cotizacion implements Serializable {
 
+	@Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 15)
+    @Column(name = "ESTADO")
+	private String estado;
+
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Basic(optional = false)
@@ -370,6 +376,14 @@ public class Cotizacion implements Serializable {
 	@Override
 	public String toString() {
 		return "com.sea.backend.entities.Cotizacion[ numeroCotizacion=" + numeroCotizacion + " ]";
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 }
