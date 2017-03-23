@@ -9,6 +9,7 @@ import com.sea.backend.entities.Perfil;
 import com.sea.backend.model.PerfilFacadeLocal;
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -34,9 +35,10 @@ public class PerfilController implements Serializable {
 		this.perfil = perfil;
 	}
 
+	@PostConstruct
 	public void init() {
-		perfil = new Perfil();
 		listaPerfiles = perfilEJB.findAll();
+		perfil = new Perfil();
 	}
 
 	public List<Perfil> getListaPerfiles() {
