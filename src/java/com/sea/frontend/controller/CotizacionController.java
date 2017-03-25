@@ -9,27 +9,35 @@ import com.sea.backend.entities.Ciudad;
 import com.sea.backend.entities.Cliente;
 import com.sea.backend.entities.Cotizacion;
 import com.sea.backend.entities.CotizacionProducto;
-import com.sea.backend.entities.Direccion;
+import com.sea.backend.entities.Fabricante;
+import com.sea.backend.entities.Material;
 import com.sea.backend.entities.Producto;
+import com.sea.backend.entities.Usuario;
 import com.sea.backend.model.CiudadFacadeLocal;
 import com.sea.backend.model.ClienteFacadeLocal;
 import com.sea.backend.model.CotizacionFacadeLocal;
 import com.sea.backend.model.CotizacionProductoFacadeLocal;
+import com.sea.backend.model.DescuentoFacadeLocal;
 import com.sea.backend.model.DescuentoVolumenFacadeLocal;
 import com.sea.backend.model.DireccionFacadeLocal;
+import com.sea.backend.model.FabricanteFacadeLocal;
 import com.sea.backend.model.LugaresEntregaFacadeLocal;
+import com.sea.backend.model.MaterialFacadeLocal;
 import com.sea.backend.model.ModalidadDePagoFacadeLocal;
 import com.sea.backend.model.ProductoFacadeLocal;
 import com.sea.backend.model.PropuestaNoIncluyeFacadeLocal;
 import com.sea.backend.model.TiempoEntregaFacadeLocal;
+import com.sea.backend.model.UsuarioFacadeLocal;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -43,7 +51,13 @@ public class CotizacionController implements Serializable {
 	@EJB
 	private CotizacionFacadeLocal cotizacionEJB;
 	private Cotizacion cotizacion;
-	
+	private int descuentoCotizacion;
+	private Double ivaCotizacion = 19.0;
+
+	@EJB
+	private UsuarioFacadeLocal EJBUsuario;
+	private Usuario usuario;
+
 	//EJB cliente
 	@EJB
 	private ClienteFacadeLocal clienteEJB;
@@ -52,27 +66,36 @@ public class CotizacionController implements Serializable {
 	private Object datosCliente;
 	private int idCliente;
 	private List<Cliente> clientes;
-  
-	
+
 	//EJB CotizaciónProducto
 	@EJB
 	private CotizacionProductoFacadeLocal cotizacionProductoEJB;
 	private CotizacionProducto cotizacionProducto;
 	private List<CotizacionProducto> listaCotizacionP;
 	private int cantidad;
-	private double precioParaCliente;
-	
+	private Float precioParaCliente;
+	private double precioDescuento;
+
+	@EJB
+	private CotizacionProductoFacadeLocal cotizacionpEJB;
+	private CotizacionProducto cotizacionP;
+
+	@EJB
+	private MaterialFacadeLocal materialEJB;
+	@EJB
+	private FabricanteFacadeLocal fabricanteEJB;
+
 	//Ejb de las foraneas, ejb de ciudadEmision
 	@EJB
 	private CiudadFacadeLocal ciudadEJB;
 	private Ciudad ciudad;
 	private List<Ciudad> ciudades;
-	
+
 	//EJB Propuesta no incluye
 	@EJB
 	private PropuestaNoIncluyeFacadeLocal propuestaEJB;
 	private int idPropuestaNoIncluye;
-	
+
 	//Ejb de la foranea TiempoEntrega
 	@EJB
 	private TiempoEntregaFacadeLocal tiempoEJB;
@@ -82,7 +105,7 @@ public class CotizacionController implements Serializable {
 	@EJB
 	private DescuentoVolumenFacadeLocal descuentoVEJB;
 	private int idDescuentoVulumen;
-	
+
 	//EJB Modalidades de pago
 	@EJB
 	private ModalidadDePagoFacadeLocal modalidadPEJB;
@@ -92,23 +115,34 @@ public class CotizacionController implements Serializable {
 	@EJB
 	private LugaresEntregaFacadeLocal lugaresEEJB;
 	private int idLugaresEntrega;
-	
+
 	@EJB
 	private ProductoFacadeLocal productoEJB;
 	//Entidad producto
 	private Producto producto;
 	private int idProducto;
-	
+	private List<Material> listaMateriales;
+	private List<Fabricante> listaFabricante;
+	private List<Producto> listaProductoPrecio;
+	private List<Producto> listaProducto;
+
+	@EJB
+	private DescuentoFacadeLocal descuentoEJB;
+	private int idDescuento;
+
 	@PostConstruct
 	public void init() {
 
 		cotizacion = new Cotizacion();
 		cotizacion.setFechaEmision(new Date());
+		cotizacionP = new CotizacionProducto();
 		clientes = clienteEJB.findAll();
 		cliente = new Cliente();
 		producto = new Producto();
 		listaCotizacionP = new ArrayList<>();
-		
+		this.descuentoCotizacion = 15;
+		listaProducto = productoEJB.findAll();
+		usuario = new Usuario();
 
 	}
 
@@ -122,17 +156,26 @@ public class CotizacionController implements Serializable {
 		}
 	}
 
+	public void agregarCotizacionProducto() {
 
-	public void AgregarCotizacionProducto() {
 		CotizacionProducto cot = new CotizacionProducto();
 
 		cot.setProducto(producto);
-		cot.setCantidad(cantidad);
-		cot.setPrecioParaCliente(precioParaCliente);
+		cot.setCantidad(cotizacionP.getCantidad());
+		cot.setPrecioParaCliente(cotizacionP.getPrecioParaCliente());
+
 		//  ven.setTblProductoIdProducto(productoEJB.find(producto.getIdProducto()));
-		cot.setProducto(productoEJB.find(getIdProducto()));
 		listaCotizacionP.add(cot);
+		
+
 	}
+
+	//Metodo para calcular el precio del producto seleccionado
+	public float calcularPrecioProductoDescuento() {
+		return  this.listaProductoPrecio.get(0).getPrecio()-(this.listaProductoPrecio.get(0).getPrecio()*this.descuentoCotizacion);
+		
+	}
+	
 
 	public void registrarCotización() {
 		//Se carga los objetos de las clases correspondientes a las llaves foraneas
@@ -161,8 +204,6 @@ public class CotizacionController implements Serializable {
 	public void setListaClientes(List<Cliente> listaClientes) {
 		this.listaClientes = listaClientes;
 	}
-
-
 
 	public Object getDatosCliente() {
 		return datosCliente;
@@ -260,14 +301,6 @@ public class CotizacionController implements Serializable {
 		this.cantidad = cantidad;
 	}
 
-	public double getPrecioParaCliente() {
-		return precioParaCliente;
-	}
-
-	public void setPrecioParaCliente(double precioParaCliente) {
-		this.precioParaCliente = precioParaCliente;
-	}
-
 	public Producto getProducto() {
 		return producto;
 	}
@@ -283,7 +316,6 @@ public class CotizacionController implements Serializable {
 	public void setIdProducto(int idProducto) {
 		this.idProducto = idProducto;
 	}
-	
 
 	public Ciudad getCiudad() {
 		return ciudad;
@@ -300,17 +332,130 @@ public class CotizacionController implements Serializable {
 	public void setCiudades(List<Ciudad> ciudades) {
 		this.ciudades = ciudades;
 	}
-	
-	 public Object getCliente() {
-        return datosCliente;
+
+	public Object getCliente() {
+		return datosCliente;
+	}
+
+	public void setCliente(Object cliente) {
+		this.datosCliente = cliente;
+	}
+
+	public int getIdDescuento() {
+		return idDescuento;
+	}
+
+	public void setIdDescuento(int idDescuento) {
+		this.idDescuento = idDescuento;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Float getPrecioParaCliente() {
+		return precioParaCliente;
+	}
+
+	public void setPrecioParaCliente(Float precioParaCliente) {
+		this.precioParaCliente = precioParaCliente;
+	}
+
+	public void obtenerDescripcionReferencia() throws Exception {
+		try {
+
+			producto = productoEJB.productoDescripcion(producto.getIdProducto());
+			listaMateriales = materialEJB.datosMaterial(producto.getIdProducto());
+			listaFabricante = fabricanteEJB.descripcionFabricante(producto.getIdProducto());
+			listaProductoPrecio = productoEJB.productoPrecio(producto.getIdProducto());
+		} catch (Exception e) {
+			throw e;
+		}
+
+	}
+
+	public List<Material> getListaMateriales() {
+		return listaMateriales;
+	}
+
+	public void setListaMateriales(List<Material> listaMateriales) {
+		this.listaMateriales = listaMateriales;
+	}
+
+	public List<Fabricante> getListaFabricante() {
+		return listaFabricante;
+	}
+
+	public void setListaFabricante(List<Fabricante> listaFabricante) {
+		this.listaFabricante = listaFabricante;
+	}
+
+	public List<Producto> getListaProductoPrecio() {
+		return listaProductoPrecio;
+	}
+
+	public void setListaProductoPrecio(List<Producto> listaProductoPrecio) {
+		this.listaProductoPrecio = listaProductoPrecio;
+	}
+
+	public CotizacionProducto getCotizacionP() {
+		return cotizacionP;
+	}
+
+	public void setCotizacionP(CotizacionProducto cotizacionP) {
+		this.cotizacionP = cotizacionP;
+	}
+
+	public List<Producto> getListaProducto() {
+		return listaProducto;
+	}
+
+	public void setListaProducto(List<Producto> listaProducto) {
+		this.listaProducto = listaProducto;
+	}
+
+	public int getDescuentoCotizacion() {
+		return descuentoCotizacion;
+	}
+     
+    public void descuento(int des) {
+        descuentoCotizacion = des;
     }
 
-    public void setCliente(Object cliente) {
-        this.datosCliente = cliente;
-    }
+	public void setDescuentoCotizacion(Double descuentoCotizacion) {
+		descuentoCotizacion = (descuentoCotizacion!=15.0) ? descuentoCotizacion:15.0;
+	}
+
+	public Double getIvaCotizacion() {
+		return ivaCotizacion;
+	}
+
+	public void setIvaCotizacion(Double ivaCotizacion) {
+		this.ivaCotizacion = ivaCotizacion;
+	}
+
+	public String generarIdCotizacion() {
+		HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+		Usuario u = (Usuario) sesion.getAttribute("usuario");
+		this.usuario = u;
+		return u.getIdInterno() + " -" + u.getConsecutivoCotizacion();
+	}
+
+	public double getPrecioDescuento() {
+		return precioDescuento;
+	}
+
+	public void setPrecioDescuento(double precioDescuento) {
+		this.precioDescuento = calcularPrecioProductoDescuento();
+	}
+	
+	
+	
+	
 	
 
- 
-
-	
 }

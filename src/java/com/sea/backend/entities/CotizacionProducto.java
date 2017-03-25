@@ -51,12 +51,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 	, @NamedQuery(name = "CotizacionProducto.findByCantidad", query = "SELECT c FROM CotizacionProducto c WHERE c.cantidad = :cantidad")})
 public class CotizacionProducto implements Serializable {
 
+	// @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+	@Column(name = "PRECIO_PARA_CLIENTE")
+	private Float precioParaCliente;
+	@Basic(optional = false)
+    @NotNull
+    @Column(name = "PRECIO_BASE")
+	private float precioBase;
+
 	private static final long serialVersionUID = 1L;
 	@EmbeddedId
 	protected CotizacionProductoPK cotizacionProductoPK;
-	// @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-	@Column(name = "PRECIO_PARA_CLIENTE")
-	private Double precioParaCliente;
 	@Basic(optional = false)
 	@NotNull
 	@Column(name = "CANTIDAD")
@@ -92,11 +97,11 @@ public class CotizacionProducto implements Serializable {
 		this.cotizacionProductoPK = cotizacionProductoPK;
 	}
 
-	public Double getPrecioParaCliente() {
+	public Float getPrecioParaCliente() {
 		return precioParaCliente;
 	}
 
-	public void setPrecioParaCliente(Double precioParaCliente) {
+	public void setPrecioParaCliente(Float precioParaCliente) {
 		this.precioParaCliente = precioParaCliente;
 	}
 
@@ -122,6 +127,14 @@ public class CotizacionProducto implements Serializable {
 
 	public void setProducto(Producto producto) {
 		this.producto = producto;
+	}
+
+	public float getPrecioBase() {
+		return precioBase;
+	}
+
+	public void setPrecioBase(float precioBase) {
+		this.precioBase = precioBase;
 	}
 
 	@Override

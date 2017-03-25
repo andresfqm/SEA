@@ -4,11 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/EdisonArturo/Documents/NetBeansProjects/SEA/web/administracion/usuarios.xhtml</file>
-            <file>file:/C:/Users/EdisonArturo/Documents/NetBeansProjects/SEA/src/java/com/sea/frontend/controller/TipoDocumentoController.java</file>
-            <file>file:/C:/Users/EdisonArturo/Documents/NetBeansProjects/SEA/src/java/com/sea/frontend/controller/UsuarioController.java</file>
-            <file>file:/C:/Users/EdisonArturo/Documents/NetBeansProjects/SEA/src/java/com/sea/backend/model/CiudadFacadeLocal.java</file>
-            <file>file:/C:/Users/EdisonArturo/Documents/NetBeansProjects/SEA/src/java/com/sea/backend/model/CiudadFacade.java</file>
-            <file>file:/C:/Users/EdisonArturo/Documents/NetBeansProjects/SEA/src/java/com/sea/frontend/controller/PerfilController.java</file>
+            <file>file:/C:/Users/EdisonArturo/Documents/NetBeansProjects/SEA/web/cotizaciones/enviarCotizacion.xhtml</file>
+            <file>file:/C:/Users/EdisonArturo/Documents/NetBeansProjects/SEA/src/java/com/sea/frontend/controller/CotizacionController.java</file>
         </group>
     </open-files>
 </project-private>
