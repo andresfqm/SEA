@@ -24,6 +24,7 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.Ciudad;
+import com.sea.backend.entities.Departamento;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -48,4 +49,7 @@ public interface CiudadFacadeLocal {
 
 	int count();
 
+	List<Ciudad> listaCiudades(Departamento ciu);
+	
+	Ciudad listaCiudad(String ci);
 }

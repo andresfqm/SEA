@@ -8,6 +8,7 @@ package com.sea.frontend.controller;
 import com.sea.backend.entities.TipoDireccion;
 import com.sea.backend.model.TipoDireccionFacadeLocal;
 import java.io.Serializable;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -25,6 +26,8 @@ public class TipoDireccionController implements Serializable {
 	private TipoDireccionFacadeLocal tipoDireccionEJB;
 
 	private TipoDireccion tipoD;
+	
+	private List<TipoDireccion> listaTipoD;
 
 	public TipoDireccion getTipoD() {
 		return tipoD;
@@ -37,7 +40,15 @@ public class TipoDireccionController implements Serializable {
 	@PostConstruct
 	public void init() {
 		tipoD = new TipoDireccion();
+		listaTipoD = tipoDireccionEJB.findAll();
+	}
 
+	public List<TipoDireccion> getListaTipoD() {
+		return listaTipoD;
+	}
+
+	public void setListaTipoD(List<TipoDireccion> listaTipoD) {
+		this.listaTipoD = listaTipoD;
 	}
 
 	public void registrar() {

@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 EdisonArturo.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,38 +23,29 @@
  */
 package com.sea.backend.model;
 
-import com.sea.backend.entities.Direccion;
-import com.sea.backend.entities.Usuario;
+import com.sea.backend.entities.UsuarioPerfil;
 import java.util.List;
 import javax.ejb.Local;
 
 /**
  *
- * @author Depurador
+ * @author EdisonArturo
  */
 @Local
-public interface UsuarioFacadeLocal {
+public interface UsuarioPerfilFacadeLocal {
 
-	void create(Usuario usuario);
+	void create(UsuarioPerfil usuarioPerfil);
 
-	void edit(Usuario usuario);
+	void edit(UsuarioPerfil usuarioPerfil);
 
-	void remove(Usuario usuario);
+	void remove(UsuarioPerfil usuarioPerfil);
 
-	Usuario find(Object id);
+	UsuarioPerfil find(Object id);
 
-	List<Usuario> findAll();
+	List<UsuarioPerfil> findAll();
 
-	List<Usuario> findRange(int[] range);
+	List<UsuarioPerfil> findRange(int[] range);
 
 	int count();
-
-	Usuario iniciarSesion(Usuario us);
 	
-	List<Usuario> listaUsuario();
-	
-	public Usuario listaUsuario(String us);
-	
-	Direccion actualizarCiudad(Usuario ci);
-
 }

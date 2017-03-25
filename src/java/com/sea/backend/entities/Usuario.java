@@ -24,6 +24,7 @@
 package com.sea.backend.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -64,6 +65,9 @@ import javax.xml.bind.annotation.XmlTransient;
 	, @NamedQuery(name = "Usuario.findByHabilitado", query = "SELECT u FROM Usuario u WHERE u.habilitado = :habilitado")
 	, @NamedQuery(name = "Usuario.findByAutenticado", query = "SELECT u FROM Usuario u WHERE u.autenticado = :autenticado")})
 public class Usuario implements Serializable {
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblUsuarioIdUsuario")
+	private Collection<UsuarioPerfil> usuarioPerfilCollection;
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -314,6 +318,15 @@ public class Usuario implements Serializable {
 	@Override
 	public String toString() {
 		return "com.sea.backend.entities.Usuario[ idUsuario=" + idUsuario + " ]";
+	}
+
+	@XmlTransient
+	public Collection<UsuarioPerfil> getUsuarioPerfilCollection() {
+		return usuarioPerfilCollection;
+	}
+
+	public void setUsuarioPerfilCollection(Collection<UsuarioPerfil> usuarioPerfilCollection) {
+		this.usuarioPerfilCollection = usuarioPerfilCollection;
 	}
 
 }

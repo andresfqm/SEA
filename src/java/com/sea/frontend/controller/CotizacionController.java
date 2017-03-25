@@ -51,7 +51,7 @@ public class CotizacionController implements Serializable {
 	@EJB
 	private CotizacionFacadeLocal cotizacionEJB;
 	private Cotizacion cotizacion;
-	private Double descuentoCotizacion;
+	private int descuentoCotizacion;
 	private Double ivaCotizacion = 19.0;
 
 	@EJB
@@ -140,7 +140,7 @@ public class CotizacionController implements Serializable {
 		cliente = new Cliente();
 		producto = new Producto();
 		listaCotizacionP = new ArrayList<>();
-		this.descuentoCotizacion = 15.0;
+		this.descuentoCotizacion = 15;
 		listaProducto = productoEJB.findAll();
 		usuario = new Usuario();
 
@@ -157,6 +157,7 @@ public class CotizacionController implements Serializable {
 	}
 
 	public void agregarCotizacionProducto() {
+
 		CotizacionProducto cot = new CotizacionProducto();
 
 		cot.setProducto(producto);
@@ -170,7 +171,7 @@ public class CotizacionController implements Serializable {
 	}
 
 	//Metodo para calcular el precio del producto seleccionado
-	public Double calcularPrecioProductoDescuento() {
+	public float calcularPrecioProductoDescuento() {
 		return  this.listaProductoPrecio.get(0).getPrecio()-(this.listaProductoPrecio.get(0).getPrecio()*this.descuentoCotizacion);
 		
 	}
@@ -417,9 +418,13 @@ public class CotizacionController implements Serializable {
 		this.listaProducto = listaProducto;
 	}
 
-	public Double getDescuentoCotizacion() {
+	public int getDescuentoCotizacion() {
 		return descuentoCotizacion;
 	}
+     
+    public void descuento(int des) {
+        descuentoCotizacion = des;
+    }
 
 	public void setDescuentoCotizacion(Double descuentoCotizacion) {
 		descuentoCotizacion = (descuentoCotizacion!=15.0) ? descuentoCotizacion:15.0;

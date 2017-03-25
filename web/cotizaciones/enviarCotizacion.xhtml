@@ -151,6 +151,7 @@
 
 									<p:selectOneMenu value="#{cotizacionController.producto.idProducto}" filter="true" filterMatchMode="contains">
 										<p:ajax event="valueChange" listener="#{cotizacionController.obtenerDescripcionReferencia()}" update="descripcion, material, fabricante, precioUnitario" />
+										<f:selectItem itemValue="" itemLabel="Seleccione" />
 										<f:selectItems value="#{cotizacionController.listaProducto}" var="ref" itemLabel="#{ref.referencia}" itemValue="#{ref.idProducto}"/>
 									</p:selectOneMenu>
 								</h:panelGroup>
@@ -182,7 +183,7 @@
 									<h:outputLabel class="mdl-textfield__label" for="precioModificado">Precio para el cliente</h:outputLabel>
 								</h:panelGroup>
 								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<h:inputText value="#{cotizacionController.precioDescuento}" id="precioUnitarioDescuento" />
+									<h:inputText class="mdl-textfield__input" value="#{cotizacionController.precioDescuento}" id="precioUnitarioDescuento" />
 									<h:outputLabel class="mdl-textfield__label" for="precioUnitarioDescuento">Precio Unitario (Con Descuento)</h:outputLabel>
 								</h:panelGroup>
 								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -210,10 +211,7 @@
 						<h3 class="mdl-typography--headline">Condiciones comerciales</h3>
 						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 							<p:inputText styleClass="mdl-textfield__input" pt:type="number" id="descuento" pt:required="required" p:min="0" p:max="100" p:step="0.01" value="#{cotizacionController.descuentoCotizacion}" >
-								<p:ajax event="change" listener="#{cotizacionController.descuentoCotizacion}" update=":out2"/>
 							</p:inputText>
-							
-							<h:outputText id="out2" value="#{cotizacionController.descuentoCotizacion}" />
 							
 							<h:outputLabel class="mdl-textfield__label" for="descuento">Descuento</h:outputLabel>
 						</h:panelGroup>
