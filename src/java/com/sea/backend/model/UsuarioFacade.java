@@ -23,6 +23,8 @@
  */
 package com.sea.backend.model;
 
+import com.sea.backend.entities.Ciudad;
+import com.sea.backend.entities.Direccion;
 import com.sea.backend.entities.Usuario;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -71,6 +73,49 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 
 		}
 		return usuario;
+	}
+
+	@Override
+	public List<Usuario> listaUsuario() {
+		List<Usuario> lista;
+		String jpql = "select u.nombre, u.numeroDocumento, u.idInterno, t.numeroTelefono, c.email, u.nombreUsuario, pe.nombre, u.idUsuario from Usuario  u\n"
+				+ "join u.telefonoList t\n"
+				+ "join u.emailList c\n"
+				+ "join u.perfilList pe\n";
+		Query query = em.createQuery(jpql);
+		lista = query.getResultList();
+
+		return lista;
+	}
+	
+	@Override
+	public Usuario listaUsuario(String us) {
+		Usuario usuario = null;
+		List<Usuario> lista;
+		String jpql = "FROM Usuario u where u.nombre = ?1";
+		Query query = em.createQuery(jpql);
+		query.setParameter(1, us);
+		lista = query.getResultList();
+		if (!lista.isEmpty()) {
+				usuario = lista.get(0);
+			}
+
+		return usuario;
+	}
+	
+	@Override
+	public Direccion actualizarCiudad(Usuario ci) {
+		Direccion direccion = null;
+		List<Direccion> lista;
+		String jpql = "FROM Direccion d where d.tblUsuarioIdUsuario = ?1";
+		Query query = em.createQuery(jpql);
+		query.setParameter(1, ci);
+		lista = query.getResultList();
+		if (!lista.isEmpty()) {
+				direccion = lista.get(0);
+			}
+
+		return direccion;
 	}
 
 }
