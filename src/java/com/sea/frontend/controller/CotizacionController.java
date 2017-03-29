@@ -57,7 +57,7 @@ public class CotizacionController implements Serializable {
 	private CotizacionFacadeLocal cotizacionEJB;
 	private Cotizacion cotizacion;
 	private Double descuentoCotizacion;
-	private List<ModalidadDePago> listaModalidad; 
+	 
 
 	@EJB
 	private UsuarioFacadeLocal EJBUsuario;
@@ -100,8 +100,10 @@ public class CotizacionController implements Serializable {
 	//EJB Propuesta no incluye
 	@EJB
 	private PropuestaNoIncluyeFacadeLocal propuestaEJB;
-	private int propuestaNoIncluye;
+	//private int propuestaNoIncluye;
 	private List<PropuestaNoIncluye> ListapropuestaNoIncluye;
+	private int idPropuestaNoIncluye;
+	private PropuestaNoIncluye propuestaNoIncluye;
 
 	public List<PropuestaNoIncluye> getListapropuestaNoIncluye() {
 		return ListapropuestaNoIncluye;
@@ -116,22 +118,31 @@ public class CotizacionController implements Serializable {
 	//Ejb de la foranea TiempoEntrega
 	@EJB
 	private TiempoEntregaFacadeLocal tiempoEJB;
+	private int idTiempoEntrega;
 	private TiempoEntrega tiempoEntrega;
+	private List<TiempoEntrega> listaTiempoEntrega;
+	
 
 	//Ejb de la foranea DescuentoVolen
 	@EJB
 	private DescuentoVolumenFacadeLocal descuentoVEJB;
+	private int idDescuentoVolumen;
 	private DescuentoVolumen descuentoVolumen;
+	private List<DescuentoVolumen> listaDescuentoVolumen;
 
 	//EJB Modalidades de pago
 	@EJB
 	private ModalidadDePagoFacadeLocal modalidadPEJB;
-	private int modalidadPago;
+	private int idModalidadDePago;
+	private List<ModalidadDePago> listaModalidadDePago;
+	private ModalidadDePago modalidadDePago;
 
 	//EJB Lugares de entrega
 	@EJB
 	private LugaresEntregaFacadeLocal lugaresEEJB;
+	private int idLugaresEntrega;
 	private LugaresEntrega lugaresEntrega;
+	private List<LugaresEntrega> listaLugaresEntrega;
 
 	@EJB
 	private ProductoFacadeLocal productoEJB;
@@ -166,7 +177,13 @@ public class CotizacionController implements Serializable {
 		tiempoEntrega = new TiempoEntrega();
 		descuentoVolumen = new DescuentoVolumen();
 		ListapropuestaNoIncluye = propuestaEJB.findAll();
-		listaModalidad = modalidadPEJB.findAll();
+		listaTiempoEntrega = tiempoEJB.findAll();
+		listaLugaresEntrega = lugaresEEJB.findAll();
+		listaDescuentoVolumen = descuentoVEJB.findAll();
+		listaModalidadDePago = modalidadPEJB.findAll();
+		
+		propuestaNoIncluye = new PropuestaNoIncluye();
+		
 
 	}
 
@@ -210,14 +227,50 @@ public class CotizacionController implements Serializable {
 		cotizacion.setEstado("En seguimiento");
 		//Se carga los objetos de las clases correspondientes a las llaves foraneas
 		cotizacion.setTblClienteIdCliente(clienteEJB.find(idCliente));
-		cotizacion.setTblModalidadDePagoIdModalidadDePago(modalidadPEJB.find(modalidadPago));
-		cotizacion.setTblPropuestaNoIncluyeIdPropuestaNoIncluye(propuestaEJB.find(propuestaNoIncluye));
-		cotizacion.setTblTiempoEntregaIdTiempoEntrega(tiempoEntrega);
-		cotizacion.setTblDescuentoVolumenIdDescuentoVolumen(descuentoVolumen);
-		cotizacion.setTblLugaresEntregaIdLugaresEntrega(lugaresEntrega);
+		cotizacion.setTblModalidadDePagoIdModalidadDePago(modalidadPEJB.find(idModalidadDePago));
+		cotizacion.setTblPropuestaNoIncluyeIdPropuestaNoIncluye(propuestaEJB.find(idPropuestaNoIncluye));
+		cotizacion.setTblTiempoEntregaIdTiempoEntrega(tiempoEJB.find(idTiempoEntrega));
+		cotizacion.setTblDescuentoVolumenIdDescuentoVolumen(descuentoVEJB.find(idDescuentoVolumen));
+		cotizacion.setTblLugaresEntregaIdLugaresEntrega(lugaresEEJB.find(idLugaresEntrega));
 		cotizacionEJB.create(cotizacion);
 
 	}
+	
+	
+
+	public PropuestaNoIncluye getPropuestaNoIncluye() {
+		return propuestaNoIncluye;
+	}
+
+	public void setPropuestaNoIncluye(PropuestaNoIncluye propuestaNoIncluye) {
+		this.propuestaNoIncluye = propuestaNoIncluye;
+	}
+
+	public TiempoEntrega getTiempoEntrega() {
+		return tiempoEntrega;
+	}
+
+	public void setTiempoEntrega(TiempoEntrega tiempoEntrega) {
+		this.tiempoEntrega = tiempoEntrega;
+	}
+
+	public DescuentoVolumen getDescuentoVolumen() {
+		return descuentoVolumen;
+	}
+
+	public void setDescuentoVolumen(DescuentoVolumen descuentoVolumen) {
+		this.descuentoVolumen = descuentoVolumen;
+	}
+
+	public LugaresEntrega getLugaresEntrega() {
+		return lugaresEntrega;
+	}
+
+	public void setLugaresEntrega(LugaresEntrega lugaresEntrega) {
+		this.lugaresEntrega = lugaresEntrega;
+	}
+	
+	
 
 	public int getIdModalidad() {
 		return idModalidad;
@@ -241,6 +294,7 @@ public class CotizacionController implements Serializable {
 
 	public void setListaClientes(List<Cliente> listaClientes) {
 		this.listaClientes = listaClientes;
+		
 	}
 
 	public Object getDatosCliente() {
@@ -263,14 +317,39 @@ public class CotizacionController implements Serializable {
 		return clientes;
 	}
 
-	public List<ModalidadDePago> getListaModalidad() {
-		return listaModalidad;
+	public List<TiempoEntrega> getListaTiempoEntrega() {
+		return listaTiempoEntrega;
 	}
 
-	public void setListaModalidad(List<ModalidadDePago> listaModalidad) {
-		this.listaModalidad = listaModalidad;
+	public void setListaTiempoEntrega(List<TiempoEntrega> listaTiempoEntrega) {
+		this.listaTiempoEntrega = listaTiempoEntrega;
 	}
 
+	public List<DescuentoVolumen> getListaDescuentoVolumen() {
+		return listaDescuentoVolumen;
+	}
+
+	public void setListaDescuentoVolumen(List<DescuentoVolumen> listaDescuentoVolumen) {
+		this.listaDescuentoVolumen = listaDescuentoVolumen;
+	}
+
+	public List<ModalidadDePago> getListaModalidadDePago() {
+		return listaModalidadDePago;
+	}
+
+	public void setListaModalidadDePago(List<ModalidadDePago> listaModalidadDePago) {
+		this.listaModalidadDePago = listaModalidadDePago;
+	}
+
+	public List<LugaresEntrega> getListaLugaresEntrega() {
+		return listaLugaresEntrega;
+	}
+
+	public void setListaLugaresEntrega(List<LugaresEntrega> listaLugaresEntrega) {
+		this.listaLugaresEntrega = listaLugaresEntrega;
+	}
+
+	
 	public void setClientes(List<Cliente> clientes) {
 		this.clientes = clientes;
 	}
@@ -299,45 +378,61 @@ public class CotizacionController implements Serializable {
 		this.ciudadEJB = ciudadEJB;
 	}
 
-	public int getPropuestaNoIncluye() {
-		return propuestaNoIncluye;
+	public int getIdPropuestaNoIncluye() {
+		return idPropuestaNoIncluye;
 	}
 
-	public int setPropuestaNoIncluye(int propuestaNoIncluye) {
-		return this.propuestaNoIncluye = propuestaNoIncluye;
+	public void setIdPropuestaNoIncluye(int idPropuestaNoIncluye) {
+		this.idPropuestaNoIncluye = idPropuestaNoIncluye;
 	}
 
-	public TiempoEntrega getTiempoEntrega() {
-		return tiempoEntrega;
+	public int getIdTiempoEntrega() {
+		return idTiempoEntrega;
 	}
 
-	public void setTiempoEntrega(TiempoEntrega tiempoEntrega) {
-		this.tiempoEntrega = tiempoEntrega;
+	public void setIdTiempoEntrega(int idTiempoEntrega) {
+		this.idTiempoEntrega = idTiempoEntrega;
 	}
 
-	public DescuentoVolumen getDescuentoVolumen() {
-		return descuentoVolumen;
+	public int getIdDescuentoVolumen() {
+		return idDescuentoVolumen;
 	}
 
-	public void setDescuentoVolumen(DescuentoVolumen descuentoVolumen) {
-		this.descuentoVolumen = descuentoVolumen;
+	public void setIdDescuentoVolumen(int idDescuentoVolumen) {
+		this.idDescuentoVolumen = idDescuentoVolumen;
 	}
 
-	public int getModalidadPago() {
-		return modalidadPago;
+	public int getIdModalidadDePago() {
+		return idModalidadDePago;
 	}
 
-	public int setModalidadPago(int modalidadPago) {
-		return this.modalidadPago = modalidadPago;
+	public void setIdModalidadDePago(int idModalidadDePago) {
+		this.idModalidadDePago = idModalidadDePago;
 	}
 
-	public LugaresEntrega getLugaresEntrega() {
-		return lugaresEntrega;
+	public ModalidadDePago getModalidadDePago() {
+		return modalidadDePago;
 	}
 
-	public void setLugaresEntrega(LugaresEntrega lugaresEntrega) {
-		this.lugaresEntrega = lugaresEntrega;
+	public void setModalidadDePago(ModalidadDePago modalidadDePago) {
+		this.modalidadDePago = modalidadDePago;
 	}
+	
+	
+
+	public int getIdLugaresEntrega() {
+		return idLugaresEntrega;
+	}
+
+	public void setIdLugaresEntrega(int idLugaresEntrega) {
+		this.idLugaresEntrega = idLugaresEntrega;
+	}
+
+	
+
+	
+
+	
 
 	public int getCantidad() {
 		return cantidad;
