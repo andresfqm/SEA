@@ -9,9 +9,14 @@ import com.sea.backend.entities.Ciudad;
 import com.sea.backend.entities.Cliente;
 import com.sea.backend.entities.Cotizacion;
 import com.sea.backend.entities.CotizacionProducto;
+import com.sea.backend.entities.DescuentoVolumen;
 import com.sea.backend.entities.Fabricante;
+import com.sea.backend.entities.LugaresEntrega;
 import com.sea.backend.entities.Material;
+import com.sea.backend.entities.ModalidadDePago;
 import com.sea.backend.entities.Producto;
+import com.sea.backend.entities.PropuestaNoIncluye;
+import com.sea.backend.entities.TiempoEntrega;
 import com.sea.backend.entities.Usuario;
 import com.sea.backend.model.CiudadFacadeLocal;
 import com.sea.backend.model.ClienteFacadeLocal;
@@ -51,8 +56,8 @@ public class CotizacionController implements Serializable {
 	@EJB
 	private CotizacionFacadeLocal cotizacionEJB;
 	private Cotizacion cotizacion;
-	private int descuentoCotizacion;
-	private Double ivaCotizacion = 19.0;
+	private Double descuentoCotizacion;
+	 
 
 	@EJB
 	private UsuarioFacadeLocal EJBUsuario;
@@ -65,6 +70,7 @@ public class CotizacionController implements Serializable {
 	private List<Cliente> listaClientes;
 	private Object datosCliente;
 	private int idCliente;
+	private int idModalidad;
 	private List<Cliente> clientes;
 
 	//EJB CotizaciónProducto
@@ -94,27 +100,49 @@ public class CotizacionController implements Serializable {
 	//EJB Propuesta no incluye
 	@EJB
 	private PropuestaNoIncluyeFacadeLocal propuestaEJB;
+	//private int propuestaNoIncluye;
+	private List<PropuestaNoIncluye> ListapropuestaNoIncluye;
 	private int idPropuestaNoIncluye;
+	private PropuestaNoIncluye propuestaNoIncluye;
+
+	public List<PropuestaNoIncluye> getListapropuestaNoIncluye() {
+		return ListapropuestaNoIncluye;
+	}
+
+	public void setListapropuestaNoIncluye(List<PropuestaNoIncluye> ListapropuestaNoIncluye) {
+		this.ListapropuestaNoIncluye = ListapropuestaNoIncluye;
+	}
+	
+	
 
 	//Ejb de la foranea TiempoEntrega
 	@EJB
 	private TiempoEntregaFacadeLocal tiempoEJB;
 	private int idTiempoEntrega;
+	private TiempoEntrega tiempoEntrega;
+	private List<TiempoEntrega> listaTiempoEntrega;
+	
 
 	//Ejb de la foranea DescuentoVolen
 	@EJB
 	private DescuentoVolumenFacadeLocal descuentoVEJB;
-	private int idDescuentoVulumen;
+	private int idDescuentoVolumen;
+	private DescuentoVolumen descuentoVolumen;
+	private List<DescuentoVolumen> listaDescuentoVolumen;
 
 	//EJB Modalidades de pago
 	@EJB
 	private ModalidadDePagoFacadeLocal modalidadPEJB;
-	private int idModalidadPago;
+	private int idModalidadDePago;
+	private List<ModalidadDePago> listaModalidadDePago;
+	private ModalidadDePago modalidadDePago;
 
 	//EJB Lugares de entrega
 	@EJB
 	private LugaresEntregaFacadeLocal lugaresEEJB;
 	private int idLugaresEntrega;
+	private LugaresEntrega lugaresEntrega;
+	private List<LugaresEntrega> listaLugaresEntrega;
 
 	@EJB
 	private ProductoFacadeLocal productoEJB;
@@ -135,14 +163,27 @@ public class CotizacionController implements Serializable {
 
 		cotizacion = new Cotizacion();
 		cotizacion.setFechaEmision(new Date());
+		cotizacion.setValidezOferta(60);
+		cotizacion.setDescuento(15);
+		cotizacion.setIva(19);
 		cotizacionP = new CotizacionProducto();
 		clientes = clienteEJB.findAll();
 		cliente = new Cliente();
 		producto = new Producto();
 		listaCotizacionP = new ArrayList<>();
-		this.descuentoCotizacion = 15;
 		listaProducto = productoEJB.findAll();
 		usuario = new Usuario();
+		lugaresEntrega = new LugaresEntrega();
+		tiempoEntrega = new TiempoEntrega();
+		descuentoVolumen = new DescuentoVolumen();
+		ListapropuestaNoIncluye = propuestaEJB.findAll();
+		listaTiempoEntrega = tiempoEJB.findAll();
+		listaLugaresEntrega = lugaresEEJB.findAll();
+		listaDescuentoVolumen = descuentoVEJB.findAll();
+		listaModalidadDePago = modalidadPEJB.findAll();
+		
+		propuestaNoIncluye = new PropuestaNoIncluye();
+		
 
 	}
 
@@ -157,7 +198,6 @@ public class CotizacionController implements Serializable {
 	}
 
 	public void agregarCotizacionProducto() {
-
 		CotizacionProducto cot = new CotizacionProducto();
 
 		cot.setProducto(producto);
@@ -166,27 +206,78 @@ public class CotizacionController implements Serializable {
 
 		//  ven.setTblProductoIdProducto(productoEJB.find(producto.getIdProducto()));
 		listaCotizacionP.add(cot);
-		
 
 	}
 
 	//Metodo para calcular el precio del producto seleccionado
-	public float calcularPrecioProductoDescuento() {
-		return  this.listaProductoPrecio.get(0).getPrecio()-(this.listaProductoPrecio.get(0).getPrecio()*this.descuentoCotizacion);
-		
+	public Double calcularPrecioProductoDescuento() {
+		return this.listaProductoPrecio.get(0).getPrecio() - (this.listaProductoPrecio.get(0).getPrecio() * this.descuentoCotizacion);
+
 	}
-	
 
 	public void registrarCotización() {
+		cotizacion.setNumeroCotizacion(generarIdCotizacion());
+		cotizacion.setFechaEmision(cotizacion.getFechaEmision());
+		cotizacion.setLugarEmision(cotizacion.getLugarEmision());
+		cotizacion.setValidezOferta(cotizacion.getValidezOferta());
+		cotizacion.setDescuento(cotizacion.getDescuento());
+		cotizacion.setVisita(cotizacion.getVisita());
+		cotizacion.setPrestamoMuestra(cotizacion.getPrestamoMuestra());
+		cotizacion.setRelacionMuestra(cotizacion.getRelacionMuestra());
+		cotizacion.setEstado("En seguimiento");
 		//Se carga los objetos de las clases correspondientes a las llaves foraneas
 		cotizacion.setTblClienteIdCliente(clienteEJB.find(idCliente));
+		cotizacion.setTblModalidadDePagoIdModalidadDePago(modalidadPEJB.find(idModalidadDePago));
 		cotizacion.setTblPropuestaNoIncluyeIdPropuestaNoIncluye(propuestaEJB.find(idPropuestaNoIncluye));
 		cotizacion.setTblTiempoEntregaIdTiempoEntrega(tiempoEJB.find(idTiempoEntrega));
-		cotizacion.setTblDescuentoVolumenIdDescuentoVolumen(descuentoVEJB.find(idDescuentoVulumen));
-		cotizacion.setTblModalidadDePagoIdModalidadDePago(modalidadPEJB.find(idModalidadPago));
+		cotizacion.setTblDescuentoVolumenIdDescuentoVolumen(descuentoVEJB.find(idDescuentoVolumen));
 		cotizacion.setTblLugaresEntregaIdLugaresEntrega(lugaresEEJB.find(idLugaresEntrega));
 		cotizacionEJB.create(cotizacion);
 
+	}
+	
+	
+
+	public PropuestaNoIncluye getPropuestaNoIncluye() {
+		return propuestaNoIncluye;
+	}
+
+	public void setPropuestaNoIncluye(PropuestaNoIncluye propuestaNoIncluye) {
+		this.propuestaNoIncluye = propuestaNoIncluye;
+	}
+
+	public TiempoEntrega getTiempoEntrega() {
+		return tiempoEntrega;
+	}
+
+	public void setTiempoEntrega(TiempoEntrega tiempoEntrega) {
+		this.tiempoEntrega = tiempoEntrega;
+	}
+
+	public DescuentoVolumen getDescuentoVolumen() {
+		return descuentoVolumen;
+	}
+
+	public void setDescuentoVolumen(DescuentoVolumen descuentoVolumen) {
+		this.descuentoVolumen = descuentoVolumen;
+	}
+
+	public LugaresEntrega getLugaresEntrega() {
+		return lugaresEntrega;
+	}
+
+	public void setLugaresEntrega(LugaresEntrega lugaresEntrega) {
+		this.lugaresEntrega = lugaresEntrega;
+	}
+	
+	
+
+	public int getIdModalidad() {
+		return idModalidad;
+	}
+
+	public void setIdModalidad(int idModalidad) {
+		this.idModalidad = idModalidad;
 	}
 
 	public Cotizacion getCotizacion() {
@@ -203,6 +294,7 @@ public class CotizacionController implements Serializable {
 
 	public void setListaClientes(List<Cliente> listaClientes) {
 		this.listaClientes = listaClientes;
+		
 	}
 
 	public Object getDatosCliente() {
@@ -225,6 +317,39 @@ public class CotizacionController implements Serializable {
 		return clientes;
 	}
 
+	public List<TiempoEntrega> getListaTiempoEntrega() {
+		return listaTiempoEntrega;
+	}
+
+	public void setListaTiempoEntrega(List<TiempoEntrega> listaTiempoEntrega) {
+		this.listaTiempoEntrega = listaTiempoEntrega;
+	}
+
+	public List<DescuentoVolumen> getListaDescuentoVolumen() {
+		return listaDescuentoVolumen;
+	}
+
+	public void setListaDescuentoVolumen(List<DescuentoVolumen> listaDescuentoVolumen) {
+		this.listaDescuentoVolumen = listaDescuentoVolumen;
+	}
+
+	public List<ModalidadDePago> getListaModalidadDePago() {
+		return listaModalidadDePago;
+	}
+
+	public void setListaModalidadDePago(List<ModalidadDePago> listaModalidadDePago) {
+		this.listaModalidadDePago = listaModalidadDePago;
+	}
+
+	public List<LugaresEntrega> getListaLugaresEntrega() {
+		return listaLugaresEntrega;
+	}
+
+	public void setListaLugaresEntrega(List<LugaresEntrega> listaLugaresEntrega) {
+		this.listaLugaresEntrega = listaLugaresEntrega;
+	}
+
+	
 	public void setClientes(List<Cliente> clientes) {
 		this.clientes = clientes;
 	}
@@ -269,21 +394,31 @@ public class CotizacionController implements Serializable {
 		this.idTiempoEntrega = idTiempoEntrega;
 	}
 
-	public int getIdDescuentoVulumen() {
-		return idDescuentoVulumen;
+	public int getIdDescuentoVolumen() {
+		return idDescuentoVolumen;
 	}
 
-	public void setIdDescuentoVulumen(int idDescuentoVulumen) {
-		this.idDescuentoVulumen = idDescuentoVulumen;
+	public void setIdDescuentoVolumen(int idDescuentoVolumen) {
+		this.idDescuentoVolumen = idDescuentoVolumen;
 	}
 
-	public int getIdModalidadPago() {
-		return idModalidadPago;
+	public int getIdModalidadDePago() {
+		return idModalidadDePago;
 	}
 
-	public void setIdModalidadPago(int idModalidadPago) {
-		this.idModalidadPago = idModalidadPago;
+	public void setIdModalidadDePago(int idModalidadDePago) {
+		this.idModalidadDePago = idModalidadDePago;
 	}
+
+	public ModalidadDePago getModalidadDePago() {
+		return modalidadDePago;
+	}
+
+	public void setModalidadDePago(ModalidadDePago modalidadDePago) {
+		this.modalidadDePago = modalidadDePago;
+	}
+	
+	
 
 	public int getIdLugaresEntrega() {
 		return idLugaresEntrega;
@@ -292,6 +427,12 @@ public class CotizacionController implements Serializable {
 	public void setIdLugaresEntrega(int idLugaresEntrega) {
 		this.idLugaresEntrega = idLugaresEntrega;
 	}
+
+	
+
+	
+
+	
 
 	public int getCantidad() {
 		return cantidad;
@@ -418,26 +559,6 @@ public class CotizacionController implements Serializable {
 		this.listaProducto = listaProducto;
 	}
 
-	public int getDescuentoCotizacion() {
-		return descuentoCotizacion;
-	}
-     
-    public void descuento(int des) {
-        descuentoCotizacion = des;
-    }
-
-	public void setDescuentoCotizacion(Double descuentoCotizacion) {
-		descuentoCotizacion = (descuentoCotizacion!=15.0) ? descuentoCotizacion:15.0;
-	}
-
-	public Double getIvaCotizacion() {
-		return ivaCotizacion;
-	}
-
-	public void setIvaCotizacion(Double ivaCotizacion) {
-		this.ivaCotizacion = ivaCotizacion;
-	}
-
 	public String generarIdCotizacion() {
 		HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 		Usuario u = (Usuario) sesion.getAttribute("usuario");
@@ -452,10 +573,13 @@ public class CotizacionController implements Serializable {
 	public void setPrecioDescuento(double precioDescuento) {
 		this.precioDescuento = calcularPrecioProductoDescuento();
 	}
-	
-	
-	
-	
-	
+
+	public Double getDescuentoCotizacion() {
+		return descuentoCotizacion;
+	}
+
+	public void setDescuentoCotizacion(Double descuentoCotizacion) {
+		this.descuentoCotizacion = descuentoCotizacion;
+	}
 
 }
