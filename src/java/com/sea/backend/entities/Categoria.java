@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,27 +43,27 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Entity
 @Table(name = "tbl_categoria")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Categoria.findAll", query = "SELECT c FROM Categoria c")
-	, @NamedQuery(name = "Categoria.findByIdCategoria", query = "SELECT c FROM Categoria c WHERE c.idCategoria = :idCategoria")
-	, @NamedQuery(name = "Categoria.findByNombre", query = "SELECT c FROM Categoria c WHERE c.nombre = :nombre")})
+	@NamedQuery(name = "Categoria.findAll", query = "SELECT c FROM Categoria c"),
+	@NamedQuery(name = "Categoria.findByIdCategoria", query = "SELECT c FROM Categoria c WHERE c.idCategoria = :idCategoria"),
+	@NamedQuery(name = "Categoria.findByNombre", query = "SELECT c FROM Categoria c WHERE c.nombre = :nombre")})
 public class Categoria implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_CATEGORIA")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_CATEGORIA")
 	private Integer idCategoria;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 32)
-	@Column(name = "NOMBRE")
+    @NotNull
+    @Size(min = 1, max = 32)
+    @Column(name = "NOMBRE")
 	private String nombre;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblCategoriaIdCategoria")
 	private List<Subcategoria> subcategoriaList;
@@ -129,5 +129,5 @@ public class Categoria implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Categoria[ idCategoria=" + idCategoria + " ]";
 	}
-
+	
 }

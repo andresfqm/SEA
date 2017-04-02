@@ -92,6 +92,7 @@ public class ClienteFacade extends AbstractFacade<Cliente> implements ClienteFac
 				+ "TBL_DEPARTAMENTO de ON ci.TBL_DEPARTAMENTO_ID_DEPARTAMENTO = de.ID_DEPARTAMENTO";
 		Query query = em.createNativeQuery(consulta);
 		query.setParameter(1, idCliente);
+
 		//datosCliente = query.getResultList();
 		Object datosCliente = query.getSingleResult();
 

@@ -9,6 +9,7 @@ import com.sea.backend.entities.Ciudad;
 import com.sea.backend.entities.Cliente;
 import com.sea.backend.entities.Cotizacion;
 import com.sea.backend.entities.CotizacionProducto;
+import com.sea.backend.entities.CotizacionProductoPK;
 import com.sea.backend.entities.DescuentoVolumen;
 import com.sea.backend.entities.Fabricante;
 import com.sea.backend.entities.LugaresEntrega;
@@ -57,7 +58,7 @@ public class CotizacionController implements Serializable {
 	private CotizacionFacadeLocal cotizacionEJB;
 	private Cotizacion cotizacion;
 	private Double descuentoCotizacion;
-	 
+	private List<Cotizacion> listaSeguimientoCotizacions;
 
 	@EJB
 	private UsuarioFacadeLocal EJBUsuario;
@@ -112,8 +113,6 @@ public class CotizacionController implements Serializable {
 	public void setListapropuestaNoIncluye(List<PropuestaNoIncluye> ListapropuestaNoIncluye) {
 		this.ListapropuestaNoIncluye = ListapropuestaNoIncluye;
 	}
-	
-	
 
 	//Ejb de la foranea TiempoEntrega
 	@EJB
@@ -121,7 +120,6 @@ public class CotizacionController implements Serializable {
 	private int idTiempoEntrega;
 	private TiempoEntrega tiempoEntrega;
 	private List<TiempoEntrega> listaTiempoEntrega;
-	
 
 	//Ejb de la foranea DescuentoVolen
 	@EJB
@@ -181,9 +179,8 @@ public class CotizacionController implements Serializable {
 		listaLugaresEntrega = lugaresEEJB.findAll();
 		listaDescuentoVolumen = descuentoVEJB.findAll();
 		listaModalidadDePago = modalidadPEJB.findAll();
-		
+		listaSeguimientoCotizacions = cotizacionEJB.listaSeguimiento(idUsuario());
 		propuestaNoIncluye = new PropuestaNoIncluye();
-		
 
 	}
 
@@ -216,27 +213,53 @@ public class CotizacionController implements Serializable {
 	}
 
 	public void registrarCotización() {
-		cotizacion.setNumeroCotizacion(generarIdCotizacion());
-		cotizacion.setFechaEmision(cotizacion.getFechaEmision());
-		cotizacion.setLugarEmision(cotizacion.getLugarEmision());
-		cotizacion.setValidezOferta(cotizacion.getValidezOferta());
-		cotizacion.setDescuento(cotizacion.getDescuento());
-		cotizacion.setVisita(cotizacion.getVisita());
-		cotizacion.setPrestamoMuestra(cotizacion.getPrestamoMuestra());
-		cotizacion.setRelacionMuestra(cotizacion.getRelacionMuestra());
-		cotizacion.setEstado("En seguimiento");
-		//Se carga los objetos de las clases correspondientes a las llaves foraneas
-		cotizacion.setTblClienteIdCliente(clienteEJB.find(idCliente));
-		cotizacion.setTblModalidadDePagoIdModalidadDePago(modalidadPEJB.find(idModalidadDePago));
-		cotizacion.setTblPropuestaNoIncluyeIdPropuestaNoIncluye(propuestaEJB.find(idPropuestaNoIncluye));
-		cotizacion.setTblTiempoEntregaIdTiempoEntrega(tiempoEJB.find(idTiempoEntrega));
-		cotizacion.setTblDescuentoVolumenIdDescuentoVolumen(descuentoVEJB.find(idDescuentoVolumen));
-		cotizacion.setTblLugaresEntregaIdLugaresEntrega(lugaresEEJB.find(idLugaresEntrega));
-		cotizacionEJB.create(cotizacion);
+
+		try {
+			cotizacion.setNumeroCotizacion(generarIdCotizacion());
+			cotizacion.setFechaEmision(cotizacion.getFechaEmision());
+			cotizacion.setLugarEmision(cotizacion.getLugarEmision());
+			cotizacion.setValidezOferta(cotizacion.getValidezOferta());
+			cotizacion.setDescuento(cotizacion.getDescuento());
+			cotizacion.setVisita(cotizacion.getVisita());
+			cotizacion.setPrestamoMuestra(cotizacion.getPrestamoMuestra());
+			cotizacion.setRelacionMuestra(cotizacion.getRelacionMuestra());
+			cotizacion.setEstado("En seguimiento");
+			//Se carga los objetos de las clases correspondientes a las llaves foraneas
+			cotizacion.setTblClienteIdCliente(clienteEJB.find(idCliente));
+			cotizacion.setTblModalidadDePagoIdModalidadDePago(modalidadPEJB.find(idModalidadDePago));
+			cotizacion.setTblPropuestaNoIncluyeIdPropuestaNoIncluye(propuestaEJB.find(idPropuestaNoIncluye));
+			cotizacion.setTblTiempoEntregaIdTiempoEntrega(tiempoEJB.find(idTiempoEntrega));
+			cotizacion.setTblDescuentoVolumenIdDescuentoVolumen(descuentoVEJB.find(idDescuentoVolumen));
+			cotizacion.setTblLugaresEntregaIdLugaresEntrega(lugaresEEJB.find(idLugaresEntrega));
+			cotizacionEJB.create(cotizacion);
+			for (CotizacionProducto itemVenta : listaCotizacionP) {
+				CotizacionProductoPK cotizacionP = new CotizacionProductoPK();
+				cotizacionP.setTblCotizacionNumeroCotizacion(cotizacion.getNumeroCotizacion());
+				cotizacionP.setTblProductoIdProducto(producto.getIdProducto());
+				itemVenta.setCotizacionProductoPK(cotizacionP);
+				itemVenta.setPrecioParaCliente(this.cotizacionP.getPrecioParaCliente());
+				itemVenta.setPrecioBase(producto.getPrecio());
+				itemVenta.setCantidad(this.cotizacionP.getCantidad());
+				cotizacionProductoEJB.create(itemVenta);
+			}
+		} catch (Exception e) {
+		}
 
 	}
-	
-	
+
+	public void modificarCotización() {
+		try {
+			cotizacionEJB.edit(cotizacion);
+		} catch (Exception e) {
+		}
+
+	}
+
+	public String leerId(Cotizacion cotizacion) {
+		this.cotizacion = cotizacionEJB.find(cotizacion.getNumeroCotizacion());
+		return "actualizarCotizacion.xhtml";
+
+	}
 
 	public PropuestaNoIncluye getPropuestaNoIncluye() {
 		return propuestaNoIncluye;
@@ -269,8 +292,6 @@ public class CotizacionController implements Serializable {
 	public void setLugaresEntrega(LugaresEntrega lugaresEntrega) {
 		this.lugaresEntrega = lugaresEntrega;
 	}
-	
-	
 
 	public int getIdModalidad() {
 		return idModalidad;
@@ -294,7 +315,7 @@ public class CotizacionController implements Serializable {
 
 	public void setListaClientes(List<Cliente> listaClientes) {
 		this.listaClientes = listaClientes;
-		
+
 	}
 
 	public Object getDatosCliente() {
@@ -349,7 +370,6 @@ public class CotizacionController implements Serializable {
 		this.listaLugaresEntrega = listaLugaresEntrega;
 	}
 
-	
 	public void setClientes(List<Cliente> clientes) {
 		this.clientes = clientes;
 	}
@@ -417,8 +437,6 @@ public class CotizacionController implements Serializable {
 	public void setModalidadDePago(ModalidadDePago modalidadDePago) {
 		this.modalidadDePago = modalidadDePago;
 	}
-	
-	
 
 	public int getIdLugaresEntrega() {
 		return idLugaresEntrega;
@@ -427,12 +445,6 @@ public class CotizacionController implements Serializable {
 	public void setIdLugaresEntrega(int idLugaresEntrega) {
 		this.idLugaresEntrega = idLugaresEntrega;
 	}
-
-	
-
-	
-
-	
 
 	public int getCantidad() {
 		return cantidad;
@@ -519,6 +531,20 @@ public class CotizacionController implements Serializable {
 
 	}
 
+	// Metodo para obtener las cotizaciones registradas por un asesor
+	public void obtenerCotizacionesRegistradas() throws Exception {
+		try {
+			listaSeguimientoCotizacions = cotizacionEJB.listaSeguimiento(idUsuario());
+		} catch (Exception e) {
+		}
+	}
+
+	public int idUsuario() {
+		HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+		Usuario u = (Usuario) sesion.getAttribute("usuario");
+		return u.getIdUsuario();
+	}
+
 	public List<Material> getListaMateriales() {
 		return listaMateriales;
 	}
@@ -559,6 +585,7 @@ public class CotizacionController implements Serializable {
 		this.listaProducto = listaProducto;
 	}
 
+	//Forma de generar el id de la cotización
 	public String generarIdCotizacion() {
 		HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 		Usuario u = (Usuario) sesion.getAttribute("usuario");
@@ -580,6 +607,14 @@ public class CotizacionController implements Serializable {
 
 	public void setDescuentoCotizacion(Double descuentoCotizacion) {
 		this.descuentoCotizacion = descuentoCotizacion;
+	}
+
+	public List<Cotizacion> getListaSeguimientoCotizacions() {
+		return listaSeguimientoCotizacions;
+	}
+
+	public void setListaSeguimientoCotizacions(List<Cotizacion> listaSeguimientoCotizacions) {
+		this.listaSeguimientoCotizacions = listaSeguimientoCotizacions;
 	}
 
 }

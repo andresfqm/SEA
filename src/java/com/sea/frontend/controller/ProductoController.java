@@ -144,6 +144,8 @@ public class ProductoController implements Serializable {
 		}
 
 	}
+	
+	
 
 	public int getIdProducto() {
 		return idProducto;

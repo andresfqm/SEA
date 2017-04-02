@@ -24,9 +24,12 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.Cotizacion;
+import com.sea.backend.entities.Usuario;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -45,6 +48,26 @@ public class CotizacionFacade extends AbstractFacade<Cotizacion> implements Coti
 
 	public CotizacionFacade() {
 		super(Cotizacion.class);
+	}
+
+	@Override
+	public List<Cotizacion> listaSeguimiento(int usuario) {
+		List<Cotizacion> listaSeguimientoCotizacions;
+
+		String consulta = "SELECT c.numero_cotizacion, cl.nombre_o_razon_social, cl.nombre_contacto, t.numero_telefono\n"
+				+ "FROM tbl_cotizacion AS c\n"
+				+ "INNER JOIN tbl_cliente as cl \n"
+				+ "ON c.TBL_CLIENTE_ID_CLIENTE = cl.ID_CLIENTE \n"
+				+ "INNER JOIN tbl_telefono AS t \n"
+				+ "ON cl.ID_CLIENTE = t.TBL_CLIENTE_ID_CLIENTE\n"
+				+ "INNER JOIN tbl_usuario AS u \n"
+				+ "ON cl.TBL_USUARIO_ID_USUARIO = u.ID_USUARIO\n"
+				+ "WHERE id_usuario = ?1";
+		Query query = em.createNativeQuery(consulta);
+		query.setParameter(1, usuario);
+
+		listaSeguimientoCotizacions = query.getResultList();
+		return listaSeguimientoCotizacions;
 	}
 
 }

@@ -35,4 +35,7 @@
 		<param-name>primefaces.THEME</param-name>
 		<param-value>none</param-value>
 	</context-param>
+
 </web-app>
+
+

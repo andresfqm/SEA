@@ -66,6 +66,7 @@ public class LoginController implements Serializable {
 
     }
     
+	// Capturando el nombre del usuario que inicia sesión
     public String mostrarNombreUsuario(){
         HttpSession sesion =(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
         Usuario u = (Usuario)sesion.getAttribute("usuario");
