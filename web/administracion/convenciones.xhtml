@@ -174,7 +174,7 @@
 						<h:outputLabel class="mdl-textfield__label" for="codigoSubcategoria">Código</h:outputLabel>
 					</h:panelGroup>
 					<h:selectOneMenu id="categoriaIdCategoria" value="#{subcategoriaController.idCategoria.idCategoria}" title="Categorias" required="true" requiredMessage="Categoria creada">
-						<f:selectItems value="${categoriaController.listaCategoria}" var="cats" itemLabel="#{cats.nombre}" itemValue="#{cats.idCategoria}" />
+						<f:selectItems value="#{categoriaController.listaCategoria}" var="cats" itemLabel="#{cats.nombre}" itemValue="#{cats.idCategoria}" />
 					</h:selectOneMenu>
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-dialog__actions">

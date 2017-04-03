@@ -42,7 +42,10 @@
 	bottom: 0;
 	overflow-x: none;
 }
-.ui-selectonemenu-panel .ui-selectonemenu-list{
+.ui-selectonemenu-panel, .ui-selectonemenu-list{
 	background-color: #fff;
+}
+.ui-selectonemenu{
+	width: calc(100%) !important;
 }
 /*# sourceMappingURL=mdl-selectfield.min.css.map */

@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,30 +38,30 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Entity
 @Table(name = "tbl_producto_especificacion_talla")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "ProductoEspecificacionTalla.findAll", query = "SELECT p FROM ProductoEspecificacionTalla p")
-	, @NamedQuery(name = "ProductoEspecificacionTalla.findByTblTallaIdTalla", query = "SELECT p FROM ProductoEspecificacionTalla p WHERE p.productoEspecificacionTallaPK.tblTallaIdTalla = :tblTallaIdTalla")
-	, @NamedQuery(name = "ProductoEspecificacionTalla.findByTblProductoEspecificacionIdProductoEspecificacion", query = "SELECT p FROM ProductoEspecificacionTalla p WHERE p.productoEspecificacionTallaPK.tblProductoEspecificacionIdProductoEspecificacion = :tblProductoEspecificacionIdProductoEspecificacion")
-	, @NamedQuery(name = "ProductoEspecificacionTalla.findByCantidad", query = "SELECT p FROM ProductoEspecificacionTalla p WHERE p.cantidad = :cantidad")})
+	@NamedQuery(name = "ProductoEspecificacionTalla.findAll", query = "SELECT p FROM ProductoEspecificacionTalla p"),
+	@NamedQuery(name = "ProductoEspecificacionTalla.findByTblTallaIdTalla", query = "SELECT p FROM ProductoEspecificacionTalla p WHERE p.productoEspecificacionTallaPK.tblTallaIdTalla = :tblTallaIdTalla"),
+	@NamedQuery(name = "ProductoEspecificacionTalla.findByTblProductoEspecificacionIdProductoEspecificacion", query = "SELECT p FROM ProductoEspecificacionTalla p WHERE p.productoEspecificacionTallaPK.tblProductoEspecificacionIdProductoEspecificacion = :tblProductoEspecificacionIdProductoEspecificacion"),
+	@NamedQuery(name = "ProductoEspecificacionTalla.findByCantidad", query = "SELECT p FROM ProductoEspecificacionTalla p WHERE p.cantidad = :cantidad")})
 public class ProductoEspecificacionTalla implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@EmbeddedId
 	protected ProductoEspecificacionTallaPK productoEspecificacionTallaPK;
 	@Basic(optional = false)
-	@NotNull
-	@Column(name = "CANTIDAD")
+    @NotNull
+    @Column(name = "CANTIDAD")
 	private int cantidad;
 	@JoinColumn(name = "TBL_TALLA_ID_TALLA", referencedColumnName = "ID_TALLA", insertable = false, updatable = false)
-	@ManyToOne(optional = false)
+    @ManyToOne(optional = false)
 	private Talla talla;
 	@JoinColumn(name = "TBL_PRODUCTO_ESPECIFICACION_ID_PRODUCTO_ESPECIFICACION", referencedColumnName = "ID_PRODUCTO_ESPECIFICACION", insertable = false, updatable = false)
-	@ManyToOne(optional = false)
+    @ManyToOne(optional = false)
 	private ProductoEspecificacion productoEspecificacion;
 
 	public ProductoEspecificacionTalla() {
@@ -136,5 +136,5 @@ public class ProductoEspecificacionTalla implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.ProductoEspecificacionTalla[ productoEspecificacionTallaPK=" + productoEspecificacionTallaPK + " ]";
 	}
-
+	
 }

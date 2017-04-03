@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -49,59 +49,62 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Entity
 @Table(name = "tbl_orden_produccion")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "OrdenProduccion.findAll", query = "SELECT o FROM OrdenProduccion o")
-	, @NamedQuery(name = "OrdenProduccion.findByIdOrdenProduccion", query = "SELECT o FROM OrdenProduccion o WHERE o.idOrdenProduccion = :idOrdenProduccion")
-	, @NamedQuery(name = "OrdenProduccion.findByFechaExpedicion", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaExpedicion = :fechaExpedicion")
-	, @NamedQuery(name = "OrdenProduccion.findByCiudadExpedicion", query = "SELECT o FROM OrdenProduccion o WHERE o.ciudadExpedicion = :ciudadExpedicion")
-	, @NamedQuery(name = "OrdenProduccion.findByTotalPrendas", query = "SELECT o FROM OrdenProduccion o WHERE o.totalPrendas = :totalPrendas")
-	, @NamedQuery(name = "OrdenProduccion.findByAprobada", query = "SELECT o FROM OrdenProduccion o WHERE o.aprobada = :aprobada")
-	, @NamedQuery(name = "OrdenProduccion.findByFechaEntrega1", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaEntrega1 = :fechaEntrega1")
-	, @NamedQuery(name = "OrdenProduccion.findByFechaEntrega2", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaEntrega2 = :fechaEntrega2")
-	, @NamedQuery(name = "OrdenProduccion.findByFechaEntregaFinal", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaEntregaFinal = :fechaEntregaFinal")})
+	@NamedQuery(name = "OrdenProduccion.findAll", query = "SELECT o FROM OrdenProduccion o"),
+	@NamedQuery(name = "OrdenProduccion.findByIdOrdenProduccion", query = "SELECT o FROM OrdenProduccion o WHERE o.idOrdenProduccion = :idOrdenProduccion"),
+	@NamedQuery(name = "OrdenProduccion.findByFechaExpedicion", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaExpedicion = :fechaExpedicion"),
+	@NamedQuery(name = "OrdenProduccion.findByCiudadExpedicion", query = "SELECT o FROM OrdenProduccion o WHERE o.ciudadExpedicion = :ciudadExpedicion"),
+	@NamedQuery(name = "OrdenProduccion.findByTotalPrendas", query = "SELECT o FROM OrdenProduccion o WHERE o.totalPrendas = :totalPrendas"),
+	@NamedQuery(name = "OrdenProduccion.findByEstado", query = "SELECT o FROM OrdenProduccion o WHERE o.estado = :estado"),
+	@NamedQuery(name = "OrdenProduccion.findByFechaEntrega1", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaEntrega1 = :fechaEntrega1"),
+	@NamedQuery(name = "OrdenProduccion.findByFechaEntrega2", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaEntrega2 = :fechaEntrega2"),
+	@NamedQuery(name = "OrdenProduccion.findByFechaEntregaFinal", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaEntregaFinal = :fechaEntregaFinal")})
 public class OrdenProduccion implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_ORDEN_PRODUCCION")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_ORDEN_PRODUCCION")
 	private Integer idOrdenProduccion;
 	@Basic(optional = false)
-	@NotNull
-	@Column(name = "FECHA_EXPEDICION")
-	@Temporal(TemporalType.TIMESTAMP)
+    @NotNull
+    @Column(name = "FECHA_EXPEDICION")
+    @Temporal(TemporalType.TIMESTAMP)
 	private Date fechaExpedicion;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 64)
-	@Column(name = "CIUDAD_EXPEDICION")
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = "CIUDAD_EXPEDICION")
 	private String ciudadExpedicion;
 	@Lob
-	@Size(max = 65535)
-	@Column(name = "OBSERVACIONES")
+    @Size(max = 65535)
+    @Column(name = "OBSERVACIONES")
 	private String observaciones;
 	@Basic(optional = false)
-	@NotNull
-	@Column(name = "TOTAL_PRENDAS")
+    @NotNull
+    @Column(name = "TOTAL_PRENDAS")
 	private int totalPrendas;
-	@Column(name = "APROBADA")
-	private Boolean aprobada;
+	@Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 19)
+    @Column(name = "ESTADO")
+	private String estado;
 	@Column(name = "FECHA_ENTREGA_1")
-	@Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
 	private Date fechaEntrega1;
 	@Column(name = "FECHA_ENTREGA_2")
-	@Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
 	private Date fechaEntrega2;
 	@Basic(optional = false)
-	@NotNull
-	@Column(name = "FECHA_ENTREGA_FINAL")
-	@Temporal(TemporalType.DATE)
+    @NotNull
+    @Column(name = "FECHA_ENTREGA_FINAL")
+    @Temporal(TemporalType.DATE)
 	private Date fechaEntregaFinal;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblOrdenProduccionIdOrdenProduccion")
 	private List<ProductoEspecificacion> productoEspecificacionList;
@@ -110,7 +113,7 @@ public class OrdenProduccion implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblOrdenProduccionIdOrdenProduccion")
 	private List<ObservacionesOrdenProduccion> observacionesOrdenProduccionList;
 	@JoinColumn(name = "TBL_COTIZACION_NUMERO_COTIZACION", referencedColumnName = "NUMERO_COTIZACION")
-	@ManyToOne(optional = false)
+    @ManyToOne(optional = false)
 	private Cotizacion tblCotizacionNumeroCotizacion;
 
 	public OrdenProduccion() {
@@ -120,11 +123,12 @@ public class OrdenProduccion implements Serializable {
 		this.idOrdenProduccion = idOrdenProduccion;
 	}
 
-	public OrdenProduccion(Integer idOrdenProduccion, Date fechaExpedicion, String ciudadExpedicion, int totalPrendas, Date fechaEntregaFinal) {
+	public OrdenProduccion(Integer idOrdenProduccion, Date fechaExpedicion, String ciudadExpedicion, int totalPrendas, String estado, Date fechaEntregaFinal) {
 		this.idOrdenProduccion = idOrdenProduccion;
 		this.fechaExpedicion = fechaExpedicion;
 		this.ciudadExpedicion = ciudadExpedicion;
 		this.totalPrendas = totalPrendas;
+		this.estado = estado;
 		this.fechaEntregaFinal = fechaEntregaFinal;
 	}
 
@@ -168,12 +172,12 @@ public class OrdenProduccion implements Serializable {
 		this.totalPrendas = totalPrendas;
 	}
 
-	public Boolean getAprobada() {
-		return aprobada;
+	public String getEstado() {
+		return estado;
 	}
 
-	public void setAprobada(Boolean aprobada) {
-		this.aprobada = aprobada;
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 	public Date getFechaEntrega1() {
@@ -259,5 +263,5 @@ public class OrdenProduccion implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.OrdenProduccion[ idOrdenProduccion=" + idOrdenProduccion + " ]";
 	}
-
+	
 }

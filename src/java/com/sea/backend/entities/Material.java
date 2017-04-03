@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -44,38 +44,38 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Entity
 @Table(name = "tbl_material")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Material.findAll", query = "SELECT m FROM Material m")
-	, @NamedQuery(name = "Material.findByIdMaterial", query = "SELECT m FROM Material m WHERE m.idMaterial = :idMaterial")
-	, @NamedQuery(name = "Material.findByNombre", query = "SELECT m FROM Material m WHERE m.nombre = :nombre")
-	, @NamedQuery(name = "Material.findByCodigo", query = "SELECT m FROM Material m WHERE m.codigo = :codigo")})
+	@NamedQuery(name = "Material.findAll", query = "SELECT m FROM Material m"),
+	@NamedQuery(name = "Material.findByIdMaterial", query = "SELECT m FROM Material m WHERE m.idMaterial = :idMaterial"),
+	@NamedQuery(name = "Material.findByNombre", query = "SELECT m FROM Material m WHERE m.nombre = :nombre"),
+	@NamedQuery(name = "Material.findByCodigo", query = "SELECT m FROM Material m WHERE m.codigo = :codigo")})
 public class Material implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_MATERIAL")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_MATERIAL")
 	private Integer idMaterial;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 64)
-	@Column(name = "NOMBRE")
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = "NOMBRE")
 	private String nombre;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 5)
-	@Column(name = "CODIGO")
+    @NotNull
+    @Size(min = 1, max = 5)
+    @Column(name = "CODIGO")
 	private String codigo;
 	@JoinTable(name = "tbl_producto_material", joinColumns = {
-		@JoinColumn(name = "TBL_MATERIAL_ID_MATERIAL", referencedColumnName = "ID_MATERIAL")}, inverseJoinColumns = {
-		@JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")})
-	@ManyToMany
+    	@JoinColumn(name = "TBL_MATERIAL_ID_MATERIAL", referencedColumnName = "ID_MATERIAL")}, inverseJoinColumns = {
+    	@JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")})
+    @ManyToMany
 	private List<Producto> productoList;
 
 	public Material() {
@@ -85,7 +85,7 @@ public class Material implements Serializable {
 		this.idMaterial = idMaterial;
 	}
 
-	public Material(Integer idMaterial, String nombre, String codigo, double costo) {
+	public Material(Integer idMaterial, String nombre, String codigo) {
 		this.idMaterial = idMaterial;
 		this.nombre = nombre;
 		this.codigo = codigo;
@@ -148,5 +148,5 @@ public class Material implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Material[ idMaterial=" + idMaterial + " ]";
 	}
-
+	
 }

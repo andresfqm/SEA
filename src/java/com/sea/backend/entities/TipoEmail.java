@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,27 +40,27 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Entity
 @Table(name = "tbl_tipo_email")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "TipoEmail.findAll", query = "SELECT t FROM TipoEmail t")
-	, @NamedQuery(name = "TipoEmail.findByIdTipoEmail", query = "SELECT t FROM TipoEmail t WHERE t.idTipoEmail = :idTipoEmail")
-	, @NamedQuery(name = "TipoEmail.findByTipo", query = "SELECT t FROM TipoEmail t WHERE t.tipo = :tipo")})
+	@NamedQuery(name = "TipoEmail.findAll", query = "SELECT t FROM TipoEmail t"),
+	@NamedQuery(name = "TipoEmail.findByIdTipoEmail", query = "SELECT t FROM TipoEmail t WHERE t.idTipoEmail = :idTipoEmail"),
+	@NamedQuery(name = "TipoEmail.findByTipo", query = "SELECT t FROM TipoEmail t WHERE t.tipo = :tipo")})
 public class TipoEmail implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@Basic(optional = false)
-	@NotNull
-	@Column(name = "ID_TIPO_EMAIL")
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "ID_TIPO_EMAIL")
 	private Integer idTipoEmail;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 64)
-	@Column(name = "TIPO")
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = "TIPO")
 	private String tipo;
 	@OneToMany(mappedBy = "tblTipoEmailIdTipoEmail")
 	private List<Email> emailList;
@@ -126,5 +126,5 @@ public class TipoEmail implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.TipoEmail[ idTipoEmail=" + idTipoEmail + " ]";
 	}
-
+	
 }

@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,25 +41,25 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Entity
 @Table(name = "tbl_fabricante")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Fabricante.findAll", query = "SELECT f FROM Fabricante f")
-	, @NamedQuery(name = "Fabricante.findByIdFabricante", query = "SELECT f FROM Fabricante f WHERE f.idFabricante = :idFabricante")
-	, @NamedQuery(name = "Fabricante.findByNombre", query = "SELECT f FROM Fabricante f WHERE f.nombre = :nombre")})
+	@NamedQuery(name = "Fabricante.findAll", query = "SELECT f FROM Fabricante f"),
+	@NamedQuery(name = "Fabricante.findByIdFabricante", query = "SELECT f FROM Fabricante f WHERE f.idFabricante = :idFabricante"),
+	@NamedQuery(name = "Fabricante.findByNombre", query = "SELECT f FROM Fabricante f WHERE f.nombre = :nombre")})
 public class Fabricante implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_FABRICANTE")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_FABRICANTE")
 	private Integer idFabricante;
 	@Size(max = 64)
-	@Column(name = "NOMBRE")
+    @Column(name = "NOMBRE")
 	private String nombre;
 	@OneToMany(mappedBy = "tblFabricanteIdFabricante")
 	private List<Producto> productoList;
@@ -120,5 +120,5 @@ public class Fabricante implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Fabricante[ idFabricante=" + idFabricante + " ]";
 	}
-
+	
 }

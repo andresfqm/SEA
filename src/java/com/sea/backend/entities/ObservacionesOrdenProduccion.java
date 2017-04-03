@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -45,36 +45,36 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Entity
 @Table(name = "tbl_observaciones_orden_produccion")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "ObservacionesOrdenProduccion.findAll", query = "SELECT o FROM ObservacionesOrdenProduccion o")
-	, @NamedQuery(name = "ObservacionesOrdenProduccion.findByIdObservaciones", query = "SELECT o FROM ObservacionesOrdenProduccion o WHERE o.idObservaciones = :idObservaciones")
-	, @NamedQuery(name = "ObservacionesOrdenProduccion.findByFechaObservacion", query = "SELECT o FROM ObservacionesOrdenProduccion o WHERE o.fechaObservacion = :fechaObservacion")})
+	@NamedQuery(name = "ObservacionesOrdenProduccion.findAll", query = "SELECT o FROM ObservacionesOrdenProduccion o"),
+	@NamedQuery(name = "ObservacionesOrdenProduccion.findByIdObservaciones", query = "SELECT o FROM ObservacionesOrdenProduccion o WHERE o.idObservaciones = :idObservaciones"),
+	@NamedQuery(name = "ObservacionesOrdenProduccion.findByFechaObservacion", query = "SELECT o FROM ObservacionesOrdenProduccion o WHERE o.fechaObservacion = :fechaObservacion")})
 public class ObservacionesOrdenProduccion implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_OBSERVACIONES")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_OBSERVACIONES")
 	private Integer idObservaciones;
 	@Basic(optional = false)
-	@NotNull
-	@Column(name = "FECHA_OBSERVACION")
-	@Temporal(TemporalType.TIMESTAMP)
+    @NotNull
+    @Column(name = "FECHA_OBSERVACION")
+    @Temporal(TemporalType.TIMESTAMP)
 	private Date fechaObservacion;
 	@Basic(optional = false)
-	@NotNull
-	@Lob
-	@Size(min = 1, max = 65535)
-	@Column(name = "DESCRIPCION")
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "DESCRIPCION")
 	private String descripcion;
 	@JoinColumn(name = "TBL_ORDEN_PRODUCCION_ID_ORDEN_PRODUCCION", referencedColumnName = "ID_ORDEN_PRODUCCION")
-	@ManyToOne(optional = false)
+    @ManyToOne(optional = false)
 	private OrdenProduccion tblOrdenProduccionIdOrdenProduccion;
 
 	public ObservacionesOrdenProduccion() {
@@ -146,5 +146,5 @@ public class ObservacionesOrdenProduccion implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.ObservacionesOrdenProduccion[ idObservaciones=" + idObservaciones + " ]";
 	}
-
+	
 }

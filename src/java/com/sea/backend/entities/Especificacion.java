@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,27 +43,27 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Entity
 @Table(name = "tbl_especificacion")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Especificacion.findAll", query = "SELECT e FROM Especificacion e")
-	, @NamedQuery(name = "Especificacion.findByIdEspecificacion", query = "SELECT e FROM Especificacion e WHERE e.idEspecificacion = :idEspecificacion")})
+	@NamedQuery(name = "Especificacion.findAll", query = "SELECT e FROM Especificacion e"),
+	@NamedQuery(name = "Especificacion.findByIdEspecificacion", query = "SELECT e FROM Especificacion e WHERE e.idEspecificacion = :idEspecificacion")})
 public class Especificacion implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_ESPECIFICACION")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_ESPECIFICACION")
 	private Integer idEspecificacion;
 	@Basic(optional = false)
-	@NotNull
-	@Lob
-	@Size(min = 1, max = 65535)
-	@Column(name = "DESCRIPCION")
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "DESCRIPCION")
 	private String descripcion;
 	@ManyToMany(mappedBy = "especificacionList")
 	private List<Producto> productoList;
@@ -129,5 +129,5 @@ public class Especificacion implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Especificacion[ idEspecificacion=" + idEspecificacion + " ]";
 	}
-
+	
 }

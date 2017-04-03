@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,36 +43,36 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Entity
 @Table(name = "tbl_descuento")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Descuento.findAll", query = "SELECT d FROM Descuento d")
-	, @NamedQuery(name = "Descuento.findByIdDescuento", query = "SELECT d FROM Descuento d WHERE d.idDescuento = :idDescuento")
-	, @NamedQuery(name = "Descuento.findByDescuento", query = "SELECT d FROM Descuento d WHERE d.descuento = :descuento")
-	, @NamedQuery(name = "Descuento.findByCantidadMinima", query = "SELECT d FROM Descuento d WHERE d.cantidadMinima = :cantidadMinima")})
+	@NamedQuery(name = "Descuento.findAll", query = "SELECT d FROM Descuento d"),
+	@NamedQuery(name = "Descuento.findByIdDescuento", query = "SELECT d FROM Descuento d WHERE d.idDescuento = :idDescuento"),
+	@NamedQuery(name = "Descuento.findByDescuento", query = "SELECT d FROM Descuento d WHERE d.descuento = :descuento"),
+	@NamedQuery(name = "Descuento.findByCantidadMinima", query = "SELECT d FROM Descuento d WHERE d.cantidadMinima = :cantidadMinima")})
 public class Descuento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_DESCUENTO")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_DESCUENTO")
 	private Integer idDescuento;
 	@Basic(optional = false)
-	@NotNull
-	@Column(name = "DESCUENTO")
+    @NotNull
+    @Column(name = "DESCUENTO")
 	private float descuento;
 	@Basic(optional = false)
-	@NotNull
-	@Column(name = "CANTIDAD_MINIMA")
+    @NotNull
+    @Column(name = "CANTIDAD_MINIMA")
 	private int cantidadMinima;
 	@JoinTable(name = "tbl_producto_descuento", joinColumns = {
-		@JoinColumn(name = "TBL_DESCUENTO_ID_DESCUENTO", referencedColumnName = "ID_DESCUENTO")}, inverseJoinColumns = {
-		@JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")})
-	@ManyToMany
+    	@JoinColumn(name = "TBL_DESCUENTO_ID_DESCUENTO", referencedColumnName = "ID_DESCUENTO")}, inverseJoinColumns = {
+    	@JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")})
+    @ManyToMany
 	private List<Producto> productoList;
 
 	public Descuento() {
@@ -145,5 +145,5 @@ public class Descuento implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Descuento[ idDescuento=" + idDescuento + " ]";
 	}
-
+	
 }

@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,29 +23,29 @@
  */
 package com.sea.backend.model;
 
-import com.sea.backend.entities.Rol;
+import com.sea.backend.entities.UsuarioPerfil;
 import java.util.List;
 import javax.ejb.Local;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Local
-public interface RolFacadeLocal {
+public interface UsuarioPerfilFacadeLocal {
 
-	void create(Rol rol);
+	void create(UsuarioPerfil usuarioPerfil);
 
-	void edit(Rol rol);
+	void edit(UsuarioPerfil usuarioPerfil);
 
-	void remove(Rol rol);
+	void remove(UsuarioPerfil usuarioPerfil);
 
-	Rol find(Object id);
+	UsuarioPerfil find(Object id);
 
-	List<Rol> findAll();
+	List<UsuarioPerfil> findAll();
 
-	List<Rol> findRange(int[] range);
+	List<UsuarioPerfil> findRange(int[] range);
 
 	int count();
-
+	
 }

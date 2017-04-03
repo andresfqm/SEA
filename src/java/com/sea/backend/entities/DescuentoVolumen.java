@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -44,32 +44,32 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Entity
 @Table(name = "tbl_descuento_volumen")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "DescuentoVolumen.findAll", query = "SELECT d FROM DescuentoVolumen d")
-	, @NamedQuery(name = "DescuentoVolumen.findByIdDescuentoVolumen", query = "SELECT d FROM DescuentoVolumen d WHERE d.idDescuentoVolumen = :idDescuentoVolumen")
-	, @NamedQuery(name = "DescuentoVolumen.findByActivo", query = "SELECT d FROM DescuentoVolumen d WHERE d.activo = :activo")})
+	@NamedQuery(name = "DescuentoVolumen.findAll", query = "SELECT d FROM DescuentoVolumen d"),
+	@NamedQuery(name = "DescuentoVolumen.findByIdDescuentoVolumen", query = "SELECT d FROM DescuentoVolumen d WHERE d.idDescuentoVolumen = :idDescuentoVolumen"),
+	@NamedQuery(name = "DescuentoVolumen.findByActivo", query = "SELECT d FROM DescuentoVolumen d WHERE d.activo = :activo")})
 public class DescuentoVolumen implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_DESCUENTO_VOLUMEN")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_DESCUENTO_VOLUMEN")
 	private Integer idDescuentoVolumen;
 	@Basic(optional = false)
-	@NotNull
-	@Lob
-	@Size(min = 1, max = 65535)
-	@Column(name = "DESCRIPCION")
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "DESCRIPCION")
 	private String descripcion;
 	@Basic(optional = false)
-	@NotNull
-	@Column(name = "ACTIVO")
+    @NotNull
+    @Column(name = "ACTIVO")
 	private boolean activo;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblDescuentoVolumenIdDescuentoVolumen")
 	private List<Cotizacion> cotizacionList;
@@ -144,5 +144,5 @@ public class DescuentoVolumen implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.DescuentoVolumen[ idDescuentoVolumen=" + idDescuentoVolumen + " ]";
 	}
-
+	
 }

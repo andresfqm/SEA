@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,36 +41,36 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Entity
 @Table(name = "tbl_telefono")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Telefono.findAll", query = "SELECT t FROM Telefono t")
-	, @NamedQuery(name = "Telefono.findByIdTelefono", query = "SELECT t FROM Telefono t WHERE t.idTelefono = :idTelefono")
-	, @NamedQuery(name = "Telefono.findByNumeroTelefono", query = "SELECT t FROM Telefono t WHERE t.numeroTelefono = :numeroTelefono")})
+	@NamedQuery(name = "Telefono.findAll", query = "SELECT t FROM Telefono t"),
+	@NamedQuery(name = "Telefono.findByIdTelefono", query = "SELECT t FROM Telefono t WHERE t.idTelefono = :idTelefono"),
+	@NamedQuery(name = "Telefono.findByNumeroTelefono", query = "SELECT t FROM Telefono t WHERE t.numeroTelefono = :numeroTelefono")})
 public class Telefono implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_TELEFONO")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_TELEFONO")
 	private Integer idTelefono;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 64)
-	@Column(name = "NUMERO_TELEFONO")
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = "NUMERO_TELEFONO")
 	private String numeroTelefono;
 	@JoinColumn(name = "TBL_CLIENTE_ID_CLIENTE", referencedColumnName = "ID_CLIENTE")
-	@ManyToOne
+    @ManyToOne
 	private Cliente tblClienteIdCliente;
 	@JoinColumn(name = "TBL_TIPO_TELEFONO_ID_TIPO_TELEFONO", referencedColumnName = "ID_TIPO_TELEFONO")
-	@ManyToOne(optional = false)
+    @ManyToOne(optional = false)
 	private TipoTelefono tblTipoTelefonoIdTipoTelefono;
 	@JoinColumn(name = "TBL_USUARIO_ID_USUARIO", referencedColumnName = "ID_USUARIO")
-	@ManyToOne
+    @ManyToOne
 	private Usuario tblUsuarioIdUsuario;
 
 	public Telefono() {
@@ -149,5 +149,5 @@ public class Telefono implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Telefono[ idTelefono=" + idTelefono + " ]";
 	}
-
+	
 }

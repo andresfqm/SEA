@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,27 +43,27 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Entity
 @Table(name = "tbl_talla")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Talla.findAll", query = "SELECT t FROM Talla t")
-	, @NamedQuery(name = "Talla.findByIdTalla", query = "SELECT t FROM Talla t WHERE t.idTalla = :idTalla")
-	, @NamedQuery(name = "Talla.findByTalla", query = "SELECT t FROM Talla t WHERE t.talla = :talla")})
+	@NamedQuery(name = "Talla.findAll", query = "SELECT t FROM Talla t"),
+	@NamedQuery(name = "Talla.findByIdTalla", query = "SELECT t FROM Talla t WHERE t.idTalla = :idTalla"),
+	@NamedQuery(name = "Talla.findByTalla", query = "SELECT t FROM Talla t WHERE t.talla = :talla")})
 public class Talla implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_TALLA")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_TALLA")
 	private Integer idTalla;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 16)
-	@Column(name = "TALLA")
+    @NotNull
+    @Size(min = 1, max = 16)
+    @Column(name = "TALLA")
 	private String talla;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "talla")
 	private List<ProductoEspecificacionTalla> productoEspecificacionTallaList;
@@ -129,5 +129,5 @@ public class Talla implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Talla[ idTalla=" + idTalla + " ]";
 	}
-
+	
 }

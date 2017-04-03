@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -46,49 +46,49 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Entity
 @Table(name = "tbl_producto_especificacion")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "ProductoEspecificacion.findAll", query = "SELECT p FROM ProductoEspecificacion p")
-	, @NamedQuery(name = "ProductoEspecificacion.findByIdProductoEspecificacion", query = "SELECT p FROM ProductoEspecificacion p WHERE p.idProductoEspecificacion = :idProductoEspecificacion")
-	, @NamedQuery(name = "ProductoEspecificacion.findByCantidadArticulos", query = "SELECT p FROM ProductoEspecificacion p WHERE p.cantidadArticulos = :cantidadArticulos")
-	, @NamedQuery(name = "ProductoEspecificacion.findByNecesitaBordado", query = "SELECT p FROM ProductoEspecificacion p WHERE p.necesitaBordado = :necesitaBordado")})
+	@NamedQuery(name = "ProductoEspecificacion.findAll", query = "SELECT p FROM ProductoEspecificacion p"),
+	@NamedQuery(name = "ProductoEspecificacion.findByIdProductoEspecificacion", query = "SELECT p FROM ProductoEspecificacion p WHERE p.idProductoEspecificacion = :idProductoEspecificacion"),
+	@NamedQuery(name = "ProductoEspecificacion.findByCantidadArticulos", query = "SELECT p FROM ProductoEspecificacion p WHERE p.cantidadArticulos = :cantidadArticulos"),
+	@NamedQuery(name = "ProductoEspecificacion.findByNecesitaBordado", query = "SELECT p FROM ProductoEspecificacion p WHERE p.necesitaBordado = :necesitaBordado")})
 public class ProductoEspecificacion implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_PRODUCTO_ESPECIFICACION")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_PRODUCTO_ESPECIFICACION")
 	private Integer idProductoEspecificacion;
 	@Lob
-	@Size(max = 65535)
-	@Column(name = "DESCRIPCION")
+    @Size(max = 65535)
+    @Column(name = "DESCRIPCION")
 	private String descripcion;
 	@Lob
-	@Column(name = "LOGOTIPO")
+    @Column(name = "LOGOTIPO")
 	private byte[] logotipo;
 	@Basic(optional = false)
-	@NotNull
-	@Column(name = "CANTIDAD_ARTICULOS")
+    @NotNull
+    @Column(name = "CANTIDAD_ARTICULOS")
 	private int cantidadArticulos;
 	@Basic(optional = false)
-	@NotNull
-	@Lob
-	@Column(name = "DIAGRAMA_DISE\u251c\u00e6O")
-	private byte[] dIAGRAMADISEæO;
+    @NotNull
+    @Lob
+    @Column(name = "DIAGRAMA_DISE\u00d1O")
+	private byte[] diagramaDiseño;
 	@Column(name = "NECESITA_BORDADO")
 	private Boolean necesitaBordado;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "productoEspecificacion")
 	private List<ProductoEspecificacionTalla> productoEspecificacionTallaList;
 	@JoinColumn(name = "TBL_ORDEN_PRODUCCION_ID_ORDEN_PRODUCCION", referencedColumnName = "ID_ORDEN_PRODUCCION")
-	@ManyToOne(optional = false)
+    @ManyToOne(optional = false)
 	private OrdenProduccion tblOrdenProduccionIdOrdenProduccion;
 	@JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")
-	@ManyToOne(optional = false)
+    @ManyToOne(optional = false)
 	private Producto tblProductoIdProducto;
 
 	public ProductoEspecificacion() {
@@ -98,10 +98,10 @@ public class ProductoEspecificacion implements Serializable {
 		this.idProductoEspecificacion = idProductoEspecificacion;
 	}
 
-	public ProductoEspecificacion(Integer idProductoEspecificacion, int cantidadArticulos, byte[] dIAGRAMADISEæO) {
+	public ProductoEspecificacion(Integer idProductoEspecificacion, int cantidadArticulos, byte[] diagramaDiseño) {
 		this.idProductoEspecificacion = idProductoEspecificacion;
 		this.cantidadArticulos = cantidadArticulos;
-		this.dIAGRAMADISEæO = dIAGRAMADISEæO;
+		this.diagramaDiseño = diagramaDiseño;
 	}
 
 	public Integer getIdProductoEspecificacion() {
@@ -136,12 +136,12 @@ public class ProductoEspecificacion implements Serializable {
 		this.cantidadArticulos = cantidadArticulos;
 	}
 
-	public byte[] getDIAGRAMADISEæO() {
-		return dIAGRAMADISEæO;
+	public byte[] getDiagramaDiseño() {
+		return diagramaDiseño;
 	}
 
-	public void setDIAGRAMADISEæO(byte[] dIAGRAMADISEæO) {
-		this.dIAGRAMADISEæO = dIAGRAMADISEæO;
+	public void setDiagramaDiseño(byte[] diagramaDiseño) {
+		this.diagramaDiseño = diagramaDiseño;
 	}
 
 	public Boolean getNecesitaBordado() {
@@ -201,5 +201,5 @@ public class ProductoEspecificacion implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.ProductoEspecificacion[ idProductoEspecificacion=" + idProductoEspecificacion + " ]";
 	}
-
+	
 }

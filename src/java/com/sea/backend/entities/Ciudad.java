@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -45,32 +45,32 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Entity
 @Table(name = "tbl_ciudad")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Ciudad.findAll", query = "SELECT c FROM Ciudad c")
-	, @NamedQuery(name = "Ciudad.findByIdCiudad", query = "SELECT c FROM Ciudad c WHERE c.idCiudad = :idCiudad")
-	, @NamedQuery(name = "Ciudad.findByNombre", query = "SELECT c FROM Ciudad c WHERE c.nombre = :nombre")})
+	@NamedQuery(name = "Ciudad.findAll", query = "SELECT c FROM Ciudad c"),
+	@NamedQuery(name = "Ciudad.findByIdCiudad", query = "SELECT c FROM Ciudad c WHERE c.idCiudad = :idCiudad"),
+	@NamedQuery(name = "Ciudad.findByNombre", query = "SELECT c FROM Ciudad c WHERE c.nombre = :nombre")})
 public class Ciudad implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_CIUDAD")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_CIUDAD")
 	private Integer idCiudad;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 50)
-	@Column(name = "NOMBRE")
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "NOMBRE")
 	private String nombre;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblCiudadIdCiudad")
 	private List<Direccion> direccionList;
 	@JoinColumn(name = "TBL_DEPARTAMENTO_ID_DEPARTAMENTO", referencedColumnName = "ID_DEPARTAMENTO")
-	@ManyToOne(optional = false)
+    @ManyToOne(optional = false)
 	private Departamento tblDepartamentoIdDepartamento;
 
 	public Ciudad() {
@@ -142,5 +142,5 @@ public class Ciudad implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Ciudad[ idCiudad=" + idCiudad + " ]";
 	}
-
+	
 }

@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,19 +38,23 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Entity
 @Table(name = "tbl_cotizacion_producto")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "CotizacionProducto.findAll", query = "SELECT c FROM CotizacionProducto c")
-	, @NamedQuery(name = "CotizacionProducto.findByTblProductoIdProducto", query = "SELECT c FROM CotizacionProducto c WHERE c.cotizacionProductoPK.tblProductoIdProducto = :tblProductoIdProducto")
-	, @NamedQuery(name = "CotizacionProducto.findByTblCotizacionNumeroCotizacion", query = "SELECT c FROM CotizacionProducto c WHERE c.cotizacionProductoPK.tblCotizacionNumeroCotizacion = :tblCotizacionNumeroCotizacion")
-	, @NamedQuery(name = "CotizacionProducto.findByPrecioParaCliente", query = "SELECT c FROM CotizacionProducto c WHERE c.precioParaCliente = :precioParaCliente")
-	, @NamedQuery(name = "CotizacionProducto.findByCantidad", query = "SELECT c FROM CotizacionProducto c WHERE c.cantidad = :cantidad")})
+	@NamedQuery(name = "CotizacionProducto.findAll", query = "SELECT c FROM CotizacionProducto c"),
+	@NamedQuery(name = "CotizacionProducto.findByTblProductoIdProducto", query = "SELECT c FROM CotizacionProducto c WHERE c.cotizacionProductoPK.tblProductoIdProducto = :tblProductoIdProducto"),
+	@NamedQuery(name = "CotizacionProducto.findByTblCotizacionNumeroCotizacion", query = "SELECT c FROM CotizacionProducto c WHERE c.cotizacionProductoPK.tblCotizacionNumeroCotizacion = :tblCotizacionNumeroCotizacion"),
+	@NamedQuery(name = "CotizacionProducto.findByPrecioParaCliente", query = "SELECT c FROM CotizacionProducto c WHERE c.precioParaCliente = :precioParaCliente"),
+	@NamedQuery(name = "CotizacionProducto.findByPrecioBase", query = "SELECT c FROM CotizacionProducto c WHERE c.precioBase = :precioBase"),
+	@NamedQuery(name = "CotizacionProducto.findByCantidad", query = "SELECT c FROM CotizacionProducto c WHERE c.cantidad = :cantidad")})
 public class CotizacionProducto implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	@EmbeddedId
+	protected CotizacionProductoPK cotizacionProductoPK;
 	// @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
 	@Column(name = "PRECIO_PARA_CLIENTE")
 	private Float precioParaCliente;
@@ -58,19 +62,15 @@ public class CotizacionProducto implements Serializable {
     @NotNull
     @Column(name = "PRECIO_BASE")
 	private float precioBase;
-
-	private static final long serialVersionUID = 1L;
-	@EmbeddedId
-	protected CotizacionProductoPK cotizacionProductoPK;
 	@Basic(optional = false)
-	@NotNull
-	@Column(name = "CANTIDAD")
+    @NotNull
+    @Column(name = "CANTIDAD")
 	private int cantidad;
 	@JoinColumn(name = "TBL_COTIZACION_NUMERO_COTIZACION", referencedColumnName = "NUMERO_COTIZACION", insertable = false, updatable = false)
-	@ManyToOne(optional = false)
+    @ManyToOne(optional = false)
 	private Cotizacion cotizacion;
 	@JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO", insertable = false, updatable = false)
-	@ManyToOne(optional = false)
+    @ManyToOne(optional = false)
 	private Producto producto;
 
 	public CotizacionProducto() {
@@ -80,8 +80,9 @@ public class CotizacionProducto implements Serializable {
 		this.cotizacionProductoPK = cotizacionProductoPK;
 	}
 
-	public CotizacionProducto(CotizacionProductoPK cotizacionProductoPK, int cantidad) {
+	public CotizacionProducto(CotizacionProductoPK cotizacionProductoPK, float precioBase, int cantidad) {
 		this.cotizacionProductoPK = cotizacionProductoPK;
+		this.precioBase = precioBase;
 		this.cantidad = cantidad;
 	}
 
@@ -103,6 +104,14 @@ public class CotizacionProducto implements Serializable {
 
 	public void setPrecioParaCliente(Float precioParaCliente) {
 		this.precioParaCliente = precioParaCliente;
+	}
+
+	public float getPrecioBase() {
+		return precioBase;
+	}
+
+	public void setPrecioBase(float precioBase) {
+		this.precioBase = precioBase;
 	}
 
 	public int getCantidad() {
@@ -129,14 +138,6 @@ public class CotizacionProducto implements Serializable {
 		this.producto = producto;
 	}
 
-	public float getPrecioBase() {
-		return precioBase;
-	}
-
-	public void setPrecioBase(float precioBase) {
-		this.precioBase = precioBase;
-	}
-
 	@Override
 	public int hashCode() {
 		int hash = 0;
@@ -161,5 +162,5 @@ public class CotizacionProducto implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.CotizacionProducto[ cotizacionProductoPK=" + cotizacionProductoPK + " ]";
 	}
-
+	
 }

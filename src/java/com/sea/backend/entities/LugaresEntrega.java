@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -44,32 +44,32 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Entity
 @Table(name = "tbl_lugares_entrega")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "LugaresEntrega.findAll", query = "SELECT l FROM LugaresEntrega l")
-	, @NamedQuery(name = "LugaresEntrega.findByIdLugaresEntrega", query = "SELECT l FROM LugaresEntrega l WHERE l.idLugaresEntrega = :idLugaresEntrega")
-	, @NamedQuery(name = "LugaresEntrega.findByActivo", query = "SELECT l FROM LugaresEntrega l WHERE l.activo = :activo")})
+	@NamedQuery(name = "LugaresEntrega.findAll", query = "SELECT l FROM LugaresEntrega l"),
+	@NamedQuery(name = "LugaresEntrega.findByIdLugaresEntrega", query = "SELECT l FROM LugaresEntrega l WHERE l.idLugaresEntrega = :idLugaresEntrega"),
+	@NamedQuery(name = "LugaresEntrega.findByActivo", query = "SELECT l FROM LugaresEntrega l WHERE l.activo = :activo")})
 public class LugaresEntrega implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_LUGARES_ENTREGA")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_LUGARES_ENTREGA")
 	private Integer idLugaresEntrega;
 	@Basic(optional = false)
-	@NotNull
-	@Lob
-	@Size(min = 1, max = 65535)
-	@Column(name = "DESCRIPCION")
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "DESCRIPCION")
 	private String descripcion;
 	@Basic(optional = false)
-	@NotNull
-	@Column(name = "ACTIVO")
+    @NotNull
+    @Column(name = "ACTIVO")
 	private boolean activo;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblLugaresEntregaIdLugaresEntrega")
 	private List<Cotizacion> cotizacionList;
@@ -144,5 +144,5 @@ public class LugaresEntrega implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.LugaresEntrega[ idLugaresEntrega=" + idLugaresEntrega + " ]";
 	}
-
+	
 }

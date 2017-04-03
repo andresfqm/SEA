@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -44,32 +44,32 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Entity
 @Table(name = "tbl_propuesta_no_incluye")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "PropuestaNoIncluye.findAll", query = "SELECT p FROM PropuestaNoIncluye p")
-	, @NamedQuery(name = "PropuestaNoIncluye.findByIdPropuestaNoIncluye", query = "SELECT p FROM PropuestaNoIncluye p WHERE p.idPropuestaNoIncluye = :idPropuestaNoIncluye")
-	, @NamedQuery(name = "PropuestaNoIncluye.findByActivo", query = "SELECT p FROM PropuestaNoIncluye p WHERE p.activo = :activo")})
+	@NamedQuery(name = "PropuestaNoIncluye.findAll", query = "SELECT p FROM PropuestaNoIncluye p"),
+	@NamedQuery(name = "PropuestaNoIncluye.findByIdPropuestaNoIncluye", query = "SELECT p FROM PropuestaNoIncluye p WHERE p.idPropuestaNoIncluye = :idPropuestaNoIncluye"),
+	@NamedQuery(name = "PropuestaNoIncluye.findByActivo", query = "SELECT p FROM PropuestaNoIncluye p WHERE p.activo = :activo")})
 public class PropuestaNoIncluye implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_PROPUESTA_NO_INCLUYE")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_PROPUESTA_NO_INCLUYE")
 	private Integer idPropuestaNoIncluye;
 	@Basic(optional = false)
-	@NotNull
-	@Lob
-	@Size(min = 1, max = 65535)
-	@Column(name = "DESCRIPCION")
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "DESCRIPCION")
 	private String descripcion;
 	@Basic(optional = false)
-	@NotNull
-	@Column(name = "ACTIVO")
+    @NotNull
+    @Column(name = "ACTIVO")
 	private boolean activo;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblPropuestaNoIncluyeIdPropuestaNoIncluye")
 	private List<Cotizacion> cotizacionList;
@@ -144,5 +144,5 @@ public class PropuestaNoIncluye implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.PropuestaNoIncluye[ idPropuestaNoIncluye=" + idPropuestaNoIncluye + " ]";
 	}
-
+	
 }

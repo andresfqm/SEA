@@ -83,7 +83,7 @@
                         </h:selectOneMenu>
                     </h:panelGroup>
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <h:inputText class="mdl-textfield__input" value="#{clienteController.cliente.numeroDocumento}" p:type="number" p:min="1" p:maxlength="32" p:step="1" required="required" id="NoDocumento" />
+                        <h:inputText class="mdl-textfield__input" value="#{clienteController.cliente.numeroDocumento}" pt:type="number" p:min="1" p:maxlength="32" p:step="1" required="required" id="NoDocumento" />
                         <h:outputLabel class="mdl-textfield__label" for="NoDocumento">Número de documento</h:outputLabel>
                     </h:panelGroup>
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -103,15 +103,15 @@
                         <h:outputLabel class="mdl-textfield__label" for="apellido">Apellido</h:outputLabel>
                     </h:panelGroup>
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <h:inputText class="mdl-textfield__input" value="#{clienteController.cliente.telefonoList}" p:type="tel" p:maxlength="64" required="required" id="telCorporativo" />
+                        <h:inputText class="mdl-textfield__input" value="#{clienteController.cliente.telefonoList}" pt:type="tel" p:maxlength="64" required="required" id="telCorporativo" />
                         <h:outputLabel class="mdl-textfield__label" for="telCorporativo">Teléfono corporativo</h:outputLabel>
                     </h:panelGroup>
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <h:inputText class="mdl-textfield__input" p:type="tel" value="#{clienteController.cliente.telefonoList}" p:maxlength="64" required="required" id="telCartera" />
+                        <h:inputText class="mdl-textfield__input" pt:type="tel" value="#{clienteController.cliente.telefonoList}" p:maxlength="64" required="required" id="telCartera" />
                         <h:outputLabel class="mdl-textfield__label" for="telCartera">Teléfono de cartera</h:outputLabel>
                     </h:panelGroup>
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-                        <h:inputText class="mdl-textfield__input" p:type="email" value="#{clienteController.cliente.emailList}" p:maxlength="64" required="required" id="email" />
+                        <h:inputText class="mdl-textfield__input" pt:type="email" value="#{clienteController.cliente.emailList}" p:maxlength="64" required="required" id="email" />
                         <h:outputLabel class="mdl-textfield__label" for="email">Correo electrónico</h:outputLabel>
                     </h:panelGroup>
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
@@ -246,7 +246,7 @@
 						<h:outputLabel class="mdl-selectfield__label" for="tipoDocumento">Tipo de documento</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" p:type="number" p:min="1" p:maxlength="32" p:step="1" required="required" id="NoDocumento" />
+						<h:inputText class="mdl-textfield__input" pt:type="number" p:min="1" p:maxlength="32" p:step="1" required="required" id="NoDocumento" />
 						<h:outputLabel class="mdl-textfield__label" for="NoDocumento">Número de documento</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -266,15 +266,15 @@
 						<h:outputLabel class="mdl-textfield__label" for="apellido">Apellido</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" p:type="tel" p:maxlength="64" required="required" id="telCorporativo" />
+						<h:inputText class="mdl-textfield__input" pt:type="tel" p:maxlength="64" required="required" id="telCorporativo" />
 						<h:outputLabel class="mdl-textfield__label" for="telCorporativo">Teléfono corporativo</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" p:type="tel" p:maxlength="64" required="required" id="telCartera" />
+						<h:inputText class="mdl-textfield__input" pt:type="tel" p:maxlength="64" required="required" id="telCartera" />
 						<h:outputLabel class="mdl-textfield__label" for="telCartera">Teléfono de cartera</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-						<h:inputText class="mdl-textfield__input" p:type="email" p:maxlength="64" required="required" id="email" />
+						<h:inputText class="mdl-textfield__input" pt:type="email" p:maxlength="64" required="required" id="email" />
 						<h:outputLabel class="mdl-textfield__label" for="email">Correo electrónico</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">

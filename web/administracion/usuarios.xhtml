@@ -448,7 +448,7 @@
                             </h:selectOneMenu>
                         </h:panelGroup>
                         <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <h:inputText class="mdl-textfield__input" value="#{usuarioController.usuario.numeroDocumento}" p:type="number" p:min="1" p:step="1" p:maxlength="32" required="required" id="NoDocumento" />
+                            <h:inputText class="mdl-textfield__input" value="#{usuarioController.usuario.numeroDocumento}" pt:type="number" p:min="1" p:step="1" p:maxlength="32" required="required" id="NoDocumento" />
                             <h:outputLabel class="mdl-textfield__label" for="NoDocumento">Número de documento</h:outputLabel>
                         </h:panelGroup>
                         <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -464,15 +464,15 @@
                             <h:outputLabel class="mdl-textfield__label" for="apellido">Apellido</h:outputLabel>
                         </h:panelGroup>
                         <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <h:inputText class="mdl-textfield__input" p:type="tel" value="#{usuarioController.usuario.setTelefonoList(telefonoController.telefono.numeroTelefono)}" p:maxlength="64" required="required" id="telPersonal" />
+                            <h:inputText class="mdl-textfield__input" pt:type="tel" value="#{usuarioController.usuario.setTelefonoList(telefonoController.telefono.numeroTelefono)}" p:maxlength="64" required="required" id="telPersonal" />
                             <h:outputLabel class="mdl-textfield__label" for="telPersonal">Teléfono personal</h:outputLabel>
                         </h:panelGroup>
                         <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <h:inputText class="mdl-textfield__input" p:type="tel" value="#{usuarioController.usuario.setTelefonoList(telefonoController.telefono.numeroTelefono)}" p:maxlength="64" required="required" id="telCorporativo" />
+                            <h:inputText class="mdl-textfield__input" pt:type="tel" value="#{usuarioController.usuario.setTelefonoList(telefonoController.telefono.numeroTelefono)}" p:maxlength="64" required="required" id="telCorporativo" />
                             <h:outputLabel class="mdl-textfield__label" for="telCorporativo">Teléfono corporativo</h:outputLabel>
                         </h:panelGroup>
                         <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-                            <h:inputText class="mdl-textfield__input" p:type="email" value="#{usuarioController.usuario.setEmailList(emailList)}" p:maxlength="64" required="required" id="email" />
+                            <h:inputText class="mdl-textfield__input" pt:type="email" value="#{usuarioController.usuario.setEmailList(emailList)}" p:maxlength="64" required="required" id="email" />
                             <h:outputLabel class="mdl-textfield__label" for="email">Correo electrónico</h:outputLabel>
                         </h:panelGroup>
                         <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">

@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -45,59 +45,59 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Entity
 @Table(name = "tbl_cliente")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")
-	, @NamedQuery(name = "Cliente.findByIdCliente", query = "SELECT c FROM Cliente c WHERE c.idCliente = :idCliente")
-	, @NamedQuery(name = "Cliente.findByNumeroDocumento", query = "SELECT c FROM Cliente c WHERE c.numeroDocumento = :numeroDocumento")
-	, @NamedQuery(name = "Cliente.findByDigitoVerificacion", query = "SELECT c FROM Cliente c WHERE c.digitoVerificacion = :digitoVerificacion")
-	, @NamedQuery(name = "Cliente.findByNombreORazonSocial", query = "SELECT c FROM Cliente c WHERE c.nombreORazonSocial = :nombreORazonSocial")
-	, @NamedQuery(name = "Cliente.findByApellido", query = "SELECT c FROM Cliente c WHERE c.apellido = :apellido")
-	, @NamedQuery(name = "Cliente.findByNombreContacto", query = "SELECT c FROM Cliente c WHERE c.nombreContacto = :nombreContacto")})
+	@NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c"),
+	@NamedQuery(name = "Cliente.findByIdCliente", query = "SELECT c FROM Cliente c WHERE c.idCliente = :idCliente"),
+	@NamedQuery(name = "Cliente.findByNumeroDocumento", query = "SELECT c FROM Cliente c WHERE c.numeroDocumento = :numeroDocumento"),
+	@NamedQuery(name = "Cliente.findByDigitoVerificacion", query = "SELECT c FROM Cliente c WHERE c.digitoVerificacion = :digitoVerificacion"),
+	@NamedQuery(name = "Cliente.findByNombreORazonSocial", query = "SELECT c FROM Cliente c WHERE c.nombreORazonSocial = :nombreORazonSocial"),
+	@NamedQuery(name = "Cliente.findByApellido", query = "SELECT c FROM Cliente c WHERE c.apellido = :apellido"),
+	@NamedQuery(name = "Cliente.findByNombreContacto", query = "SELECT c FROM Cliente c WHERE c.nombreContacto = :nombreContacto")})
 public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_CLIENTE")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_CLIENTE")
 	private Integer idCliente;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 32)
-	@Column(name = "NUMERO_DOCUMENTO")
+    @NotNull
+    @Size(min = 1, max = 32)
+    @Column(name = "NUMERO_DOCUMENTO")
 	private String numeroDocumento;
 	@Size(max = 1)
-	@Column(name = "DIGITO_VERIFICACION")
+    @Column(name = "DIGITO_VERIFICACION")
 	private String digitoVerificacion;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 64)
-	@Column(name = "NOMBRE_O_RAZON_SOCIAL")
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = "NOMBRE_O_RAZON_SOCIAL")
 	private String nombreORazonSocial;
 	@Size(max = 64)
-	@Column(name = "APELLIDO")
+    @Column(name = "APELLIDO")
 	private String apellido;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 128)
-	@Column(name = "NOMBRE_CONTACTO")
+    @NotNull
+    @Size(min = 1, max = 128)
+    @Column(name = "NOMBRE_CONTACTO")
 	private String nombreContacto;
 	@JoinColumn(name = "TBL_COMENTARIO_CAMBIO_ASESOR_ID_COMENTARIO_CAMBIO_ASESOR", referencedColumnName = "ID_COMENTARIO_CAMBIO_ASESOR")
-	@ManyToOne
+    @ManyToOne
 	private ComentarioCambioAsesor tblComentarioCambioAsesorIdComentarioCambioAsesor;
 	@JoinColumn(name = "TBL_ORIGEN_ID_ORIGEN", referencedColumnName = "ID_ORIGEN")
-	@ManyToOne(optional = false)
+    @ManyToOne(optional = false)
 	private Origen tblOrigenIdOrigen;
 	@JoinColumn(name = "TBL_TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO", referencedColumnName = "ID_TIPO_DOCUMENTO")
-	@ManyToOne(optional = false)
+    @ManyToOne(optional = false)
 	private TipoDocumento tblTipoDocumentoIdTipoDocumento;
 	@JoinColumn(name = "TBL_USUARIO_ID_USUARIO", referencedColumnName = "ID_USUARIO")
-	@ManyToOne(optional = false)
+    @ManyToOne(optional = false)
 	private Usuario tblUsuarioIdUsuario;
 	@OneToMany(mappedBy = "tblClienteIdCliente")
 	private List<Telefono> telefonoList;
@@ -262,5 +262,5 @@ public class Cliente implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Cliente[ idCliente=" + idCliente + " ]";
 	}
-
+	
 }

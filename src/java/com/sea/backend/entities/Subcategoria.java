@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -45,36 +45,36 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Entity
 @Table(name = "tbl_subcategoria")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Subcategoria.findAll", query = "SELECT s FROM Subcategoria s")
-	, @NamedQuery(name = "Subcategoria.findByIdSubcategoria", query = "SELECT s FROM Subcategoria s WHERE s.idSubcategoria = :idSubcategoria")
-	, @NamedQuery(name = "Subcategoria.findByNombre", query = "SELECT s FROM Subcategoria s WHERE s.nombre = :nombre")
-	, @NamedQuery(name = "Subcategoria.findByCodigo", query = "SELECT s FROM Subcategoria s WHERE s.codigo = :codigo")})
+	@NamedQuery(name = "Subcategoria.findAll", query = "SELECT s FROM Subcategoria s"),
+	@NamedQuery(name = "Subcategoria.findByIdSubcategoria", query = "SELECT s FROM Subcategoria s WHERE s.idSubcategoria = :idSubcategoria"),
+	@NamedQuery(name = "Subcategoria.findByNombre", query = "SELECT s FROM Subcategoria s WHERE s.nombre = :nombre"),
+	@NamedQuery(name = "Subcategoria.findByCodigo", query = "SELECT s FROM Subcategoria s WHERE s.codigo = :codigo")})
 public class Subcategoria implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_SUBCATEGORIA")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_SUBCATEGORIA")
 	private Integer idSubcategoria;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 32)
-	@Column(name = "NOMBRE")
+    @NotNull
+    @Size(min = 1, max = 32)
+    @Column(name = "NOMBRE")
 	private String nombre;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 5)
-	@Column(name = "CODIGO")
+    @NotNull
+    @Size(min = 1, max = 5)
+    @Column(name = "CODIGO")
 	private String codigo;
 	@JoinColumn(name = "TBL_CATEGORIA_ID_CATEGORIA", referencedColumnName = "ID_CATEGORIA")
-	@ManyToOne(optional = false)
+    @ManyToOne(optional = false)
 	private Categoria tblCategoriaIdCategoria;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblSubcategoriaIdSubcategoria")
 	private List<Producto> productoList;
@@ -157,5 +157,5 @@ public class Subcategoria implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Subcategoria[ idSubcategoria=" + idSubcategoria + " ]";
 	}
-
+	
 }

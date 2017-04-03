@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,17 +23,17 @@
  */
 package com.sea.backend.model;
 
-import com.sea.backend.entities.Rol;
+import com.sea.backend.entities.UsuarioPerfil;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Stateless
-public class RolFacade extends AbstractFacade<Rol> implements RolFacadeLocal {
+public class UsuarioPerfilFacade extends AbstractFacade<UsuarioPerfil> implements UsuarioPerfilFacadeLocal {
 
 	@PersistenceContext(unitName = "SEAPU")
 	private EntityManager em;
@@ -43,8 +43,8 @@ public class RolFacade extends AbstractFacade<Rol> implements RolFacadeLocal {
 		return em;
 	}
 
-	public RolFacade() {
-		super(Rol.class);
+	public UsuarioPerfilFacade() {
+		super(UsuarioPerfil.class);
 	}
-
+	
 }

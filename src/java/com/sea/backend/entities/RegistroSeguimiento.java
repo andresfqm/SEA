@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -45,36 +45,36 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Entity
 @Table(name = "tbl_registro_seguimiento")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "RegistroSeguimiento.findAll", query = "SELECT r FROM RegistroSeguimiento r")
-	, @NamedQuery(name = "RegistroSeguimiento.findByIdRegistroSeguimiento", query = "SELECT r FROM RegistroSeguimiento r WHERE r.idRegistroSeguimiento = :idRegistroSeguimiento")
-	, @NamedQuery(name = "RegistroSeguimiento.findByFechaRegistro", query = "SELECT r FROM RegistroSeguimiento r WHERE r.fechaRegistro = :fechaRegistro")})
+	@NamedQuery(name = "RegistroSeguimiento.findAll", query = "SELECT r FROM RegistroSeguimiento r"),
+	@NamedQuery(name = "RegistroSeguimiento.findByIdRegistroSeguimiento", query = "SELECT r FROM RegistroSeguimiento r WHERE r.idRegistroSeguimiento = :idRegistroSeguimiento"),
+	@NamedQuery(name = "RegistroSeguimiento.findByFechaRegistro", query = "SELECT r FROM RegistroSeguimiento r WHERE r.fechaRegistro = :fechaRegistro")})
 public class RegistroSeguimiento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_REGISTRO_SEGUIMIENTO")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_REGISTRO_SEGUIMIENTO")
 	private Integer idRegistroSeguimiento;
 	@Basic(optional = false)
-	@NotNull
-	@Column(name = "FECHA_REGISTRO")
-	@Temporal(TemporalType.DATE)
+    @NotNull
+    @Column(name = "FECHA_REGISTRO")
+    @Temporal(TemporalType.DATE)
 	private Date fechaRegistro;
 	@Basic(optional = false)
-	@NotNull
-	@Lob
-	@Size(min = 1, max = 65535)
-	@Column(name = "OBSERVACIONES")
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "OBSERVACIONES")
 	private String observaciones;
 	@JoinColumn(name = "TBL_COTIZACION_NUMERO_COTIZACION", referencedColumnName = "NUMERO_COTIZACION")
-	@ManyToOne(optional = false)
+    @ManyToOne(optional = false)
 	private Cotizacion tblCotizacionNumeroCotizacion;
 
 	public RegistroSeguimiento() {
@@ -146,5 +146,5 @@ public class RegistroSeguimiento implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.RegistroSeguimiento[ idRegistroSeguimiento=" + idRegistroSeguimiento + " ]";
 	}
-
+	
 }

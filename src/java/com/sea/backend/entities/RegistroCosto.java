@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,41 +41,41 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Entity
 @Table(name = "tbl_registro_costo")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "RegistroCosto.findAll", query = "SELECT r FROM RegistroCosto r")
-	, @NamedQuery(name = "RegistroCosto.findByIdRegistroCosto", query = "SELECT r FROM RegistroCosto r WHERE r.idRegistroCosto = :idRegistroCosto")
-	, @NamedQuery(name = "RegistroCosto.findByInicioVigencia", query = "SELECT r FROM RegistroCosto r WHERE r.inicioVigencia = :inicioVigencia")
-	, @NamedQuery(name = "RegistroCosto.findByFinVigencia", query = "SELECT r FROM RegistroCosto r WHERE r.finVigencia = :finVigencia")
-	, @NamedQuery(name = "RegistroCosto.findByCosto", query = "SELECT r FROM RegistroCosto r WHERE r.costo = :costo")})
+	@NamedQuery(name = "RegistroCosto.findAll", query = "SELECT r FROM RegistroCosto r"),
+	@NamedQuery(name = "RegistroCosto.findByIdRegistroCosto", query = "SELECT r FROM RegistroCosto r WHERE r.idRegistroCosto = :idRegistroCosto"),
+	@NamedQuery(name = "RegistroCosto.findByInicioVigencia", query = "SELECT r FROM RegistroCosto r WHERE r.inicioVigencia = :inicioVigencia"),
+	@NamedQuery(name = "RegistroCosto.findByFinVigencia", query = "SELECT r FROM RegistroCosto r WHERE r.finVigencia = :finVigencia"),
+	@NamedQuery(name = "RegistroCosto.findByCosto", query = "SELECT r FROM RegistroCosto r WHERE r.costo = :costo")})
 public class RegistroCosto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@Basic(optional = false)
-	@NotNull
-	@Column(name = "ID_REGISTRO_COSTO")
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "ID_REGISTRO_COSTO")
 	private Integer idRegistroCosto;
 	@Basic(optional = false)
-	@NotNull
-	@Column(name = "INICIO_VIGENCIA")
-	@Temporal(TemporalType.DATE)
+    @NotNull
+    @Column(name = "INICIO_VIGENCIA")
+    @Temporal(TemporalType.DATE)
 	private Date inicioVigencia;
 	@Basic(optional = false)
-	@NotNull
-	@Column(name = "FIN_VIGENCIA")
-	@Temporal(TemporalType.DATE)
+    @NotNull
+    @Column(name = "FIN_VIGENCIA")
+    @Temporal(TemporalType.DATE)
 	private Date finVigencia;
 	@Basic(optional = false)
-	@NotNull
-	@Column(name = "COSTO")
+    @NotNull
+    @Column(name = "COSTO")
 	private float costo;
 	@JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")
-	@ManyToOne(optional = false)
+    @ManyToOne(optional = false)
 	private Producto tblProductoIdProducto;
 
 	public RegistroCosto() {
@@ -156,5 +156,5 @@ public class RegistroCosto implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.RegistroCosto[ idRegistroCosto=" + idRegistroCosto + " ]";
 	}
-
+	
 }

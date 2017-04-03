@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -44,33 +44,33 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Entity
 @Table(name = "tbl_origen")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Origen.findAll", query = "SELECT o FROM Origen o")
-	, @NamedQuery(name = "Origen.findByIdOrigen", query = "SELECT o FROM Origen o WHERE o.idOrigen = :idOrigen")
-	, @NamedQuery(name = "Origen.findByNombre", query = "SELECT o FROM Origen o WHERE o.nombre = :nombre")})
+	@NamedQuery(name = "Origen.findAll", query = "SELECT o FROM Origen o"),
+	@NamedQuery(name = "Origen.findByIdOrigen", query = "SELECT o FROM Origen o WHERE o.idOrigen = :idOrigen"),
+	@NamedQuery(name = "Origen.findByNombre", query = "SELECT o FROM Origen o WHERE o.nombre = :nombre")})
 public class Origen implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_ORIGEN")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_ORIGEN")
 	private Integer idOrigen;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 45)
-	@Column(name = "NOMBRE")
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "NOMBRE")
 	private String nombre;
 	@Basic(optional = false)
-	@NotNull
-	@Lob
-	@Size(min = 1, max = 65535)
-	@Column(name = "DESCRIPCION")
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "DESCRIPCION")
 	private String descripcion;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblOrigenIdOrigen")
 	private List<Cliente> clienteList;
@@ -145,5 +145,5 @@ public class Origen implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Origen[ idOrigen=" + idOrigen + " ]";
 	}
-
+	
 }

@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,27 +43,27 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Entity
 @Table(name = "tbl_tipo_direccion")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "TipoDireccion.findAll", query = "SELECT t FROM TipoDireccion t")
-	, @NamedQuery(name = "TipoDireccion.findByIdTipoDireccion", query = "SELECT t FROM TipoDireccion t WHERE t.idTipoDireccion = :idTipoDireccion")
-	, @NamedQuery(name = "TipoDireccion.findByTipo", query = "SELECT t FROM TipoDireccion t WHERE t.tipo = :tipo")})
+	@NamedQuery(name = "TipoDireccion.findAll", query = "SELECT t FROM TipoDireccion t"),
+	@NamedQuery(name = "TipoDireccion.findByIdTipoDireccion", query = "SELECT t FROM TipoDireccion t WHERE t.idTipoDireccion = :idTipoDireccion"),
+	@NamedQuery(name = "TipoDireccion.findByTipo", query = "SELECT t FROM TipoDireccion t WHERE t.tipo = :tipo")})
 public class TipoDireccion implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_TIPO_DIRECCION")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_TIPO_DIRECCION")
 	private Integer idTipoDireccion;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 64)
-	@Column(name = "TIPO")
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = "TIPO")
 	private String tipo;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblTipoDireccionIdTipoDireccion")
 	private List<Direccion> direccionList;
@@ -129,5 +129,5 @@ public class TipoDireccion implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.TipoDireccion[ idTipoDireccion=" + idTipoDireccion + " ]";
 	}
-
+	
 }

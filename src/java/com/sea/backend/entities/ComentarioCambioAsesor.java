@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -42,25 +42,25 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Entity
 @Table(name = "tbl_comentario_cambio_asesor")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "ComentarioCambioAsesor.findAll", query = "SELECT c FROM ComentarioCambioAsesor c")
-	, @NamedQuery(name = "ComentarioCambioAsesor.findByIdComentarioCambioAsesor", query = "SELECT c FROM ComentarioCambioAsesor c WHERE c.idComentarioCambioAsesor = :idComentarioCambioAsesor")})
+	@NamedQuery(name = "ComentarioCambioAsesor.findAll", query = "SELECT c FROM ComentarioCambioAsesor c"),
+	@NamedQuery(name = "ComentarioCambioAsesor.findByIdComentarioCambioAsesor", query = "SELECT c FROM ComentarioCambioAsesor c WHERE c.idComentarioCambioAsesor = :idComentarioCambioAsesor")})
 public class ComentarioCambioAsesor implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_COMENTARIO_CAMBIO_ASESOR")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_COMENTARIO_CAMBIO_ASESOR")
 	private Integer idComentarioCambioAsesor;
 	@Lob
-	@Size(max = 65535)
-	@Column(name = "COMENTARIO")
+    @Size(max = 65535)
+    @Column(name = "COMENTARIO")
 	private String comentario;
 	@OneToMany(mappedBy = "tblComentarioCambioAsesorIdComentarioCambioAsesor")
 	private List<Cliente> clienteList;
@@ -121,5 +121,5 @@ public class ComentarioCambioAsesor implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.ComentarioCambioAsesor[ idComentarioCambioAsesor=" + idComentarioCambioAsesor + " ]";
 	}
-
+	
 }

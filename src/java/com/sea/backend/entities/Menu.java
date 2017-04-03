@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,9 +32,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -46,39 +43,34 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Entity
 @Table(name = "tbl_menu")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Menu.findAll", query = "SELECT m FROM Menu m")
-	, @NamedQuery(name = "Menu.findByIdMenu", query = "SELECT m FROM Menu m WHERE m.idMenu = :idMenu")
-	, @NamedQuery(name = "Menu.findByNombre", query = "SELECT m FROM Menu m WHERE m.nombre = :nombre")
-	, @NamedQuery(name = "Menu.findByUrl", query = "SELECT m FROM Menu m WHERE m.url = :url")})
+	@NamedQuery(name = "Menu.findAll", query = "SELECT m FROM Menu m"),
+	@NamedQuery(name = "Menu.findByIdMenu", query = "SELECT m FROM Menu m WHERE m.idMenu = :idMenu"),
+	@NamedQuery(name = "Menu.findByNombre", query = "SELECT m FROM Menu m WHERE m.nombre = :nombre"),
+	@NamedQuery(name = "Menu.findByUrl", query = "SELECT m FROM Menu m WHERE m.url = :url")})
 public class Menu implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_MENU")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_MENU")
 	private Integer idMenu;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 45)
-	@Column(name = "NOMBRE")
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "NOMBRE")
 	private String nombre;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 45)
-	@Column(name = "URL")
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "URL")
 	private String url;
-	@JoinTable(name = "tbl_perfil_menu", joinColumns = {
-		@JoinColumn(name = "TBL_MENU_ID_MENU", referencedColumnName = "ID_MENU")}, inverseJoinColumns = {
-		@JoinColumn(name = "TBL_PERFIL_ID_PERFIL", referencedColumnName = "ID_PERFIL")})
-	@ManyToMany
-	private List<Perfil> perfilList;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblMenuIdMenu")
 	private List<Pagina> paginaList;
 
@@ -120,15 +112,6 @@ public class Menu implements Serializable {
 	}
 
 	@XmlTransient
-	public List<Perfil> getPerfilList() {
-		return perfilList;
-	}
-
-	public void setPerfilList(List<Perfil> perfilList) {
-		this.perfilList = perfilList;
-	}
-
-	@XmlTransient
 	public List<Pagina> getPaginaList() {
 		return paginaList;
 	}
@@ -161,5 +144,5 @@ public class Menu implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Menu[ idMenu=" + idMenu + " ]";
 	}
-
+	
 }
