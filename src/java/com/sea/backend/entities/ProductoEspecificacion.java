@@ -82,7 +82,7 @@ public class ProductoEspecificacion implements Serializable {
 	private byte[] diagramaDiseño;
 	@Column(name = "NECESITA_BORDADO")
 	private Boolean necesitaBordado;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "productoEspecificacion")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblProductoEspecificacionIdProductoEspecificacion")
 	private List<ProductoEspecificacionTalla> productoEspecificacionTallaList;
 	@JoinColumn(name = "TBL_ORDEN_PRODUCCION_ID_ORDEN_PRODUCCION", referencedColumnName = "ID_ORDEN_PRODUCCION")
     @ManyToOne(optional = false)

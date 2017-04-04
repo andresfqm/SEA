@@ -23,7 +23,6 @@
  */
 package com.sea.backend.model;
 
-import com.sea.backend.entities.Ciudad;
 import com.sea.backend.entities.Direccion;
 import com.sea.backend.entities.Usuario;
 import java.util.List;

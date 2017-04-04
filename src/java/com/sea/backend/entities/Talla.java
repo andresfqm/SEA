@@ -65,7 +65,7 @@ public class Talla implements Serializable {
     @Size(min = 1, max = 16)
     @Column(name = "TALLA")
 	private String talla;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "talla")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblTallaIdTalla")
 	private List<ProductoEspecificacionTalla> productoEspecificacionTallaList;
 
 	public Talla() {

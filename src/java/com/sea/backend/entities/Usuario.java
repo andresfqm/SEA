@@ -24,7 +24,6 @@
 package com.sea.backend.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -52,22 +51,19 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "tbl_usuario")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
-	@NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario"),
-	@NamedQuery(name = "Usuario.findByNumeroDocumento", query = "SELECT u FROM Usuario u WHERE u.numeroDocumento = :numeroDocumento"),
-	@NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre"),
-	@NamedQuery(name = "Usuario.findByApellido", query = "SELECT u FROM Usuario u WHERE u.apellido = :apellido"),
-	@NamedQuery(name = "Usuario.findByIdInterno", query = "SELECT u FROM Usuario u WHERE u.idInterno = :idInterno"),
-	@NamedQuery(name = "Usuario.findByCargo", query = "SELECT u FROM Usuario u WHERE u.cargo = :cargo"),
-	@NamedQuery(name = "Usuario.findByConsecutivoCotizacion", query = "SELECT u FROM Usuario u WHERE u.consecutivoCotizacion = :consecutivoCotizacion"),
-	@NamedQuery(name = "Usuario.findByNombreUsuario", query = "SELECT u FROM Usuario u WHERE u.nombreUsuario = :nombreUsuario"),
-	@NamedQuery(name = "Usuario.findByContrasena", query = "SELECT u FROM Usuario u WHERE u.contrasena = :contrasena"),
-	@NamedQuery(name = "Usuario.findByHabilitado", query = "SELECT u FROM Usuario u WHERE u.habilitado = :habilitado"),
-	@NamedQuery(name = "Usuario.findByAutenticado", query = "SELECT u FROM Usuario u WHERE u.autenticado = :autenticado")})
+	@NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
+	, @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario")
+	, @NamedQuery(name = "Usuario.findByNumeroDocumento", query = "SELECT u FROM Usuario u WHERE u.numeroDocumento = :numeroDocumento")
+	, @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre")
+	, @NamedQuery(name = "Usuario.findByApellido", query = "SELECT u FROM Usuario u WHERE u.apellido = :apellido")
+	, @NamedQuery(name = "Usuario.findByIdInterno", query = "SELECT u FROM Usuario u WHERE u.idInterno = :idInterno")
+	, @NamedQuery(name = "Usuario.findByCargo", query = "SELECT u FROM Usuario u WHERE u.cargo = :cargo")
+	, @NamedQuery(name = "Usuario.findByConsecutivoCotizacion", query = "SELECT u FROM Usuario u WHERE u.consecutivoCotizacion = :consecutivoCotizacion")
+	, @NamedQuery(name = "Usuario.findByNombreUsuario", query = "SELECT u FROM Usuario u WHERE u.nombreUsuario = :nombreUsuario")
+	, @NamedQuery(name = "Usuario.findByContrasena", query = "SELECT u FROM Usuario u WHERE u.contrasena = :contrasena")
+	, @NamedQuery(name = "Usuario.findByHabilitado", query = "SELECT u FROM Usuario u WHERE u.habilitado = :habilitado")
+	, @NamedQuery(name = "Usuario.findByAutenticado", query = "SELECT u FROM Usuario u WHERE u.autenticado = :autenticado")})
 public class Usuario implements Serializable {
-
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblUsuarioIdUsuario")
-	private List<Cliente> clienteList;
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -122,9 +118,19 @@ public class Usuario implements Serializable {
     @NotNull
     @Column(name = "AUTENTICADO")
 	private boolean autenticado;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblUsuarioIdUsuario")
+	private List<Cliente> clienteList;
+	@OneToMany(mappedBy = "tblUsuarioIdUsuario")
+	private List<Telefono> telefonoList;
+	@OneToMany(mappedBy = "tblUsuarioIdUsuario")
+	private List<Direccion> direccionList;
 	@JoinColumn(name = "TBL_TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO", referencedColumnName = "ID_TIPO_DOCUMENTO")
     @ManyToOne(optional = false)
 	private TipoDocumento tblTipoDocumentoIdTipoDocumento;
+	@OneToMany(mappedBy = "tblUsuarioIdUsuario")
+	private List<Email> emailList;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblUsuarioIdUsuario")
+	private List<UsuarioPerfil> usuarioPerfilList;
 
 	public Usuario() {
 	}
@@ -235,12 +241,48 @@ public class Usuario implements Serializable {
 		this.autenticado = autenticado;
 	}
 
+	@XmlTransient
+	public List<Cliente> getClienteList() {
+		return clienteList;
+	}
+
+	public void setClienteList(List<Cliente> clienteList) {
+		this.clienteList = clienteList;
+	}
+
+	@XmlTransient
+	public List<Telefono> getTelefonoList() {
+		return telefonoList;
+	}
+
+	public void setTelefonoList(List<Telefono> telefonoList) {
+		this.telefonoList = telefonoList;
+	}
+
+	@XmlTransient
+	public List<Direccion> getDireccionList() {
+		return direccionList;
+	}
+
+	public void setDireccionList(List<Direccion> direccionList) {
+		this.direccionList = direccionList;
+	}
+
 	public TipoDocumento getTblTipoDocumentoIdTipoDocumento() {
 		return tblTipoDocumentoIdTipoDocumento;
 	}
 
 	public void setTblTipoDocumentoIdTipoDocumento(TipoDocumento tblTipoDocumentoIdTipoDocumento) {
 		this.tblTipoDocumentoIdTipoDocumento = tblTipoDocumentoIdTipoDocumento;
+	}
+
+	@XmlTransient
+	public List<UsuarioPerfil> getUsuarioPerfilList() {
+		return usuarioPerfilList;
+	}
+
+	public void setUsuarioPerfilList(List<UsuarioPerfil> usuarioPerfilList) {
+		this.usuarioPerfilList = usuarioPerfilList;
 	}
 
 	@Override
@@ -266,15 +308,6 @@ public class Usuario implements Serializable {
 	@Override
 	public String toString() {
 		return "com.sea.backend.entities.Usuario[ idUsuario=" + idUsuario + " ]";
-	}
-
-	@XmlTransient
-	public List<Cliente> getClienteList() {
-		return clienteList;
-	}
-
-	public void setClienteList(List<Cliente> clienteList) {
-		this.clienteList = clienteList;
 	}
 	
 }

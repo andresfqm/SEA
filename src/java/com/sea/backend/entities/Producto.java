@@ -105,7 +105,7 @@ public class Producto implements Serializable {
 	private List<Material> materialList;
 	@ManyToMany(mappedBy = "productoList")
 	private List<Descuento> descuentoList;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblProductoIdProducto")
 	private List<CotizacionProducto> cotizacionProductoList;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblProductoIdProducto")
 	private List<ProductoEspecificacion> productoEspecificacionList;

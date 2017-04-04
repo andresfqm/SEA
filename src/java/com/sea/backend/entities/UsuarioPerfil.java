@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,14 +39,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author homero
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_usuario_perfil")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "UsuarioPerfil.findAll", query = "SELECT u FROM UsuarioPerfil u"),
-	@NamedQuery(name = "UsuarioPerfil.findByIdUsuarioPerfil", query = "SELECT u FROM UsuarioPerfil u WHERE u.idUsuarioPerfil = :idUsuarioPerfil")})
+	@NamedQuery(name = "UsuarioPerfil.findAll", query = "SELECT u FROM UsuarioPerfil u")
+	, @NamedQuery(name = "UsuarioPerfil.findByIdUsuarioPerfil", query = "SELECT u FROM UsuarioPerfil u WHERE u.idUsuarioPerfil = :idUsuarioPerfil")})
 public class UsuarioPerfil implements Serializable {
 
 	private static final long serialVersionUID = 1L;

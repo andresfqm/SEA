@@ -55,15 +55,15 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "tbl_orden_produccion")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "OrdenProduccion.findAll", query = "SELECT o FROM OrdenProduccion o"),
-	@NamedQuery(name = "OrdenProduccion.findByIdOrdenProduccion", query = "SELECT o FROM OrdenProduccion o WHERE o.idOrdenProduccion = :idOrdenProduccion"),
-	@NamedQuery(name = "OrdenProduccion.findByFechaExpedicion", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaExpedicion = :fechaExpedicion"),
-	@NamedQuery(name = "OrdenProduccion.findByCiudadExpedicion", query = "SELECT o FROM OrdenProduccion o WHERE o.ciudadExpedicion = :ciudadExpedicion"),
-	@NamedQuery(name = "OrdenProduccion.findByTotalPrendas", query = "SELECT o FROM OrdenProduccion o WHERE o.totalPrendas = :totalPrendas"),
-	@NamedQuery(name = "OrdenProduccion.findByEstado", query = "SELECT o FROM OrdenProduccion o WHERE o.estado = :estado"),
-	@NamedQuery(name = "OrdenProduccion.findByFechaEntrega1", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaEntrega1 = :fechaEntrega1"),
-	@NamedQuery(name = "OrdenProduccion.findByFechaEntrega2", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaEntrega2 = :fechaEntrega2"),
-	@NamedQuery(name = "OrdenProduccion.findByFechaEntregaFinal", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaEntregaFinal = :fechaEntregaFinal")})
+	@NamedQuery(name = "OrdenProduccion.findAll", query = "SELECT o FROM OrdenProduccion o")
+	, @NamedQuery(name = "OrdenProduccion.findByIdOrdenProduccion", query = "SELECT o FROM OrdenProduccion o WHERE o.idOrdenProduccion = :idOrdenProduccion")
+	, @NamedQuery(name = "OrdenProduccion.findByFechaExpedicion", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaExpedicion = :fechaExpedicion")
+	, @NamedQuery(name = "OrdenProduccion.findByCiudadExpedicion", query = "SELECT o FROM OrdenProduccion o WHERE o.ciudadExpedicion = :ciudadExpedicion")
+	, @NamedQuery(name = "OrdenProduccion.findByTotalPrendas", query = "SELECT o FROM OrdenProduccion o WHERE o.totalPrendas = :totalPrendas")
+	, @NamedQuery(name = "OrdenProduccion.findByEstado", query = "SELECT o FROM OrdenProduccion o WHERE o.estado = :estado")
+	, @NamedQuery(name = "OrdenProduccion.findByFechaEntrega1", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaEntrega1 = :fechaEntrega1")
+	, @NamedQuery(name = "OrdenProduccion.findByFechaEntrega2", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaEntrega2 = :fechaEntrega2")
+	, @NamedQuery(name = "OrdenProduccion.findByFechaEntregaFinal", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaEntregaFinal = :fechaEntregaFinal")})
 public class OrdenProduccion implements Serializable {
 
 	private static final long serialVersionUID = 1L;
