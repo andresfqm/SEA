@@ -56,14 +56,14 @@ public class TipoDireccion implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_TIPO_DIRECCION")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_TIPO_DIRECCION")
 	private Integer idTipoDireccion;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 64)
-	@Column(name = "TIPO")
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = "TIPO")
 	private String tipo;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblTipoDireccionIdTipoDireccion")
 	private List<Direccion> direccionList;
@@ -129,5 +129,5 @@ public class TipoDireccion implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.TipoDireccion[ idTipoDireccion=" + idTipoDireccion + " ]";
 	}
-
+	
 }

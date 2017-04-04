@@ -54,13 +54,13 @@ public class ComentarioCambioAsesor implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_COMENTARIO_CAMBIO_ASESOR")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_COMENTARIO_CAMBIO_ASESOR")
 	private Integer idComentarioCambioAsesor;
 	@Lob
-	@Size(max = 65535)
-	@Column(name = "COMENTARIO")
+    @Size(max = 65535)
+    @Column(name = "COMENTARIO")
 	private String comentario;
 	@OneToMany(mappedBy = "tblComentarioCambioAsesorIdComentarioCambioAsesor")
 	private List<Cliente> clienteList;
@@ -121,5 +121,5 @@ public class ComentarioCambioAsesor implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.ComentarioCambioAsesor[ idComentarioCambioAsesor=" + idComentarioCambioAsesor + " ]";
 	}
-
+	
 }

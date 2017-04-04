@@ -8,18 +8,17 @@ package com.sea.frontend.controller;
 import com.sea.backend.entities.Menu;
 import com.sea.backend.entities.Usuario;
 import com.sea.backend.model.MenuFacadeLocal;
-import static com.sun.faces.facelets.util.Path.context;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 
 import javax.inject.Named;
-import org.primefaces.model.menu.DefaultMenuModel;
-import org.primefaces.model.menu.MenuModel;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,61 +29,40 @@ import org.primefaces.model.menu.MenuModel;
 public class MenuController implements Serializable {
 
     @EJB
-    private MenuFacadeLocal EJBMenu;
-    private List<Menu> lista;
-    private MenuModel model;
+    private MenuFacadeLocal menuEJB;
+    private List<Menu> listaMenuGeneral;
 
     @PostConstruct
     public void init() {
-        this.listarMenus();
-        model = new DefaultMenuModel();
-       // this.establecerPermisos();
-
+		try {
+			listaMenuGeneral = menuEJB.obtenerMenusGenerales(obtenerIdUsuario());
+		} catch (Exception ex) {
+			Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+		}
+    }
+	
+	//Obteniendo todos los menús del usuario
+	public void obtenerMenusGenerales() throws Exception {
+		System.out.println("Antes del try");
+		try {
+			System.out.println("En el try");
+			listaMenuGeneral = menuEJB.obtenerMenusGenerales(obtenerIdUsuario());
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+	    public int obtenerIdUsuario(){
+        HttpSession sesion =(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        Usuario u = (Usuario)sesion.getAttribute("usuario");
+        return u.getIdUsuario();
     }
 
-    public void listarMenus() {
+	public List<Menu> getListaMenuGeneral() {
+		return listaMenuGeneral;
+	}
 
-        try {
-            lista = EJBMenu.findAll();
-        } catch (Exception e) {
-            //mensaje de jsf
-
-        }
-
-    }
-
-    public MenuModel getModel() {
-        return model;
-    }
-
-    public void setModel(MenuModel model) {
-        this.model = model;
-    }
-
-   
-   /* public void establecerPermisos() {
-        Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-        for (Menu m : lista) {
-            if (m.getPerfilList().equals("S") && m.getTipoUsuario().equals(us.getTipo())) {
-                DefaultSubMenu firstSubmenu = new DefaultSubMenu(m.getNombre());
-                for (Menu i : lista) {
-                    Menu submenu = i.getSubmenu();
-                    if (submenu != null) {
-                        if (submenu.getCodigo() == m.getCodigo()) {
-                            DefaultMenuItem item = new DefaultMenuItem(i.getNombre());
-                            item.setUrl(i.getUrl());
-                            firstSubmenu.addElement(item);
-                        }
-                    }
-                }
-                model.addElement(firstSubmenu);
-            } else if (m.getSubmenu() == null && m.getTipoUsuario().equals(us.getTipo())) {
-                DefaultMenuItem item = new DefaultMenuItem(m.getNombre());
-                item.setUrl(m.getUrl());
-                model.addElement(item);
-            }
-        }
-    }
-*/
-
+	public void setListaMenuGeneral(List<Menu> listaMenuGeneral) {
+		this.listaMenuGeneral = listaMenuGeneral;
+	}
+	
 }

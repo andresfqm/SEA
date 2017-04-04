@@ -57,19 +57,19 @@ public class PropuestaNoIncluye implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_PROPUESTA_NO_INCLUYE")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_PROPUESTA_NO_INCLUYE")
 	private Integer idPropuestaNoIncluye;
 	@Basic(optional = false)
-	@NotNull
-	@Lob
-	@Size(min = 1, max = 65535)
-	@Column(name = "DESCRIPCION")
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "DESCRIPCION")
 	private String descripcion;
 	@Basic(optional = false)
-	@NotNull
-	@Column(name = "ACTIVO")
+    @NotNull
+    @Column(name = "ACTIVO")
 	private boolean activo;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblPropuestaNoIncluyeIdPropuestaNoIncluye")
 	private List<Cotizacion> cotizacionList;
@@ -144,5 +144,5 @@ public class PropuestaNoIncluye implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.PropuestaNoIncluye[ idPropuestaNoIncluye=" + idPropuestaNoIncluye + " ]";
 	}
-
+	
 }

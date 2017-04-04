@@ -54,24 +54,24 @@ public class Email implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_EMAIL")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_EMAIL")
 	private Integer idEmail;
 	// @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 64)
-	@Column(name = "EMAIL")
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = "EMAIL")
 	private String email;
 	@JoinColumn(name = "TBL_CLIENTE_ID_CLIENTE", referencedColumnName = "ID_CLIENTE")
-	@ManyToOne
+    @ManyToOne
 	private Cliente tblClienteIdCliente;
 	@JoinColumn(name = "TBL_TIPO_EMAIL_ID_TIPO_EMAIL", referencedColumnName = "ID_TIPO_EMAIL")
-	@ManyToOne
+    @ManyToOne
 	private TipoEmail tblTipoEmailIdTipoEmail;
 	@JoinColumn(name = "TBL_USUARIO_ID_USUARIO", referencedColumnName = "ID_USUARIO")
-	@ManyToOne
+    @ManyToOne
 	private Usuario tblUsuarioIdUsuario;
 
 	public Email() {
@@ -150,5 +150,5 @@ public class Email implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Email[ idEmail=" + idEmail + " ]";
 	}
-
+	
 }

@@ -57,19 +57,19 @@ public class TipoDocumento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_TIPO_DOCUMENTO")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_TIPO_DOCUMENTO")
 	private Integer idTipoDocumento;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 64)
-	@Column(name = "TIPO")
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = "TIPO")
 	private String tipo;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 8)
-	@Column(name = "CODIGO")
+    @NotNull
+    @Size(min = 1, max = 8)
+    @Column(name = "CODIGO")
 	private String codigo;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblTipoDocumentoIdTipoDocumento")
 	private List<Cliente> clienteList;
@@ -155,5 +155,5 @@ public class TipoDocumento implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.TipoDocumento[ idTipoDocumento=" + idTipoDocumento + " ]";
 	}
-
+	
 }

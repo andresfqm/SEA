@@ -56,16 +56,16 @@ public class Talla implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_TALLA")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_TALLA")
 	private Integer idTalla;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 16)
-	@Column(name = "TALLA")
+    @NotNull
+    @Size(min = 1, max = 16)
+    @Column(name = "TALLA")
 	private String talla;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "talla")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblTallaIdTalla")
 	private List<ProductoEspecificacionTalla> productoEspecificacionTallaList;
 
 	public Talla() {
@@ -129,5 +129,5 @@ public class Talla implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Talla[ idTalla=" + idTalla + " ]";
 	}
-
+	
 }

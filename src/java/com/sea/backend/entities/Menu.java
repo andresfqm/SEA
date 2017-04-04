@@ -32,9 +32,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -55,30 +52,36 @@ import javax.xml.bind.annotation.XmlTransient;
 	@NamedQuery(name = "Menu.findAll", query = "SELECT m FROM Menu m")
 	, @NamedQuery(name = "Menu.findByIdMenu", query = "SELECT m FROM Menu m WHERE m.idMenu = :idMenu")
 	, @NamedQuery(name = "Menu.findByNombre", query = "SELECT m FROM Menu m WHERE m.nombre = :nombre")
-	, @NamedQuery(name = "Menu.findByUrl", query = "SELECT m FROM Menu m WHERE m.url = :url")})
+	, @NamedQuery(name = "Menu.findByUrl", query = "SELECT m FROM Menu m WHERE m.url = :url")
+	, @NamedQuery(name = "Menu.findByIcono", query = "SELECT m FROM Menu m WHERE m.icono = :icono")
+	, @NamedQuery(name = "Menu.findByPosicion", query = "SELECT m FROM Menu m WHERE m.posicion = :posicion")})
 public class Menu implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_MENU")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_MENU")
 	private Integer idMenu;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 45)
-	@Column(name = "NOMBRE")
+    @NotNull
+    @Size(min = 1, max = 32)
+    @Column(name = "NOMBRE")
 	private String nombre;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 45)
-	@Column(name = "URL")
+    @NotNull
+    @Size(min = 1, max = 128)
+    @Column(name = "URL")
 	private String url;
-	@JoinTable(name = "tbl_perfil_menu", joinColumns = {
-		@JoinColumn(name = "TBL_MENU_ID_MENU", referencedColumnName = "ID_MENU")}, inverseJoinColumns = {
-		@JoinColumn(name = "TBL_PERFIL_ID_PERFIL", referencedColumnName = "ID_PERFIL")})
-	@ManyToMany
-	private List<Perfil> perfilList;
+	@Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 32)
+    @Column(name = "ICONO")
+	private String icono;
+	@Basic(optional = false)
+    @NotNull
+    @Column(name = "POSICION")
+	private int posicion;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblMenuIdMenu")
 	private List<Pagina> paginaList;
 
@@ -89,10 +92,12 @@ public class Menu implements Serializable {
 		this.idMenu = idMenu;
 	}
 
-	public Menu(Integer idMenu, String nombre, String url) {
+	public Menu(Integer idMenu, String nombre, String url, String icono, int posicion) {
 		this.idMenu = idMenu;
 		this.nombre = nombre;
 		this.url = url;
+		this.icono = icono;
+		this.posicion = posicion;
 	}
 
 	public Integer getIdMenu() {
@@ -119,13 +124,20 @@ public class Menu implements Serializable {
 		this.url = url;
 	}
 
-	@XmlTransient
-	public List<Perfil> getPerfilList() {
-		return perfilList;
+	public String getIcono() {
+		return icono;
 	}
 
-	public void setPerfilList(List<Perfil> perfilList) {
-		this.perfilList = perfilList;
+	public void setIcono(String icono) {
+		this.icono = icono;
+	}
+
+	public int getPosicion() {
+		return posicion;
+	}
+
+	public void setPosicion(int posicion) {
+		this.posicion = posicion;
 	}
 
 	@XmlTransient
@@ -161,5 +173,5 @@ public class Menu implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Menu[ idMenu=" + idMenu + " ]";
 	}
-
+	
 }

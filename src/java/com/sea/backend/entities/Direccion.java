@@ -54,26 +54,26 @@ public class Direccion implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_DIRECCION")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_DIRECCION")
 	private Integer idDireccion;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 128)
-	@Column(name = "DIRECCION")
+    @NotNull
+    @Size(min = 1, max = 128)
+    @Column(name = "DIRECCION")
 	private String direccion;
 	@JoinColumn(name = "TBL_CIUDAD_ID_CIUDAD", referencedColumnName = "ID_CIUDAD")
-	@ManyToOne(optional = false)
+    @ManyToOne(optional = false)
 	private Ciudad tblCiudadIdCiudad;
 	@JoinColumn(name = "TBL_CLIENTE_ID_CLIENTE", referencedColumnName = "ID_CLIENTE")
-	@ManyToOne
+    @ManyToOne
 	private Cliente tblClienteIdCliente;
 	@JoinColumn(name = "TBL_TIPO_DIRECCION_ID_TIPO_DIRECCION", referencedColumnName = "ID_TIPO_DIRECCION")
-	@ManyToOne(optional = false)
+    @ManyToOne(optional = false)
 	private TipoDireccion tblTipoDireccionIdTipoDireccion;
 	@JoinColumn(name = "TBL_USUARIO_ID_USUARIO", referencedColumnName = "ID_USUARIO")
-	@ManyToOne
+    @ManyToOne
 	private Usuario tblUsuarioIdUsuario;
 
 	public Direccion() {
@@ -160,5 +160,5 @@ public class Direccion implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Direccion[ idDireccion=" + idDireccion + " ]";
 	}
-
+	
 }

@@ -26,8 +26,8 @@ package com.sea.backend.entities;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -45,47 +45,45 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
 	@NamedQuery(name = "ProductoEspecificacionTalla.findAll", query = "SELECT p FROM ProductoEspecificacionTalla p")
-	, @NamedQuery(name = "ProductoEspecificacionTalla.findByTblTallaIdTalla", query = "SELECT p FROM ProductoEspecificacionTalla p WHERE p.productoEspecificacionTallaPK.tblTallaIdTalla = :tblTallaIdTalla")
-	, @NamedQuery(name = "ProductoEspecificacionTalla.findByTblProductoEspecificacionIdProductoEspecificacion", query = "SELECT p FROM ProductoEspecificacionTalla p WHERE p.productoEspecificacionTallaPK.tblProductoEspecificacionIdProductoEspecificacion = :tblProductoEspecificacionIdProductoEspecificacion")
+	, @NamedQuery(name = "ProductoEspecificacionTalla.findByIdProductoEspecificacionTalla", query = "SELECT p FROM ProductoEspecificacionTalla p WHERE p.idProductoEspecificacionTalla = :idProductoEspecificacionTalla")
 	, @NamedQuery(name = "ProductoEspecificacionTalla.findByCantidad", query = "SELECT p FROM ProductoEspecificacionTalla p WHERE p.cantidad = :cantidad")})
 public class ProductoEspecificacionTalla implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	@EmbeddedId
-	protected ProductoEspecificacionTallaPK productoEspecificacionTallaPK;
+	@Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "ID_PRODUCTO_ESPECIFICACION_TALLA")
+	private Integer idProductoEspecificacionTalla;
 	@Basic(optional = false)
-	@NotNull
-	@Column(name = "CANTIDAD")
+    @NotNull
+    @Column(name = "CANTIDAD")
 	private int cantidad;
-	@JoinColumn(name = "TBL_TALLA_ID_TALLA", referencedColumnName = "ID_TALLA", insertable = false, updatable = false)
-	@ManyToOne(optional = false)
-	private Talla talla;
-	@JoinColumn(name = "TBL_PRODUCTO_ESPECIFICACION_ID_PRODUCTO_ESPECIFICACION", referencedColumnName = "ID_PRODUCTO_ESPECIFICACION", insertable = false, updatable = false)
-	@ManyToOne(optional = false)
-	private ProductoEspecificacion productoEspecificacion;
+	@JoinColumn(name = "TBL_TALLA_ID_TALLA", referencedColumnName = "ID_TALLA")
+    @ManyToOne(optional = false)
+	private Talla tblTallaIdTalla;
+	@JoinColumn(name = "TBL_PRODUCTO_ESPECIFICACION_ID_PRODUCTO_ESPECIFICACION", referencedColumnName = "ID_PRODUCTO_ESPECIFICACION")
+    @ManyToOne(optional = false)
+	private ProductoEspecificacion tblProductoEspecificacionIdProductoEspecificacion;
 
 	public ProductoEspecificacionTalla() {
 	}
 
-	public ProductoEspecificacionTalla(ProductoEspecificacionTallaPK productoEspecificacionTallaPK) {
-		this.productoEspecificacionTallaPK = productoEspecificacionTallaPK;
+	public ProductoEspecificacionTalla(Integer idProductoEspecificacionTalla) {
+		this.idProductoEspecificacionTalla = idProductoEspecificacionTalla;
 	}
 
-	public ProductoEspecificacionTalla(ProductoEspecificacionTallaPK productoEspecificacionTallaPK, int cantidad) {
-		this.productoEspecificacionTallaPK = productoEspecificacionTallaPK;
+	public ProductoEspecificacionTalla(Integer idProductoEspecificacionTalla, int cantidad) {
+		this.idProductoEspecificacionTalla = idProductoEspecificacionTalla;
 		this.cantidad = cantidad;
 	}
 
-	public ProductoEspecificacionTalla(int tblTallaIdTalla, int tblProductoEspecificacionIdProductoEspecificacion) {
-		this.productoEspecificacionTallaPK = new ProductoEspecificacionTallaPK(tblTallaIdTalla, tblProductoEspecificacionIdProductoEspecificacion);
+	public Integer getIdProductoEspecificacionTalla() {
+		return idProductoEspecificacionTalla;
 	}
 
-	public ProductoEspecificacionTallaPK getProductoEspecificacionTallaPK() {
-		return productoEspecificacionTallaPK;
-	}
-
-	public void setProductoEspecificacionTallaPK(ProductoEspecificacionTallaPK productoEspecificacionTallaPK) {
-		this.productoEspecificacionTallaPK = productoEspecificacionTallaPK;
+	public void setIdProductoEspecificacionTalla(Integer idProductoEspecificacionTalla) {
+		this.idProductoEspecificacionTalla = idProductoEspecificacionTalla;
 	}
 
 	public int getCantidad() {
@@ -96,26 +94,26 @@ public class ProductoEspecificacionTalla implements Serializable {
 		this.cantidad = cantidad;
 	}
 
-	public Talla getTalla() {
-		return talla;
+	public Talla getTblTallaIdTalla() {
+		return tblTallaIdTalla;
 	}
 
-	public void setTalla(Talla talla) {
-		this.talla = talla;
+	public void setTblTallaIdTalla(Talla tblTallaIdTalla) {
+		this.tblTallaIdTalla = tblTallaIdTalla;
 	}
 
-	public ProductoEspecificacion getProductoEspecificacion() {
-		return productoEspecificacion;
+	public ProductoEspecificacion getTblProductoEspecificacionIdProductoEspecificacion() {
+		return tblProductoEspecificacionIdProductoEspecificacion;
 	}
 
-	public void setProductoEspecificacion(ProductoEspecificacion productoEspecificacion) {
-		this.productoEspecificacion = productoEspecificacion;
+	public void setTblProductoEspecificacionIdProductoEspecificacion(ProductoEspecificacion tblProductoEspecificacionIdProductoEspecificacion) {
+		this.tblProductoEspecificacionIdProductoEspecificacion = tblProductoEspecificacionIdProductoEspecificacion;
 	}
 
 	@Override
 	public int hashCode() {
 		int hash = 0;
-		hash += (productoEspecificacionTallaPK != null ? productoEspecificacionTallaPK.hashCode() : 0);
+		hash += (idProductoEspecificacionTalla != null ? idProductoEspecificacionTalla.hashCode() : 0);
 		return hash;
 	}
 
@@ -126,7 +124,7 @@ public class ProductoEspecificacionTalla implements Serializable {
 			return false;
 		}
 		ProductoEspecificacionTalla other = (ProductoEspecificacionTalla) object;
-		if ((this.productoEspecificacionTallaPK == null && other.productoEspecificacionTallaPK != null) || (this.productoEspecificacionTallaPK != null && !this.productoEspecificacionTallaPK.equals(other.productoEspecificacionTallaPK))) {
+		if ((this.idProductoEspecificacionTalla == null && other.idProductoEspecificacionTalla != null) || (this.idProductoEspecificacionTalla != null && !this.idProductoEspecificacionTalla.equals(other.idProductoEspecificacionTalla))) {
 			return false;
 		}
 		return true;
@@ -134,7 +132,7 @@ public class ProductoEspecificacionTalla implements Serializable {
 
 	@Override
 	public String toString() {
-		return "com.sea.backend.entities.ProductoEspecificacionTalla[ productoEspecificacionTallaPK=" + productoEspecificacionTallaPK + " ]";
+		return "com.sea.backend.entities.ProductoEspecificacionTalla[ idProductoEspecificacionTalla=" + idProductoEspecificacionTalla + " ]";
 	}
-
+	
 }

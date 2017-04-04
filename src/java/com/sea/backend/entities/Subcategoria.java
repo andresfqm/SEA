@@ -59,22 +59,22 @@ public class Subcategoria implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_SUBCATEGORIA")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_SUBCATEGORIA")
 	private Integer idSubcategoria;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 32)
-	@Column(name = "NOMBRE")
+    @NotNull
+    @Size(min = 1, max = 32)
+    @Column(name = "NOMBRE")
 	private String nombre;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 5)
-	@Column(name = "CODIGO")
+    @NotNull
+    @Size(min = 1, max = 5)
+    @Column(name = "CODIGO")
 	private String codigo;
 	@JoinColumn(name = "TBL_CATEGORIA_ID_CATEGORIA", referencedColumnName = "ID_CATEGORIA")
-	@ManyToOne(optional = false)
+    @ManyToOne(optional = false)
 	private Categoria tblCategoriaIdCategoria;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblSubcategoriaIdSubcategoria")
 	private List<Producto> productoList;
@@ -157,5 +157,5 @@ public class Subcategoria implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Subcategoria[ idSubcategoria=" + idSubcategoria + " ]";
 	}
-
+	
 }

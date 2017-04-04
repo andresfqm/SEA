@@ -56,14 +56,14 @@ public class Categoria implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_CATEGORIA")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_CATEGORIA")
 	private Integer idCategoria;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 32)
-	@Column(name = "NOMBRE")
+    @NotNull
+    @Size(min = 1, max = 32)
+    @Column(name = "NOMBRE")
 	private String nombre;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblCategoriaIdCategoria")
 	private List<Subcategoria> subcategoriaList;
@@ -129,5 +129,5 @@ public class Categoria implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Categoria[ idCategoria=" + idCategoria + " ]";
 	}
-
+	
 }

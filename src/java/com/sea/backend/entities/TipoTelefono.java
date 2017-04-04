@@ -56,14 +56,14 @@ public class TipoTelefono implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_TIPO_TELEFONO")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_TIPO_TELEFONO")
 	private Integer idTipoTelefono;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 64)
-	@Column(name = "TIPO")
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = "TIPO")
 	private String tipo;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblTipoTelefonoIdTipoTelefono")
 	private List<Telefono> telefonoList;
@@ -129,5 +129,5 @@ public class TipoTelefono implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.TipoTelefono[ idTipoTelefono=" + idTipoTelefono + " ]";
 	}
-
+	
 }

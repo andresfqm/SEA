@@ -54,23 +54,23 @@ public class Telefono implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_TELEFONO")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_TELEFONO")
 	private Integer idTelefono;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 64)
-	@Column(name = "NUMERO_TELEFONO")
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = "NUMERO_TELEFONO")
 	private String numeroTelefono;
 	@JoinColumn(name = "TBL_CLIENTE_ID_CLIENTE", referencedColumnName = "ID_CLIENTE")
-	@ManyToOne
+    @ManyToOne
 	private Cliente tblClienteIdCliente;
 	@JoinColumn(name = "TBL_TIPO_TELEFONO_ID_TIPO_TELEFONO", referencedColumnName = "ID_TIPO_TELEFONO")
-	@ManyToOne(optional = false)
+    @ManyToOne(optional = false)
 	private TipoTelefono tblTipoTelefonoIdTipoTelefono;
 	@JoinColumn(name = "TBL_USUARIO_ID_USUARIO", referencedColumnName = "ID_USUARIO")
-	@ManyToOne
+    @ManyToOne
 	private Usuario tblUsuarioIdUsuario;
 
 	public Telefono() {
@@ -149,5 +149,5 @@ public class Telefono implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Telefono[ idTelefono=" + idTelefono + " ]";
 	}
-
+	
 }

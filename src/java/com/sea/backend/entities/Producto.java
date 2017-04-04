@@ -67,53 +67,53 @@ public class Producto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_PRODUCTO")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_PRODUCTO")
 	private Integer idProducto;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 16)
-	@Column(name = "REFERENCIA")
+    @NotNull
+    @Size(min = 1, max = 16)
+    @Column(name = "REFERENCIA")
 	private String referencia;
 	@Basic(optional = false)
-	@NotNull
-	@Lob
-	@Size(min = 1, max = 65535)
-	@Column(name = "DESCRIPCION")
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "DESCRIPCION")
 	private String descripcion;
 	@Column(name = "FECHA_ACTUALIZACION")
-	@Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
 	private Date fechaActualizacion;
 	@Basic(optional = false)
-	@NotNull
-	@Column(name = "PRECIO")
+    @NotNull
+    @Column(name = "PRECIO")
 	private float precio;
 	@Column(name = "PERSONALIZADO")
 	private Boolean personalizado;
-	@JoinTable(name = "tbl_especificacion_producto", joinColumns = {
-		@JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")}, inverseJoinColumns = {
-		@JoinColumn(name = "TBL_ESPECIFICACION_ID_ESPECIFICACION", referencedColumnName = "ID_ESPECIFICACION")})
-	@ManyToMany
-	private List<Especificacion> especificacionList;
 	@JoinTable(name = "tbl_producto_sufijo", joinColumns = {
-		@JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")}, inverseJoinColumns = {
-		@JoinColumn(name = "TBL_SUFIJO_ID_SUFIJO", referencedColumnName = "ID_SUFIJO")})
-	@ManyToMany
+    	@JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")}, inverseJoinColumns = {
+    	@JoinColumn(name = "TBL_SUFIJO_ID_SUFIJO", referencedColumnName = "ID_SUFIJO")})
+    @ManyToMany
 	private List<Sufijo> sufijoList;
+	@JoinTable(name = "tbl_especificacion_producto", joinColumns = {
+    	@JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")}, inverseJoinColumns = {
+    	@JoinColumn(name = "TBL_ESPECIFICACION_ID_ESPECIFICACION", referencedColumnName = "ID_ESPECIFICACION")})
+    @ManyToMany
+	private List<Especificacion> especificacionList;
 	@ManyToMany(mappedBy = "productoList")
 	private List<Material> materialList;
 	@ManyToMany(mappedBy = "productoList")
 	private List<Descuento> descuentoList;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblProductoIdProducto")
 	private List<CotizacionProducto> cotizacionProductoList;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblProductoIdProducto")
 	private List<ProductoEspecificacion> productoEspecificacionList;
 	@JoinColumn(name = "TBL_FABRICANTE_ID_FABRICANTE", referencedColumnName = "ID_FABRICANTE")
-	@ManyToOne
+    @ManyToOne
 	private Fabricante tblFabricanteIdFabricante;
 	@JoinColumn(name = "TBL_SUBCATEGORIA_ID_SUBCATEGORIA", referencedColumnName = "ID_SUBCATEGORIA")
-	@ManyToOne(optional = false)
+    @ManyToOne(optional = false)
 	private Subcategoria tblSubcategoriaIdSubcategoria;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblProductoIdProducto")
 	private List<RegistroCosto> registroCostoList;
@@ -181,21 +181,21 @@ public class Producto implements Serializable {
 	}
 
 	@XmlTransient
-	public List<Especificacion> getEspecificacionList() {
-		return especificacionList;
-	}
-
-	public void setEspecificacionList(List<Especificacion> especificacionList) {
-		this.especificacionList = especificacionList;
-	}
-
-	@XmlTransient
 	public List<Sufijo> getSufijoList() {
 		return sufijoList;
 	}
 
 	public void setSufijoList(List<Sufijo> sufijoList) {
 		this.sufijoList = sufijoList;
+	}
+
+	@XmlTransient
+	public List<Especificacion> getEspecificacionList() {
+		return especificacionList;
+	}
+
+	public void setEspecificacionList(List<Especificacion> especificacionList) {
+		this.especificacionList = especificacionList;
 	}
 
 	@XmlTransient
@@ -283,5 +283,5 @@ public class Producto implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Producto[ idProducto=" + idProducto + " ]";
 	}
-
+	
 }

@@ -57,19 +57,19 @@ public class LugaresEntrega implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_LUGARES_ENTREGA")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_LUGARES_ENTREGA")
 	private Integer idLugaresEntrega;
 	@Basic(optional = false)
-	@NotNull
-	@Lob
-	@Size(min = 1, max = 65535)
-	@Column(name = "DESCRIPCION")
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "DESCRIPCION")
 	private String descripcion;
 	@Basic(optional = false)
-	@NotNull
-	@Column(name = "ACTIVO")
+    @NotNull
+    @Column(name = "ACTIVO")
 	private boolean activo;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblLugaresEntregaIdLugaresEntrega")
 	private List<Cotizacion> cotizacionList;
@@ -144,5 +144,5 @@ public class LugaresEntrega implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.LugaresEntrega[ idLugaresEntrega=" + idLugaresEntrega + " ]";
 	}
-
+	
 }

@@ -24,7 +24,6 @@
 package com.sea.backend.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -33,8 +32,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -58,27 +55,21 @@ import javax.xml.bind.annotation.XmlTransient;
 	, @NamedQuery(name = "Perfil.findByNombre", query = "SELECT p FROM Perfil p WHERE p.nombre = :nombre")})
 public class Perfil implements Serializable {
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblPerfilIdPerfil")
-	private Collection<UsuarioPerfil> usuarioPerfilCollection;
-
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_PERFIL")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_PERFIL")
 	private Integer idPerfil;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 32)
-	@Column(name = "NOMBRE")
+    @NotNull
+    @Size(min = 1, max = 128)
+    @Column(name = "NOMBRE")
 	private String nombre;
 	@ManyToMany(mappedBy = "perfilList")
-	private List<Menu> menuList;
-	@JoinTable(name = "tbl_usuario_perfil", joinColumns = {
-		@JoinColumn(name = "TBL_PERFIL_ID_PERFIL", referencedColumnName = "ID_PERFIL")}, inverseJoinColumns = {
-		@JoinColumn(name = "TBL_USUARIO_ID_USUARIO", referencedColumnName = "ID_USUARIO")})
-	@ManyToMany
-	private List<Usuario> usuarioList;
+	private List<Pagina> paginaList;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblPerfilIdPerfil")
+	private List<UsuarioPerfil> usuarioPerfilList;
 
 	public Perfil() {
 	}
@@ -109,21 +100,21 @@ public class Perfil implements Serializable {
 	}
 
 	@XmlTransient
-	public List<Menu> getMenuList() {
-		return menuList;
+	public List<Pagina> getPaginaList() {
+		return paginaList;
 	}
 
-	public void setMenuList(List<Menu> menuList) {
-		this.menuList = menuList;
+	public void setPaginaList(List<Pagina> paginaList) {
+		this.paginaList = paginaList;
 	}
 
 	@XmlTransient
-	public List<Usuario> getUsuarioList() {
-		return usuarioList;
+	public List<UsuarioPerfil> getUsuarioPerfilList() {
+		return usuarioPerfilList;
 	}
 
-	public void setUsuarioList(List<Usuario> usuarioList) {
-		this.usuarioList = usuarioList;
+	public void setUsuarioPerfilList(List<UsuarioPerfil> usuarioPerfilList) {
+		this.usuarioPerfilList = usuarioPerfilList;
 	}
 
 	@Override
@@ -150,14 +141,5 @@ public class Perfil implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Perfil[ idPerfil=" + idPerfil + " ]";
 	}
-
-	@XmlTransient
-	public Collection<UsuarioPerfil> getUsuarioPerfilCollection() {
-		return usuarioPerfilCollection;
-	}
-
-	public void setUsuarioPerfilCollection(Collection<UsuarioPerfil> usuarioPerfilCollection) {
-		this.usuarioPerfilCollection = usuarioPerfilCollection;
-	}
-
+	
 }

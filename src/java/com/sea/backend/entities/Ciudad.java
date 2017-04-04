@@ -58,19 +58,19 @@ public class Ciudad implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_CIUDAD")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_CIUDAD")
 	private Integer idCiudad;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 50)
-	@Column(name = "NOMBRE")
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "NOMBRE")
 	private String nombre;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblCiudadIdCiudad")
 	private List<Direccion> direccionList;
 	@JoinColumn(name = "TBL_DEPARTAMENTO_ID_DEPARTAMENTO", referencedColumnName = "ID_DEPARTAMENTO")
-	@ManyToOne(optional = false)
+    @ManyToOne(optional = false)
 	private Departamento tblDepartamentoIdDepartamento;
 
 	public Ciudad() {
@@ -140,7 +140,7 @@ public class Ciudad implements Serializable {
 
 	@Override
 	public String toString() {
-		return nombre;
+		return "com.sea.backend.entities.Ciudad[ idCiudad=" + idCiudad + " ]";
 	}
-
+	
 }

@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 EdisonArturo.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,22 +39,22 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author EdisonArturo
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_usuario_perfil")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "UsuarioPerfil.findAll", query = "SELECT u FROM UsuarioPerfil u"),
-	@NamedQuery(name = "UsuarioPerfil.findByIdUp", query = "SELECT u FROM UsuarioPerfil u WHERE u.idUp = :idUp")})
+	@NamedQuery(name = "UsuarioPerfil.findAll", query = "SELECT u FROM UsuarioPerfil u")
+	, @NamedQuery(name = "UsuarioPerfil.findByIdUsuarioPerfil", query = "SELECT u FROM UsuarioPerfil u WHERE u.idUsuarioPerfil = :idUsuarioPerfil")})
 public class UsuarioPerfil implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "ID_UP")
-	private Integer idUp;
+    @Column(name = "ID_USUARIO_PERFIL")
+	private Integer idUsuarioPerfil;
 	@JoinColumn(name = "TBL_PERFIL_ID_PERFIL", referencedColumnName = "ID_PERFIL")
     @ManyToOne(optional = false)
 	private Perfil tblPerfilIdPerfil;
@@ -65,16 +65,16 @@ public class UsuarioPerfil implements Serializable {
 	public UsuarioPerfil() {
 	}
 
-	public UsuarioPerfil(Integer idUp) {
-		this.idUp = idUp;
+	public UsuarioPerfil(Integer idUsuarioPerfil) {
+		this.idUsuarioPerfil = idUsuarioPerfil;
 	}
 
-	public Integer getIdUp() {
-		return idUp;
+	public Integer getIdUsuarioPerfil() {
+		return idUsuarioPerfil;
 	}
 
-	public void setIdUp(Integer idUp) {
-		this.idUp = idUp;
+	public void setIdUsuarioPerfil(Integer idUsuarioPerfil) {
+		this.idUsuarioPerfil = idUsuarioPerfil;
 	}
 
 	public Perfil getTblPerfilIdPerfil() {
@@ -96,7 +96,7 @@ public class UsuarioPerfil implements Serializable {
 	@Override
 	public int hashCode() {
 		int hash = 0;
-		hash += (idUp != null ? idUp.hashCode() : 0);
+		hash += (idUsuarioPerfil != null ? idUsuarioPerfil.hashCode() : 0);
 		return hash;
 	}
 
@@ -107,7 +107,7 @@ public class UsuarioPerfil implements Serializable {
 			return false;
 		}
 		UsuarioPerfil other = (UsuarioPerfil) object;
-		if ((this.idUp == null && other.idUp != null) || (this.idUp != null && !this.idUp.equals(other.idUp))) {
+		if ((this.idUsuarioPerfil == null && other.idUsuarioPerfil != null) || (this.idUsuarioPerfil != null && !this.idUsuarioPerfil.equals(other.idUsuarioPerfil))) {
 			return false;
 		}
 		return true;
@@ -115,7 +115,7 @@ public class UsuarioPerfil implements Serializable {
 
 	@Override
 	public String toString() {
-		return "com.sea.backend.entities.UsuarioPerfil[ idUp=" + idUp + " ]";
+		return "com.sea.backend.entities.UsuarioPerfil[ idUsuarioPerfil=" + idUsuarioPerfil + " ]";
 	}
 	
 }

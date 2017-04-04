@@ -24,7 +24,6 @@
 package com.sea.backend.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -34,7 +33,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -59,6 +57,7 @@ import javax.xml.bind.annotation.XmlTransient;
 	, @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre")
 	, @NamedQuery(name = "Usuario.findByApellido", query = "SELECT u FROM Usuario u WHERE u.apellido = :apellido")
 	, @NamedQuery(name = "Usuario.findByIdInterno", query = "SELECT u FROM Usuario u WHERE u.idInterno = :idInterno")
+	, @NamedQuery(name = "Usuario.findByCargo", query = "SELECT u FROM Usuario u WHERE u.cargo = :cargo")
 	, @NamedQuery(name = "Usuario.findByConsecutivoCotizacion", query = "SELECT u FROM Usuario u WHERE u.consecutivoCotizacion = :consecutivoCotizacion")
 	, @NamedQuery(name = "Usuario.findByNombreUsuario", query = "SELECT u FROM Usuario u WHERE u.nombreUsuario = :nombreUsuario")
 	, @NamedQuery(name = "Usuario.findByContrasena", query = "SELECT u FROM Usuario u WHERE u.contrasena = :contrasena")
@@ -66,61 +65,59 @@ import javax.xml.bind.annotation.XmlTransient;
 	, @NamedQuery(name = "Usuario.findByAutenticado", query = "SELECT u FROM Usuario u WHERE u.autenticado = :autenticado")})
 public class Usuario implements Serializable {
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblUsuarioIdUsuario")
-	private Collection<UsuarioPerfil> usuarioPerfilCollection;
-
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID_USUARIO")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_USUARIO")
 	private Integer idUsuario;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 32)
-	@Column(name = "NUMERO_DOCUMENTO")
+    @NotNull
+    @Size(min = 1, max = 32)
+    @Column(name = "NUMERO_DOCUMENTO")
 	private String numeroDocumento;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 256)
-	@Column(name = "NOMBRE")
+    @NotNull
+    @Size(min = 1, max = 256)
+    @Column(name = "NOMBRE")
 	private String nombre;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 256)
-	@Column(name = "APELLIDO")
+    @NotNull
+    @Size(min = 1, max = 256)
+    @Column(name = "APELLIDO")
 	private String apellido;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 32)
-	@Column(name = "ID_INTERNO")
+    @NotNull
+    @Size(min = 1, max = 32)
+    @Column(name = "ID_INTERNO")
 	private String idInterno;
 	@Basic(optional = false)
-	@NotNull
-	@Column(name = "CONSECUTIVO_COTIZACION")
+    @NotNull
+    @Size(min = 1, max = 18)
+    @Column(name = "CARGO")
+	private String cargo;
+	@Basic(optional = false)
+    @NotNull
+    @Column(name = "CONSECUTIVO_COTIZACION")
 	private int consecutivoCotizacion;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 45)
-	@Column(name = "NOMBRE_USUARIO")
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "NOMBRE_USUARIO")
 	private String nombreUsuario;
 	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 32)
-	@Column(name = "CONTRASENA")
+    @NotNull
+    @Size(min = 1, max = 32)
+    @Column(name = "CONTRASENA")
 	private String contrasena;
 	@Basic(optional = false)
-	@NotNull
-	@Column(name = "HABILITADO")
+    @NotNull
+    @Column(name = "HABILITADO")
 	private boolean habilitado;
 	@Basic(optional = false)
-	@NotNull
-	@Column(name = "AUTENTICADO")
+    @NotNull
+    @Column(name = "AUTENTICADO")
 	private boolean autenticado;
-	@ManyToMany(mappedBy = "usuarioList")
-	private List<Rol> rolList;
-	@ManyToMany(mappedBy = "usuarioList")
-	private List<Perfil> perfilList;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblUsuarioIdUsuario")
 	private List<Cliente> clienteList;
 	@OneToMany(mappedBy = "tblUsuarioIdUsuario")
@@ -128,10 +125,12 @@ public class Usuario implements Serializable {
 	@OneToMany(mappedBy = "tblUsuarioIdUsuario")
 	private List<Direccion> direccionList;
 	@JoinColumn(name = "TBL_TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO", referencedColumnName = "ID_TIPO_DOCUMENTO")
-	@ManyToOne(optional = false)
+    @ManyToOne(optional = false)
 	private TipoDocumento tblTipoDocumentoIdTipoDocumento;
 	@OneToMany(mappedBy = "tblUsuarioIdUsuario")
 	private List<Email> emailList;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblUsuarioIdUsuario")
+	private List<UsuarioPerfil> usuarioPerfilList;
 
 	public Usuario() {
 	}
@@ -140,12 +139,13 @@ public class Usuario implements Serializable {
 		this.idUsuario = idUsuario;
 	}
 
-	public Usuario(Integer idUsuario, String numeroDocumento, String nombre, String apellido, String idInterno, int consecutivoCotizacion, String nombreUsuario, String contrasena, boolean habilitado, boolean autenticado) {
+	public Usuario(Integer idUsuario, String numeroDocumento, String nombre, String apellido, String idInterno, String cargo, int consecutivoCotizacion, String nombreUsuario, String contrasena, boolean habilitado, boolean autenticado) {
 		this.idUsuario = idUsuario;
 		this.numeroDocumento = numeroDocumento;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.idInterno = idInterno;
+		this.cargo = cargo;
 		this.consecutivoCotizacion = consecutivoCotizacion;
 		this.nombreUsuario = nombreUsuario;
 		this.contrasena = contrasena;
@@ -193,6 +193,14 @@ public class Usuario implements Serializable {
 		this.idInterno = idInterno;
 	}
 
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+
 	public int getConsecutivoCotizacion() {
 		return consecutivoCotizacion;
 	}
@@ -231,24 +239,6 @@ public class Usuario implements Serializable {
 
 	public void setAutenticado(boolean autenticado) {
 		this.autenticado = autenticado;
-	}
-
-	@XmlTransient
-	public List<Rol> getRolList() {
-		return rolList;
-	}
-
-	public void setRolList(List<Rol> rolList) {
-		this.rolList = rolList;
-	}
-
-	@XmlTransient
-	public List<Perfil> getPerfilList() {
-		return perfilList;
-	}
-
-	public void setPerfilList(List<Perfil> perfilList) {
-		this.perfilList = perfilList;
 	}
 
 	@XmlTransient
@@ -295,6 +285,15 @@ public class Usuario implements Serializable {
 		this.emailList = emailList;
 	}
 
+	@XmlTransient
+	public List<UsuarioPerfil> getUsuarioPerfilList() {
+		return usuarioPerfilList;
+	}
+
+	public void setUsuarioPerfilList(List<UsuarioPerfil> usuarioPerfilList) {
+		this.usuarioPerfilList = usuarioPerfilList;
+	}
+
 	@Override
 	public int hashCode() {
 		int hash = 0;
@@ -319,14 +318,5 @@ public class Usuario implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Usuario[ idUsuario=" + idUsuario + " ]";
 	}
-
-	@XmlTransient
-	public Collection<UsuarioPerfil> getUsuarioPerfilCollection() {
-		return usuarioPerfilCollection;
-	}
-
-	public void setUsuarioPerfilCollection(Collection<UsuarioPerfil> usuarioPerfilCollection) {
-		this.usuarioPerfilCollection = usuarioPerfilCollection;
-	}
-
+	
 }
