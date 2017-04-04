@@ -6,6 +6,7 @@
 package com.sea.frontend.controller;
 
 import com.sea.backend.entities.Ciudad;
+import com.sea.backend.entities.Departamento;
 import com.sea.backend.model.CiudadFacadeLocal;
 import java.io.Serializable;
 import java.util.List;
@@ -27,6 +28,7 @@ public class CiudadController implements Serializable {
 	private CiudadFacadeLocal ciudadEJB;
 	private Ciudad ciudad;
 	private List<Ciudad> ciudades;
+	
 
 	public List<Ciudad> getCiudades() {
 		return ciudades;
@@ -48,12 +50,13 @@ public class CiudadController implements Serializable {
 	public void init() {
 		ciudad = new Ciudad();
 		ciudades = ciudadEJB.findAll();
-
 	}
 
 	public void registrar() {
 		ciudadEJB.create(ciudad);
 
 	}
+	
+	
 
 }

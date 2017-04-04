@@ -8,6 +8,7 @@ package com.sea.frontend.controller;
 import com.sea.backend.entities.TipoTelefono;
 import com.sea.backend.model.TipoTelefonoFacadeLocal;
 import java.io.Serializable;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -25,6 +26,16 @@ public class TipoTelefonoController implements Serializable {
 	private TipoTelefonoFacadeLocal tipoTelefonoEJB;
 
 	private TipoTelefono tipoT;
+	
+	private List<TipoTelefono> listaTipos;
+
+	public List<TipoTelefono> getListaTipos() {
+		return listaTipos;
+	}
+
+	public void setListaTipos(List<TipoTelefono> listaTipos) {
+		this.listaTipos = listaTipos;
+	}
 
 	public TipoTelefono getTipoT() {
 		return tipoT;
@@ -37,13 +48,12 @@ public class TipoTelefonoController implements Serializable {
 	@PostConstruct
 	public void init() {
 		tipoT = new TipoTelefono();
-
+		listaTipos = tipoTelefonoEJB.findAll();
 	}
 
 	public void registrar() {
 		try {
 			tipoTelefonoEJB.create(tipoT);
-
 		} catch (Exception e) {
 
 		}

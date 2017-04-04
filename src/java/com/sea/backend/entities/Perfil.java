@@ -24,6 +24,7 @@
 package com.sea.backend.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -54,6 +55,9 @@ import javax.xml.bind.annotation.XmlTransient;
 	@NamedQuery(name = "Perfil.findByIdPerfil", query = "SELECT p FROM Perfil p WHERE p.idPerfil = :idPerfil"),
 	@NamedQuery(name = "Perfil.findByNombre", query = "SELECT p FROM Perfil p WHERE p.nombre = :nombre")})
 public class Perfil implements Serializable {
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblPerfilIdPerfil")
+	private Collection<UsuarioPerfil> usuarioPerfilCollection;
 
 	private static final long serialVersionUID = 1L;
 	@Id

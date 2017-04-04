@@ -74,7 +74,13 @@ public class LoginController implements Serializable {
     }
     
     //Metodo para mostar el id Interno del usuario y el numero de cotizaci´´on correspondiente
-      
+      public String mostrarIdInterno(){
+        HttpSession sesion =(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        Usuario u = (Usuario)sesion.getAttribute("usuario");
+        this.usuario = u;
+        return u.getIdInterno()+" -"+ u.getConsecutivoCotizacion();
+    }
+	        
     public void verificarSesion() {
 
         try {

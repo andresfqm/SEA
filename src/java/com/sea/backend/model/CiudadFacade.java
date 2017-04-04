@@ -24,9 +24,12 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.Ciudad;
+import com.sea.backend.entities.Departamento;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -47,4 +50,31 @@ public class CiudadFacade extends AbstractFacade<Ciudad> implements CiudadFacade
 		super(Ciudad.class);
 	}
 
+	@Override
+	public List<Ciudad> listaCiudades(Departamento ciu) {
+		List<Ciudad> lista;
+		String jpql = "select nombre from tbl_ciudad\n"
+				+ "where tbl_departamento_id_departamento = ?1";
+		Query query = em.createNativeQuery(jpql);
+		query.setParameter(1, ciu.getIdDepartamento());
+		lista = query.getResultList();
+
+
+		return lista;
+	}
+	
+	@Override
+	public Ciudad listaCiudad(String ci) {
+		Ciudad ciudad = null;
+		List<Ciudad> lista;
+		String jpql = "FROM Ciudad c where c.nombre = ?1";
+		Query query = em.createQuery(jpql);
+		query.setParameter(1, ci);
+		lista = query.getResultList();
+		if (!lista.isEmpty()) {
+				ciudad = lista.get(0);
+			}
+
+		return ciudad;
+	}
 }
