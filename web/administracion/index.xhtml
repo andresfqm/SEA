@@ -9,94 +9,9 @@
 	<h:body>
 		<ui:composition template="/templates/header.xhtml" />
 		<main class="menuGeneral">
-			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
-				<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
-					<h2 class="mdl-card__title-text">Configuración</h2>
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-card__supporting-text">
-					Realice configuraciones para su usuario.
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="configuracion.xhtml">Cambiar configuración</h:outputLink>
-				</h:panelGroup>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
-				<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
-					<h2 class="mdl-card__title-text">Usuarios</h2>
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-card__supporting-text">
-					Administre a los usuarios registrados en el sistema.
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="./usuarios.xhtml">Administrar usuarios</h:outputLink>
-				</h:panelGroup>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
-				<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
-					<h2 class="mdl-card__title-text">Clientes</h2>
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-card__supporting-text">
-					Administre a los clientes registrados en el sistema.
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="./clientes.xhtml">Administrar clientes</h:outputLink>
-				</h:panelGroup>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
-				<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
-					<h2 class="mdl-card__title-text">Artículos</h2>
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-card__supporting-text">
-					Administre los artículos registrados en el sistema.
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="./articulos.xhtml">Administrar artículos</h:outputLink>
-				</h:panelGroup>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
-				<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
-					<h2 class="mdl-card__title-text">Condiciones comerciales</h2>
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-card__supporting-text">
-					Administre las condiciones comerciales.
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="./condicionesComerciales.xhtml">Administrar condiciones</h:outputLink>
-				</h:panelGroup>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
-				<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
-					<h2 class="mdl-card__title-text">Convenciones</h2>
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-card__supporting-text">
-					Administre las convenciones.
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="./convenciones.xhtml">Administrar convenciones</h:outputLink>
-				</h:panelGroup>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
-				<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
-					<h2 class="mdl-card__title-text">Orígenes de clientes</h2>
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-card__supporting-text">
-					Administre los posibles orígenes de los clientes.
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="./origenes.xhtml">Administrar orígenes</h:outputLink>
-				</h:panelGroup>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
-				<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
-					<h2 class="mdl-card__title-text">Condiciones de garantía</h2>
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-card__supporting-text">
-					Administre las condiciones que aplican en la garantía de las dotaciones.
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="./condicionesGarantia.xhtml">Administrar condiciones</h:outputLink>
-				</h:panelGroup>
-			</h:panelGroup>
+			<ui:composition template="/templates/subMenu.xhtml">
+				<ui:param name="seccion" value="#{paginaController.setMenu(4)}" />
+			</ui:composition>
 		</main>
 		<ui:composition template="/templates/navGeneral.xhtml" />
 		<ui:composition template="/templates/taskTabs.xhtml" />
