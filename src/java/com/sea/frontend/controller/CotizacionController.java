@@ -24,7 +24,6 @@ import com.sea.backend.model.CotizacionFacadeLocal;
 import com.sea.backend.model.CotizacionProductoFacadeLocal;
 import com.sea.backend.model.DescuentoFacadeLocal;
 import com.sea.backend.model.DescuentoVolumenFacadeLocal;
-import com.sea.backend.model.DireccionFacadeLocal;
 import com.sea.backend.model.FabricanteFacadeLocal;
 import com.sea.backend.model.LugaresEntregaFacadeLocal;
 import com.sea.backend.model.MaterialFacadeLocal;
@@ -33,16 +32,57 @@ import com.sea.backend.model.ProductoFacadeLocal;
 import com.sea.backend.model.PropuestaNoIncluyeFacadeLocal;
 import com.sea.backend.model.TiempoEntregaFacadeLocal;
 import com.sea.backend.model.UsuarioFacadeLocal;
+import com.sea.frontend.servlet.PDF;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.mail.BodyPart;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporter;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.JasperRunManager;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.export.JRXlsExporter;
+import net.sf.jasperreports.engine.export.JRXlsExporterParameter;
+import net.sf.jasperreports.engine.util.JRLoader;
 
 /**
  *
@@ -57,7 +97,7 @@ public class CotizacionController implements Serializable {
 	private CotizacionFacadeLocal cotizacionEJB;
 	private Cotizacion cotizacion;
 	private Double descuentoCotizacion;
-	 
+	private List<Cotizacion> listaSeguimientoCotizacions;
 
 	@EJB
 	private UsuarioFacadeLocal EJBUsuario;
@@ -112,8 +152,6 @@ public class CotizacionController implements Serializable {
 	public void setListapropuestaNoIncluye(List<PropuestaNoIncluye> ListapropuestaNoIncluye) {
 		this.ListapropuestaNoIncluye = ListapropuestaNoIncluye;
 	}
-	
-	
 
 	//Ejb de la foranea TiempoEntrega
 	@EJB
@@ -121,7 +159,6 @@ public class CotizacionController implements Serializable {
 	private int idTiempoEntrega;
 	private TiempoEntrega tiempoEntrega;
 	private List<TiempoEntrega> listaTiempoEntrega;
-	
 
 	//Ejb de la foranea DescuentoVolen
 	@EJB
@@ -158,6 +195,10 @@ public class CotizacionController implements Serializable {
 	private DescuentoFacadeLocal descuentoEJB;
 	private int idDescuento;
 
+	private int formatoCotizacion;
+	
+	private String mensaje;
+
 	@PostConstruct
 	public void init() {
 
@@ -167,7 +208,7 @@ public class CotizacionController implements Serializable {
 		cotizacion.setDescuento(15);
 		cotizacion.setIva(19);
 		cotizacionP = new CotizacionProducto();
-		clientes = clienteEJB.findAll();
+		clientes = clienteEJB.listaClienteCotizacion(setUsuarioLogueado());
 		cliente = new Cliente();
 		producto = new Producto();
 		listaCotizacionP = new ArrayList<>();
@@ -181,9 +222,9 @@ public class CotizacionController implements Serializable {
 		listaLugaresEntrega = lugaresEEJB.findAll();
 		listaDescuentoVolumen = descuentoVEJB.findAll();
 		listaModalidadDePago = modalidadPEJB.findAll();
-		
+		listaSeguimientoCotizacions = cotizacionEJB.listaSeguimiento(idUsuario());
 		propuestaNoIncluye = new PropuestaNoIncluye();
-		
+		usuario.getConsecutivoCotizacion();
 
 	}
 
@@ -199,7 +240,7 @@ public class CotizacionController implements Serializable {
 
 	public void agregarCotizacionProducto() {
 		CotizacionProducto cot = new CotizacionProducto();
-		
+
 		cot.setTblProductoIdProducto(producto);
 		cot.setCantidad(cotizacionP.getCantidad());
 		cot.setPrecioParaCliente(cotizacionP.getPrecioParaCliente());
@@ -215,28 +256,163 @@ public class CotizacionController implements Serializable {
 
 	}
 
-	public void registrarCotización() {
-		cotizacion.setNumeroCotizacion(generarIdCotizacion());
-		cotizacion.setFechaEmision(cotizacion.getFechaEmision());
-		cotizacion.setLugarEmision(cotizacion.getLugarEmision());
-		cotizacion.setValidezOferta(cotizacion.getValidezOferta());
-		cotizacion.setDescuento(cotizacion.getDescuento());
-		cotizacion.setVisita(cotizacion.getVisita());
-		cotizacion.setPrestamoMuestra(cotizacion.getPrestamoMuestra());
-		cotizacion.setRelacionMuestra(cotizacion.getRelacionMuestra());
-		cotizacion.setEstado("En seguimiento");
-		//Se carga los objetos de las clases correspondientes a las llaves foraneas
-		cotizacion.setTblClienteIdCliente(clienteEJB.find(idCliente));
-		cotizacion.setTblModalidadDePagoIdModalidadDePago(modalidadPEJB.find(idModalidadDePago));
-		cotizacion.setTblPropuestaNoIncluyeIdPropuestaNoIncluye(propuestaEJB.find(idPropuestaNoIncluye));
-		cotizacion.setTblTiempoEntregaIdTiempoEntrega(tiempoEJB.find(idTiempoEntrega));
-		cotizacion.setTblDescuentoVolumenIdDescuentoVolumen(descuentoVEJB.find(idDescuentoVolumen));
-		cotizacion.setTblLugaresEntregaIdLugaresEntrega(lugaresEEJB.find(idLugaresEntrega));
-		cotizacionEJB.create(cotizacion);
+	public void registrarCotización()
+			throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+
+		try {
+			cotizacion.setNumeroCotizacion(generarIdCotizacion());
+			cotizacion.setFechaEmision(cotizacion.getFechaEmision());
+			cotizacion.setLugarEmision(cotizacion.getLugarEmision());
+			cotizacion.setValidezOferta(cotizacion.getValidezOferta());
+			cotizacion.setDescuento(cotizacion.getDescuento());
+			cotizacion.setVisita(cotizacion.getVisita());
+			cotizacion.setPrestamoMuestra(cotizacion.getPrestamoMuestra());
+			cotizacion.setRelacionMuestra(cotizacion.getRelacionMuestra());
+			cotizacion.setEstado("En seguimiento");
+			//Se carga los objetos de las clases correspondientes a las llaves foraneas
+			cotizacion.setTblClienteIdCliente(clienteEJB.find(idCliente));
+			cotizacion.setTblModalidadDePagoIdModalidadDePago(modalidadPEJB.find(idModalidadDePago));
+			cotizacion.setTblPropuestaNoIncluyeIdPropuestaNoIncluye(propuestaEJB.find(idPropuestaNoIncluye));
+			cotizacion.setTblTiempoEntregaIdTiempoEntrega(tiempoEJB.find(idTiempoEntrega));
+			cotizacion.setTblDescuentoVolumenIdDescuentoVolumen(descuentoVEJB.find(idDescuentoVolumen));
+			cotizacion.setTblLugaresEntregaIdLugaresEntrega(lugaresEEJB.find(idLugaresEntrega));
+			cotizacionEJB.create(cotizacion);
+			for (CotizacionProducto itemVenta : listaCotizacionP) {
+				itemVenta.setTblCotizacionNumeroCotizacion(cotizacion);
+				itemVenta.setTblProductoIdProducto(producto);
+				itemVenta.setPrecioParaCliente(this.cotizacionP.getPrecioParaCliente());
+				itemVenta.setPrecioBase(producto.getPrecio());
+				itemVenta.setCantidad(this.cotizacionP.getCantidad());
+				cotizacionProductoEJB.create(itemVenta);
+			}
+
+			FacesContext facesContext = FacesContext.getCurrentInstance();
+			ServletContext servletContext = (ServletContext) facesContext.getExternalContext().getContext();
+			String ruta = servletContext.getRealPath("/reportes/cotizacion.jasper");
+			if (formatoCotizacion == 1) {
+				cotizacionEJB.getReportePDF(ruta, cotizacion.getNumeroCotizacion());
+				final String user = "edarvio.98@gmail.com";//cambiará en consecuencia al servidor utilizado
+				final String pass = "Eddy.312459";
+
+//1st paso) Obtener el objeto de sesión
+				Properties props = new Properties();
+				props.setProperty("mail.smtp.host", "smtp.gmail.com"); // envia 
+				props.setProperty("mail.smtp.starttls.enable", "true");
+				props.setProperty("mail.smtp.port", "25");
+				props.setProperty("mail.smtp.starttls.required", "false");
+				props.setProperty("mail.smtp.auth", "true");
+				props.setProperty("mail.smtp.ssl.trust", "smtp.gmail.com");
+
+				Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+					protected PasswordAuthentication getPasswordAuthentication() {
+						return new PasswordAuthentication(user, pass);
+					}
+				});
+
+//2nd paso)compose message
+				try {
+
+					BodyPart adjunto = new MimeBodyPart();
+					adjunto.setDataHandler(new DataHandler(new FileDataSource("C:\\Users\\EdisonArturo\\Documents\\NetBeansProjects\\SEA\\web\\PDF/cotizacion_N_" + cotizacion.getNumeroCotizacion() + ".pdf")));
+					adjunto.setFileName("cotizacion.pdf");
+
+					BodyPart texto = new MimeBodyPart();
+					texto.setText(mensaje);
+					MimeMultipart multiparte = new MimeMultipart();
+					multiparte.addBodyPart(texto);
+					multiparte.addBodyPart(adjunto);
+					MimeMessage message = new MimeMessage(session);
+					message.setFrom(new InternetAddress(user, "Fulldotaciones"));
+					InternetAddress[] destinatarios = {
+						new InternetAddress("edarvio.98@gmail.com"),
+						new InternetAddress("andresfqm@misena.edu.co")
+					};
+
+					message.setRecipients(Message.RecipientType.TO, destinatarios);
+					message.setSubject("Solicitud de cotizacion");
+					message.setContent(multiparte, "text/html; charset=utf-8");
+
+					//3rd paso)send message
+					Transport.send(message);
+
+					System.out.println("Done");
+
+				} catch (MessagingException e) {
+					throw new RuntimeException(e);
+				}
+			} else {
+				cotizacionEJB.getReporteXLSX(ruta, cotizacion.getNumeroCotizacion());
+				final String user = "edarvio.98@gmail.com";//cambiará en consecuencia al servidor utilizado
+				final String pass = "Eddy.312459";
+
+//1st paso) Obtener el objeto de sesión
+				Properties props = new Properties();
+				props.setProperty("mail.smtp.host", "smtp.gmail.com"); // envia 
+				props.setProperty("mail.smtp.starttls.enable", "true");
+				props.setProperty("mail.smtp.port", "25");
+				props.setProperty("mail.smtp.starttls.required", "false");
+				props.setProperty("mail.smtp.auth", "true");
+				props.setProperty("mail.smtp.ssl.trust", "smtp.gmail.com");
+
+				Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+					protected PasswordAuthentication getPasswordAuthentication() {
+						return new PasswordAuthentication(user, pass);
+					}
+				});
+
+//2nd paso)compose message
+				try {
+
+					BodyPart adjunto = new MimeBodyPart();
+					adjunto.setDataHandler(new DataHandler(new FileDataSource("C:\\Users\\EdisonArturo\\Documents\\NetBeansProjects\\SEA\\web\\EXCEL/cotizacion_N_" + cotizacion.getNumeroCotizacion() + ".xlsx")));
+					adjunto.setFileName("cotizacion.xlsx");
+
+					BodyPart texto = new MimeBodyPart();
+					texto.setText(mensaje);
+					MimeMultipart multiparte = new MimeMultipart();
+					multiparte.addBodyPart(texto);
+					multiparte.addBodyPart(adjunto);
+					MimeMessage message = new MimeMessage(session);
+					message.setFrom(new InternetAddress(user, "Fulldotaciones"));
+					InternetAddress[] destinatarios = {
+						new InternetAddress("edarvio.98@gmail.com"),
+						new InternetAddress("andresfqm@misena.edu.co")
+					};
+
+					message.setRecipients(Message.RecipientType.TO, destinatarios);
+					message.setSubject("Solicitud de cotizacion");
+					message.setContent(multiparte, "text/html; charset=utf-8");
+
+					//3rd paso)send message
+					Transport.send(message);
+
+					System.out.println("Done");
+					} catch (MessagingException e) {
+					throw new RuntimeException(e);
+				}
+			}
+			FacesContext.getCurrentInstance().responseComplete();
+
+		} catch (Exception e) {
+		}
+		int consecutivo = consecutivoCotizacion();
+		EJBUsuario.actualizarNumeroCotizacion(idUsuario(), consecutivo);
 
 	}
-	
-	
+
+	public void modificarCotización() {
+		try {
+			cotizacionEJB.edit(cotizacion);
+		} catch (Exception e) {
+		}
+
+	}
+
+	public String leerId(Cotizacion cotizacion) {
+		this.cotizacion = cotizacionEJB.find(cotizacion.getNumeroCotizacion());
+		return "actualizarCotizacion.xhtml";
+
+	}
 
 	public PropuestaNoIncluye getPropuestaNoIncluye() {
 		return propuestaNoIncluye;
@@ -269,8 +445,6 @@ public class CotizacionController implements Serializable {
 	public void setLugaresEntrega(LugaresEntrega lugaresEntrega) {
 		this.lugaresEntrega = lugaresEntrega;
 	}
-	
-	
 
 	public int getIdModalidad() {
 		return idModalidad;
@@ -294,7 +468,7 @@ public class CotizacionController implements Serializable {
 
 	public void setListaClientes(List<Cliente> listaClientes) {
 		this.listaClientes = listaClientes;
-		
+
 	}
 
 	public Object getDatosCliente() {
@@ -349,7 +523,6 @@ public class CotizacionController implements Serializable {
 		this.listaLugaresEntrega = listaLugaresEntrega;
 	}
 
-	
 	public void setClientes(List<Cliente> clientes) {
 		this.clientes = clientes;
 	}
@@ -417,8 +590,6 @@ public class CotizacionController implements Serializable {
 	public void setModalidadDePago(ModalidadDePago modalidadDePago) {
 		this.modalidadDePago = modalidadDePago;
 	}
-	
-	
 
 	public int getIdLugaresEntrega() {
 		return idLugaresEntrega;
@@ -427,12 +598,6 @@ public class CotizacionController implements Serializable {
 	public void setIdLugaresEntrega(int idLugaresEntrega) {
 		this.idLugaresEntrega = idLugaresEntrega;
 	}
-
-	
-
-	
-
-	
 
 	public int getCantidad() {
 		return cantidad;
@@ -497,6 +662,10 @@ public class CotizacionController implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+	
+	public Usuario setUsuarioLogueado() {
+		return EJBUsuario.find(idUsuario());
+	}
 
 	public Float getPrecioParaCliente() {
 		return precioParaCliente;
@@ -517,6 +686,26 @@ public class CotizacionController implements Serializable {
 			throw e;
 		}
 
+	}
+
+	// Metodo para obtener las cotizaciones registradas por un asesor
+	public void obtenerCotizacionesRegistradas() throws Exception {
+		try {
+			listaSeguimientoCotizacions = cotizacionEJB.listaSeguimiento(idUsuario());
+		} catch (Exception e) {
+		}
+	}
+
+	public int idUsuario() {
+		HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+		Usuario u = (Usuario) sesion.getAttribute("usuario");
+		return u.getIdUsuario();
+	}
+	
+	public int consecutivoCotizacion() {
+		HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+		Usuario u = (Usuario) sesion.getAttribute("usuario");
+		return u.getConsecutivoCotizacion();
 	}
 
 	public List<Material> getListaMateriales() {
@@ -559,6 +748,7 @@ public class CotizacionController implements Serializable {
 		this.listaProducto = listaProducto;
 	}
 
+	//Forma de generar el id de la cotización
 	public String generarIdCotizacion() {
 		HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 		Usuario u = (Usuario) sesion.getAttribute("usuario");
@@ -581,5 +771,31 @@ public class CotizacionController implements Serializable {
 	public void setDescuentoCotizacion(Double descuentoCotizacion) {
 		this.descuentoCotizacion = descuentoCotizacion;
 	}
+
+	public List<Cotizacion> getListaSeguimientoCotizacions() {
+		return listaSeguimientoCotizacions;
+	}
+
+	public void setListaSeguimientoCotizacions(List<Cotizacion> listaSeguimientoCotizacions) {
+		this.listaSeguimientoCotizacions = listaSeguimientoCotizacions;
+	}
+
+	public int getFormatoCotizacion() {
+		return formatoCotizacion;
+	}
+
+	public void setFormatoCotizacion(int formatoCotizacion) {
+		this.formatoCotizacion = formatoCotizacion;
+	}
+
+	public String getMensaje() {
+		return mensaje;
+	}
+
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
+	}
+	
+	
 
 }
