@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 EdisonArturo.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -45,24 +45,24 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author homero
+ * @author EdisonArturo
  */
 @Entity
 @Table(name = "tbl_usuario")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
-	, @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario")
-	, @NamedQuery(name = "Usuario.findByNumeroDocumento", query = "SELECT u FROM Usuario u WHERE u.numeroDocumento = :numeroDocumento")
-	, @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre")
-	, @NamedQuery(name = "Usuario.findByApellido", query = "SELECT u FROM Usuario u WHERE u.apellido = :apellido")
-	, @NamedQuery(name = "Usuario.findByIdInterno", query = "SELECT u FROM Usuario u WHERE u.idInterno = :idInterno")
-	, @NamedQuery(name = "Usuario.findByCargo", query = "SELECT u FROM Usuario u WHERE u.cargo = :cargo")
-	, @NamedQuery(name = "Usuario.findByConsecutivoCotizacion", query = "SELECT u FROM Usuario u WHERE u.consecutivoCotizacion = :consecutivoCotizacion")
-	, @NamedQuery(name = "Usuario.findByNombreUsuario", query = "SELECT u FROM Usuario u WHERE u.nombreUsuario = :nombreUsuario")
-	, @NamedQuery(name = "Usuario.findByContrasena", query = "SELECT u FROM Usuario u WHERE u.contrasena = :contrasena")
-	, @NamedQuery(name = "Usuario.findByHabilitado", query = "SELECT u FROM Usuario u WHERE u.habilitado = :habilitado")
-	, @NamedQuery(name = "Usuario.findByAutenticado", query = "SELECT u FROM Usuario u WHERE u.autenticado = :autenticado")})
+	@NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
+	@NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario"),
+	@NamedQuery(name = "Usuario.findByNumeroDocumento", query = "SELECT u FROM Usuario u WHERE u.numeroDocumento = :numeroDocumento"),
+	@NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre"),
+	@NamedQuery(name = "Usuario.findByApellido", query = "SELECT u FROM Usuario u WHERE u.apellido = :apellido"),
+	@NamedQuery(name = "Usuario.findByIdInterno", query = "SELECT u FROM Usuario u WHERE u.idInterno = :idInterno"),
+	@NamedQuery(name = "Usuario.findByCargo", query = "SELECT u FROM Usuario u WHERE u.cargo = :cargo"),
+	@NamedQuery(name = "Usuario.findByConsecutivoCotizacion", query = "SELECT u FROM Usuario u WHERE u.consecutivoCotizacion = :consecutivoCotizacion"),
+	@NamedQuery(name = "Usuario.findByNombreUsuario", query = "SELECT u FROM Usuario u WHERE u.nombreUsuario = :nombreUsuario"),
+	@NamedQuery(name = "Usuario.findByContrasena", query = "SELECT u FROM Usuario u WHERE u.contrasena = :contrasena"),
+	@NamedQuery(name = "Usuario.findByHabilitado", query = "SELECT u FROM Usuario u WHERE u.habilitado = :habilitado"),
+	@NamedQuery(name = "Usuario.findByAutenticado", query = "SELECT u FROM Usuario u WHERE u.autenticado = :autenticado")})
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;

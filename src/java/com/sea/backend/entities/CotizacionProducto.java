@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 EdisonArturo.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,17 +40,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author homero
+ * @author EdisonArturo
  */
 @Entity
 @Table(name = "tbl_cotizacion_producto")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "CotizacionProducto.findAll", query = "SELECT c FROM CotizacionProducto c")
-	, @NamedQuery(name = "CotizacionProducto.findByIdCotizacionProducto", query = "SELECT c FROM CotizacionProducto c WHERE c.idCotizacionProducto = :idCotizacionProducto")
-	, @NamedQuery(name = "CotizacionProducto.findByPrecioParaCliente", query = "SELECT c FROM CotizacionProducto c WHERE c.precioParaCliente = :precioParaCliente")
-	, @NamedQuery(name = "CotizacionProducto.findByPrecioBase", query = "SELECT c FROM CotizacionProducto c WHERE c.precioBase = :precioBase")
-	, @NamedQuery(name = "CotizacionProducto.findByCantidad", query = "SELECT c FROM CotizacionProducto c WHERE c.cantidad = :cantidad")})
+	@NamedQuery(name = "CotizacionProducto.findAll", query = "SELECT c FROM CotizacionProducto c"),
+	@NamedQuery(name = "CotizacionProducto.findByIdCotizacionProducto", query = "SELECT c FROM CotizacionProducto c WHERE c.idCotizacionProducto = :idCotizacionProducto"),
+	@NamedQuery(name = "CotizacionProducto.findByPrecioParaCliente", query = "SELECT c FROM CotizacionProducto c WHERE c.precioParaCliente = :precioParaCliente"),
+	@NamedQuery(name = "CotizacionProducto.findByPrecioBase", query = "SELECT c FROM CotizacionProducto c WHERE c.precioBase = :precioBase"),
+	@NamedQuery(name = "CotizacionProducto.findByCantidad", query = "SELECT c FROM CotizacionProducto c WHERE c.cantidad = :cantidad")})
 public class CotizacionProducto implements Serializable {
 
 	private static final long serialVersionUID = 1L;

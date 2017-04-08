@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 EdisonArturo.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,15 +38,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author homero
+ * @author EdisonArturo
  */
 @Entity
 @Table(name = "tbl_producto_especificacion_talla")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "ProductoEspecificacionTalla.findAll", query = "SELECT p FROM ProductoEspecificacionTalla p")
-	, @NamedQuery(name = "ProductoEspecificacionTalla.findByIdProductoEspecificacionTalla", query = "SELECT p FROM ProductoEspecificacionTalla p WHERE p.idProductoEspecificacionTalla = :idProductoEspecificacionTalla")
-	, @NamedQuery(name = "ProductoEspecificacionTalla.findByCantidad", query = "SELECT p FROM ProductoEspecificacionTalla p WHERE p.cantidad = :cantidad")})
+	@NamedQuery(name = "ProductoEspecificacionTalla.findAll", query = "SELECT p FROM ProductoEspecificacionTalla p"),
+	@NamedQuery(name = "ProductoEspecificacionTalla.findByIdProductoEspecificacionTalla", query = "SELECT p FROM ProductoEspecificacionTalla p WHERE p.idProductoEspecificacionTalla = :idProductoEspecificacionTalla"),
+	@NamedQuery(name = "ProductoEspecificacionTalla.findByCantidad", query = "SELECT p FROM ProductoEspecificacionTalla p WHERE p.cantidad = :cantidad")})
 public class ProductoEspecificacionTalla implements Serializable {
 
 	private static final long serialVersionUID = 1L;
