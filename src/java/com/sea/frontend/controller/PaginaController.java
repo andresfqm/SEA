@@ -8,8 +8,14 @@ package com.sea.frontend.controller;
 import com.sea.backend.entities.Pagina;
 import com.sea.backend.model.PaginaFacadeLocal;
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -22,33 +28,52 @@ import javax.inject.Named;
 public class PaginaController implements Serializable {
 
 	@EJB
-	private PaginaFacadeLocal paginaEJB;
-
-	private Pagina pagina;
-
-	public Pagina getPagina() {
-		return pagina;
-	}
-
-	public void setPagina(Pagina pagina) {
-		this.pagina = pagina;
-	}
+	private PaginaFacadeLocal PaginaEJB;
+	private List<Pagina> listaSubMenus;
+	private String seccion;
 
 	@PostConstruct
 	public void init() {
-
-		pagina = new Pagina();
-
+		try {
+			obtenerSubMenus();
+			/*try {
+			listaSubMenus = PaginaEJB.obtenerSubMenus(obtenerIdUsuario());
+			} catch (Exception ex) {
+			Logger.getLogger(PaginaController.class.getName()).log(Level.SEVERE, null, ex);
+			}*/
+		} catch (Exception ex) {
+			Logger.getLogger(PaginaController.class.getName()).log(Level.SEVERE, null, ex);
+		}
 	}
+	
+	//Obteniendo la sección enviada por parámetro
+	/*public void obtenerSeccion(){
+		FacesContext facesContext = FacesContext. getCurrentInstance();
+		ExternalContext externalContext = facesContext.getExternalContext();
+		Map params = externalContext.getRequestParameterMap();
+		seccion = (String) params.get("seccion" );
+		//System.out.println((String) faceletContext.getAttribute("seccion"));
+	}*/
 
-	public void registrar() {
+	//Obteniendo todos los menús del usuario
+	public void obtenerSubMenus() throws Exception {
 		try {
 
 			paginaEJB.create(pagina);
 		} catch (Exception e) {
 
 		}
+		System.out.println(getSeccion());
+	}
 
+	}
+
+	public String getSeccion() {
+		return seccion;
+	}
+
+	public void setSeccion(String seccion) {
+		this.seccion = seccion;
 	}
 
 }

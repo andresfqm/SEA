@@ -47,4 +47,19 @@ public class PaginaFacade extends AbstractFacade<Pagina> implements PaginaFacade
 		super(Pagina.class);
 	}
 
+		String consulta = "SELECT "
+				+ "pa.TBL_MENU_ID_MENU, pa.NOMBRE, pa.DESCRIPCION, pa.NOMBRE_BOTON, pa.URL, pa.URL_IMAGEN FROM "
+				+ "tbl_usuario AS u INNER JOIN "
+				+ "tbl_usuario_perfil AS up ON u.id_usuario = up.tbl_usuario_id_usuario INNER JOIN "
+				+ "tbl_perfil AS p ON up.tbl_perfil_id_perfil = p.id_perfil INNER JOIN "
+				+ "tbl_perfil_pagina AS pp ON p.id_perfil = pp.tbl_perfil_id_perfil INNER JOIN "
+				+ "tbl_pagina AS pa ON pp.tbl_pagina_id_pagina = pa.id_pagina INNER JOIN "
+				+ "tbl_menu AS m ON pa.tbl_menu_id_menu = m.id_menu WHERE "
+				+ "u.id_usuario = ?1 ORDER BY pa.POSICION";
+		Query query = em.createNativeQuery(consulta);
+		query.setParameter(1, idUsuario);
+		List<Pagina> subMenusUsuario;
+		subMenusUsuario = query.getResultList();
+		return subMenusUsuario;
+	}
 }
