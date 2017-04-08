@@ -10,15 +10,10 @@ import com.sea.backend.entities.Usuario;
 import com.sea.backend.model.PaginaFacadeLocal;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
-import javax.faces.view.facelets.FaceletContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
@@ -37,35 +32,15 @@ public class PaginaController implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		try {
-			obtenerSubMenus();
-			/*try {
-			listaSubMenus = PaginaEJB.obtenerSubMenus(obtenerIdUsuario());
-			} catch (Exception ex) {
-			Logger.getLogger(PaginaController.class.getName()).log(Level.SEVERE, null, ex);
-			}*/
-		} catch (Exception ex) {
-			Logger.getLogger(PaginaController.class.getName()).log(Level.SEVERE, null, ex);
-		}
 	}
-	
-	//Obteniendo la sección enviada por parámetro
-	/*public void obtenerSeccion(){
-		FacesContext facesContext = FacesContext. getCurrentInstance();
-		ExternalContext externalContext = facesContext.getExternalContext();
-		Map params = externalContext.getRequestParameterMap();
-		seccion = (String) params.get("seccion" );
-		//System.out.println((String) faceletContext.getAttribute("seccion"));
-	}*/
 
 	//Obteniendo todos los menús del usuario
-	public void obtenerSubMenus() throws Exception {
+	public void obtenerSubMenus(String seccion) throws Exception {
 		try {
-			listaSubMenus = PaginaEJB.obtenerSubMenus(obtenerIdUsuario());
+			listaSubMenus = PaginaEJB.obtenerSubMenus(obtenerIdUsuario(), seccion);
 		} catch (Exception e) {
 			throw e;
 		}
-		System.out.println(getSeccion());
 	}
 
 	public int obtenerIdUsuario() {
@@ -89,5 +64,4 @@ public class PaginaController implements Serializable {
 	public void setSeccion(String seccion) {
 		this.seccion = seccion;
 	}
-
 }

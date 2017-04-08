@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-	  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-	  xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 	<h:head>
 	</h:head>
     <h:body>
+		#{paginaController.obtenerSubMenus(seccion)}
 		<ui:composition>
-			#{seccion}
-			<h:inputHidden value="#{paginaController.setSeccion(seccion)}" />
 			<ui:repeat value="#{paginaController.listaSubMenus}" var="item">
 				<div class="menu-card mdl-card mdl-shadow--2dp">
 					<div class="mdl-card__title mdl-card--expand">

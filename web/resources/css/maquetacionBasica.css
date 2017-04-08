@@ -391,7 +391,7 @@ body > nav{
 		border: 1px solid rgba(0,0,0,.12);
 		background-color: #fff;
 		}
-		[required] + .mdl-textfield__label::before, [required] + .mdl-selectfield__label::before{
+		.mdl-textfield__input[required] + .mdl-textfield__label::before, .mdl-selectfield__select[required] + .mdl-selectfield__label::before{
 		content: "(*) ";
 		color: #d50000;
 		}
@@ -412,27 +412,7 @@ body > nav{
 		}
 		.mdl-textfield--floating-label .mdl-textfield__label, .mdl-selectfield--floating-label .mdl-selectfield__label {
 			top: 4px;
-			font-size: 14px;
-			color: rgb(63,81,181);
 		}
-		.mdl-textfield--floating-label.is-focused .mdl-textfield__label,
-		.mdl-textfield--floating-label.is-dirty .mdl-textfield__label,
-		.mdl-textfield--floating-label.has-placeholder .mdl-textfield__label,
-		.mdl-textfield--floating-label.is-invalid .mdl-textfield__label {
-			font-size: 14px;
-		}
-		.ui-selectonemenu-label{
-  border: none !important;
-  border-bottom: 1px solid rgba(0,0,0, 0.12) !important;
-  display: block !important;
-  font-size: 16px !important;
-  font-family: "Helvetica", "Arial", sans-serif !important;
-  margin: 0 !important;
-  padding: 4px 0 !important;
-  width: 100% !important;
-  background: none !important;
-  text-align: left !important;
-  color: inherit !important; }
 		/**********************************************************************
 		Formularios complejos
 		**********************************************************************/

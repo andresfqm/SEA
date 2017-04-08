@@ -48,6 +48,6 @@ public interface PaginaFacadeLocal {
 
 	int count();
 	
-	List<Pagina> obtenerSubMenus(int idUsuario) throws Exception;
+	List<Pagina> obtenerSubMenus(int idUsuario, String seccion) throws Exception;
 
 }
