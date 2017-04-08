@@ -40,6 +40,8 @@ public interface UsuarioFacadeLocal {
 	void edit(Usuario usuario);
 
 	void remove(Usuario usuario);
+	
+	void actualizarNumeroCotizacion(int us, int numeroCotizacion);
 
 	Usuario find(Object id);
 

@@ -47,7 +47,5 @@ public interface PaginaFacadeLocal {
 	List<Pagina> findRange(int[] range);
 
 	int count();
-	
-	List<Pagina> obtenerSubMenus(int idUsuario) throws Exception;
 
 }

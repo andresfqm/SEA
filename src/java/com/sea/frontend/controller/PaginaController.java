@@ -6,19 +6,12 @@
 package com.sea.frontend.controller;
 
 import com.sea.backend.entities.Pagina;
-import com.sea.backend.entities.Usuario;
 import com.sea.backend.model.PaginaFacadeLocal;
 import java.io.Serializable;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
-import javax.faces.view.facelets.FaceletContext;
 import javax.inject.Named;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -29,43 +22,33 @@ import javax.servlet.http.HttpSession;
 public class PaginaController implements Serializable {
 
 	@EJB
-	private PaginaFacadeLocal PaginaEJB;
-	private List<Pagina> listaSubMenus;
+	private PaginaFacadeLocal paginaEJB;
+
+	private Pagina pagina;
+
+	public Pagina getPagina() {
+		return pagina;
+	}
+
+	public void setPagina(Pagina pagina) {
+		this.pagina = pagina;
+	}
 
 	@PostConstruct
 	public void init() {
-		FaceletContext faceletContext = (FaceletContext) FacesContext.getCurrentInstance().getAttributes().get(FaceletContext.FACELET_CONTEXT_KEY);
-		String seccionSubMenu = (String) faceletContext.getAttribute("seccion");
-		try {
-			listaSubMenus = PaginaEJB.obtenerSubMenus(obtenerIdUsuario());
-		} catch (Exception ex) {
-			Logger.getLogger(PaginaController.class.getName()).log(Level.SEVERE, null, ex);
-		}
+
+		pagina = new Pagina();
+
 	}
 
-	//Obteniendo todos los menús del usuario
-	public void obtenerMenusGenerales() throws Exception {
-		FaceletContext faceletContext = (FaceletContext) FacesContext.getCurrentInstance().getAttributes().get(FaceletContext.FACELET_CONTEXT_KEY);
-		String seccionSubMenu = (String) faceletContext.getAttribute("seccion");
+	public void registrar() {
 		try {
-			listaSubMenus = PaginaEJB.obtenerSubMenus(obtenerIdUsuario());
+
+			paginaEJB.create(pagina);
 		} catch (Exception e) {
-			throw e;
+
 		}
-	}
 
-	public int obtenerIdUsuario() {
-		HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-		Usuario u = (Usuario) sesion.getAttribute("usuario");
-		return u.getIdUsuario();
-	}
-
-	public List<Pagina> getListaSubMenus() {
-		return listaSubMenus;
-	}
-
-	public void setListaSubMenus(List<Pagina> listaMenuGeneral) {
-		this.listaSubMenus = listaMenuGeneral;
 	}
 
 }
