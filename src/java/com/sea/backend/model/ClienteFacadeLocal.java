@@ -23,7 +23,9 @@
  */
 package com.sea.backend.model;
 
+import com.sea.backend.entities.Ciudad;
 import com.sea.backend.entities.Cliente;
+import com.sea.backend.entities.Usuario;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -49,4 +51,6 @@ public interface ClienteFacadeLocal {
 	int count();
 
 	Object datosCliente(int idCliente) throws Exception;
+	
+	List<Cliente> listaClienteCotizacion(Usuario id);
 }

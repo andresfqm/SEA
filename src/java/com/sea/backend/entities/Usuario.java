@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 EdisonArturo.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,6 @@
 package com.sea.backend.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -46,7 +45,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author homero
+ * @author EdisonArturo
  */
 @Entity
 @Table(name = "tbl_usuario")
@@ -65,9 +64,6 @@ import javax.xml.bind.annotation.XmlTransient;
 	@NamedQuery(name = "Usuario.findByHabilitado", query = "SELECT u FROM Usuario u WHERE u.habilitado = :habilitado"),
 	@NamedQuery(name = "Usuario.findByAutenticado", query = "SELECT u FROM Usuario u WHERE u.autenticado = :autenticado")})
 public class Usuario implements Serializable {
-
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblUsuarioIdUsuario")
-	private List<Cliente> clienteList;
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -122,9 +118,19 @@ public class Usuario implements Serializable {
     @NotNull
     @Column(name = "AUTENTICADO")
 	private boolean autenticado;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblUsuarioIdUsuario")
+	private List<Cliente> clienteList;
+	@OneToMany(mappedBy = "tblUsuarioIdUsuario")
+	private List<Telefono> telefonoList;
+	@OneToMany(mappedBy = "tblUsuarioIdUsuario")
+	private List<Direccion> direccionList;
 	@JoinColumn(name = "TBL_TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO", referencedColumnName = "ID_TIPO_DOCUMENTO")
     @ManyToOne(optional = false)
 	private TipoDocumento tblTipoDocumentoIdTipoDocumento;
+	@OneToMany(mappedBy = "tblUsuarioIdUsuario")
+	private List<Email> emailList;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblUsuarioIdUsuario")
+	private List<UsuarioPerfil> usuarioPerfilList;
 
 	public Usuario() {
 	}
@@ -235,12 +241,57 @@ public class Usuario implements Serializable {
 		this.autenticado = autenticado;
 	}
 
+	@XmlTransient
+	public List<Cliente> getClienteList() {
+		return clienteList;
+	}
+
+	public void setClienteList(List<Cliente> clienteList) {
+		this.clienteList = clienteList;
+	}
+
+	@XmlTransient
+	public List<Telefono> getTelefonoList() {
+		return telefonoList;
+	}
+
+	public void setTelefonoList(List<Telefono> telefonoList) {
+		this.telefonoList = telefonoList;
+	}
+
+	@XmlTransient
+	public List<Direccion> getDireccionList() {
+		return direccionList;
+	}
+
+	public void setDireccionList(List<Direccion> direccionList) {
+		this.direccionList = direccionList;
+	}
+
 	public TipoDocumento getTblTipoDocumentoIdTipoDocumento() {
 		return tblTipoDocumentoIdTipoDocumento;
 	}
 
 	public void setTblTipoDocumentoIdTipoDocumento(TipoDocumento tblTipoDocumentoIdTipoDocumento) {
 		this.tblTipoDocumentoIdTipoDocumento = tblTipoDocumentoIdTipoDocumento;
+	}
+
+	@XmlTransient
+	public List<Email> getEmailList() {
+		return emailList;
+	}
+
+	public void setEmailList(List<Email> emailList) {
+		this.emailList = emailList;
+	}
+
+	@XmlTransient
+	public List<UsuarioPerfil> getUsuarioPerfilList() {
+		return usuarioPerfilList;
+	}
+
+	public void setUsuarioPerfilList(List<UsuarioPerfil> usuarioPerfilList) {
+		this.usuarioPerfilList = usuarioPerfilList;
 	}
 
 	@Override
@@ -266,15 +317,6 @@ public class Usuario implements Serializable {
 	@Override
 	public String toString() {
 		return "com.sea.backend.entities.Usuario[ idUsuario=" + idUsuario + " ]";
-	}
-
-	@XmlTransient
-	public List<Cliente> getClienteList() {
-		return clienteList;
-	}
-
-	public void setClienteList(List<Cliente> clienteList) {
-		this.clienteList = clienteList;
 	}
 	
 }

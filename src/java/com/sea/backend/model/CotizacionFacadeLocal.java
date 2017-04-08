@@ -25,6 +25,7 @@ package com.sea.backend.model;
 
 import com.sea.backend.entities.Cotizacion;
 import com.sea.backend.entities.Usuario;
+import java.sql.SQLException;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -49,5 +50,9 @@ public interface CotizacionFacadeLocal {
 	List<Cotizacion> listaSeguimiento(int usuario);
 
 	int count();
+	
+	void getReportePDF(String ruta, String numero_cotizacion) throws  ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException;
+	
+	void getReporteXLSX(String ruta, String numero_cotizacion) throws  ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException;
 
 }

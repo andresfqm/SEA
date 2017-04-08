@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 EdisonArturo.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,8 +26,10 @@ package com.sea.backend.entities;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -38,23 +40,25 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author homero
+ * @author EdisonArturo
  */
 @Entity
 @Table(name = "tbl_cotizacion_producto")
 @XmlRootElement
 @NamedQueries({
 	@NamedQuery(name = "CotizacionProducto.findAll", query = "SELECT c FROM CotizacionProducto c"),
-	@NamedQuery(name = "CotizacionProducto.findByTblProductoIdProducto", query = "SELECT c FROM CotizacionProducto c WHERE c.cotizacionProductoPK.tblProductoIdProducto = :tblProductoIdProducto"),
-	@NamedQuery(name = "CotizacionProducto.findByTblCotizacionNumeroCotizacion", query = "SELECT c FROM CotizacionProducto c WHERE c.cotizacionProductoPK.tblCotizacionNumeroCotizacion = :tblCotizacionNumeroCotizacion"),
+	@NamedQuery(name = "CotizacionProducto.findByIdCotizacionProducto", query = "SELECT c FROM CotizacionProducto c WHERE c.idCotizacionProducto = :idCotizacionProducto"),
 	@NamedQuery(name = "CotizacionProducto.findByPrecioParaCliente", query = "SELECT c FROM CotizacionProducto c WHERE c.precioParaCliente = :precioParaCliente"),
 	@NamedQuery(name = "CotizacionProducto.findByPrecioBase", query = "SELECT c FROM CotizacionProducto c WHERE c.precioBase = :precioBase"),
 	@NamedQuery(name = "CotizacionProducto.findByCantidad", query = "SELECT c FROM CotizacionProducto c WHERE c.cantidad = :cantidad")})
 public class CotizacionProducto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	@EmbeddedId
-	protected CotizacionProductoPK cotizacionProductoPK;
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID_COTIZACION_PRODUCTO")
+	private Integer idCotizacionProducto;
 	// @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
 	@Column(name = "PRECIO_PARA_CLIENTE")
 	private Float precioParaCliente;
@@ -66,36 +70,32 @@ public class CotizacionProducto implements Serializable {
     @NotNull
     @Column(name = "CANTIDAD")
 	private int cantidad;
-	@JoinColumn(name = "TBL_COTIZACION_NUMERO_COTIZACION", referencedColumnName = "NUMERO_COTIZACION", insertable = false, updatable = false)
+	@JoinColumn(name = "TBL_COTIZACION_NUMERO_COTIZACION", referencedColumnName = "NUMERO_COTIZACION")
     @ManyToOne(optional = false)
-	private Cotizacion cotizacion;
-	@JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO", insertable = false, updatable = false)
+	private Cotizacion tblCotizacionNumeroCotizacion;
+	@JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")
     @ManyToOne(optional = false)
-	private Producto producto;
+	private Producto tblProductoIdProducto;
 
 	public CotizacionProducto() {
 	}
 
-	public CotizacionProducto(CotizacionProductoPK cotizacionProductoPK) {
-		this.cotizacionProductoPK = cotizacionProductoPK;
+	public CotizacionProducto(Integer idCotizacionProducto) {
+		this.idCotizacionProducto = idCotizacionProducto;
 	}
 
-	public CotizacionProducto(CotizacionProductoPK cotizacionProductoPK, float precioBase, int cantidad) {
-		this.cotizacionProductoPK = cotizacionProductoPK;
+	public CotizacionProducto(Integer idCotizacionProducto, float precioBase, int cantidad) {
+		this.idCotizacionProducto = idCotizacionProducto;
 		this.precioBase = precioBase;
 		this.cantidad = cantidad;
 	}
 
-	public CotizacionProducto(int tblProductoIdProducto, String tblCotizacionNumeroCotizacion) {
-		this.cotizacionProductoPK = new CotizacionProductoPK(tblProductoIdProducto, tblCotizacionNumeroCotizacion);
+	public Integer getIdCotizacionProducto() {
+		return idCotizacionProducto;
 	}
 
-	public CotizacionProductoPK getCotizacionProductoPK() {
-		return cotizacionProductoPK;
-	}
-
-	public void setCotizacionProductoPK(CotizacionProductoPK cotizacionProductoPK) {
-		this.cotizacionProductoPK = cotizacionProductoPK;
+	public void setIdCotizacionProducto(Integer idCotizacionProducto) {
+		this.idCotizacionProducto = idCotizacionProducto;
 	}
 
 	public Float getPrecioParaCliente() {
@@ -122,26 +122,26 @@ public class CotizacionProducto implements Serializable {
 		this.cantidad = cantidad;
 	}
 
-	public Cotizacion getCotizacion() {
-		return cotizacion;
+	public Cotizacion getTblCotizacionNumeroCotizacion() {
+		return tblCotizacionNumeroCotizacion;
 	}
 
-	public void setCotizacion(Cotizacion cotizacion) {
-		this.cotizacion = cotizacion;
+	public void setTblCotizacionNumeroCotizacion(Cotizacion tblCotizacionNumeroCotizacion) {
+		this.tblCotizacionNumeroCotizacion = tblCotizacionNumeroCotizacion;
 	}
 
-	public Producto getProducto() {
-		return producto;
+	public Producto getTblProductoIdProducto() {
+		return tblProductoIdProducto;
 	}
 
-	public void setProducto(Producto producto) {
-		this.producto = producto;
+	public void setTblProductoIdProducto(Producto tblProductoIdProducto) {
+		this.tblProductoIdProducto = tblProductoIdProducto;
 	}
 
 	@Override
 	public int hashCode() {
 		int hash = 0;
-		hash += (cotizacionProductoPK != null ? cotizacionProductoPK.hashCode() : 0);
+		hash += (idCotizacionProducto != null ? idCotizacionProducto.hashCode() : 0);
 		return hash;
 	}
 
@@ -152,7 +152,7 @@ public class CotizacionProducto implements Serializable {
 			return false;
 		}
 		CotizacionProducto other = (CotizacionProducto) object;
-		if ((this.cotizacionProductoPK == null && other.cotizacionProductoPK != null) || (this.cotizacionProductoPK != null && !this.cotizacionProductoPK.equals(other.cotizacionProductoPK))) {
+		if ((this.idCotizacionProducto == null && other.idCotizacionProducto != null) || (this.idCotizacionProducto != null && !this.idCotizacionProducto.equals(other.idCotizacionProducto))) {
 			return false;
 		}
 		return true;
@@ -160,7 +160,7 @@ public class CotizacionProducto implements Serializable {
 
 	@Override
 	public String toString() {
-		return "com.sea.backend.entities.CotizacionProducto[ cotizacionProductoPK=" + cotizacionProductoPK + " ]";
+		return "com.sea.backend.entities.CotizacionProducto[ idCotizacionProducto=" + idCotizacionProducto + " ]";
 	}
 	
 }

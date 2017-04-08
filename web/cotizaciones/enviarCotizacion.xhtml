@@ -49,7 +49,7 @@
                             <p:selectOneMenu value="#{cotizacionController.idCliente}" filter="true" filterMatchMode="contains" pt:required="required">
                                 <p:ajax event="valueChange" listener="#{cotizacionController.obtenerDatosCliente()}" update="ciudad,departamento,e-mail1,e-mail2,telefono1,telefono2" />
 								<f:selectItem itemValue="" itemLabel="Seleccione" />
-                                <f:selectItems value="#{cotizacionController.clientes}" var="cli" itemLabel="#{cli.nombreORazonSocial}" itemValue="#{cli.idCliente}"/>
+                                <f:selectItems value="#{cotizacionController.clientes}" var="cli" itemLabel="#{cli[1]}" itemValue="#{cli[0]}"/>
                             </p:selectOneMenu>
                             <h:outputLabel class="mdl-textfield__label" for="cliente">Empresa</h:outputLabel>
                         </h:panelGroup>
@@ -114,18 +114,18 @@
 										 value="#{cotizacionController.listaCotizacionP}" 
 										 styleClass="mdl-data-table mdl-js-data-table  mdl-shadow--2dp " rowStyleClass="mdl-data-table__cell--non-numeric">
 								<p:column headerText="Referencia">
-									<h:outputText value="#{producto.producto.referencia}"/>
+									<h:outputText value="#{producto.tblProductoIdProducto.referencia}"/>
 								</p:column>
 
 								<p:column headerText="Descripcion">
-									<h:outputText value="#{producto.producto.descripcion}"/>
+									<h:outputText value="#{producto.tblProductoIdProducto.descripcion}"/>
 								</p:column>
 
 								<p:column headerText="Cantidad Minima">
 									<h:outputText value="#{producto.cantidad}"/>
 								</p:column>
 								<p:column headerText="Precio unitario sin descuento">
-									<h:outputText value="#{producto.producto.precio}"/>
+									<h:outputText value="#{producto.tblProductoIdProducto.precio}"/>
 								</p:column>
 
 								<p:column headerText="Precio Para el cliente">
@@ -225,22 +225,21 @@
 
 
 						<h:panelGroup layout="block" class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label fullWidth">
-							<select class="mdl-selectfield__select" id="formatoReporte" >
-								<option value=""></option>
-								<option value="1">PDF</option>
-								<option value="2">Excel</option>
-							</select>
+							<p:selectOneMenu styleClass="mdl-selectfield__select" id="formatoReporte" value="#{cotizacionController.formatoCotizacion}">
+								<f:selectItem itemLabel="PDF" itemValue="1" />
+								<f:selectItem itemLabel="EXCEL" itemValue="2" />
+							</p:selectOneMenu>
 							<h:outputLabel class="mdl-selectfield__label" for="lugarEntrega">Seleccione el formato de la cotización</h:outputLabel>
 						</h:panelGroup>
 						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-							<h:inputTextarea class="mdl-textfield__input" id="cuerpoMensaje" pt:maxlength="1024"/>
+							<h:inputTextarea class="mdl-textfield__input" id="cuerpoMensaje" pt:maxlength="1024" value="#{cotizacionController.mensaje}"/>
 							<h:outputLabel class="mdl-textfield__label" for="cuerpoMensaje">Cuerpo del mensaje a enviar</h:outputLabel>
 						</h:panelGroup>
 						<h:panelGroup layout="block" class="buttons fullWidth">
 
 						</h:panelGroup>
 
-						<p:commandButton styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent notificacion" value="Enviar y realizar seguimiento" actionListener="#{cotizacionController.registrarCotización()}" />
+						<p:commandButton styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent notificacion" value="Enviar y realizar seguimiento" actionListener="#{cotizacionController.registrarCotización()}" id="reporte"/>
 						<h:commandButton class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent notificacion" value="Realizar seguimiento" />
 					</h:panelGroup>
 				</h:form>

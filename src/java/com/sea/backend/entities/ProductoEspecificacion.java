@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 EdisonArturo.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -46,7 +46,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author homero
+ * @author EdisonArturo
  */
 @Entity
 @Table(name = "tbl_producto_especificacion")
@@ -82,7 +82,7 @@ public class ProductoEspecificacion implements Serializable {
 	private byte[] diagramaDiseño;
 	@Column(name = "NECESITA_BORDADO")
 	private Boolean necesitaBordado;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "productoEspecificacion")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblProductoEspecificacionIdProductoEspecificacion")
 	private List<ProductoEspecificacionTalla> productoEspecificacionTallaList;
 	@JoinColumn(name = "TBL_ORDEN_PRODUCCION_ID_ORDEN_PRODUCCION", referencedColumnName = "ID_ORDEN_PRODUCCION")
     @ManyToOne(optional = false)

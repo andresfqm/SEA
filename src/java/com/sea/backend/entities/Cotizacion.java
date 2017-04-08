@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 EdisonArturo.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -47,7 +47,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author homero
+ * @author EdisonArturo
  */
 @Entity
 @Table(name = "tbl_cotizacion")
@@ -61,6 +61,7 @@ import javax.xml.bind.annotation.XmlTransient;
 	@NamedQuery(name = "Cotizacion.findByDescuento", query = "SELECT c FROM Cotizacion c WHERE c.descuento = :descuento"),
 	@NamedQuery(name = "Cotizacion.findByIva", query = "SELECT c FROM Cotizacion c WHERE c.iva = :iva"),
 	@NamedQuery(name = "Cotizacion.findByFechaCierreEfectivo", query = "SELECT c FROM Cotizacion c WHERE c.fechaCierreEfectivo = :fechaCierreEfectivo"),
+	@NamedQuery(name = "Cotizacion.findByCancelada", query = "SELECT c FROM Cotizacion c WHERE c.cancelada = :cancelada"),
 	@NamedQuery(name = "Cotizacion.findByVisita", query = "SELECT c FROM Cotizacion c WHERE c.visita = :visita"),
 	@NamedQuery(name = "Cotizacion.findByPrestamoMuestra", query = "SELECT c FROM Cotizacion c WHERE c.prestamoMuestra = :prestamoMuestra"),
 	@NamedQuery(name = "Cotizacion.findByNumeroRemision", query = "SELECT c FROM Cotizacion c WHERE c.numeroRemision = :numeroRemision"),
@@ -98,8 +99,10 @@ public class Cotizacion implements Serializable {
     @Column(name = "IVA")
 	private float iva;
 	@Column(name = "FECHA_CIERRE_EFECTIVO")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
 	private Date fechaCierreEfectivo;
+	@Column(name = "CANCELADA")
+	private Boolean cancelada;
 	@Column(name = "VISITA")
 	private Boolean visita;
 	@Column(name = "PRESTAMO_MUESTRA")
@@ -116,10 +119,10 @@ public class Cotizacion implements Serializable {
     @Size(min = 1, max = 15)
     @Column(name = "ESTADO")
 	private String estado;
-	@Size(max = 128)
-    @Column(name = "FECHA_FACTURACION")
-	private String fechaFacturacion;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cotizacion")
+	@Column(name = "FECHA_FACTURACION")
+    @Temporal(TemporalType.TIMESTAMP)
+	private Date fechaFacturacion;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblCotizacionNumeroCotizacion")
 	private List<CotizacionProducto> cotizacionProductoList;
 	@JoinColumn(name = "TBL_CLIENTE_ID_CLIENTE", referencedColumnName = "ID_CLIENTE")
     @ManyToOne(optional = false)
@@ -139,6 +142,10 @@ public class Cotizacion implements Serializable {
 	@JoinColumn(name = "TBL_TIEMPO_ENTREGA_ID_TIEMPO_ENTREGA", referencedColumnName = "ID_TIEMPO_ENTREGA")
     @ManyToOne(optional = false)
 	private TiempoEntrega tblTiempoEntregaIdTiempoEntrega;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblCotizacionNumeroCotizacion")
+	private List<OrdenProduccion> ordenProduccionList;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblCotizacionNumeroCotizacion")
+	private List<RegistroSeguimiento> registroSeguimientoList;
 
 	public Cotizacion() {
 	}
@@ -213,6 +220,14 @@ public class Cotizacion implements Serializable {
 		this.fechaCierreEfectivo = fechaCierreEfectivo;
 	}
 
+	public Boolean getCancelada() {
+		return cancelada;
+	}
+
+	public void setCancelada(Boolean cancelada) {
+		this.cancelada = cancelada;
+	}
+
 	public Boolean getVisita() {
 		return visita;
 	}
@@ -253,11 +268,11 @@ public class Cotizacion implements Serializable {
 		this.estado = estado;
 	}
 
-	public String getFechaFacturacion() {
+	public Date getFechaFacturacion() {
 		return fechaFacturacion;
 	}
 
-	public void setFechaFacturacion(String fechaFacturacion) {
+	public void setFechaFacturacion(Date fechaFacturacion) {
 		this.fechaFacturacion = fechaFacturacion;
 	}
 
@@ -316,6 +331,24 @@ public class Cotizacion implements Serializable {
 
 	public void setTblTiempoEntregaIdTiempoEntrega(TiempoEntrega tblTiempoEntregaIdTiempoEntrega) {
 		this.tblTiempoEntregaIdTiempoEntrega = tblTiempoEntregaIdTiempoEntrega;
+	}
+
+	@XmlTransient
+	public List<OrdenProduccion> getOrdenProduccionList() {
+		return ordenProduccionList;
+	}
+
+	public void setOrdenProduccionList(List<OrdenProduccion> ordenProduccionList) {
+		this.ordenProduccionList = ordenProduccionList;
+	}
+
+	@XmlTransient
+	public List<RegistroSeguimiento> getRegistroSeguimientoList() {
+		return registroSeguimientoList;
+	}
+
+	public void setRegistroSeguimientoList(List<RegistroSeguimiento> registroSeguimientoList) {
+		this.registroSeguimientoList = registroSeguimientoList;
 	}
 
 	@Override

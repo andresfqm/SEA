@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 EdisonArturo.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,6 @@
 package com.sea.backend.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -45,7 +44,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author homero
+ * @author EdisonArturo
  */
 @Entity
 @Table(name = "tbl_perfil")
@@ -56,9 +55,6 @@ import javax.xml.bind.annotation.XmlTransient;
 	@NamedQuery(name = "Perfil.findByNombre", query = "SELECT p FROM Perfil p WHERE p.nombre = :nombre")})
 public class Perfil implements Serializable {
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblPerfilIdPerfil")
-	private Collection<UsuarioPerfil> usuarioPerfilCollection;
-
 	private static final long serialVersionUID = 1L;
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -67,7 +63,7 @@ public class Perfil implements Serializable {
 	private Integer idPerfil;
 	@Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 32)
+    @Size(min = 1, max = 128)
     @Column(name = "NOMBRE")
 	private String nombre;
 	@ManyToMany(mappedBy = "perfilList")

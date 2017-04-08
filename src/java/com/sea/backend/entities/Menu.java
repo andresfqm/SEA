@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 EdisonArturo.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,7 +43,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author homero
+ * @author EdisonArturo
  */
 @Entity
 @Table(name = "tbl_menu")
@@ -52,7 +52,8 @@ import javax.xml.bind.annotation.XmlTransient;
 	@NamedQuery(name = "Menu.findAll", query = "SELECT m FROM Menu m"),
 	@NamedQuery(name = "Menu.findByIdMenu", query = "SELECT m FROM Menu m WHERE m.idMenu = :idMenu"),
 	@NamedQuery(name = "Menu.findByNombre", query = "SELECT m FROM Menu m WHERE m.nombre = :nombre"),
-	@NamedQuery(name = "Menu.findByUrl", query = "SELECT m FROM Menu m WHERE m.url = :url")})
+	@NamedQuery(name = "Menu.findByUrl", query = "SELECT m FROM Menu m WHERE m.url = :url"),
+	@NamedQuery(name = "Menu.findByIcono", query = "SELECT m FROM Menu m WHERE m.icono = :icono")})
 public class Menu implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -63,14 +64,19 @@ public class Menu implements Serializable {
 	private Integer idMenu;
 	@Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 32)
     @Column(name = "NOMBRE")
 	private String nombre;
 	@Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 128)
     @Column(name = "URL")
 	private String url;
+	@Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 32)
+    @Column(name = "ICONO")
+	private String icono;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblMenuIdMenu")
 	private List<Pagina> paginaList;
 
@@ -81,10 +87,11 @@ public class Menu implements Serializable {
 		this.idMenu = idMenu;
 	}
 
-	public Menu(Integer idMenu, String nombre, String url) {
+	public Menu(Integer idMenu, String nombre, String url, String icono) {
 		this.idMenu = idMenu;
 		this.nombre = nombre;
 		this.url = url;
+		this.icono = icono;
 	}
 
 	public Integer getIdMenu() {
@@ -109,6 +116,14 @@ public class Menu implements Serializable {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public String getIcono() {
+		return icono;
+	}
+
+	public void setIcono(String icono) {
+		this.icono = icono;
 	}
 
 	@XmlTransient
