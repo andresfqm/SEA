@@ -108,10 +108,11 @@
                             <h:inputText class="mdl-textfield__input" pt:type="tel" value="#{usuarioController.usuario.setTelefonoList(telefonoController.telefono.numeroTelefono)}" p:maxlength="64" required="required" id="telPersonal" />
                             <h:outputLabel class="mdl-textfield__label" for="telPersonal">Teléfono personal</h:outputLabel>
                         </h:panelGroup>
-                        <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <h:inputText class="mdl-textfield__input" pt:type="tel" value="#{usuarioController.usuario.setTelefonoList(telefonoController.telefono.numeroTelefono)}" p:maxlength="64" required="required" id="telCorporativo" />
-                            <h:outputLabel class="mdl-textfield__label" for="telCorporativo">Teléfono corporativo</h:outputLabel>
-                        </h:panelGroup>
+						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+							<p:selectOneMenu id="tipoEmail" value="#{usuarioController.tipoEmail.idTipoEmail}" >
+								<f:selectItems value="#{tipoEmailController.listaTipoE}" var="lise" itemLabel="#{lise.tipo}" itemValue="#{lise.idTipoEmail}" />
+							</p:selectOneMenu>
+							</h:panelGroup>
                         <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
                             <h:inputText class="mdl-textfield__input" pt:type="email" value="#{usuarioController.usuario.setEmailList(emailList)}" p:maxlength="64" required="required" id="email" />
                             <h:outputLabel class="mdl-textfield__label" for="email">Correo electrónico</h:outputLabel>

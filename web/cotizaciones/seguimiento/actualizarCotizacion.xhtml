@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html lang="es" xmlns="http://www.w3.org/1999/xhtml" 
-	  xmlns:h="http://xmlns.jcp.org/jsf/html" 
-	  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	  xmlns:p="http://primefaces.org/ui">
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 	<h:head>
 		<meta charset="UTF-8" />
 		<title>Actualizar cotización | SEA</title>
 		<link rel="shortcut icon" href="#{request.contextPath}/img/favicon.ico"/>
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
-		<h:outputStylesheet library="css" name="mdl-selectfield.min.css"/>
+		<h:outputStylesheet library="css" name="mdl-selectfield.min.css">
 			<h:outputStylesheet library="css" name="cotizaciones.css" />
 			<h:outputScript library="js" name="mdl-selectfield.min.js"></h:outputScript>
 			<h:outputScript library="js" name="toggleforms.js"></h:outputScript>
@@ -22,11 +19,11 @@
 				<section class="step">
 					<h3 class="mdl-typography--headline">Datos de la cotización</h3>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" id="numeroCotizacion" value="#{cotizacionController.cotizacion.numeroCotizacion}" disabled="disabled" />
+						<h:inputText class="mdl-textfield__input" id="numeroCotizacion" value="XX-XXXX" disabled="disabled" />
 						<h:outputLabel class="mdl-textfield__label" for="numeroCotizacion">Cotización No.</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" pt:maxlength="32" id="ciudadEmision" value="#{cotizacionController.cotizacion.lugarEmision}" required="required" />
+						<h:inputText class="mdl-textfield__input" p:maxlength="32" id="ciudadEmision" value="Bogotá D.C." required="required" />
 						<h:outputLabel class="mdl-textfield__label" for="ciudadEmision">Ciudad de emisión:</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -46,19 +43,19 @@
 						<h:outputLabel class="mdl-textfield__label" for="departamento">Departamento:</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" pt:type="email" id="e-mail1" value="info@dotacionesindustriales.net" disabled="disabled" />
+						<h:inputText class="mdl-textfield__input" p:type="email" id="e-mail1" value="info@dotacionesindustriales.net" disabled="disabled" />
 						<h:outputLabel class="mdl-textfield__label" for="e-mail1">e-mail 1:</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" pt:type="email" id="e-mail2"  disabled="disabled" />
+						<h:inputText class="mdl-textfield__input" p:type="email" id="e-mail2"  disabled="disabled" />
 						<h:outputLabel class="mdl-textfield__label" for="e-mail2">e-mail 2:</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" pt:type="tel" id="telefono1" value="3110715" disabled="disabled" />
+						<h:inputText class="mdl-textfield__input" p:type="tel" id="telefono1" value="3110715" disabled="disabled" />
 						<h:outputLabel class="mdl-textfield__label" for="telefono1">Teléfono 1:</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" pt:type="tel" id="telefono2" value="5453276" disabled="disabled" />
+						<h:inputText class="mdl-textfield__input" p:type="tel" id="telefono2" value="5453276" disabled="disabled" />
 						<h:outputLabel class="mdl-textfield__label" for="telefono2">Teléfono 2:</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -66,8 +63,8 @@
 						<h:outputLabel class="mdl-textfield__label" for="asesor">Asesor:</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" id="numeroRemision" pt:maxlength="16" />
-						<h:outputLabel class="mdl-textfield__label" for="numeroRemision" >Número de remisión:</h:outputLabel>
+						<h:inputText class="mdl-textfield__input" id="numeroRemision" p:maxlength="16" />
+						<h:outputLabel class="mdl-textfield__label" for="numeroRemision" class="mdl-textfield__label">Número de remisión:</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" />
 					<h:outputLabel class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="visita">
@@ -78,9 +75,9 @@
 						<h:selectBooleanCheckbox id="prestamo" class="mdl-switch__input" />
 						<h:panelGroup class="mdl-switch__label">Préstamo de muestras</h:panelGroup>
 					</h:outputLabel>
-					
+					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-						<h:inputTextarea id="relacionMuestra" class="mdl-textfield__input" pt:maxlength="512" required="required" />
+						<h:inputTextarea id="relacionMuestra" class="mdl-textfield__input" p:maxlength="512" required="required" />
 						<h:outputLabel class="mdl-textfield__label" for="relacionMuestra">Relación de muestras:</h:outputLabel>
 					</h:panelGroup>
 				</section>
@@ -152,7 +149,7 @@
 				<section class="step">
 					<h3 class="mdl-typography--headline">Condiciones comerciales</h3>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" pt:type="number" id="descuento" required="required" pt:min="0" pt:max="100" pt:step="0.01" value="15" />
+						<h:inputText  class="mdl-textfield__input"p:type="number" id="descuento" required="required" p:min="0" p:max="100" p:step="0.01" value="15" />
 						<h:outputLabel class="mdl-textfield__label" for="descuento">Descuento:</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -160,7 +157,7 @@
 						<h:outputLabel class="mdl-textfield__label" for="totalDescuento">Total descuento:</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText  class="mdl-textfield__input" pt:type="number" id="IVA" required="required" pt:min="0" pt:max="100" pt:step="0.01" value="19" />
+						<h:inputText  class="mdl-textfield__input"p:type="number" id="IVA" required="required" p:min="0" p:max="100" p:step="0.01" value="16" />
 						<h:outputLabel class="mdl-textfield__label" for="IVA">IVA:</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -235,7 +232,7 @@
 						<h:outputLabel class="mdl-selectfield__label" for="descuentoVolumen">Descuento por volumen:</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" pt:type="number" id="validezCotizacion" pt:min="1" pt:step="1" value="60" required="required" />
+						<h:inputText class="mdl-textfield__input" p:type="number" id="validezCotizacion" p:min="1" p:step="1" value="60" required="required" />
 						<h:outputLabel class="mdl-textfield__label" for="validesCotizacion">Validez de la oferta: </h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
@@ -333,15 +330,16 @@
 						<h:commandButton class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" value="Realizar cierre efectivo" />
 					</h:panelGroup>
 				</section>
-				
+				</h:panelGroup>
+				</h:panelGroup>
 			</h:form>
 		</main>
-			<p:dialog>
+		<aside id="subForm">
 			<h:form id="addArticulo" class="mdl-dialog">
 				<h3 class="mdl-dialog__title">Agregar artículo</h3>
 				<h:panelGroup layout="block" class="mdl-dialog__content">
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" pt:list="listaDePrecios" required="required" />
+						<h:inputText class="mdl-textfield__input" p:list="listaDePrecios" required="required" />
 						<h:outputLabel class="mdl-textfield__label" for="referencia">Referencia</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -357,15 +355,15 @@
 						<h:outputLabel class="mdl-textfield__label" for="fabricante">Fabricante</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" pt:type="number" pt:min="1" pt:step="1" pt:maxlength="32" required="required" value="11" />
+						<h:inputText class="mdl-textfield__input" p:type="number" p:min="1" p:step="1" p:maxlength="32" required="required" value="11" />
 						<h:outputLabel class="mdl-textfield__label" for="cantidadMinima">Cantidad mínima</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" pt:type="number" id="precioUnitario" value="4500" disabled="disabled" />
+						<h:inputText class="mdl-textfield__input" p:type="number" id="precioUnitario" value="4500" disabled="disabled" />
 						<h:outputLabel class="mdl-textfield__label" for="precioUnitario">Precio Unitario (Sin Descuento)</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" pt:type="number" value="4500" />
+						<h:inputText class="mdl-textfield__input" p:type="number" value="4500" />
 						<h:outputLabel class="mdl-textfield__label" for="precioModificado">Precio para el cliente</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -382,17 +380,15 @@
 					<h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
 				</h:panelGroup>
 			</h:form>
-			</p:dialog>
-			<p:dialog>
 			<h:form id="addNovedad" class="mdl-dialog">
 				<h3 class="mdl-dialog__title">Registrar novedad</h3>
 				<h:panelGroup layout="block" class="mdl-dialog__content">
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" pt:type="date" id="fechaNovedad" required="required" />
+						<h:inputText class="mdl-textfield__input" p:type="date" id="fechaNovedad" required="required">
 							<h:outputLabel class="mdl-textfield__label" for="fechaNovedad">Fecha</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputTextarea class="mdl-textfield__input" id="descripcionNovedad" required="required" pt:maxlength="512" />
+						<h:inputTextarea class="mdl-textfield__input" id="descripcionNovedad" required="required" p:maxlength="512" />
 						<h:outputLabel class="mdl-textfield__label" for="descripcionNovedad">Descripción de la novedad</h:outputLabel>
 					</h:panelGroup>
 				</h:panelGroup>
@@ -401,20 +397,65 @@
 					<h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
 				</h:panelGroup>
 			</h:form>
-			</p:dialog>
+		</aside>
 		<aside>
 			<h:panelGroup layout="block" id="articuloAgregado" class="mdl-js-snackbar mdl-snackbar">
 				<h:panelGroup layout="block" class="mdl-snackbar__text"></h:panelGroup>
 				<button class="mdl-snackbar__action" type="button"></button>
 			</h:panelGroup>
+			<script>
+				(function () {
+					'use strict';
+					window['counter'] = 0;
+					var snackbarContainer = document.querySelector('#articuloAgregado');
+					var showToastButton = document.querySelector('#mostrarArticuloAgregado');
+					var handler = function (event) {
+						console.log("artículo removido");
+					};
+					showToastButton.addEventListener('click', function () {
+						'use strict';
+						var data = {message: 'Artículo añadido a la cotización.', timeout: 5000, actionHandler: handler, actionText: 'Deshacer'};
+						snackbarContainer.MaterialSnackbar.showSnackbar(data);
+					});
+				}());
+			</script>
 			<h:panelGroup layout="block" id="novedadAgregada" class="mdl-js-snackbar mdl-snackbar">
 				<h:panelGroup layout="block" class="mdl-snackbar__text"></h:panelGroup>
 				<button class="mdl-snackbar__action" type="button"></button>
 			</h:panelGroup>
+			<script>
+				(function () {
+					'use strict';
+					window['counter'] = 0;
+					var snackbarContainer = document.querySelector('#novedadAgregada');
+					var showToastButton = document.querySelector('#mostrarNovedadAgregada');
+					var handler = function (event) {
+						console.log("Novedad removida");
+					};
+					showToastButton.addEventListener('click', function () {
+						'use strict';
+						var data = {message: 'Novedad agregada al seguimiento.', timeout: 5000, actionHandler: handler, actionText: 'Deshacer'};
+						snackbarContainer.MaterialSnackbar.showSnackbar(data);
+					});
+				}());
+			</script>
 			<h:panelGroup layout="block" id="correoEnviado" class="mdl-js-snackbar mdl-snackbar">
 				<h:panelGroup layout="block" class="mdl-snackbar__text"></h:panelGroup>
 				<button class="mdl-snackbar__action" type="button"></button>
 			</h:panelGroup>
+			<script>
+				(function () {
+					'use strict';
+					window['counter'] = 0;
+					var snackbarContainer = document.querySelector('#correoEnviado');
+					var showToastButton = document.querySelector('#mostrarCorreoEnviado');
+					showToastButton.addEventListener('click', function () {
+						'use strict';
+						var data = {message: 'Correo enviado a atorres@fulldotaciones.com.', timeout: 5000};
+						snackbarContainer.MaterialSnackbar.showSnackbar(data);
+					});
+				}());
+			</script>
 		</aside>
         <ui:composition template="/templates/navGeneral.xhtml" />
         <ui:composition template="/templates/taskTabs.xhtml" />
