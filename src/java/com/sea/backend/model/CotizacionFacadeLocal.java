@@ -24,6 +24,7 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.Cotizacion;
+import com.sea.backend.entities.CotizacionProducto;
 import com.sea.backend.entities.Usuario;
 import java.util.List;
 import javax.ejb.Local;
@@ -47,7 +48,11 @@ public interface CotizacionFacadeLocal {
 
 	List<Cotizacion> findRange(int[] range);
 	List<Cotizacion> listaSeguimiento(int usuario);
+	
+	Object datosCotizacion(String numeroCotizacion) throws Exception;
+	
+	
 
 	int count();
-
+	
 }

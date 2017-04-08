@@ -45,6 +45,9 @@ public interface CotizacionProductoFacadeLocal {
 	List<CotizacionProducto> findAll();
 
 	List<CotizacionProducto> findRange(int[] range);
+		List<CotizacionProducto> datosCotizacionProducto(String numeroCotizacion) throws Exception;
+	
+	
 
 	int count();
 

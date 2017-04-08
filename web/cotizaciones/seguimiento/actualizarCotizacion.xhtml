@@ -26,7 +26,7 @@
 						<h:outputLabel class="mdl-textfield__label" for="numeroCotizacion">Cotización No.</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" pt:maxlength="32" id="ciudadEmision" value="Bogotá D.C." required="required" />
+						<h:inputText class="mdl-textfield__input" pt:maxlength="32" id="ciudadEmision" value="#{cotizacionController.cotizacion.lugarEmision}" required="required" />
 						<h:outputLabel class="mdl-textfield__label" for="ciudadEmision">Ciudad de emisión:</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">

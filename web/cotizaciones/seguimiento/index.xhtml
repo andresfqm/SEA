@@ -43,7 +43,8 @@
 					</p:column>
 					<p:column>
 						<h:panelGroup layout="block">
-							<p:commandButton action="#{cotizacionController.leerId(cotS)}" ajax="true" immediate="true" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="ACTUALIZAR" oncomplete="PF('dlg1').show();" update=""/>
+							<p:commandButton action="#{cotizacionController.leerId(cotS[0])}" ajax="true" immediate="true" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="ACTUALIZAR" oncomplete="PF('dlg1').show();" update=""/>
+						
 						</h:panelGroup>
 					</p:column>
 
