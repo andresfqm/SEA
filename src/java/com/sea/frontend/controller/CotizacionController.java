@@ -199,8 +199,8 @@ public class CotizacionController implements Serializable {
 
 	public void agregarCotizacionProducto() {
 		CotizacionProducto cot = new CotizacionProducto();
-
-		cot.setProducto(producto);
+		
+		cot.setTblProductoIdProducto(producto);
 		cot.setCantidad(cotizacionP.getCantidad());
 		cot.setPrecioParaCliente(cotizacionP.getPrecioParaCliente());
 

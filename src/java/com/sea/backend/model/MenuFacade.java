@@ -68,12 +68,11 @@ public class MenuFacade extends AbstractFacade<Menu> implements MenuFacadeLocal 
 				+ "tbl_perfil_pagina AS pp ON p.id_perfil = pp.tbl_perfil_id_perfil INNER JOIN "
 				+ "tbl_pagina AS pa ON pp.tbl_pagina_id_pagina = pa.id_pagina INNER JOIN "
 				+ "tbl_menu AS m ON pa.tbl_menu_id_menu = m.id_menu WHERE "
-				+ "u.id_usuario = ?1 GROUP BY m.nombre ORDER BY m.id_menu;";
+				+ "u.id_usuario = ?1 GROUP BY m.nombre ORDER BY m.POSICION;";
 		Query query = em.createNativeQuery(consulta);
 		query.setParameter(1, idUsuario);
 		List<Menu> menusUsuario;
 		menusUsuario = query.getResultList();
-		System.out.println("Salió del facade");
 		return menusUsuario;
 	}
 }

@@ -23,7 +23,6 @@
  */
 package com.sea.backend.model;
 
-import com.sea.backend.entities.Menu;
 import com.sea.backend.entities.Pagina;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -68,7 +67,7 @@ public class PaginaFacade extends AbstractFacade<Pagina> implements PaginaFacade
 				+ "tbl_perfil_pagina AS pp ON p.id_perfil = pp.tbl_perfil_id_perfil INNER JOIN "
 				+ "tbl_pagina AS pa ON pp.tbl_pagina_id_pagina = pa.id_pagina INNER JOIN "
 				+ "tbl_menu AS m ON pa.tbl_menu_id_menu = m.id_menu WHERE "
-				+ "u.id_usuario = ?1";
+				+ "u.id_usuario = ?1 ORDER BY pa.POSICION";
 		Query query = em.createNativeQuery(consulta);
 		query.setParameter(1, idUsuario);
 		List<Pagina> subMenusUsuario;
