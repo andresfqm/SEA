@@ -80,7 +80,8 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 		String jpql = "select u.nombre, u.numeroDocumento, u.idInterno, t.numeroTelefono, c.email, u.nombreUsuario, pe.nombre, u.idUsuario from Usuario  u\n"
 				+ "join u.telefonoList t\n"
 				+ "join u.emailList c\n"
-				+ "join u.perfilList pe\n";
+				+ "join u.usuarioPerfilList uspe\n"
+				+ "join uspe.tblPerfilIdPerfil pe\n";
 		Query query = em.createQuery(jpql);
 		lista = query.getResultList();
 
@@ -115,6 +116,15 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 			}
 
 		return direccion;
+	}
+	
+	@Override
+	public void actualizarNumeroCotizacion(int us, int numeroCotizacion) {
+		String jpql = "update tbl_usuario set CONSECUTIVO_COTIZACION = ?1 + 1 where id_usuario = ?2";
+		Query query = em.createNativeQuery(jpql);
+		query.setParameter(1, numeroCotizacion);
+		query.setParameter(2, us);
+		query.executeUpdate();
 	}
 
 }

@@ -85,6 +85,7 @@ public class SubcategoriaController implements Serializable {
 			getAccion();
 			subcategoria.setTblCategoriaIdCategoria(idCategoria);
 			SubcategoriaEJB.create(subcategoria);
+			
 		} catch (Exception e) {
 		}
 	}

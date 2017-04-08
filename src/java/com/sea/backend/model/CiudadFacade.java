@@ -77,4 +77,5 @@ public class CiudadFacade extends AbstractFacade<Ciudad> implements CiudadFacade
 
 		return ciudad;
 	}
+	
 }

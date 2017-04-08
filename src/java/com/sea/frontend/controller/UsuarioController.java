@@ -97,6 +97,8 @@ public class UsuarioController implements Serializable {
 	@EJB
 	private TipoDocumentoFacadeLocal tipoDocumentoEJB;
 	private TipoDocumento tipoDocumento;
+	
+	private List cargo;
 
 	public Departamento getDepartamento() {
 		return departamento;
@@ -320,5 +322,15 @@ public class UsuarioController implements Serializable {
 		direccion.setDireccion(limpieza);
 
 	}
+
+	public List getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(List cargo) {
+		this.cargo = cargo;
+	}
+	
+	
 
 }

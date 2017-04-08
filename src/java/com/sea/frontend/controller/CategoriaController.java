@@ -38,7 +38,6 @@ public class CategoriaController implements Serializable {
 	private String categori="";
 
 	public List<Categoria> getListaCategoria() {
-		ListaCategoria = categoriaEJB.findAll();
 		return ListaCategoria;
 	}
 

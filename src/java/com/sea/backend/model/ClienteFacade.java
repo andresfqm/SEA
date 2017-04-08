@@ -24,6 +24,8 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.Cliente;
+import com.sea.backend.entities.Usuario;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -92,10 +94,24 @@ public class ClienteFacade extends AbstractFacade<Cliente> implements ClienteFac
 				+ "TBL_DEPARTAMENTO de ON ci.TBL_DEPARTAMENTO_ID_DEPARTAMENTO = de.ID_DEPARTAMENTO";
 		Query query = em.createNativeQuery(consulta);
 		query.setParameter(1, idCliente);
+
 		//datosCliente = query.getResultList();
 		Object datosCliente = query.getSingleResult();
 
 		return datosCliente;
+	}
+	
+	@Override
+	public List<Cliente> listaClienteCotizacion(Usuario id) {
+		List<Cliente> lista;
+		String jpql = "SELECT c.idCliente, c.nombreORazonSocial, c.tblUsuarioIdUsuario FROM Cliente c\n"
+				+ "WHERE c.tblUsuarioIdUsuario = ?1";
+		Query query = em.createQuery(jpql);
+		query.setParameter(1, id);
+		lista = query.getResultList();
+
+
+		return lista;
 	}
 
 }
