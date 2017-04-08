@@ -24,93 +24,90 @@
 package com.sea.backend.entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author EdisonArturo
  */
 @Entity
-@Table(name = "tbl_fabricante")
+@Table(name = "tbl_usuario_perfil")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Fabricante.findAll", query = "SELECT f FROM Fabricante f"),
-	@NamedQuery(name = "Fabricante.findByIdFabricante", query = "SELECT f FROM Fabricante f WHERE f.idFabricante = :idFabricante"),
-	@NamedQuery(name = "Fabricante.findByNombre", query = "SELECT f FROM Fabricante f WHERE f.nombre = :nombre")})
-public class Fabricante implements Serializable {
+	@NamedQuery(name = "UsuarioPerfil.findAll", query = "SELECT u FROM UsuarioPerfil u"),
+	@NamedQuery(name = "UsuarioPerfil.findByIdUsuarioPerfil", query = "SELECT u FROM UsuarioPerfil u WHERE u.idUsuarioPerfil = :idUsuarioPerfil")})
+public class UsuarioPerfil implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "ID_FABRICANTE")
-	private Integer idFabricante;
-	@Size(max = 64)
-    @Column(name = "NOMBRE")
-	private String nombre;
-	@OneToMany(mappedBy = "tblFabricanteIdFabricante")
-	private List<Producto> productoList;
+    @Column(name = "ID_USUARIO_PERFIL")
+	private Integer idUsuarioPerfil;
+	@JoinColumn(name = "TBL_PERFIL_ID_PERFIL", referencedColumnName = "ID_PERFIL")
+    @ManyToOne(optional = false)
+	private Perfil tblPerfilIdPerfil;
+	@JoinColumn(name = "TBL_USUARIO_ID_USUARIO", referencedColumnName = "ID_USUARIO")
+    @ManyToOne(optional = false)
+	private Usuario tblUsuarioIdUsuario;
 
-	public Fabricante() {
+	public UsuarioPerfil() {
 	}
 
-	public Fabricante(Integer idFabricante) {
-		this.idFabricante = idFabricante;
+	public UsuarioPerfil(Integer idUsuarioPerfil) {
+		this.idUsuarioPerfil = idUsuarioPerfil;
 	}
 
-	public Integer getIdFabricante() {
-		return idFabricante;
+	public Integer getIdUsuarioPerfil() {
+		return idUsuarioPerfil;
 	}
 
-	public void setIdFabricante(Integer idFabricante) {
-		this.idFabricante = idFabricante;
+	public void setIdUsuarioPerfil(Integer idUsuarioPerfil) {
+		this.idUsuarioPerfil = idUsuarioPerfil;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public Perfil getTblPerfilIdPerfil() {
+		return tblPerfilIdPerfil;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setTblPerfilIdPerfil(Perfil tblPerfilIdPerfil) {
+		this.tblPerfilIdPerfil = tblPerfilIdPerfil;
 	}
 
-	@XmlTransient
-	public List<Producto> getProductoList() {
-		return productoList;
+	public Usuario getTblUsuarioIdUsuario() {
+		return tblUsuarioIdUsuario;
 	}
 
-	public void setProductoList(List<Producto> productoList) {
-		this.productoList = productoList;
+	public void setTblUsuarioIdUsuario(Usuario tblUsuarioIdUsuario) {
+		this.tblUsuarioIdUsuario = tblUsuarioIdUsuario;
 	}
 
 	@Override
 	public int hashCode() {
 		int hash = 0;
-		hash += (idFabricante != null ? idFabricante.hashCode() : 0);
+		hash += (idUsuarioPerfil != null ? idUsuarioPerfil.hashCode() : 0);
 		return hash;
 	}
 
 	@Override
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof Fabricante)) {
+		if (!(object instanceof UsuarioPerfil)) {
 			return false;
 		}
-		Fabricante other = (Fabricante) object;
-		if ((this.idFabricante == null && other.idFabricante != null) || (this.idFabricante != null && !this.idFabricante.equals(other.idFabricante))) {
+		UsuarioPerfil other = (UsuarioPerfil) object;
+		if ((this.idUsuarioPerfil == null && other.idUsuarioPerfil != null) || (this.idUsuarioPerfil != null && !this.idUsuarioPerfil.equals(other.idUsuarioPerfil))) {
 			return false;
 		}
 		return true;
@@ -118,7 +115,7 @@ public class Fabricante implements Serializable {
 
 	@Override
 	public String toString() {
-		return "com.sea.backend.entities.Fabricante[ idFabricante=" + idFabricante + " ]";
+		return "com.sea.backend.entities.UsuarioPerfil[ idUsuarioPerfil=" + idUsuarioPerfil + " ]";
 	}
 	
 }

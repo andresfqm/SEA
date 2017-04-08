@@ -277,6 +277,15 @@ public class Usuario implements Serializable {
 	}
 
 	@XmlTransient
+	public List<Email> getEmailList() {
+		return emailList;
+	}
+
+	public void setEmailList(List<Email> emailList) {
+		this.emailList = emailList;
+	}
+
+	@XmlTransient
 	public List<UsuarioPerfil> getUsuarioPerfilList() {
 		return usuarioPerfilList;
 	}

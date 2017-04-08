@@ -114,14 +114,6 @@ public class CotizacionProducto implements Serializable {
 		this.precioBase = precioBase;
 	}
 
-	public float getPrecioBase() {
-		return precioBase;
-	}
-
-	public void setPrecioBase(float precioBase) {
-		this.precioBase = precioBase;
-	}
-
 	public int getCantidad() {
 		return cantidad;
 	}
