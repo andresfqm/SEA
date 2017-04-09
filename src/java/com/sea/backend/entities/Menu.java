@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 EdisonArturo.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,7 +43,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EdisonArturo
+ * @author homero
  */
 @Entity
 @Table(name = "tbl_menu")
@@ -53,7 +53,8 @@ import javax.xml.bind.annotation.XmlTransient;
 	@NamedQuery(name = "Menu.findByIdMenu", query = "SELECT m FROM Menu m WHERE m.idMenu = :idMenu"),
 	@NamedQuery(name = "Menu.findByNombre", query = "SELECT m FROM Menu m WHERE m.nombre = :nombre"),
 	@NamedQuery(name = "Menu.findByUrl", query = "SELECT m FROM Menu m WHERE m.url = :url"),
-	@NamedQuery(name = "Menu.findByIcono", query = "SELECT m FROM Menu m WHERE m.icono = :icono")})
+	@NamedQuery(name = "Menu.findByIcono", query = "SELECT m FROM Menu m WHERE m.icono = :icono"),
+	@NamedQuery(name = "Menu.findByPosicion", query = "SELECT m FROM Menu m WHERE m.posicion = :posicion")})
 public class Menu implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -77,6 +78,10 @@ public class Menu implements Serializable {
     @Size(min = 1, max = 32)
     @Column(name = "ICONO")
 	private String icono;
+	@Basic(optional = false)
+    @NotNull
+    @Column(name = "POSICION")
+	private int posicion;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblMenuIdMenu")
 	private List<Pagina> paginaList;
 
@@ -87,11 +92,12 @@ public class Menu implements Serializable {
 		this.idMenu = idMenu;
 	}
 
-	public Menu(Integer idMenu, String nombre, String url, String icono) {
+	public Menu(Integer idMenu, String nombre, String url, String icono, int posicion) {
 		this.idMenu = idMenu;
 		this.nombre = nombre;
 		this.url = url;
 		this.icono = icono;
+		this.posicion = posicion;
 	}
 
 	public Integer getIdMenu() {
@@ -124,6 +130,14 @@ public class Menu implements Serializable {
 
 	public void setIcono(String icono) {
 		this.icono = icono;
+	}
+
+	public int getPosicion() {
+		return posicion;
+	}
+
+	public void setPosicion(int posicion) {
+		this.posicion = posicion;
 	}
 
 	@XmlTransient

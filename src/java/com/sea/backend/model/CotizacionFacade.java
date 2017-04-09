@@ -72,8 +72,106 @@ public class CotizacionFacade extends AbstractFacade<Cotizacion> implements Coti
 	}
 
 	@Override
-	public Object datosCotizacion(String numeroCotizacion) throws Exception {
+    public void getReportePDF(String ruta, String numero_cotizacion) throws  ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+        Connection conexion;
+        Class.forName("com.mysql.jdbc.Driver").newInstance();
+        conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/fulldotaciones", "root", "5050");
 
+		String consulta2 = "SELECT co.numero_cotizacion, c.nombre_o_razon_social, ci.nombre, e.email, d.direccion\n"
+				+ "FROM tbl_cotizacion AS co\n"
+				+ "INNER JOIN tbl_cliente as c \n"
+				+ "ON co.TBL_CLIENTE_ID_CLIENTE = c.ID_CLIENTE \n"
+				+ "INNER JOIN tbl_usuario AS u \n"
+				+ "ON c.TBL_USUARIO_ID_USUARIO = u.ID_USUARIO\n"
+				+ "INNER JOIN\n"
+				+ "TBL_EMAIL e ON c.ID_CLIENTE = e.TBL_CLIENTE_ID_CLIENTE\n"
+				+ "INNER JOIN\n"
+				+ "TBL_TIPO_EMAIL te ON e.TBL_TIPO_EMAIL_ID_TIPO_EMAIL = te.ID_TIPO_EMAIL\n"
+				+ "INNER JOIN\n"
+				+ "TBL_DIRECCION d ON d.TBL_CLIENTE_ID_CLIENTE = c.ID_CLIENTE\n"
+				+ "INNER JOIN\n"
+				+ "TBL_TIPO_DIRECCION tdi ON d.TBL_TIPO_DIRECCION_ID_TIPO_DIRECCION = tdi.ID_TIPO_DIRECCION\n"
+				+ "INNER JOIN\n"
+				+ "TBL_CIUDAD ci ON d.TBL_CIUDAD_ID_CIUDAD = ci.ID_CIUDAD\n"
+				+ "WHERE numero_cotizacion = ?1";
+
+		Query query = em.createNativeQuery(consulta2);
+		query.setParameter(1, numeroCotizacion);
+
+        try {
+            File file = new File(ruta);
+			String destino = "C:\\Users\\homero\\Documents\\NetBeansProjects\\SEA\\web\\PDF/cotizacion_N_" + numero_cotizacion + ".pdf";
+
+
+
+            JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(file.getPath());
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameter, conexion);
+
+            JasperExportManager.exportReportToPdfFile( jasperPrint, destino);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (conexion != null) {
+                try {
+                    conexion.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+	
+	@Override
+    public void getReporteXLSX(String ruta, String numero_cotizacion) throws  ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+        Connection conexion;
+        Class.forName("com.mysql.jdbc.Driver").newInstance();
+        conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/fulldotaciones", "root", "5050");
+
+        //Se definen los parametros si es que el reporte necesita
+        Map parameter = new HashMap();
+		parameter.put("numero_cotizacion", numero_cotizacion);
+		String destino = "C:\\Users\\homero\\Documents\\NetBeansProjects\\SEA\\web\\EXCEL/cotizacion_N_" + numero_cotizacion + ".xlsx";
+
+        try {
+            File file = new File(ruta);
+
+
+            JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(file.getPath());
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameter, conexion);
+
+            JRExporter jrExporter = null;                      
+            jrExporter = new JRXlsxExporter();
+            jrExporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+			jrExporter.setParameter(JRExporterParameter.OUTPUT_FILE, new File(destino));
+
+            if (jrExporter != null) {
+                try {
+                    jrExporter.exportReport();
+                } catch (JRException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (conexion != null) {
+                try {
+                    conexion.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+	@Override
+	public Object datosCotizacion(String numeroCotizacion) throws Exception {
+		
 		String consulta2 = "SELECT co.numero_cotizacion, c.nombre_o_razon_social, ci.nombre, e.email, d.direccion\n"
 				+ "FROM tbl_cotizacion AS co\n"
 				+ "INNER JOIN tbl_cliente as c \n"
@@ -99,7 +197,4 @@ public class CotizacionFacade extends AbstractFacade<Cotizacion> implements Coti
 
 		return datosCotizacion;
 	}
-
-
-
 }

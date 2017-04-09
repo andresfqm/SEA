@@ -55,4 +55,8 @@ public interface CotizacionFacadeLocal {
 
 	int count();
 	
+	void getReportePDF(String ruta, String numero_cotizacion) throws  ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException;
+	
+	void getReporteXLSX(String ruta, String numero_cotizacion) throws  ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException;
+
 }
