@@ -66,6 +66,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 			if (!lista.isEmpty()) {
 				usuario = lista.get(0);
 			}
+			//usuario=(Usuario) query.getSingleResult();
 		} catch (Exception e) {
 
 			throw e;
