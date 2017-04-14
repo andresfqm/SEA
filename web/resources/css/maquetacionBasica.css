@@ -413,6 +413,14 @@ body > nav{
 		.mdl-textfield--floating-label .mdl-textfield__label, .mdl-selectfield--floating-label .mdl-selectfield__label {
 		top: 4px;
 		}
+		.ui-button .ui-button-text{
+		display: initial !important;
+		line-height: initial !important;
+
+		}
+		.ui-button-text-only .ui-button-text{
+		padding: 0 !important;
+		}
 		/**********************************************************************
 		Formularios complejos
 		**********************************************************************/
@@ -558,4 +566,3 @@ body > nav{
 		text-align: left;
 		color: inherit;
 		}
-		
