@@ -20,32 +20,4 @@
 .mdl-selectfield__list-option-box ul>li{font-size:16px;color:rgba(33,33,33,0.87);line-height:19px;min-height:19px;padding:10px 14px 8px 14px;-webkit-transition:background-color cubic-bezier(0.4, 0, 0.2, 1);transition:background-color cubic-bezier(0.4, 0, 0.2, 1);cursor:pointer;outline:none;box-sizing:content-box}
 .mdl-selectfield__list-option-box ul>li:hover,.mdl-selectfield__list-option-box ul>li.is-selected{background-color:#f8f8f8}
 .mdl-selectfield.is-focused .mdl-selectfield__list-option-box{display:block;opacity:1;z-index:999}
-.ui-dialog-titlebar {
-    border: 0!important;
-    padding: 0!important;
-	display: none!important
-}
-.ui-datatable.borderless .ui-datatable-data tr,
-.ui-datatable.borderless .ui-datatable-data-empty tr,
-.ui-datatable.borderless .ui-datatable-data td,
-.ui-datatable.borderless .ui-datatable-data-empty td {
-    border-style: none;
-}
-.ui-datatable tbody td{border-color: rgba(0, 0, 0, .12);}
-.ui-dialog .ui-dialog-content {
-    position: fixed !important;
-    border: 0!important;
-    padding: 0!important;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	overflow-x: none;
-}
-.ui-selectonemenu-panel, .ui-selectonemenu-list{
-	background-color: #fff;
-}
-.ui-selectonemenu{
-	width: calc(100%) !important;
-}
 /*# sourceMappingURL=mdl-selectfield.min.css.map */

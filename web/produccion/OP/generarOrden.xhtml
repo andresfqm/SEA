@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns="http://www.w3.org/1999/xhtml" 
-	  xmlns:h="http://xmlns.jcp.org/jsf/html" 
-	  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	  xmlns:p="http://primefaces.org/ui"
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 	<h:head>
 		<meta charset="UTF-8" />
@@ -18,8 +15,8 @@
 				<section class="step">
 					<h3 class="mdl-typography--headline">Datos de la orden</h3>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" id="numeroCotizacion" value="XX-XXXX" disabled="disabled" />
-						<h:outputLabel class="mdl-textfield__label" for="numeroCotizacion">Cotización No.</h:outputLabel>
+						<h:inputText class="mdl-textfield__input" id="numeroDevolucion" value="0000" disabled="disabled" />
+						<h:outputLabel class="mdl-textfield__label" for="numeroDevolucion">Devolución No.</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 						<h:inputText class="mdl-textfield__input" id="numeroOP" value="0000" disabled="disabled" />
@@ -38,7 +35,7 @@
 						<h:outputLabel class="mdl-textfield__label" for="cliente">Empresa</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" pt:type="email" id="e-mail" value="info@dotacionesindustriales.net" disabled="disabled" />
+						<h:inputText class="mdl-textfield__input" p:type="email" id="e-mail" value="info@dotacionesindustriales.net" disabled="disabled" />
 						<h:outputLabel class="mdl-textfield__label" for="e-mail1">e-mail</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -146,7 +143,7 @@
 					</h:panelGroup>
 					<!-- input file-->
 					<h3 class="mdl-typography--headline">Diagrama de diseño</h3>
-					<img src="/img/diagramaDiseno.png" alt="" />
+					<img src="/img/diagramaDiseno.png" alt="">
 						<h:panelGroup layout="block">
 							<h:inputFile id="diagramaDiseno" class="fileInput" />
 							<h:outputLabel for="diagramaDiseno" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
@@ -165,7 +162,7 @@
 						<h:outputLabel class="mdl-textfield__label" for="tiempoEntrega">Tiempo de entrega</h:outputLabel>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-						<h:inputTextarea class="mdl-textfield__input" id="observaciones" p:maxlength="512" />
+						<h:inputTextarea class="mdl-textfield__input" id="observaciones" p:maxlength="512" / />
 										 <h:outputLabel class="mdl-textfield__label" for="observaciones">Observaciones</h:outputLabel>
 					</h:panelGroup>
 					<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" type="submit">Generar orden de producción</button>

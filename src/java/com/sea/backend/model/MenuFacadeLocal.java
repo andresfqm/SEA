@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 EdisonArturo.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author EdisonArturo
+ * @author Depurador
  */
 @Local
 public interface MenuFacadeLocal {
@@ -47,5 +47,6 @@ public interface MenuFacadeLocal {
 	List<Menu> findRange(int[] range);
 
 	int count();
-	
+
+	List<Menu> obtenerMenusGenerales(int idUsuario) throws Exception;
 }

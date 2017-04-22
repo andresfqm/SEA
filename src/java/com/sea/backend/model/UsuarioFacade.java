@@ -23,7 +23,6 @@
  */
 package com.sea.backend.model;
 
-import com.sea.backend.entities.Ciudad;
 import com.sea.backend.entities.Direccion;
 import com.sea.backend.entities.Usuario;
 import java.util.List;
@@ -67,6 +66,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 			if (!lista.isEmpty()) {
 				usuario = lista.get(0);
 			}
+			//usuario=(Usuario) query.getSingleResult();
 		} catch (Exception e) {
 
 			throw e;

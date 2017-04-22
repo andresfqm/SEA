@@ -257,7 +257,7 @@ public class CotizacionController implements Serializable {
 	}
 
 	public void registrarCotización()
-			throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+			throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, IOException {
 
 		try {
 			cotizacion.setNumeroCotizacion(generarIdCotizacion());
@@ -401,7 +401,8 @@ public class CotizacionController implements Serializable {
 		}
 		int consecutivo = consecutivoCotizacion();
 		EJBUsuario.actualizarNumeroCotizacion(idUsuario(), consecutivo);
-
+            FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().redirect("/SEA/cotizaciones/seguimiento");
 	}
 
 	public void modificarCotización() {
@@ -757,7 +758,7 @@ public class CotizacionController implements Serializable {
 		HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 		Usuario u = (Usuario) sesion.getAttribute("usuario");
 		this.usuario = u;
-		return u.getIdInterno() + " -" + u.getConsecutivoCotizacion();
+		return u.getIdInterno() + "-" + u.getConsecutivoCotizacion();
 	}
 
 	public double getPrecioDescuento() {
