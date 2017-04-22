@@ -239,7 +239,7 @@
 
 						</h:panelGroup>
 
-						<p:commandButton styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent notificacion" value="Enviar y realizar seguimiento" actionListener="#{cotizacionController.registrarCotización()}" id="reporte"/>
+						<p:commandButton styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent notificacion" value="Enviar y realizar seguimiento" actionListener="#{cotizacionController.registrarCotización()}" id="reporte" update="numeroCotizacion"/>
 						<h:commandButton class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent notificacion" value="Realizar seguimiento" />
 					</h:panelGroup>
 				</h:form>
@@ -250,7 +250,7 @@
 								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 									<h:outputLabel class="mdl-textfield__label" for="referencia">Referencia</h:outputLabel>
 
-									<p:selectOneMenu value="#{cotizacionController.producto.idProducto}" filter="true" filterMatchMode="contains">
+									<p:selectOneMenu value="#{cotizacionController.idProducto}" filter="true" filterMatchMode="contains">
 										<p:ajax event="valueChange" listener="#{cotizacionController.obtenerDescripcionReferencia()}" update="descripcion, material, fabricante, precioUnitario" />
 										<f:selectItem itemValue="" itemLabel="Seleccione" />
 										<f:selectItems value="#{cotizacionController.listaProducto}" var="ref" itemLabel="#{ref.referencia}" itemValue="#{ref.idProducto}"/>
