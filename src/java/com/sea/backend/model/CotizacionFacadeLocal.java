@@ -50,10 +50,6 @@ public interface CotizacionFacadeLocal {
 	List<Cotizacion> findRange(int[] range);
 
 	int count();
-	
-	void getReportePDF(String ruta, String numero_cotizacion) throws  ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException;
-	
-	void getReporteXLSX(String ruta, String numero_cotizacion) throws  ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException;
 
 	List<Cotizacion> listaSeguimiento(int usuario);
 

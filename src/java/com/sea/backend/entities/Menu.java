@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 EdisonArturo.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,9 +24,7 @@
 package com.sea.backend.entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,16 +32,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author homero
+ * @author EdisonArturo
  */
 @Entity
 @Table(name = "tbl_menu")
@@ -82,8 +78,6 @@ public class Menu implements Serializable {
     @NotNull
     @Column(name = "POSICION")
 	private int posicion;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblMenuIdMenu")
-	private List<Pagina> paginaList;
 
 	public Menu() {
 	}
@@ -138,15 +132,6 @@ public class Menu implements Serializable {
 
 	public void setPosicion(int posicion) {
 		this.posicion = posicion;
-	}
-
-	@XmlTransient
-	public List<Pagina> getPaginaList() {
-		return paginaList;
-	}
-
-	public void setPaginaList(List<Pagina> paginaList) {
-		this.paginaList = paginaList;
 	}
 
 	@Override
