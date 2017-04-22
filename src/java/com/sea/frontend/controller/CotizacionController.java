@@ -207,16 +207,20 @@ public class CotizacionController implements Serializable {
 	private LugaresEntrega lugaresEntrega;
 	private List<LugaresEntrega> listaLugaresEntrega;
 
+	
+	//Entidad producto
 	@EJB
 	private ProductoFacadeLocal productoEJB;
-	//Entidad producto
 	private Producto producto;
 	private int idProducto;
 	private List<Material> listaMateriales;
 	private List<Fabricante> listaFabricante;
 	private List<Producto> listaProductoPrecio;
 	private List<Producto> listaProducto;
-
+	private List<ProductoAuxiliar> listaDatosEspecificacionProducto;
+	private String referencia;
+	
+	
 	@EJB
 	private DescuentoFacadeLocal descuentoEJB;
 	private int idDescuento;
@@ -250,6 +254,7 @@ public class CotizacionController implements Serializable {
 		clientes = clienteEJB.listaClienteCotizacion(setUsuarioLogueado());
 		cliente = new Cliente();
 		producto = new Producto();
+		listaDatosEspecificacionProducto = new ArrayList<>();
 		listaCotizacionP = new ArrayList<>();
 		listaProducto = productoEJB.findAll();
 		usuario = new Usuario();
@@ -319,6 +324,8 @@ public class CotizacionController implements Serializable {
 		} catch (Exception e) {
 		}
 	}
+	
+	
 
 	// Metodo para obtener las cotizaciones registradas por un asesor
 	public void obtenerCotizacionesRegistradas() throws Exception {
@@ -1066,6 +1073,17 @@ public class CotizacionController implements Serializable {
 		listaDatosCotizacionProducto = cotizacionProductoEJB.datosCotizacionProducto(getNumeroCotizacion());
 
 	}
+		//Metodo para traer las especififaciones de los prodectos registrados EJP: Botones, Colores, Botas etc.
+	
+	public void obtenerEspecicacionesProductosRegistrados()throws Exception {
+		try {
+			System.out.println("(prueba referncia = " + referencia);
+			listaDatosEspecificacionProducto = productoEJB.datosEspecificacionProducto(referencia);
+			
+					
+		} catch (Exception e) {
+		}
+	}
 
 	public void registrarOrdenProduccion() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
 		try {
@@ -1146,6 +1164,7 @@ public class CotizacionController implements Serializable {
 	public List<CotizacionProductoAuxiliar> getListaDatosCotizacionProducto() throws Exception {
 
 		objetosCotizacionProducto();
+		
 		for (CotizacionProductoAuxiliar ca : listaDatosCotizacionProducto) {
 			System.out.println("Descripción" + ca.getDescripcion());
 			System.out.println("Referencia" + ca.getReferencia());
@@ -1161,6 +1180,29 @@ public class CotizacionController implements Serializable {
 	public void setListaDatosCotizacionProducto(List<CotizacionProductoAuxiliar> listaDatosCotizacionProducto) {
 		this.listaDatosCotizacionProducto = listaDatosCotizacionProducto;
 	}
+
+	public List<ProductoAuxiliar> getListaDatosEspecificacionProducto() throws Exception{
+		obtenerEspecicacionesProductosRegistrados();
+		for (ProductoAuxiliar prA : listaDatosEspecificacionProducto) {
+			System.out.println("Descripción de los productos" + prA.getDescripcion());
+			
+		}
+		return listaDatosEspecificacionProducto;
+	}
+
+	public void setListaDatosEspecificacionProducto(List<ProductoAuxiliar> listaDatosEspecificacionProducto) {
+		this.listaDatosEspecificacionProducto = listaDatosEspecificacionProducto;
+	}
+
+	public String getReferencia() {
+		return referencia;
+	}
+
+	public void setReferencia(String referencia) {
+		this.referencia = referencia;
+	}
+	
+	
 
 }
 

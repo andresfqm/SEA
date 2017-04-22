@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,36 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.sea.backend.model;
-
-import com.sea.backend.entities.Producto;
-import com.sea.frontend.controller.ProductoAuxiliar;
-import java.util.List;
-import javax.ejb.Local;
+package com.sea.frontend.controller;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
-@Local
-public interface ProductoFacadeLocal {
+public class ProductoAuxiliar {
 
-	void create(Producto producto);
+	private String descripcion;
 
-	void edit(Producto producto);
+	public String getDescripcion() {
+		return descripcion;
+	}
 
-	void remove(Producto producto);
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
-	Producto find(Object id);
+	public ProductoAuxiliar(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
-	List<Producto> findAll();
+	public ProductoAuxiliar() {
 
-	List<Producto> findRange(int[] range);
+	}
 
-	int count();
-
-	Producto productoDescripcion(int idProducto) throws Exception;
-	List<Producto> productoPrecio(int idProducto) throws Exception;
-	
-	List<ProductoAuxiliar> datosEspecificacionProducto(String referencia) throws Exception;
 }
