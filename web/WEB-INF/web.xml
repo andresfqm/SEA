@@ -26,9 +26,11 @@
 		<location>/errorPages/404.xhtml</location>
 	</error-page>
 	<error-page>
-		<exception-type>
-			java.lang.Trowable
-		</exception-type>
+		<exception-type>com.sun.faces.context.FacesFileNotFoundException</exception-type>
+		<location>/errorPages/404.xhtml</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
 		<location>/errorPages/500.xhtml</location>
 	</error-page>
 	<context-param>

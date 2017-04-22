@@ -13,7 +13,6 @@ Sección de configuración
 ********************************************************************************/
 #configuracion form{
 	display: grid;
-	grid-gap: 15px;
 	min-height: auto;
 	padding: 40px 15px;
 }
@@ -64,4 +63,30 @@ Tablas
 	max-width: 100%;
 	max-height: calc(100vh - var(--altoHeader) - 30px);
 	overflow: auto;
+}
+main{
+	min-height: calc(100vh - var(--altoHeader) - 30px);
+}
+/******************************************************************************************
+Tablas
+******************************************************************************************/
+#DBLoadData form{
+	display: grid;
+	grid-template-columns: calc(100% / 3) calc(100% / 3) calc(100% / 3);
+	grid-template-rows: auto auto auto auto;
+	grid-template-areas:". tablas ." ". mensaje." ". cargue ." ". enviar .";
+	grid-gap: 15px;
+	padding-bottom: 15px;
+}
+#DBLoadData form .mdl-selectfield{
+	grid-area: tablas;
+}
+#DBLoadData form p{
+	grid-area: mensaje;
+}
+#DBLoadData form .mdl-textfield--file{
+	grid-area: cargue;
+}
+#DBLoadData form .mdl-button{
+	grid-area: enviar;
 }
