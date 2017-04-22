@@ -24,9 +24,11 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.Menu;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *

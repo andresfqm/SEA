@@ -26,6 +26,7 @@ package com.sea.backend.model;
 import com.sea.backend.entities.Cotizacion;
 import com.sea.backend.entities.CotizacionProducto;
 import com.sea.backend.entities.Usuario;
+import java.sql.SQLException;
 import java.util.List;
 import javax.ejb.Local;
 

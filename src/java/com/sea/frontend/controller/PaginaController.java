@@ -6,6 +6,7 @@
 package com.sea.frontend.controller;
 
 import com.sea.backend.entities.Pagina;
+import com.sea.backend.entities.Usuario;
 import com.sea.backend.model.PaginaFacadeLocal;
 import java.io.Serializable;
 import java.util.List;
@@ -14,6 +15,7 @@ import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -37,10 +39,22 @@ public class PaginaController implements Serializable {
 		try {
 			listaSubMenus = PaginaEJB.obtenerSubMenus(obtenerIdUsuario(), seccion);
 		} catch (Exception e) {
-
+			throw e;
 		}
 	}
 
+	public int obtenerIdUsuario() {
+		HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+		Usuario u = (Usuario) sesion.getAttribute("usuario");
+		return u.getIdUsuario();
+	}
+
+	public List<Pagina> getListaSubMenus() {
+		return listaSubMenus;
+	}
+
+	public void setListaSubMenus(List<Pagina> listaMenuGeneral) {
+		this.listaSubMenus = listaMenuGeneral;
 	}
 
 	public String getSeccion() {

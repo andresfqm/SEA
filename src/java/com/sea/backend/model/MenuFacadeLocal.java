@@ -48,4 +48,5 @@ public interface MenuFacadeLocal {
 
 	int count();
 
+	List<Menu> obtenerMenusGenerales(int idUsuario) throws Exception;
 }
