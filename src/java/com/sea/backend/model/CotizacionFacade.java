@@ -24,8 +24,12 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.Cotizacion;
-import com.sea.backend.entities.CotizacionProducto;
 import com.sea.backend.entities.Usuario;
+import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -193,8 +197,11 @@ public class CotizacionFacade extends AbstractFacade<Cotizacion> implements Coti
 		Query query = em.createNativeQuery(consulta2);
 		query.setParameter(1, numeroCotizacion);
 
+		//datosCliente = query.getResultList();
 		Object datosCotizacion = query.getSingleResult();
 
 		return datosCotizacion;
 	}
+
+
 }

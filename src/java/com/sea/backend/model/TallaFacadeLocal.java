@@ -47,5 +47,6 @@ public interface TallaFacadeLocal {
 	List<Talla> findRange(int[] range);
 
 	int count();
+		Talla tallaDescripcion(int idTalla) throws Exception;
 
 }

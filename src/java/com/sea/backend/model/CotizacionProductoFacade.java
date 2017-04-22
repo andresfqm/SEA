@@ -24,6 +24,8 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.CotizacionProducto;
+import com.sea.frontend.controller.CotizacionProductoAuxiliar;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -50,10 +52,11 @@ public class CotizacionProductoFacade extends AbstractFacade<CotizacionProducto>
 	}
 
 	@Override
-	public List<CotizacionProducto> datosCotizacionProducto(String numeroCotizacion) throws Exception {
-		
-		List<CotizacionProducto> listaDatosCotizacionProducto;
-		String consulta1 = "SELECT pr.referencia, pr.descripcion, ma.nombre, fa.nombre\n"
+	public List<CotizacionProductoAuxiliar> datosCotizacionProducto(String numeroCotizacion) throws Exception {
+		 List<Object []> listaDatos;
+		 List<CotizacionProductoAuxiliar> listaDatosCotizacionProductoAuxiliar;
+		 listaDatosCotizacionProductoAuxiliar = new ArrayList<>();
+			String consulta1 = "SELECT pr.referencia, pr.descripcion, ma.nombre, fa.nombre\n"
 				+ "FROM tbl_cotizacion_producto AS cp\n"
 				+ "INNER JOIN tbl_producto AS pr\n"
 				+ "ON cp.tbl_producto_id_producto = pr.id_producto\n"
@@ -64,17 +67,35 @@ public class CotizacionProductoFacade extends AbstractFacade<CotizacionProducto>
 				+ "INNER JOIN tbl_fabricante AS fa\n"
 				+ "ON pr.tbl_fabricante_id_fabricante = fa.id_fabricante\n"
 				+ "WHERE cp.tbl_cotizacion_numero_cotizacion = ?1";
+
 		Query query = em.createNativeQuery(consulta1);
 		query.setParameter(1, numeroCotizacion);
 
-		listaDatosCotizacionProducto = query.getResultList();
-		return listaDatosCotizacionProducto;
+		listaDatos = query.getResultList();
+		
+		for (Object[] cotizacionProductoAuxiliar : listaDatos) {
+			CotizacionProductoAuxiliar cotPA = new CotizacionProductoAuxiliar();
+			cotPA.setReferencia(cotizacionProductoAuxiliar[0].toString());
+			cotPA.setDescripcion(cotizacionProductoAuxiliar[1].toString());
+			cotPA.setNombreMaterial(cotizacionProductoAuxiliar[2].toString());
+			cotPA.setNombreFabricante(cotizacionProductoAuxiliar[3].toString());
+			
+			listaDatosCotizacionProductoAuxiliar.add(cotPA);
+		}
+		return listaDatosCotizacionProductoAuxiliar;
+		//List<Object[]> miLista = query.getResultList();
+	}
 
 	
-	}
 	
 	
+	
+		
+
 
 		
-	
-}
+	}
+
+
+
+

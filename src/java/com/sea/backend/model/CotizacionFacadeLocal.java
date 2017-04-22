@@ -47,16 +47,15 @@ public interface CotizacionFacadeLocal {
 	List<Cotizacion> findAll();
 
 	List<Cotizacion> findRange(int[] range);
-	List<Cotizacion> listaSeguimiento(int usuario);
-	
-	Object datosCotizacion(String numeroCotizacion) throws Exception;
-	
-	
 
 	int count();
-	
-	void getReportePDF(String ruta, String numero_cotizacion) throws  ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException;
-	
-	void getReporteXLSX(String ruta, String numero_cotizacion) throws  ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException;
+
+	List<Cotizacion> listaSeguimiento(int usuario);
+
+	Object datosCotizacion(String numeroCotizacion) throws Exception;
+
+	void getReportePDF(String ruta, String numero_cotizacion) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException;
+
+	void getReporteXLSX(String ruta, String numero_cotizacion) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException;
 
 }
