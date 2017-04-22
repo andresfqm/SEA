@@ -12,117 +12,121 @@ import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
-import org.primefaces.context.RequestContext;
+
 
 /**
  *
  * @author homero
  */
+
 @Named
 @ViewScoped
 public class LoginController implements Serializable {
 
-	@EJB
-	private UsuarioFacadeLocal EJBUsuario;
-	private Usuario usuario;
+    @EJB
+    private UsuarioFacadeLocal EJBUsuario;
+    private Usuario usuario;
 
-	//Variables de los dialogos
-	String dialogTittle = null;
-	String dialogContent = null;
+    @PostConstruct
+    public void init() {
+        usuario = new Usuario();
+    }
 
-	@PostConstruct
-	public void init() {
-		usuario = new Usuario();
-	}
+    public Usuario getUsuario() {
+        return usuario;
+    }
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
+    public void iniciarSesion() {
+        Usuario us;
 
-	public void iniciarSesion() {
-		Usuario us;
-		try {
-			us = EJBUsuario.iniciarSesion(usuario);
-			if (us != null) {
-				if (us.getHabilitado()) {
-					//Almacenar la sesión de JSF
-					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);
-					FacesContext contex = FacesContext.getCurrentInstance();
-					contex.getExternalContext().redirect("/SEA/index.xhtml");
-				} else {
-					dialogTittle = "Error al iniciar sesión";
-					dialogContent = "Usted no se encuentra activo en el sistema.<br />Por favor, comuníquese con el administrador del sistema.";
-					RequestContext.getCurrentInstance().execute("mostrarDialogos(`"+dialogTittle+"`, `"+dialogContent+"`);");
-					}
-			} else {
-				dialogTittle = "Error al iniciar sesión";
-				dialogContent = "El nombre de usuario y/o la contraseña son incorrectos.";
-				RequestContext.getCurrentInstance().execute("mostrarDialogos(`"+dialogTittle+"`, `"+dialogContent+"`);");
-			}
-		} catch (Exception e) {
-			dialogTittle = "Error no controlado";
-			dialogContent = e.getMessage();
-			RequestContext.getCurrentInstance().execute("mostrarDialogos(`"+dialogTittle+"`, `"+dialogContent+"`);");
-		}
-	}
+        try {
+            us = EJBUsuario.iniciarSesion(usuario);
+            if (us != null) {
+                 //Almacenar la sesión de JSF
+               FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);
+            FacesContext contex = FacesContext.getCurrentInstance();
+            contex.getExternalContext().redirect( "/SEA/index.xhtml" );
 
+           } else {
+              FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Usuario o contraseña incorrectos"));
+            }
+
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error!"));
+        }
+
+    }
+    
 	// Capturando el nombre del usuario que inicia sesión
-	public String mostrarNombreUsuario() {
-		HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-		Usuario u = (Usuario) sesion.getAttribute("usuario");
-		return u.getNombre() + " " + u.getApellido();
-	}
+    public String mostrarNombreUsuario(){
+        HttpSession sesion =(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        Usuario u = (Usuario)sesion.getAttribute("usuario");
+        return u.getNombre()+" "+ u.getApellido();
+    }
+    
+    public String mostrarCargo(){
+        HttpSession sesion =(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        Usuario u = (Usuario)sesion.getAttribute("usuario");
+        return u.getCargo();
+    }
+    
+    //Metodo para mostar el id Interno del usuario y el numero de cotizaci´´on correspondiente
+      public String mostrarIdInterno(){
+        HttpSession sesion =(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        Usuario u = (Usuario)sesion.getAttribute("usuario");
+        this.usuario = u;
+        return u.getIdInterno()+" -"+ u.getConsecutivoCotizacion();
+    }
+	        
+    public void verificarSesion() {
 
-	public String mostrarCargo() {
-		HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-		Usuario u = (Usuario) sesion.getAttribute("usuario");
-		return u.getCargo();
-	}
+        try {
+            FacesContext context = FacesContext.getCurrentInstance();
+           
+            Usuario us = (Usuario) context.getExternalContext().getSessionMap().get("usuario");
 
-	//Metodo para mostar el id Interno del usuario y el numero de cotizaci´´on correspondiente
-	public String mostrarIdInterno() {
-		HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-		Usuario u = (Usuario) sesion.getAttribute("usuario");
-		this.usuario = u;
-		return u.getIdInterno() + " -" + u.getConsecutivoCotizacion();
-	}
+            if (us == null) {
+                
+               context.getExternalContext().redirect( "/SEA/auth");
+                
 
-	public void verificarSesion() {
-		try {
-			FacesContext context = FacesContext.getCurrentInstance();
-			Usuario us = (Usuario) context.getExternalContext().getSessionMap().get("usuario");
-			if (us == null) {
-				context.getExternalContext().redirect("/SEA/auth");
-			}
-		} catch (Exception e) {
-			// log para guardar un registro de error
-		}
-	}
+            }   
+        } catch (Exception e) {
+            // log para guardar un registro de error
+        }
 
-	public void verificarSesionLogin() {
-		try {
-			FacesContext context = FacesContext.getCurrentInstance();
-			Usuario us = (Usuario) context.getExternalContext().getSessionMap().get("usuario");
-			if (us != null) {
-				context.getExternalContext().redirect("/SEA/index.xhtml");
-			}
-		} catch (Exception e) {
-			// log para guardar un registro de error
-		}
+    }
+    
+    public void verificarSesionLogin() {
 
-	}
+        try {
+            FacesContext context = FacesContext.getCurrentInstance();
+           
+            Usuario us = (Usuario) context.getExternalContext().getSessionMap().get("usuario");
 
-	public void cerrarSesion() throws IOException {
-		FacesContext context = FacesContext.getCurrentInstance();
-		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		context.getExternalContext().redirect("");
-	}
+            if (us != null) {
+                
+            context.getExternalContext().redirect( "/SEA/index.xhtml");
+                
+
+            }   
+        } catch (Exception e) {
+            // log para guardar un registro de error
+        }
+
+    }
+    public void cerrarSesion() throws IOException {
+        FacesContext context = FacesContext.getCurrentInstance();
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        context.getExternalContext().redirect("");
+    }
 }

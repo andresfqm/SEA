@@ -1,10 +1,6 @@
 <!DOCTYPE html>
-<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	  xmlns:p="http://primefaces.org/ui"
-	  xmlns:f="http://xmlns.jcp.org/jsf/core"
-	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui">
     <h:head>
         <meta charset="UTF-8" />
         <title>Administración de usuarios | SEA</title>
@@ -15,11 +11,6 @@
         <h:outputScript library="js" name="mdl-selectfield.min.js"></h:outputScript>
         <h:outputScript library="js" name="toggleforms.js"></h:outputScript>
         <h:outputScript library="js" name="administracion.js"></h:outputScript>
-		<h:outputStylesheet library="css" name="mdl-selectfield.min.css" />
-        <h:outputStylesheet library="css" name="cotizaciones.css" />
-        <h:outputScript library="js" name="mdl-selectfield.min.js"></h:outputScript>
-        <h:outputScript library="js" name="toggleforms.js"></h:outputScript>
-        <h:outputScript library="js" name="retroalimentacion.js"></h:outputScript>
     </h:head>
 	<h:body>
 		<ui:composition template="/templates/header.xhtml" />
@@ -91,11 +82,14 @@
 							<p:selectOneMenu id="tipoDocumento" value="#{usuarioController.tipoDocumento.idTipoDocumento}" >
 								<f:selectItems value="#{tipoDocumentoController.listaTipoD}" var="lisD" itemLabel="#{lisD.tipo}" itemValue="#{lisD.idTipoDocumento}" />
 							</p:selectOneMenu>
-							<h:outputLabel class="mdl-textfield__label" for="tipoDocumento">Tipo de documento</h:outputLabel>
 							</h:panelGroup>
                         <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <h:inputText class="mdl-textfield__input" value="#{usuarioController.usuario.numeroDocumento}" p:type="number" p:min="1" p:step="1" p:maxlength="32" required="required" id="NoDocumento" />
+                            <h:inputText class="mdl-textfield__input" value="#{usuarioController.usuario.numeroDocumento}" pt:type="number" p:min="1" p:step="1" p:maxlength="32" required="required" id="NoDocumento" />
                             <h:outputLabel class="mdl-textfield__label" for="NoDocumento">Número de documento</h:outputLabel>
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <h:inputText class="mdl-textfield__input" disabled="disabled" id="DV" p:maxlength="1" value=" " />
+                            <h:outputLabel class="mdl-textfield__label" for="DV">Dígito de verificación</h:outputLabel>
                         </h:panelGroup>
                         <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <h:inputText class="mdl-textfield__input" value="#{usuarioController.usuario.nombre}" p:maxlength="256" required="required" id="nombre" />
@@ -109,20 +103,18 @@
 							<p:selectOneMenu id="tipoTelefono" value="#{usuarioController.tipoTelefono.idTipoTelefono}" >
 								<f:selectItems value="#{tipoTelefonoController.listaTipos}" var="lis" itemLabel="#{lis.tipo}" itemValue="#{lis.idTipoTelefono}" />
 							</p:selectOneMenu>
-							<h:outputLabel class="mdl-textfield__label" for="tipoTelefono">Tipo de telefono</h:outputLabel>
 							</h:panelGroup>
                         <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <h:inputText class="mdl-textfield__input" p:type="tel" value="#{usuarioController.telefono.numeroTelefono}" p:maxlength="64" required="required" id="telPersonal" />
-                            <h:outputLabel class="mdl-textfield__label" for="telPersonal">Teléfono</h:outputLabel>
+                            <h:inputText class="mdl-textfield__input" pt:type="tel" value="#{usuarioController.usuario.setTelefonoList(telefonoController.telefono.numeroTelefono)}" p:maxlength="64" required="required" id="telPersonal" />
+                            <h:outputLabel class="mdl-textfield__label" for="telPersonal">Teléfono personal</h:outputLabel>
                         </h:panelGroup>
 						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 							<p:selectOneMenu id="tipoEmail" value="#{usuarioController.tipoEmail.idTipoEmail}" >
 								<f:selectItems value="#{tipoEmailController.listaTipoE}" var="lise" itemLabel="#{lise.tipo}" itemValue="#{lise.idTipoEmail}" />
 							</p:selectOneMenu>
-							<h:outputLabel class="mdl-textfield__label" for="tipoEmail">Tipo de email</h:outputLabel>
 							</h:panelGroup>
                         <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-                            <h:inputText class="mdl-textfield__input" p:type="email" value="#{usuarioController.correo.email}" p:maxlength="64" required="required" id="email" />
+                            <h:inputText class="mdl-textfield__input" pt:type="email" value="#{usuarioController.usuario.setEmailList(emailList)}" p:maxlength="64" required="required" id="email" />
                             <h:outputLabel class="mdl-textfield__label" for="email">Correo electrónico</h:outputLabel>
                         </h:panelGroup>
 						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -151,27 +143,13 @@
                         </h:panelGroup>
                         <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <h:inputText class="mdl-textfield__input" value="#{usuarioController.usuario.idInterno}" p:maxlength="32" required="required" id="IDInterno" />
-                            <h:outputLabel class="mdl-textfield__label" for="IDInterno">ID Interno</h:outputLabel>
+                            <h:outputLabel class="mdl-textfield__label" for="IDInterno">ID interno</h:outputLabel>
                         </h:panelGroup>
-                        <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
-							<p:selectCheckboxMenu id="tipoPerfil" value="#{usuarioController.perfiles}" p:layout="grid" p:columns="1" styleClass="mdl-switch__input" label="Seleccione:">
+                        <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+							<p:selectOneMenu id="tipoPerfil" value="#{usuarioController.perfilt.idPerfil}" >
 								<f:selectItems value="#{perfilController.listaPerfiles}" var="lisperfil" itemLabel="#{lisperfil.nombre}" itemValue="#{lisperfil.idPerfil}" />
-							</p:selectCheckboxMenu>
-							<h:outputLabel class="mdl-textfield__label" for="tipoPerfil">Perfil</h:outputLabel>
-							</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<p:selectOneMenu id="tipoCargo" value="#{usuarioController.usuario.cargo}" >
-								<f:selectItem itemLabel="Administrador" itemValue="Administrador" />
-								<f:selectItem itemLabel="Asesor" itemValue="Asesor" />
-								<f:selectItem itemLabel="Administrativo" itemValue="Administrativo" />
-								<f:selectItem itemLabel="Jefe de producción" itemValue="Jefe de producción" />
 							</p:selectOneMenu>
-							<h:outputLabel class="mdl-textfield__label" for="tipoCargo">Cargo</h:outputLabel>
 							</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-                            <h:inputText class="mdl-textfield__input" p:maxlength="45" value="#{usuarioController.usuario.consecutivoCotizacion}" required="required" id="consecutivo" />
-                            <h:outputLabel class="mdl-textfield__label" for="consecutivo">Consecutivo de cotizacion</h:outputLabel>
-                        </h:panelGroup>
                         <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
                             <h:inputText class="mdl-textfield__input" p:maxlength="45" value="#{usuarioController.usuario.nombreUsuario}" required="required" id="nombreUsuario" />
                             <h:outputLabel class="mdl-textfield__label" for="nombreUsuario">Nombre de usuario</h:outputLabel>
@@ -187,10 +165,6 @@
                         <h:outputLabel class="mdl-switch mdl-js-switch mdl-js-ripple-effect fullWidth" for="activo">
                             <h:selectBooleanCheckbox id="activo" value="#{usuarioController.usuario.habilitado}" class="mdl-switch__input" />
                             <h:panelGroup class="mdl-switch__label">¿Activo?</h:panelGroup>
-                        </h:outputLabel>
-						<h:outputLabel class="mdl-switch mdl-js-switch mdl-js-ripple-effect fullWidth" for="activo">
-                            <h:selectBooleanCheckbox id="habilitado" value="#{usuarioController.usuario.habilitado}" class="mdl-switch__input" />
-                            <h:panelGroup class="mdl-switch__label">¿Habilitado?</h:panelGroup>
                         </h:outputLabel>
                     </h:panelGroup>
                     <h:panelGroup layout="block" class="mdl-dialog__actions">

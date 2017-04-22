@@ -23,6 +23,7 @@
  */
 package com.sea.backend.model;
 
+import com.sea.backend.entities.Ciudad;
 import com.sea.backend.entities.Direccion;
 import com.sea.backend.entities.Usuario;
 import java.util.List;
@@ -66,7 +67,6 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 			if (!lista.isEmpty()) {
 				usuario = lista.get(0);
 			}
-			//usuario=(Usuario) query.getSingleResult();
 		} catch (Exception e) {
 
 			throw e;
@@ -82,8 +82,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 				+ "join u.telefonoList t\n"
 				+ "join u.emailList c\n"
 				+ "join u.usuarioPerfilList uspe\n"
-				+ "join uspe.tblPerfilIdPerfil pe\n"
-				+ "GROUP BY u.nombre";
+				+ "join uspe.tblPerfilIdPerfil pe\n";
 		Query query = em.createQuery(jpql);
 		lista = query.getResultList();
 

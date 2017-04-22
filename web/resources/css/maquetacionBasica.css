@@ -346,22 +346,22 @@ body > nav{
 		white-space: pre-wrap;
 		}
 		.ui-datatable tr, .ui-datatable th, .ui-datatable td{
-		border: 1px solid rgba(0, 0, 0, 0.12);
+			border: 1px solid rgba(0, 0, 0, 0.12);
 		}
 		.ui-datatable th:not(:first-child), .ui-datatable td:not(:first-child){
-		border-left: none;
+			border-left: none;
 		}
 		.ui-datatable th:not(:last-child), .ui-datatable td:not(:last-child){
-		border-right: none;
+			border-right: none;
 		}
 		.ui-datatable thead th,.ui-datatable tbody td {
-		position: relative;
-		vertical-align: middle;
-		height: 48px;
-		border-top: 1px solid rgba(0, 0, 0, 0.12);
-		border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-		padding-top: 12px;
-		box-sizing: border-box
+    position: relative;
+    vertical-align: middle;
+    height: 48px;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    padding-top: 12px;
+    box-sizing: border-box
 		}
 		.mdl-data-table th{
 		text-align: center;
@@ -411,31 +411,7 @@ body > nav{
 		color: rgba(0,0,0,.5);
 		}
 		.mdl-textfield--floating-label .mdl-textfield__label, .mdl-selectfield--floating-label .mdl-selectfield__label {
-		top: 4px;
-		}
-		.ui-button .ui-button-text{
-		display: initial !important;
-		line-height: initial !important;
-
-		}
-		.ui-button-text-only .ui-button-text{
-		padding: 0 !important;
-		}
-		.mdl-button--file input {
-		cursor: pointer;
-		height: 100%;
-		right: 0;
-		opacity: 0;
-		position: absolute;
-		top: 0;
-		width: 300px;
-		z-index: 4;
-		}
-
-		.mdl-textfield--file .mdl-textfield__input {
-		box-sizing: border-box;
-		width: calc(100% - 32px);
-		margin-left: 32px;
+			top: 4px;
 		}
 		/**********************************************************************
 		Formularios complejos
@@ -536,55 +512,4 @@ body > nav{
 		***********************************************************/
 		.fileInput{
 		display: none;
-		}
-		/***********************************************************
-		páginas de error
-		***********************************************************/
-		#errorPage img{
-		width: 100%;
-		}
-		/***********************************************************
-		Sobreescritura de estilos de primefaces
-		***********************************************************/
-		.ui-dialog-titlebar {
-		border: 0!important;
-		padding: 0!important;
-		display: none!important
-		}
-		.ui-datatable.borderless .ui-datatable-data tr,
-		.ui-datatable.borderless .ui-datatable-data-empty tr,
-		.ui-datatable.borderless .ui-datatable-data td,
-		.ui-datatable.borderless .ui-datatable-data-empty td {
-		border-style: none;
-		}
-		.ui-datatable tbody td{border-color: rgba(0, 0, 0, .12);}
-		.ui-dialog .ui-dialog-content {
-		position: fixed !important;
-		border: 0!important;
-		padding: 0!important;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		overflow-x: none;
-		}
-		.ui-selectonemenu{
-		width: 100%;
-		}
-		.ui-selectonemenu-panel .ui-selectonemenu-list, .ui-selectonemenu-panel .ui-selectonemenu-filter-container{
-		background-color: #fff;
-		width: 100%;
-		}
-		.ui-selectonemenu-panel .ui-selectonemenu-filter{
-		border: none;
-		border-bottom: 1px solid rgb(63,81,181);
-		display: block;
-		font-size: 16px;
-		font-family: "Helvetica","Arial",sans-serif;
-		margin: 0;
-		padding: 4px 0;
-		width: 100%;
-		background: 0 0;
-		text-align: left;
-		color: inherit;
 		}
