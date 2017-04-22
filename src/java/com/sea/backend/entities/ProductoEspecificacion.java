@@ -54,7 +54,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
 	@NamedQuery(name = "ProductoEspecificacion.findAll", query = "SELECT p FROM ProductoEspecificacion p"),
 	@NamedQuery(name = "ProductoEspecificacion.findByIdProductoEspecificacion", query = "SELECT p FROM ProductoEspecificacion p WHERE p.idProductoEspecificacion = :idProductoEspecificacion"),
+	@NamedQuery(name = "ProductoEspecificacion.findByLogotipo", query = "SELECT p FROM ProductoEspecificacion p WHERE p.logotipo = :logotipo"),
 	@NamedQuery(name = "ProductoEspecificacion.findByCantidadArticulos", query = "SELECT p FROM ProductoEspecificacion p WHERE p.cantidadArticulos = :cantidadArticulos"),
+	@NamedQuery(name = "ProductoEspecificacion.findByDiagramaDise\u00f1o", query = "SELECT p FROM ProductoEspecificacion p WHERE p.diagramaDise\u00f1o = :diagramaDise\u00f1o"),
 	@NamedQuery(name = "ProductoEspecificacion.findByNecesitaBordado", query = "SELECT p FROM ProductoEspecificacion p WHERE p.necesitaBordado = :necesitaBordado")})
 public class ProductoEspecificacion implements Serializable {
 
@@ -68,18 +70,18 @@ public class ProductoEspecificacion implements Serializable {
     @Size(max = 65535)
     @Column(name = "DESCRIPCION")
 	private String descripcion;
-	@Lob
+	@Size(max = 256)
     @Column(name = "LOGOTIPO")
-	private byte[] logotipo;
+	private String logotipo;
 	@Basic(optional = false)
     @NotNull
     @Column(name = "CANTIDAD_ARTICULOS")
 	private int cantidadArticulos;
 	@Basic(optional = false)
     @NotNull
-    @Lob
+    @Size(min = 1, max = 256)
     @Column(name = "DIAGRAMA_DISE\u00d1O")
-	private byte[] diagramaDiseño;
+	private String diagramaDiseño;
 	@Column(name = "NECESITA_BORDADO")
 	private Boolean necesitaBordado;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblProductoEspecificacionIdProductoEspecificacion")
@@ -98,7 +100,7 @@ public class ProductoEspecificacion implements Serializable {
 		this.idProductoEspecificacion = idProductoEspecificacion;
 	}
 
-	public ProductoEspecificacion(Integer idProductoEspecificacion, int cantidadArticulos, byte[] diagramaDiseño) {
+	public ProductoEspecificacion(Integer idProductoEspecificacion, int cantidadArticulos, String diagramaDiseño) {
 		this.idProductoEspecificacion = idProductoEspecificacion;
 		this.cantidadArticulos = cantidadArticulos;
 		this.diagramaDiseño = diagramaDiseño;
@@ -120,11 +122,11 @@ public class ProductoEspecificacion implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public byte[] getLogotipo() {
+	public String getLogotipo() {
 		return logotipo;
 	}
 
-	public void setLogotipo(byte[] logotipo) {
+	public void setLogotipo(String logotipo) {
 		this.logotipo = logotipo;
 	}
 
@@ -136,11 +138,11 @@ public class ProductoEspecificacion implements Serializable {
 		this.cantidadArticulos = cantidadArticulos;
 	}
 
-	public byte[] getDiagramaDiseño() {
+	public String getDiagramaDiseño() {
 		return diagramaDiseño;
 	}
 
-	public void setDiagramaDiseño(byte[] diagramaDiseño) {
+	public void setDiagramaDiseño(String diagramaDiseño) {
 		this.diagramaDiseño = diagramaDiseño;
 	}
 

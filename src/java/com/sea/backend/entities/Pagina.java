@@ -57,7 +57,8 @@ import javax.xml.bind.annotation.XmlTransient;
 	@NamedQuery(name = "Pagina.findByNombre", query = "SELECT p FROM Pagina p WHERE p.nombre = :nombre"),
 	@NamedQuery(name = "Pagina.findByNombreBoton", query = "SELECT p FROM Pagina p WHERE p.nombreBoton = :nombreBoton"),
 	@NamedQuery(name = "Pagina.findByUrl", query = "SELECT p FROM Pagina p WHERE p.url = :url"),
-	@NamedQuery(name = "Pagina.findByUrlImagen", query = "SELECT p FROM Pagina p WHERE p.urlImagen = :urlImagen")})
+	@NamedQuery(name = "Pagina.findByUrlImagen", query = "SELECT p FROM Pagina p WHERE p.urlImagen = :urlImagen"),
+	@NamedQuery(name = "Pagina.findByPosicion", query = "SELECT p FROM Pagina p WHERE p.posicion = :posicion")})
 public class Pagina implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -90,6 +91,10 @@ public class Pagina implements Serializable {
 	@Size(max = 128)
     @Column(name = "URL_IMAGEN")
 	private String urlImagen;
+	@Basic(optional = false)
+    @NotNull
+    @Column(name = "POSICION")
+	private int posicion;
 	@JoinTable(name = "tbl_perfil_pagina", joinColumns = {
     	@JoinColumn(name = "TBL_PAGINA_ID_PAGINA", referencedColumnName = "ID_PAGINA")}, inverseJoinColumns = {
     	@JoinColumn(name = "TBL_PERFIL_ID_PERFIL", referencedColumnName = "ID_PERFIL")})
@@ -106,12 +111,13 @@ public class Pagina implements Serializable {
 		this.idPagina = idPagina;
 	}
 
-	public Pagina(Integer idPagina, String nombre, String descripcion, String nombreBoton, String url) {
+	public Pagina(Integer idPagina, String nombre, String descripcion, String nombreBoton, String url, int posicion) {
 		this.idPagina = idPagina;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.nombreBoton = nombreBoton;
 		this.url = url;
+		this.posicion = posicion;
 	}
 
 	public Integer getIdPagina() {
@@ -160,6 +166,14 @@ public class Pagina implements Serializable {
 
 	public void setUrlImagen(String urlImagen) {
 		this.urlImagen = urlImagen;
+	}
+
+	public int getPosicion() {
+		return posicion;
+	}
+
+	public void setPosicion(int posicion) {
+		this.posicion = posicion;
 	}
 
 	@XmlTransient
