@@ -15,6 +15,11 @@
         <h:outputScript library="js" name="mdl-selectfield.min.js"></h:outputScript>
         <h:outputScript library="js" name="toggleforms.js"></h:outputScript>
         <h:outputScript library="js" name="administracion.js"></h:outputScript>
+		<h:outputStylesheet library="css" name="mdl-selectfield.min.css" />
+        <h:outputStylesheet library="css" name="cotizaciones.css" />
+        <h:outputScript library="js" name="mdl-selectfield.min.js"></h:outputScript>
+        <h:outputScript library="js" name="toggleforms.js"></h:outputScript>
+        <h:outputScript library="js" name="retroalimentacion.js"></h:outputScript>
     </h:head>
 	<h:body>
 		<ui:composition template="/templates/header.xhtml" />
@@ -148,10 +153,10 @@
                             <h:inputText class="mdl-textfield__input" value="#{usuarioController.usuario.idInterno}" p:maxlength="32" required="required" id="IDInterno" />
                             <h:outputLabel class="mdl-textfield__label" for="IDInterno">ID Interno</h:outputLabel>
                         </h:panelGroup>
-                        <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<p:selectOneMenu id="tipoPerfil" value="#{usuarioController.perfilt.idPerfil}" >
+                        <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
+							<p:selectCheckboxMenu id="tipoPerfil" value="#{usuarioController.perfiles}" p:layout="grid" p:columns="1" styleClass="mdl-switch__input" label="Seleccione:">
 								<f:selectItems value="#{perfilController.listaPerfiles}" var="lisperfil" itemLabel="#{lisperfil.nombre}" itemValue="#{lisperfil.idPerfil}" />
-							</p:selectOneMenu>
+							</p:selectCheckboxMenu>
 							<h:outputLabel class="mdl-textfield__label" for="tipoPerfil">Perfil</h:outputLabel>
 							</h:panelGroup>
 						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">

@@ -82,7 +82,8 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 				+ "join u.telefonoList t\n"
 				+ "join u.emailList c\n"
 				+ "join u.usuarioPerfilList uspe\n"
-				+ "join uspe.tblPerfilIdPerfil pe\n";
+				+ "join uspe.tblPerfilIdPerfil pe\n"
+				+ "GROUP BY u.nombre";
 		Query query = em.createQuery(jpql);
 		lista = query.getResultList();
 

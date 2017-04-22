@@ -241,7 +241,7 @@ public class CotizacionController implements Serializable {
 	public void agregarCotizacionProducto() {
 		CotizacionProducto cot = new CotizacionProducto();
 
-		cot.setTblProductoIdProducto(producto);
+		cot.setTblProductoIdProducto(productoEJB.find(idProducto));
 		cot.setCantidad(cotizacionP.getCantidad());
 		cot.setPrecioParaCliente(cotizacionP.getPrecioParaCliente());
 
@@ -278,12 +278,16 @@ public class CotizacionController implements Serializable {
 			cotizacion.setTblLugaresEntregaIdLugaresEntrega(lugaresEEJB.find(idLugaresEntrega));
 			cotizacionEJB.create(cotizacion);
 			for (CotizacionProducto itemVenta : listaCotizacionP) {
-				itemVenta.setTblCotizacionNumeroCotizacion(cotizacion);
-				itemVenta.setTblProductoIdProducto(producto);
-				itemVenta.setPrecioParaCliente(this.cotizacionP.getPrecioParaCliente());
-				itemVenta.setPrecioBase(producto.getPrecio());
-				itemVenta.setCantidad(this.cotizacionP.getCantidad());
-				cotizacionProductoEJB.create(itemVenta);
+				cotizacionP.setTblCotizacionNumeroCotizacion(cotizacion);
+				cotizacionP.setTblProductoIdProducto(itemVenta.getTblProductoIdProducto());
+				cotizacionP.setPrecioBase(itemVenta.getPrecioBase());
+				if (itemVenta.getPrecioParaCliente() == null) {
+					cotizacionP.setPrecioParaCliente(itemVenta.getTblProductoIdProducto().getPrecio());
+				}else{
+					cotizacionP.setPrecioParaCliente(itemVenta.getPrecioParaCliente());
+				}
+				cotizacionP.setCantidad(itemVenta.getCantidad());
+				cotizacionProductoEJB.create(cotizacionP);
 			}
 
 			FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -679,10 +683,10 @@ public class CotizacionController implements Serializable {
 	public void obtenerDescripcionReferencia() throws Exception {
 		try {
 
-			producto = productoEJB.productoDescripcion(producto.getIdProducto());
-			listaMateriales = materialEJB.datosMaterial(producto.getIdProducto());
-			listaFabricante = fabricanteEJB.descripcionFabricante(producto.getIdProducto());
-			listaProductoPrecio = productoEJB.productoPrecio(producto.getIdProducto());
+			producto = productoEJB.productoDescripcion(idProducto);
+			listaMateriales = materialEJB.datosMaterial(idProducto);
+			listaFabricante = fabricanteEJB.descripcionFabricante(idProducto);
+			listaProductoPrecio = productoEJB.productoPrecio(idProducto);
 		} catch (Exception e) {
 			throw e;
 		}
