@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Local
 public interface CiudadFacadeLocal {
@@ -50,6 +50,7 @@ public interface CiudadFacadeLocal {
 	int count();
 
 	List<Ciudad> listaCiudades(Departamento ciu);
-	
+
 	Ciudad listaCiudad(String ci);
+
 }

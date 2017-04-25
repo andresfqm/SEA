@@ -29,10 +29,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -47,65 +44,56 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author homero
  */
 @Entity
-@Table(name = "tbl_perfil")
+@Table(name = "tbl_cargo")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Perfil.findAll", query = "SELECT p FROM Perfil p"),
-	@NamedQuery(name = "Perfil.findByIdPerfil", query = "SELECT p FROM Perfil p WHERE p.idPerfil = :idPerfil"),
-	@NamedQuery(name = "Perfil.findByNombre", query = "SELECT p FROM Perfil p WHERE p.nombre = :nombre")})
-public class Perfil implements Serializable {
+	@NamedQuery(name = "Cargo.findAll", query = "SELECT c FROM Cargo c"),
+	@NamedQuery(name = "Cargo.findByIdCargo", query = "SELECT c FROM Cargo c WHERE c.idCargo = :idCargo"),
+	@NamedQuery(name = "Cargo.findByCargo", query = "SELECT c FROM Cargo c WHERE c.cargo = :cargo")})
+public class Cargo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "ID_PERFIL")
-	private Integer idPerfil;
+    @NotNull
+    @Column(name = "ID_CARGO")
+	private Integer idCargo;
 	@Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 128)
-    @Column(name = "NOMBRE")
-	private String nombre;
-	@ManyToMany(mappedBy = "perfilList")
-	private List<Pagina> paginaList;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblPerfilIdPerfil")
+    @Size(min = 1, max = 64)
+    @Column(name = "CARGO")
+	private String cargo;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblCargoIdCargo")
 	private List<CargoPerfil> cargoPerfilList;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblCargoIdCargo")
+	private List<Usuario> usuarioList;
 
-	public Perfil() {
+	public Cargo() {
 	}
 
-	public Perfil(Integer idPerfil) {
-		this.idPerfil = idPerfil;
+	public Cargo(Integer idCargo) {
+		this.idCargo = idCargo;
 	}
 
-	public Perfil(Integer idPerfil, String nombre) {
-		this.idPerfil = idPerfil;
-		this.nombre = nombre;
+	public Cargo(Integer idCargo, String cargo) {
+		this.idCargo = idCargo;
+		this.cargo = cargo;
 	}
 
-	public Integer getIdPerfil() {
-		return idPerfil;
+	public Integer getIdCargo() {
+		return idCargo;
 	}
 
-	public void setIdPerfil(Integer idPerfil) {
-		this.idPerfil = idPerfil;
+	public void setIdCargo(Integer idCargo) {
+		this.idCargo = idCargo;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getCargo() {
+		return cargo;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	@XmlTransient
-	public List<Pagina> getPaginaList() {
-		return paginaList;
-	}
-
-	public void setPaginaList(List<Pagina> paginaList) {
-		this.paginaList = paginaList;
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
 	}
 
 	@XmlTransient
@@ -117,21 +105,30 @@ public class Perfil implements Serializable {
 		this.cargoPerfilList = cargoPerfilList;
 	}
 
+	@XmlTransient
+	public List<Usuario> getUsuarioList() {
+		return usuarioList;
+	}
+
+	public void setUsuarioList(List<Usuario> usuarioList) {
+		this.usuarioList = usuarioList;
+	}
+
 	@Override
 	public int hashCode() {
 		int hash = 0;
-		hash += (idPerfil != null ? idPerfil.hashCode() : 0);
+		hash += (idCargo != null ? idCargo.hashCode() : 0);
 		return hash;
 	}
 
 	@Override
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof Perfil)) {
+		if (!(object instanceof Cargo)) {
 			return false;
 		}
-		Perfil other = (Perfil) object;
-		if ((this.idPerfil == null && other.idPerfil != null) || (this.idPerfil != null && !this.idPerfil.equals(other.idPerfil))) {
+		Cargo other = (Cargo) object;
+		if ((this.idCargo == null && other.idCargo != null) || (this.idCargo != null && !this.idCargo.equals(other.idCargo))) {
 			return false;
 		}
 		return true;
@@ -139,7 +136,7 @@ public class Perfil implements Serializable {
 
 	@Override
 	public String toString() {
-		return "com.sea.backend.entities.Perfil[ idPerfil=" + idPerfil + " ]";
+		return "com.sea.backend.entities.Cargo[ idCargo=" + idCargo + " ]";
 	}
 	
 }

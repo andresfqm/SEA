@@ -23,28 +23,29 @@
  */
 package com.sea.backend.model;
 
-import com.sea.backend.entities.Devolucion;
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import com.sea.backend.entities.DisenoProducto;
+import java.util.List;
+import javax.ejb.Local;
 
 /**
  *
  * @author homero
  */
-@Stateless
-public class DevolucionFacade extends AbstractFacade<Devolucion> implements DevolucionFacadeLocal {
+@Local
+public interface DisenoProductoFacadeLocal {
 
-	@PersistenceContext(unitName = "SEAPU")
-	private EntityManager em;
+	void create(DisenoProducto disenoProducto);
 
-	@Override
-	protected EntityManager getEntityManager() {
-		return em;
-	}
+	void edit(DisenoProducto disenoProducto);
 
-	public DevolucionFacade() {
-		super(Devolucion.class);
-	}
+	void remove(DisenoProducto disenoProducto);
+
+	DisenoProducto find(Object id);
+
+	List<DisenoProducto> findAll();
+
+	List<DisenoProducto> findRange(int[] range);
+
+	int count();
 	
 }

@@ -10,6 +10,8 @@ import com.sea.backend.entities.Cliente;
 import com.sea.backend.entities.Cotizacion;
 import com.sea.backend.entities.CotizacionProducto;
 import com.sea.backend.entities.DescuentoVolumen;
+import com.sea.backend.entities.DisenoProducto;
+import com.sea.backend.entities.EspecificacionDiseno;
 import com.sea.backend.entities.Fabricante;
 import com.sea.backend.entities.LugaresEntrega;
 import com.sea.backend.entities.Material;
@@ -17,9 +19,9 @@ import com.sea.backend.entities.ModalidadDePago;
 import com.sea.backend.entities.OrdenProduccion;
 import com.sea.backend.entities.Producto;
 import com.sea.backend.entities.ProductoEspecificacion;
-import com.sea.backend.entities.ProductoEspecificacionTalla;
 import com.sea.backend.entities.PropuestaNoIncluye;
 import com.sea.backend.entities.Talla;
+import com.sea.backend.entities.TallaDisenoProducto;
 import com.sea.backend.entities.TiempoEntrega;
 import com.sea.backend.entities.Usuario;
 import com.sea.backend.model.CiudadFacadeLocal;
@@ -28,15 +30,17 @@ import com.sea.backend.model.CotizacionFacadeLocal;
 import com.sea.backend.model.CotizacionProductoFacadeLocal;
 import com.sea.backend.model.DescuentoFacadeLocal;
 import com.sea.backend.model.DescuentoVolumenFacadeLocal;
+import com.sea.backend.model.DisenoProductoFacadeLocal;
+import com.sea.backend.model.EspecificacionDisenoFacadeLocal;
 import com.sea.backend.model.FabricanteFacadeLocal;
 import com.sea.backend.model.LugaresEntregaFacadeLocal;
 import com.sea.backend.model.MaterialFacadeLocal;
 import com.sea.backend.model.ModalidadDePagoFacadeLocal;
 import com.sea.backend.model.OrdenProduccionFacadeLocal;
 import com.sea.backend.model.ProductoEspecificacionFacadeLocal;
-import com.sea.backend.model.ProductoEspecificacionTallaFacadeLocal;
 import com.sea.backend.model.ProductoFacadeLocal;
 import com.sea.backend.model.PropuestaNoIncluyeFacadeLocal;
+import com.sea.backend.model.TallaDisenoProductoFacadeLocal;
 import com.sea.backend.model.TallaFacadeLocal;
 import com.sea.backend.model.TiempoEntregaFacadeLocal;
 import com.sea.backend.model.UsuarioFacadeLocal;
@@ -132,11 +136,6 @@ public class OrdenProduccionController implements Serializable {
 	private int idPropuestaNoIncluye;
 	private PropuestaNoIncluye propuestaNoIncluye;
 
-	//EJB Producto Especificación talla
-	private ProductoEspecificacionTallaFacadeLocal productoETEJB;
-	private ProductoEspecificacionTalla productoEspecificacionTalla;
-	private List<ProductoEspecificacionTalla> listaProductoEspecificacionTallas;
-
 	//Variable para almacenar el campo diseño de generar orden producción
 	private String diseño;
 
@@ -187,9 +186,28 @@ public class OrdenProduccionController implements Serializable {
 	private OrdenProduccion ordenProduccion;
 	private List<Cotizacion> listaLugarEmision;
 
+	// EJB de la tabla diseñoProducto
+	@EJB
+	private DisenoProductoFacadeLocal diseñoEJB;
+	private DisenoProducto disenoProducto;
+	private List<DisenoProducto> listaDiseñoProducto;
+
+	// EJB de la tabla especiidcaciónDiseño
+	@EJB
+	private EspecificacionDisenoFacadeLocal especificaciónDEJB;
+	private EspecificacionDiseno especificacionDiseno;
+
+	@EJB
+	private TallaDisenoProductoFacadeLocal tallaDPEJB;
+	private TallaDisenoProducto tallaDisenoProducto;
+
+	private UsuarioFacadeLocal EJBUsuario;
+	private Usuario usuario;
+	private int idUsuario;
+
 	@PostConstruct
 	public void init() {
-
+		usuario = new Usuario();
 		cotizacion = new Cotizacion();
 		cotizacionP = new CotizacionProducto();
 		producto = new Producto();
@@ -207,16 +225,17 @@ public class OrdenProduccionController implements Serializable {
 		listaCotizacionesOrdenProduccion = cotizacionEJB.findAll();
 		listaProductoEspecificacion = new ArrayList<>();
 		cotizacionProducto = new CotizacionProducto();
-
-		listaProductoEspecificacionTallas = new ArrayList<>();
 		productoEspecificacion = new ProductoEspecificacion();
 		talla = new Talla();
 		listaTallas = tallaEJB.findAll();
-		productoEspecificacionTalla = new ProductoEspecificacionTalla();
 		ordenProduccion = new OrdenProduccion();
 		ordenProduccion.setFechaExpedicion(new Date());
 		ordenProduccion.setFechaEntregaFinal(new Date());
 
+		disenoProducto = new DisenoProducto();
+		listaDiseñoProducto = new ArrayList<>();
+		especificacionDiseno = new EspecificacionDiseno();
+		tallaDisenoProducto = new TallaDisenoProducto();
 	}
 
 	public void agregarCotizacionProducto() {
@@ -596,14 +615,6 @@ public class OrdenProduccionController implements Serializable {
 		this.productoEspecificacion = productoEspecificacion;
 	}
 
-	public ProductoEspecificacionTalla getProductoEspecificacionTalla() {
-		return productoEspecificacionTalla;
-	}
-
-	public void setProductoEspecificacionTalla(ProductoEspecificacionTalla productoEspecificacionTalla) {
-		this.productoEspecificacionTalla = productoEspecificacionTalla;
-	}
-
 	public Part getDiagrama_diseño() {
 		return diagrama_diseño;
 	}
@@ -668,31 +679,26 @@ public class OrdenProduccionController implements Serializable {
 		this.idProductoEspecificacion = idProductoEspecificacion;
 	}
 
-	public List<ProductoEspecificacionTalla> getListaProductoEspecificacionTallas() {
-		return listaProductoEspecificacionTallas;
-	}
-
-	public void setListaProductoEspecificacionTallas(List<ProductoEspecificacionTalla> listaProductoEspecificacionTallas) {
-		this.listaProductoEspecificacionTallas = listaProductoEspecificacionTallas;
-	}
-
 	//Metodo para agragar producto_especificación
 	public void productoEspecificacon() {
 		ProductoEspecificacion proE = new ProductoEspecificacion();
-
-		proE.setDescripcion(productoEspecificacion.getDescripcion());
-		proE.setLogotipo(productoEspecificacion.getLogotipo());
-		proE.setCantidadArticulos(productoEspecificacion.getCantidadArticulos());
-		proE.setDiagramaDiseño(productoEspecificacion.getDiagramaDiseño());
-		proE.setNecesitaBordado(productoEspecificacion.getNecesitaBordado());
+		proE.setObservaqciones(productoEspecificacion.getObservaqciones());
+		proE.setTblOrdenProduccionIdOrdenProduccion(ordenProduccion);
 		proE.setTblProductoIdProducto(producto);
 		listaProductoEspecificacion.add(proE);
 
-		ProductoEspecificacionTalla proET = new ProductoEspecificacionTalla();
-		proET.setCantidad(productoEspecificacionTalla.getCantidad());
-		proET.setTblTallaIdTalla(talla);
-		listaProductoEspecificacionTallas.add(proET);
+	}
 
+	//Metodo para agragar diseño del producto
+	public void diseñoProducto() {
+		DisenoProducto diseñoP = new DisenoProducto();
+		diseñoP.setLogotipo(disenoProducto.getLogotipo());
+		diseñoP.setDiagramaDiseno(disenoProducto.getDiagramaDiseno());
+		diseñoP.setNecesitaBordado(disenoProducto.getNecesitaBordado());
+		diseñoP.setDiseno(disenoProducto.getDiseno());
+		diseñoP.setDescripcionDiseno(disenoProducto.getDescripcionDiseno());
+		diseñoP.setTblProductoEspecificacionIdProductoEspecificacion(productoEspecificacion);
+		listaDiseñoProducto.add(diseñoP);
 	}
 
 	public List<Cotizacion> getListaLugarEmision() {
@@ -738,7 +744,7 @@ public class OrdenProduccionController implements Serializable {
 				out.write(data);
 				in.close();
 				out.close();
-				productoEspecificacion.setDiagramaDiseño(pathReal);
+				disenoProducto.setDiagramaDiseno(pathReal);
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -757,14 +763,13 @@ public class OrdenProduccionController implements Serializable {
 				out2.write(data2);
 				in2.close();
 				out2.close();
-				productoEspecificacion.setLogotipo(pathReal);
+				disenoProducto.setLogotipo(pathReal);
 
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println(e.getMessage());
 			}
 			ordenProduccion.setFechaExpedicion(ordenProduccion.getFechaExpedicion());
-			ordenProduccion.setFechaEntregaFinal(ordenProduccion.getFechaEntregaFinal());
 			//Ciudad quemada
 			ordenProduccion.setCiudadExpedicion("Abriaquí");
 			ordenProduccion.setObservaciones(ordenProduccion.getObservaciones());
@@ -773,23 +778,15 @@ public class OrdenProduccionController implements Serializable {
 			ordenProduccion.setTblCotizacionNumeroCotizacion(cotizacionEJB.find(numeroCotizacion));
 
 			ordenPEJB.create(ordenProduccion);
+			for (DisenoProducto item1 : listaDiseñoProducto) {
+				item1.setTblProductoEspecificacionIdProductoEspecificacion(productoEspecificacion);
+				item1.setLogotipo(this.disenoProducto.getLogotipo());
+				item1.setDiagramaDiseno(this.disenoProducto.getDiagramaDiseno());
+				item1.setNecesitaBordado(this.disenoProducto.getNecesitaBordado());
+				item1.setDiseno(this.disenoProducto.getDiseno());
+				item1.setDescripcionDiseno(this.disenoProducto.getDescripcionDiseno());
+				diseñoEJB.create(item1);
 
-			for (ProductoEspecificacion itemVenta1 : listaProductoEspecificacion) {
-				itemVenta1.setTblOrdenProduccionIdOrdenProduccion(ordenProduccion);
-				itemVenta1.setTblProductoIdProducto(producto);
-				itemVenta1.setDescripcion(this.productoEspecificacion.getDescripcion());
-				itemVenta1.setLogotipo(this.productoEspecificacion.getLogotipo());
-				itemVenta1.setCantidadArticulos(this.productoEspecificacion.getCantidadArticulos());
-				itemVenta1.setDiagramaDiseño(this.productoEspecificacion.getDiagramaDiseño());
-				itemVenta1.setNecesitaBordado(this.productoEspecificacion.getNecesitaBordado());
-				productoEsEJB.create(itemVenta1);
-			}
-
-			for (ProductoEspecificacionTalla itemventa2 : listaProductoEspecificacionTallas) {
-				itemventa2.setTblProductoEspecificacionIdProductoEspecificacion(productoEspecificacion);
-				itemventa2.setTblTallaIdTalla(talla);
-				itemventa2.setCantidad(this.productoEspecificacionTalla.getCantidad());
-				productoETEJB.create(itemventa2);
 			}
 		} catch (Exception e) {
 		}
@@ -835,5 +832,55 @@ public class OrdenProduccionController implements Serializable {
 	public void setReferencia(String referencia) {
 		this.referencia = referencia;
 	}
+
+	public DisenoProducto getDisenoProducto() {
+		return disenoProducto;
+	}
+
+	public void setDisenoProducto(DisenoProducto disenoProducto) {
+		this.disenoProducto = disenoProducto;
+	}
+
+	public EspecificacionDiseno getEspecificacionDiseno() {
+		return especificacionDiseno;
+	}
+
+	public void setEspecificacionDiseno(EspecificacionDiseno especificacionDiseno) {
+		this.especificacionDiseno = especificacionDiseno;
+	}
+
+	public TallaDisenoProducto getTallaDisenoProducto() {
+		return tallaDisenoProducto;
+	}
+
+	public void setTallaDisenoProducto(TallaDisenoProducto tallaDisenoProducto) {
+		this.tallaDisenoProducto = tallaDisenoProducto;
+	}
+
+	public List<DisenoProducto> getListaDiseñoProducto() {
+		return listaDiseñoProducto;
+	}
+
+	public void setListaDiseñoProducto(List<DisenoProducto> listaDiseñoProducto) {
+		this.listaDiseñoProducto = listaDiseñoProducto;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public int getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+	
+	
 
 }

@@ -91,16 +91,16 @@ public class Producto implements Serializable {
 	private float precio;
 	@Column(name = "PERSONALIZADO")
 	private Boolean personalizado;
-	@JoinTable(name = "tbl_producto_sufijo", joinColumns = {
-    	@JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")}, inverseJoinColumns = {
-    	@JoinColumn(name = "TBL_SUFIJO_ID_SUFIJO", referencedColumnName = "ID_SUFIJO")})
-    @ManyToMany
-	private List<Sufijo> sufijoList;
 	@JoinTable(name = "tbl_especificacion_producto", joinColumns = {
     	@JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")}, inverseJoinColumns = {
     	@JoinColumn(name = "TBL_ESPECIFICACION_ID_ESPECIFICACION", referencedColumnName = "ID_ESPECIFICACION")})
     @ManyToMany
 	private List<Especificacion> especificacionList;
+	@JoinTable(name = "tbl_producto_sufijo", joinColumns = {
+    	@JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")}, inverseJoinColumns = {
+    	@JoinColumn(name = "TBL_SUFIJO_ID_SUFIJO", referencedColumnName = "ID_SUFIJO")})
+    @ManyToMany
+	private List<Sufijo> sufijoList;
 	@ManyToMany(mappedBy = "productoList")
 	private List<Material> materialList;
 	@ManyToMany(mappedBy = "productoList")
@@ -181,21 +181,21 @@ public class Producto implements Serializable {
 	}
 
 	@XmlTransient
-	public List<Sufijo> getSufijoList() {
-		return sufijoList;
-	}
-
-	public void setSufijoList(List<Sufijo> sufijoList) {
-		this.sufijoList = sufijoList;
-	}
-
-	@XmlTransient
 	public List<Especificacion> getEspecificacionList() {
 		return especificacionList;
 	}
 
 	public void setEspecificacionList(List<Especificacion> especificacionList) {
 		this.especificacionList = especificacionList;
+	}
+
+	@XmlTransient
+	public List<Sufijo> getSufijoList() {
+		return sufijoList;
+	}
+
+	public void setSufijoList(List<Sufijo> sufijoList) {
+		this.sufijoList = sufijoList;
 	}
 
 	@XmlTransient

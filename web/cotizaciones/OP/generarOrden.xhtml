@@ -51,14 +51,6 @@
 							</h:inputText>
 							<h:outputLabel class="mdl-textfield__label" for="fechaEmision">Fecha de emisión</h:outputLabel>
 						</h:panelGroup>
-
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<h:inputText pt:type="date" class="mdl-textfield__input" id="fechaEF" value="#{ordenProduccionController.ordenProduccion.fechaEntregaFinal}" pt:disabled="true">
-								<f:convertDateTime pattern="dd/MM/yyyy" />
-							</h:inputText>
-							<h:outputLabel class="mdl-textfield__label" for="fechaEF">Fecha de entrega final</h:outputLabel>
-						</h:panelGroup>
-
 						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 							<h:inputText class="mdl-textfield__input" id="cliente" value="#{ordenProduccionController.datosCotizacion[1]}" pt:disabled="true" />
 							<h:outputLabel class="mdl-textfield__label" for="cliente">Empresa</h:outputLabel>
@@ -168,34 +160,11 @@
 
 
 
-						<!-- input file-->
-						<h3 class="mdl-typography--headline">Diagrama de diseño</h3>
-
-						<img src="../../Archivos/DSCN1000.JPG" width="200" alt=""/>
 
 
-						<h:panelGroup layout="block">
-							<h:inputFile id="diagramaDiseno" value="#{ordenProduccionController.diagrama_diseño}"/>
-							<h:outputLabel for="diagramaDiseno" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
 
-								<i class="material-icons">file_upload</i>
-							</h:outputLabel>
-						</h:panelGroup>
 
-						<h3 class="mdl-typography--headline">Logotipo</h3>
-						<img src="../../Archivos/DSCN1000.JPG" width="200" alt=""/>
 
-						<h:panelGroup layout="block">
-							<h:inputFile id="txtcargarlog" value="#{ordenProduccionController.logotipo}"/>
-							<h:outputLabel for="txtcargarlog" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
-								<i class="material-icons">file_upload</i>
-							</h:outputLabel>
-						</h:panelGroup>
-
-						<h:outputLabel class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="Necesitabordado">
-                            <h:selectBooleanCheckbox id="Necesitabordado" class="mdl-switch__input" value="#{ordenProduccionController.productoEspecificacion.necesitaBordado}" />
-                            <h:panelGroup class="mdl-switch__label">Necesita bordado</h:panelGroup>
-                        </h:outputLabel>
 
 						<h3 class="mdl-typography--headline">Condiciones comerciales</h3>
 						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -217,35 +186,53 @@
 				<p:dialog widgetVar="dlg2" id="cantidadTallas" >	
 					<h:form id="addCantidadTallas" class="mdl-dialog" enctype="multipart/form-data">
 						<h3 class="mdl-dialog__title">Cantidad por tallas</h3>
+
+
+						<h3 class="mdl-typography--headline">Logotipo</h3>
+						<img src="../../Archivos/DSCN1000.JPG" width="200" alt=""/>
+
+						<h:panelGroup layout="block">
+							<h:inputFile id="txtcargarlog" value="#{ordenProduccionController.logotipo}"/>
+							<h:outputLabel for="txtcargarlog" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+								<i class="material-icons">file_upload</i>
+							</h:outputLabel>
+						</h:panelGroup>
+
+						<!-- input file-->
+						<h3 class="mdl-typography--headline">Diagrama de diseño</h3>
+
+						<img src="../../Archivos/DSCN1000.JPG" width="200" alt=""/>
+
+
+						<h:panelGroup layout="block">
+							<h:inputFile id="diagramaDiseno" value="#{ordenProduccionController.diagrama_diseño}"/>
+							<h:outputLabel for="diagramaDiseno" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+
+								<i class="material-icons">file_upload</i>
+							</h:outputLabel>
+						</h:panelGroup>
+
+						<h:outputLabel class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="Necesitabordado">
+                            <h:selectBooleanCheckbox id="Necesitabordado" class="mdl-switch__input" value="#{ordenProduccionController.disenoProducto.necesitaBordado}" />
+                            <h:panelGroup class="mdl-switch__label">Necesita bordado</h:panelGroup>
+                        </h:outputLabel>
+
 						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<h:inputText class="mdl-textfield__input" id="diseño" pt:maxlength="100" pt:required="true" value="#{ordenProduccionController.diseño}" />
+							<h:inputText class="mdl-textfield__input" id="diseño" pt:maxlength="100" pt:required="true" value="#{ordenProduccionController.disenoProducto.diseno}" />
 							<h:outputLabel class="mdl-textfield__label" for="diseño">Diseño</h:outputLabel>
 						</h:panelGroup>
 
 						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<h:inputText class="mdl-textfield__input" id="descripcion" pt:required="true"  value="#{ordenProduccionController.productoEspecificacion.descripcion}" pt:maxlength="250" />
-							<h:outputLabel class="mdl-textfield__label" for="descripcion">Descripción</h:outputLabel>
+							<h:inputText class="mdl-textfield__input" id="descripcion" pt:required="true"  value="#{ordenProduccionController.disenoProducto.descripcionDiseno}" pt:maxlength="250" />
+							<h:outputLabel class="mdl-textfield__label" for="descripcion">Descripción Diseño</h:outputLabel>
 						</h:panelGroup>
-
-
-
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<h:outputLabel class="mdl-textfield__label" for="referencia">Talla</h:outputLabel>
-							<p:selectOneMenu value="#{ordenProduccionController.talla.idTalla}" id="talla">
-								<p:ajax event="valueChange" listener="#{ordenProduccionController.obtenertallaDescripcion()}"/>
-								<f:selectItem itemValue="" itemLabel="Seleccione" />
-								<f:selectItems value="#{ordenProduccionController.listaTallas}" pt:required="true" var="talla" itemLabel="#{talla.talla}" itemValue="#{talla.idTalla}"/>
-							</p:selectOneMenu>
-						</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<h:inputText class="mdl-textfield__input" pt:type="number" p:min="1" p:step="1" pt:maxlength="32" pt:required="true" value="#{ordenProduccionController.productoEspecificacionTalla.cantidad}"/>
-							<h:outputLabel class="mdl-textfield__label" for="cantidad">cantidad</h:outputLabel>
-						</h:panelGroup>
+						
 						<h:panelGroup layout="block" class="mdl-dialog__actions">
-							<p:commandButton actionListener="#{ordenProduccionController.productoEspecificacon()}" value="Agregar" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" update="formGen:formTable:tablaP" oncomplete="PF('dlg2').hide();"/>
+							<p:commandButton actionListener="#{ordenProduccionController.diseñoProducto()}" value="Agregar" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" update="formGen:formTable:tablaP" oncomplete="PF('dlg2').hide();"/>
 							<p:commandButton value="Cancelar" onclick="PF('dlg2').hide();" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm"/>
 
 						</h:panelGroup>
+
 					</h:form>
 				</p:dialog>
 

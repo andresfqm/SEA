@@ -101,9 +101,7 @@ public class OrdenProduccion implements Serializable {
 	@Column(name = "FECHA_ENTREGA_2")
     @Temporal(TemporalType.DATE)
 	private Date fechaEntrega2;
-	@Basic(optional = false)
-    @NotNull
-    @Column(name = "FECHA_ENTREGA_FINAL")
+	@Column(name = "FECHA_ENTREGA_FINAL")
     @Temporal(TemporalType.DATE)
 	private Date fechaEntregaFinal;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblOrdenProduccionIdOrdenProduccion")
@@ -123,13 +121,12 @@ public class OrdenProduccion implements Serializable {
 		this.idOrdenProduccion = idOrdenProduccion;
 	}
 
-	public OrdenProduccion(Integer idOrdenProduccion, Date fechaExpedicion, String ciudadExpedicion, int totalPrendas, String estado, Date fechaEntregaFinal) {
+	public OrdenProduccion(Integer idOrdenProduccion, Date fechaExpedicion, String ciudadExpedicion, int totalPrendas, String estado) {
 		this.idOrdenProduccion = idOrdenProduccion;
 		this.fechaExpedicion = fechaExpedicion;
 		this.ciudadExpedicion = ciudadExpedicion;
 		this.totalPrendas = totalPrendas;
 		this.estado = estado;
-		this.fechaEntregaFinal = fechaEntregaFinal;
 	}
 
 	public Integer getIdOrdenProduccion() {

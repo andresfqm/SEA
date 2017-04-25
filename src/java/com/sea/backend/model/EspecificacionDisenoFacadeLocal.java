@@ -23,7 +23,7 @@
  */
 package com.sea.backend.model;
 
-import com.sea.backend.entities.UsuarioPerfil;
+import com.sea.backend.entities.EspecificacionDiseno;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -32,19 +32,19 @@ import javax.ejb.Local;
  * @author homero
  */
 @Local
-public interface UsuarioPerfilFacadeLocal {
+public interface EspecificacionDisenoFacadeLocal {
 
-	void create(UsuarioPerfil usuarioPerfil);
+	void create(EspecificacionDiseno especificacionDiseno);
 
-	void edit(UsuarioPerfil usuarioPerfil);
+	void edit(EspecificacionDiseno especificacionDiseno);
 
-	void remove(UsuarioPerfil usuarioPerfil);
+	void remove(EspecificacionDiseno especificacionDiseno);
 
-	UsuarioPerfil find(Object id);
+	EspecificacionDiseno find(Object id);
 
-	List<UsuarioPerfil> findAll();
+	List<EspecificacionDiseno> findAll();
 
-	List<UsuarioPerfil> findRange(int[] range);
+	List<EspecificacionDiseno> findRange(int[] range);
 
 	int count();
 	

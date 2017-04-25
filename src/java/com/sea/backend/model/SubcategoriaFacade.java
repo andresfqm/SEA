@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Stateless
 public class SubcategoriaFacade extends AbstractFacade<Subcategoria> implements SubcategoriaFacadeLocal {
@@ -46,5 +46,5 @@ public class SubcategoriaFacade extends AbstractFacade<Subcategoria> implements 
 	public SubcategoriaFacade() {
 		super(Subcategoria.class);
 	}
-
+	
 }

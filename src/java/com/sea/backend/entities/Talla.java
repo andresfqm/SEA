@@ -66,7 +66,7 @@ public class Talla implements Serializable {
     @Column(name = "TALLA")
 	private String talla;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblTallaIdTalla")
-	private List<ProductoEspecificacionTalla> productoEspecificacionTallaList;
+	private List<TallaDisenoProducto> tallaDisenoProductoList;
 
 	public Talla() {
 	}
@@ -97,12 +97,12 @@ public class Talla implements Serializable {
 	}
 
 	@XmlTransient
-	public List<ProductoEspecificacionTalla> getProductoEspecificacionTallaList() {
-		return productoEspecificacionTallaList;
+	public List<TallaDisenoProducto> getTallaDisenoProductoList() {
+		return tallaDisenoProductoList;
 	}
 
-	public void setProductoEspecificacionTallaList(List<ProductoEspecificacionTalla> productoEspecificacionTallaList) {
-		this.productoEspecificacionTallaList = productoEspecificacionTallaList;
+	public void setTallaDisenoProductoList(List<TallaDisenoProducto> tallaDisenoProductoList) {
+		this.tallaDisenoProductoList = tallaDisenoProductoList;
 	}
 
 	@Override

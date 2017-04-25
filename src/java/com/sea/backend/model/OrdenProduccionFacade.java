@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,17 +23,14 @@
  */
 package com.sea.backend.model;
 
-import com.sea.backend.entities.Cotizacion;
 import com.sea.backend.entities.OrdenProduccion;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Stateless
 public class OrdenProduccionFacade extends AbstractFacade<OrdenProduccion> implements OrdenProduccionFacadeLocal {
@@ -49,7 +46,5 @@ public class OrdenProduccionFacade extends AbstractFacade<OrdenProduccion> imple
 	public OrdenProduccionFacade() {
 		super(OrdenProduccion.class);
 	}
-
-
-
+	
 }

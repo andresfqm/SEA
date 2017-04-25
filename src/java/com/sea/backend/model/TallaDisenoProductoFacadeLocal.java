@@ -23,28 +23,29 @@
  */
 package com.sea.backend.model;
 
-import com.sea.backend.entities.UsuarioPerfil;
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import com.sea.backend.entities.TallaDisenoProducto;
+import java.util.List;
+import javax.ejb.Local;
 
 /**
  *
  * @author homero
  */
-@Stateless
-public class UsuarioPerfilFacade extends AbstractFacade<UsuarioPerfil> implements UsuarioPerfilFacadeLocal {
+@Local
+public interface TallaDisenoProductoFacadeLocal {
 
-	@PersistenceContext(unitName = "SEAPU")
-	private EntityManager em;
+	void create(TallaDisenoProducto tallaDisenoProducto);
 
-	@Override
-	protected EntityManager getEntityManager() {
-		return em;
-	}
+	void edit(TallaDisenoProducto tallaDisenoProducto);
 
-	public UsuarioPerfilFacade() {
-		super(UsuarioPerfil.class);
-	}
+	void remove(TallaDisenoProducto tallaDisenoProducto);
+
+	TallaDisenoProducto find(Object id);
+
+	List<TallaDisenoProducto> findAll();
+
+	List<TallaDisenoProducto> findRange(int[] range);
+
+	int count();
 	
 }

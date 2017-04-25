@@ -23,7 +23,7 @@
  */
 package com.sea.backend.model;
 
-import com.sea.backend.entities.Devolucion;
+import com.sea.backend.entities.EspecificacionDiseno;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -33,7 +33,7 @@ import javax.persistence.PersistenceContext;
  * @author homero
  */
 @Stateless
-public class DevolucionFacade extends AbstractFacade<Devolucion> implements DevolucionFacadeLocal {
+public class EspecificacionDisenoFacade extends AbstractFacade<EspecificacionDiseno> implements EspecificacionDisenoFacadeLocal {
 
 	@PersistenceContext(unitName = "SEAPU")
 	private EntityManager em;
@@ -43,8 +43,8 @@ public class DevolucionFacade extends AbstractFacade<Devolucion> implements Devo
 		return em;
 	}
 
-	public DevolucionFacade() {
-		super(Devolucion.class);
+	public EspecificacionDisenoFacade() {
+		super(EspecificacionDiseno.class);
 	}
 	
 }

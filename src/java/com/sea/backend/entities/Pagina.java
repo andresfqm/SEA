@@ -217,5 +217,5 @@ public class Pagina implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Pagina[ idPagina=" + idPagina + " ]";
 	}
-	
+    
 }

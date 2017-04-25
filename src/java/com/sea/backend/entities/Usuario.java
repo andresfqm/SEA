@@ -57,7 +57,6 @@ import javax.xml.bind.annotation.XmlTransient;
 	@NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre"),
 	@NamedQuery(name = "Usuario.findByApellido", query = "SELECT u FROM Usuario u WHERE u.apellido = :apellido"),
 	@NamedQuery(name = "Usuario.findByIdInterno", query = "SELECT u FROM Usuario u WHERE u.idInterno = :idInterno"),
-	@NamedQuery(name = "Usuario.findByCargo", query = "SELECT u FROM Usuario u WHERE u.cargo = :cargo"),
 	@NamedQuery(name = "Usuario.findByConsecutivoCotizacion", query = "SELECT u FROM Usuario u WHERE u.consecutivoCotizacion = :consecutivoCotizacion"),
 	@NamedQuery(name = "Usuario.findByNombreUsuario", query = "SELECT u FROM Usuario u WHERE u.nombreUsuario = :nombreUsuario"),
 	@NamedQuery(name = "Usuario.findByContrasena", query = "SELECT u FROM Usuario u WHERE u.contrasena = :contrasena"),
@@ -93,11 +92,6 @@ public class Usuario implements Serializable {
 	private String idInterno;
 	@Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 18)
-    @Column(name = "CARGO")
-	private String cargo;
-	@Basic(optional = false)
-    @NotNull
     @Column(name = "CONSECUTIVO_COTIZACION")
 	private int consecutivoCotizacion;
 	@Basic(optional = false)
@@ -124,13 +118,14 @@ public class Usuario implements Serializable {
 	private List<Telefono> telefonoList;
 	@OneToMany(mappedBy = "tblUsuarioIdUsuario")
 	private List<Direccion> direccionList;
+	@JoinColumn(name = "TBL_CARGO_ID_CARGO", referencedColumnName = "ID_CARGO")
+    @ManyToOne(optional = false)
+	private Cargo tblCargoIdCargo;
 	@JoinColumn(name = "TBL_TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO", referencedColumnName = "ID_TIPO_DOCUMENTO")
     @ManyToOne(optional = false)
 	private TipoDocumento tblTipoDocumentoIdTipoDocumento;
 	@OneToMany(mappedBy = "tblUsuarioIdUsuario")
 	private List<Email> emailList;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblUsuarioIdUsuario")
-	private List<UsuarioPerfil> usuarioPerfilList;
 
 	public Usuario() {
 	}
@@ -139,13 +134,12 @@ public class Usuario implements Serializable {
 		this.idUsuario = idUsuario;
 	}
 
-	public Usuario(Integer idUsuario, String numeroDocumento, String nombre, String apellido, String idInterno, String cargo, int consecutivoCotizacion, String nombreUsuario, String contrasena, boolean habilitado, boolean autenticado) {
+	public Usuario(Integer idUsuario, String numeroDocumento, String nombre, String apellido, String idInterno, int consecutivoCotizacion, String nombreUsuario, String contrasena, boolean habilitado, boolean autenticado) {
 		this.idUsuario = idUsuario;
 		this.numeroDocumento = numeroDocumento;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.idInterno = idInterno;
-		this.cargo = cargo;
 		this.consecutivoCotizacion = consecutivoCotizacion;
 		this.nombreUsuario = nombreUsuario;
 		this.contrasena = contrasena;
@@ -191,14 +185,6 @@ public class Usuario implements Serializable {
 
 	public void setIdInterno(String idInterno) {
 		this.idInterno = idInterno;
-	}
-
-	public String getCargo() {
-		return cargo;
-	}
-
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
 	}
 
 	public int getConsecutivoCotizacion() {
@@ -268,6 +254,14 @@ public class Usuario implements Serializable {
 		this.direccionList = direccionList;
 	}
 
+	public Cargo getTblCargoIdCargo() {
+		return tblCargoIdCargo;
+	}
+
+	public void setTblCargoIdCargo(Cargo tblCargoIdCargo) {
+		this.tblCargoIdCargo = tblCargoIdCargo;
+	}
+
 	public TipoDocumento getTblTipoDocumentoIdTipoDocumento() {
 		return tblTipoDocumentoIdTipoDocumento;
 	}
@@ -283,15 +277,6 @@ public class Usuario implements Serializable {
 
 	public void setEmailList(List<Email> emailList) {
 		this.emailList = emailList;
-	}
-
-	@XmlTransient
-	public List<UsuarioPerfil> getUsuarioPerfilList() {
-		return usuarioPerfilList;
-	}
-
-	public void setUsuarioPerfilList(List<UsuarioPerfil> usuarioPerfilList) {
-		this.usuarioPerfilList = usuarioPerfilList;
 	}
 
 	@Override

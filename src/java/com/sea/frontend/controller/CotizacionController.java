@@ -17,7 +17,6 @@ import com.sea.backend.entities.ModalidadDePago;
 import com.sea.backend.entities.OrdenProduccion;
 import com.sea.backend.entities.Producto;
 import com.sea.backend.entities.ProductoEspecificacion;
-import com.sea.backend.entities.ProductoEspecificacionTalla;
 import com.sea.backend.entities.PropuestaNoIncluye;
 import com.sea.backend.entities.Talla;
 import com.sea.backend.entities.TiempoEntrega;
@@ -34,7 +33,6 @@ import com.sea.backend.model.MaterialFacadeLocal;
 import com.sea.backend.model.ModalidadDePagoFacadeLocal;
 import com.sea.backend.model.OrdenProduccionFacadeLocal;
 import com.sea.backend.model.ProductoEspecificacionFacadeLocal;
-import com.sea.backend.model.ProductoEspecificacionTallaFacadeLocal;
 import com.sea.backend.model.ProductoFacadeLocal;
 import com.sea.backend.model.PropuestaNoIncluyeFacadeLocal;
 import com.sea.backend.model.TallaFacadeLocal;
@@ -109,6 +107,7 @@ public class CotizacionController implements Serializable {
 	@EJB
 	private UsuarioFacadeLocal EJBUsuario;
 	private Usuario usuario;
+	
 
 	//EJB cliente
 	@EJB

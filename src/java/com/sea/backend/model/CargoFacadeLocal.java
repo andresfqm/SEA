@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,29 +23,29 @@
  */
 package com.sea.backend.model;
 
-import com.sea.backend.entities.ProductoEspecificacionTalla;
+import com.sea.backend.entities.Cargo;
 import java.util.List;
 import javax.ejb.Local;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
 @Local
-public interface ProductoEspecificacionTallaFacadeLocal {
+public interface CargoFacadeLocal {
 
-	void create(ProductoEspecificacionTalla productoEspecificacionTalla);
+	void create(Cargo cargo);
 
-	void edit(ProductoEspecificacionTalla productoEspecificacionTalla);
+	void edit(Cargo cargo);
 
-	void remove(ProductoEspecificacionTalla productoEspecificacionTalla);
+	void remove(Cargo cargo);
 
-	ProductoEspecificacionTalla find(Object id);
+	Cargo find(Object id);
 
-	List<ProductoEspecificacionTalla> findAll();
+	List<Cargo> findAll();
 
-	List<ProductoEspecificacionTalla> findRange(int[] range);
+	List<Cargo> findRange(int[] range);
 
 	int count();
-
+	
 }
