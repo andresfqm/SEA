@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 EdisonArturo.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -49,21 +49,21 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EdisonArturo
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_orden_produccion")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "OrdenProduccion.findAll", query = "SELECT o FROM OrdenProduccion o"),
-	@NamedQuery(name = "OrdenProduccion.findByIdOrdenProduccion", query = "SELECT o FROM OrdenProduccion o WHERE o.idOrdenProduccion = :idOrdenProduccion"),
-	@NamedQuery(name = "OrdenProduccion.findByFechaExpedicion", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaExpedicion = :fechaExpedicion"),
-	@NamedQuery(name = "OrdenProduccion.findByCiudadExpedicion", query = "SELECT o FROM OrdenProduccion o WHERE o.ciudadExpedicion = :ciudadExpedicion"),
-	@NamedQuery(name = "OrdenProduccion.findByTotalPrendas", query = "SELECT o FROM OrdenProduccion o WHERE o.totalPrendas = :totalPrendas"),
-	@NamedQuery(name = "OrdenProduccion.findByEstado", query = "SELECT o FROM OrdenProduccion o WHERE o.estado = :estado"),
-	@NamedQuery(name = "OrdenProduccion.findByFechaEntrega1", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaEntrega1 = :fechaEntrega1"),
-	@NamedQuery(name = "OrdenProduccion.findByFechaEntrega2", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaEntrega2 = :fechaEntrega2"),
-	@NamedQuery(name = "OrdenProduccion.findByFechaEntregaFinal", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaEntregaFinal = :fechaEntregaFinal")})
+	@NamedQuery(name = "OrdenProduccion.findAll", query = "SELECT o FROM OrdenProduccion o")
+	, @NamedQuery(name = "OrdenProduccion.findByIdOrdenProduccion", query = "SELECT o FROM OrdenProduccion o WHERE o.idOrdenProduccion = :idOrdenProduccion")
+	, @NamedQuery(name = "OrdenProduccion.findByFechaExpedicion", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaExpedicion = :fechaExpedicion")
+	, @NamedQuery(name = "OrdenProduccion.findByCiudadExpedicion", query = "SELECT o FROM OrdenProduccion o WHERE o.ciudadExpedicion = :ciudadExpedicion")
+	, @NamedQuery(name = "OrdenProduccion.findByTotalPrendas", query = "SELECT o FROM OrdenProduccion o WHERE o.totalPrendas = :totalPrendas")
+	, @NamedQuery(name = "OrdenProduccion.findByEstado", query = "SELECT o FROM OrdenProduccion o WHERE o.estado = :estado")
+	, @NamedQuery(name = "OrdenProduccion.findByFechaEntrega1", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaEntrega1 = :fechaEntrega1")
+	, @NamedQuery(name = "OrdenProduccion.findByFechaEntrega2", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaEntrega2 = :fechaEntrega2")
+	, @NamedQuery(name = "OrdenProduccion.findByFechaEntregaFinal", query = "SELECT o FROM OrdenProduccion o WHERE o.fechaEntregaFinal = :fechaEntregaFinal")})
 public class OrdenProduccion implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -101,9 +101,7 @@ public class OrdenProduccion implements Serializable {
 	@Column(name = "FECHA_ENTREGA_2")
     @Temporal(TemporalType.DATE)
 	private Date fechaEntrega2;
-	@Basic(optional = false)
-    @NotNull
-    @Column(name = "FECHA_ENTREGA_FINAL")
+	@Column(name = "FECHA_ENTREGA_FINAL")
     @Temporal(TemporalType.DATE)
 	private Date fechaEntregaFinal;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblOrdenProduccionIdOrdenProduccion")
@@ -123,13 +121,12 @@ public class OrdenProduccion implements Serializable {
 		this.idOrdenProduccion = idOrdenProduccion;
 	}
 
-	public OrdenProduccion(Integer idOrdenProduccion, Date fechaExpedicion, String ciudadExpedicion, int totalPrendas, String estado, Date fechaEntregaFinal) {
+	public OrdenProduccion(Integer idOrdenProduccion, Date fechaExpedicion, String ciudadExpedicion, int totalPrendas, String estado) {
 		this.idOrdenProduccion = idOrdenProduccion;
 		this.fechaExpedicion = fechaExpedicion;
 		this.ciudadExpedicion = ciudadExpedicion;
 		this.totalPrendas = totalPrendas;
 		this.estado = estado;
-		this.fechaEntregaFinal = fechaEntregaFinal;
 	}
 
 	public Integer getIdOrdenProduccion() {

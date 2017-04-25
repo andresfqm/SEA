@@ -23,29 +23,28 @@
  */
 package com.sea.backend.model;
 
-import com.sea.backend.entities.ProductoEspecificacionTalla;
-import java.util.List;
-import javax.ejb.Local;
+import com.sea.backend.entities.EspecificacionDiseno;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
  * @author Depurador
  */
-@Local
-public interface ProductoEspecificacionTallaFacadeLocal {
+@Stateless
+public class EspecificacionDisenoFacade extends AbstractFacade<EspecificacionDiseno> implements EspecificacionDisenoFacadeLocal {
 
-	void create(ProductoEspecificacionTalla productoEspecificacionTalla);
+	@PersistenceContext(unitName = "SEAPU")
+	private EntityManager em;
 
-	void edit(ProductoEspecificacionTalla productoEspecificacionTalla);
+	@Override
+	protected EntityManager getEntityManager() {
+		return em;
+	}
 
-	void remove(ProductoEspecificacionTalla productoEspecificacionTalla);
-
-	ProductoEspecificacionTalla find(Object id);
-
-	List<ProductoEspecificacionTalla> findAll();
-
-	List<ProductoEspecificacionTalla> findRange(int[] range);
-
-	int count();
-
+	public EspecificacionDisenoFacade() {
+		super(EspecificacionDiseno.class);
+	}
+	
 }

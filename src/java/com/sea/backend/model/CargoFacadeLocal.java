@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,28 +23,28 @@
  */
 package com.sea.backend.model;
 
-import com.sea.backend.entities.UsuarioPerfil;
+import com.sea.backend.entities.Cargo;
 import java.util.List;
 import javax.ejb.Local;
 
 /**
  *
- * @author homero
+ * @author Depurador
  */
 @Local
-public interface UsuarioPerfilFacadeLocal {
+public interface CargoFacadeLocal {
 
-	void create(UsuarioPerfil usuarioPerfil);
+	void create(Cargo cargo);
 
-	void edit(UsuarioPerfil usuarioPerfil);
+	void edit(Cargo cargo);
 
-	void remove(UsuarioPerfil usuarioPerfil);
+	void remove(Cargo cargo);
 
-	UsuarioPerfil find(Object id);
+	Cargo find(Object id);
 
-	List<UsuarioPerfil> findAll();
+	List<Cargo> findAll();
 
-	List<UsuarioPerfil> findRange(int[] range);
+	List<Cargo> findRange(int[] range);
 
 	int count();
 	

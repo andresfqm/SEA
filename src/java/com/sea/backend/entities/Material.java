@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 EdisonArturo.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -44,16 +44,16 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EdisonArturo
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_material")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Material.findAll", query = "SELECT m FROM Material m"),
-	@NamedQuery(name = "Material.findByIdMaterial", query = "SELECT m FROM Material m WHERE m.idMaterial = :idMaterial"),
-	@NamedQuery(name = "Material.findByNombre", query = "SELECT m FROM Material m WHERE m.nombre = :nombre"),
-	@NamedQuery(name = "Material.findByCodigo", query = "SELECT m FROM Material m WHERE m.codigo = :codigo")})
+	@NamedQuery(name = "Material.findAll", query = "SELECT m FROM Material m")
+	, @NamedQuery(name = "Material.findByIdMaterial", query = "SELECT m FROM Material m WHERE m.idMaterial = :idMaterial")
+	, @NamedQuery(name = "Material.findByNombre", query = "SELECT m FROM Material m WHERE m.nombre = :nombre")
+	, @NamedQuery(name = "Material.findByCodigo", query = "SELECT m FROM Material m WHERE m.codigo = :codigo")})
 public class Material implements Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -26,15 +26,13 @@ package com.sea.backend.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -46,80 +44,91 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Depurador
  */
 @Entity
-@Table(name = "tbl_especificacion")
+@Table(name = "tbl_cargo")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Especificacion.findAll", query = "SELECT e FROM Especificacion e")
-	, @NamedQuery(name = "Especificacion.findByIdEspecificacion", query = "SELECT e FROM Especificacion e WHERE e.idEspecificacion = :idEspecificacion")})
-public class Especificacion implements Serializable {
+	@NamedQuery(name = "Cargo.findAll", query = "SELECT c FROM Cargo c")
+	, @NamedQuery(name = "Cargo.findByIdCargo", query = "SELECT c FROM Cargo c WHERE c.idCargo = :idCargo")
+	, @NamedQuery(name = "Cargo.findByCargo", query = "SELECT c FROM Cargo c WHERE c.cargo = :cargo")})
+public class Cargo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "ID_ESPECIFICACION")
-	private Integer idEspecificacion;
+    @NotNull
+    @Column(name = "ID_CARGO")
+	private Integer idCargo;
 	@Basic(optional = false)
     @NotNull
-    @Lob
-    @Size(min = 1, max = 65535)
-    @Column(name = "DESCRIPCION")
-	private String descripcion;
-	@ManyToMany(mappedBy = "especificacionList")
-	private List<Producto> productoList;
+    @Size(min = 1, max = 64)
+    @Column(name = "CARGO")
+	private String cargo;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblCargoIdCargo")
+	private List<CargoPerfil> cargoPerfilList;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblCargoIdCargo")
+	private List<Usuario> usuarioList;
 
-	public Especificacion() {
+	public Cargo() {
 	}
 
-	public Especificacion(Integer idEspecificacion) {
-		this.idEspecificacion = idEspecificacion;
+	public Cargo(Integer idCargo) {
+		this.idCargo = idCargo;
 	}
 
-	public Especificacion(Integer idEspecificacion, String descripcion) {
-		this.idEspecificacion = idEspecificacion;
-		this.descripcion = descripcion;
+	public Cargo(Integer idCargo, String cargo) {
+		this.idCargo = idCargo;
+		this.cargo = cargo;
 	}
 
-	public Integer getIdEspecificacion() {
-		return idEspecificacion;
+	public Integer getIdCargo() {
+		return idCargo;
 	}
 
-	public void setIdEspecificacion(Integer idEspecificacion) {
-		this.idEspecificacion = idEspecificacion;
+	public void setIdCargo(Integer idCargo) {
+		this.idCargo = idCargo;
 	}
 
-	public String getDescripcion() {
-		return descripcion;
+	public String getCargo() {
+		return cargo;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
 	}
 
 	@XmlTransient
-	public List<Producto> getProductoList() {
-		return productoList;
+	public List<CargoPerfil> getCargoPerfilList() {
+		return cargoPerfilList;
 	}
 
-	public void setProductoList(List<Producto> productoList) {
-		this.productoList = productoList;
+	public void setCargoPerfilList(List<CargoPerfil> cargoPerfilList) {
+		this.cargoPerfilList = cargoPerfilList;
+	}
+
+	@XmlTransient
+	public List<Usuario> getUsuarioList() {
+		return usuarioList;
+	}
+
+	public void setUsuarioList(List<Usuario> usuarioList) {
+		this.usuarioList = usuarioList;
 	}
 
 	@Override
 	public int hashCode() {
 		int hash = 0;
-		hash += (idEspecificacion != null ? idEspecificacion.hashCode() : 0);
+		hash += (idCargo != null ? idCargo.hashCode() : 0);
 		return hash;
 	}
 
 	@Override
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof Especificacion)) {
+		if (!(object instanceof Cargo)) {
 			return false;
 		}
-		Especificacion other = (Especificacion) object;
-		if ((this.idEspecificacion == null && other.idEspecificacion != null) || (this.idEspecificacion != null && !this.idEspecificacion.equals(other.idEspecificacion))) {
+		Cargo other = (Cargo) object;
+		if ((this.idCargo == null && other.idCargo != null) || (this.idCargo != null && !this.idCargo.equals(other.idCargo))) {
 			return false;
 		}
 		return true;
@@ -127,7 +136,7 @@ public class Especificacion implements Serializable {
 
 	@Override
 	public String toString() {
-		return "com.sea.backend.entities.Especificacion[ idEspecificacion=" + idEspecificacion + " ]";
+		return "com.sea.backend.entities.Cargo[ idCargo=" + idCargo + " ]";
 	}
 	
 }

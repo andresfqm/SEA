@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 EdisonArturo.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -44,15 +44,15 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EdisonArturo
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_propuesta_no_incluye")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "PropuestaNoIncluye.findAll", query = "SELECT p FROM PropuestaNoIncluye p"),
-	@NamedQuery(name = "PropuestaNoIncluye.findByIdPropuestaNoIncluye", query = "SELECT p FROM PropuestaNoIncluye p WHERE p.idPropuestaNoIncluye = :idPropuestaNoIncluye"),
-	@NamedQuery(name = "PropuestaNoIncluye.findByActivo", query = "SELECT p FROM PropuestaNoIncluye p WHERE p.activo = :activo")})
+	@NamedQuery(name = "PropuestaNoIncluye.findAll", query = "SELECT p FROM PropuestaNoIncluye p")
+	, @NamedQuery(name = "PropuestaNoIncluye.findByIdPropuestaNoIncluye", query = "SELECT p FROM PropuestaNoIncluye p WHERE p.idPropuestaNoIncluye = :idPropuestaNoIncluye")
+	, @NamedQuery(name = "PropuestaNoIncluye.findByActivo", query = "SELECT p FROM PropuestaNoIncluye p WHERE p.activo = :activo")})
 public class PropuestaNoIncluye implements Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -84,7 +84,7 @@ public class LoginController implements Serializable {
 	public String mostrarCargo() {
 		HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 		Usuario u = (Usuario) sesion.getAttribute("usuario");
-		return u.getCargo();
+		return u.getTblCargoIdCargo().getCargo();
 	}
 
 	//Metodo para mostar el id Interno del usuario y el numero de cotizaci´´on correspondiente

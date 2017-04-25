@@ -28,34 +28,37 @@ import javax.servlet.http.HttpSession;
 @ViewScoped
 public class MenuController implements Serializable {
 
-    @EJB
-    private MenuFacadeLocal menuEJB;
-    private List<Menu> listaMenuGeneral;
+	@EJB
+	private MenuFacadeLocal menuEJB;
+	private List<Menu> listaMenuGeneral;
 
-    @PostConstruct
-    public void init() {
-		try {
-			listaMenuGeneral = menuEJB.obtenerMenusGenerales(obtenerIdUsuario());
-		} catch (Exception ex) {
-			Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+	@PostConstruct
+	public void init() {
+		HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+		Usuario u = (Usuario) sesion.getAttribute("usuario");
+		if (u != null) {
+			try {
+				listaMenuGeneral = menuEJB.obtenerMenusGenerales(obtenerIdUsuario());
+			} catch (Exception ex) {
+				Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+			}
 		}
-    }
-	
+	}
+
 	//Obteniendo todos los menús del usuario
 	public void obtenerMenusGenerales() throws Exception {
-		System.out.println("Antes del try");
 		try {
-			System.out.println("En el try");
 			listaMenuGeneral = menuEJB.obtenerMenusGenerales(obtenerIdUsuario());
 		} catch (Exception e) {
 			throw e;
 		}
 	}
-	    public int obtenerIdUsuario(){
-        HttpSession sesion =(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-        Usuario u = (Usuario)sesion.getAttribute("usuario");
-        return u.getIdUsuario();
-    }
+
+	public int obtenerIdUsuario() {
+		HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+		Usuario u = (Usuario) sesion.getAttribute("usuario");
+		return u.getIdUsuario();
+	}
 
 	public List<Menu> getListaMenuGeneral() {
 		return listaMenuGeneral;
@@ -64,5 +67,5 @@ public class MenuController implements Serializable {
 	public void setListaMenuGeneral(List<Menu> listaMenuGeneral) {
 		this.listaMenuGeneral = listaMenuGeneral;
 	}
-	
+
 }

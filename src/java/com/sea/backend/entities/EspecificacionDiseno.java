@@ -24,12 +24,9 @@
 package com.sea.backend.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -37,8 +34,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -48,62 +43,62 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Depurador
  */
 @Entity
-@Table(name = "tbl_observaciones_orden_produccion")
+@Table(name = "tbl_especificacion_diseno")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "ObservacionesOrdenProduccion.findAll", query = "SELECT o FROM ObservacionesOrdenProduccion o")
-	, @NamedQuery(name = "ObservacionesOrdenProduccion.findByIdObservaciones", query = "SELECT o FROM ObservacionesOrdenProduccion o WHERE o.idObservaciones = :idObservaciones")
-	, @NamedQuery(name = "ObservacionesOrdenProduccion.findByFechaObservacion", query = "SELECT o FROM ObservacionesOrdenProduccion o WHERE o.fechaObservacion = :fechaObservacion")})
-public class ObservacionesOrdenProduccion implements Serializable {
+	@NamedQuery(name = "EspecificacionDiseno.findAll", query = "SELECT e FROM EspecificacionDiseno e")
+	, @NamedQuery(name = "EspecificacionDiseno.findByIdEspecificacionDiseno", query = "SELECT e FROM EspecificacionDiseno e WHERE e.idEspecificacionDiseno = :idEspecificacionDiseno")
+	, @NamedQuery(name = "EspecificacionDiseno.findByTipoEspecificacion", query = "SELECT e FROM EspecificacionDiseno e WHERE e.tipoEspecificacion = :tipoEspecificacion")})
+public class EspecificacionDiseno implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "ID_OBSERVACIONES")
-	private Integer idObservaciones;
+    @NotNull
+    @Column(name = "ID_ESPECIFICACION_DISENO")
+	private Integer idEspecificacionDiseno;
 	@Basic(optional = false)
     @NotNull
-    @Column(name = "FECHA_OBSERVACION")
-    @Temporal(TemporalType.TIMESTAMP)
-	private Date fechaObservacion;
+    @Size(min = 1, max = 45)
+    @Column(name = "TIPO_ESPECIFICACION")
+	private String tipoEspecificacion;
 	@Basic(optional = false)
     @NotNull
     @Lob
     @Size(min = 1, max = 65535)
     @Column(name = "DESCRIPCION")
 	private String descripcion;
-	@JoinColumn(name = "TBL_ORDEN_PRODUCCION_ID_ORDEN_PRODUCCION", referencedColumnName = "ID_ORDEN_PRODUCCION")
+	@JoinColumn(name = "TBL_DISENO_PRODUCTO_ID_DISENO_PRODUCTO", referencedColumnName = "ID_DISENO_PRODUCTO")
     @ManyToOne(optional = false)
-	private OrdenProduccion tblOrdenProduccionIdOrdenProduccion;
+	private DisenoProducto tblDisenoProductoIdDisenoProducto;
 
-	public ObservacionesOrdenProduccion() {
+	public EspecificacionDiseno() {
 	}
 
-	public ObservacionesOrdenProduccion(Integer idObservaciones) {
-		this.idObservaciones = idObservaciones;
+	public EspecificacionDiseno(Integer idEspecificacionDiseno) {
+		this.idEspecificacionDiseno = idEspecificacionDiseno;
 	}
 
-	public ObservacionesOrdenProduccion(Integer idObservaciones, Date fechaObservacion, String descripcion) {
-		this.idObservaciones = idObservaciones;
-		this.fechaObservacion = fechaObservacion;
+	public EspecificacionDiseno(Integer idEspecificacionDiseno, String tipoEspecificacion, String descripcion) {
+		this.idEspecificacionDiseno = idEspecificacionDiseno;
+		this.tipoEspecificacion = tipoEspecificacion;
 		this.descripcion = descripcion;
 	}
 
-	public Integer getIdObservaciones() {
-		return idObservaciones;
+	public Integer getIdEspecificacionDiseno() {
+		return idEspecificacionDiseno;
 	}
 
-	public void setIdObservaciones(Integer idObservaciones) {
-		this.idObservaciones = idObservaciones;
+	public void setIdEspecificacionDiseno(Integer idEspecificacionDiseno) {
+		this.idEspecificacionDiseno = idEspecificacionDiseno;
 	}
 
-	public Date getFechaObservacion() {
-		return fechaObservacion;
+	public String getTipoEspecificacion() {
+		return tipoEspecificacion;
 	}
 
-	public void setFechaObservacion(Date fechaObservacion) {
-		this.fechaObservacion = fechaObservacion;
+	public void setTipoEspecificacion(String tipoEspecificacion) {
+		this.tipoEspecificacion = tipoEspecificacion;
 	}
 
 	public String getDescripcion() {
@@ -114,29 +109,29 @@ public class ObservacionesOrdenProduccion implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public OrdenProduccion getTblOrdenProduccionIdOrdenProduccion() {
-		return tblOrdenProduccionIdOrdenProduccion;
+	public DisenoProducto getTblDisenoProductoIdDisenoProducto() {
+		return tblDisenoProductoIdDisenoProducto;
 	}
 
-	public void setTblOrdenProduccionIdOrdenProduccion(OrdenProduccion tblOrdenProduccionIdOrdenProduccion) {
-		this.tblOrdenProduccionIdOrdenProduccion = tblOrdenProduccionIdOrdenProduccion;
+	public void setTblDisenoProductoIdDisenoProducto(DisenoProducto tblDisenoProductoIdDisenoProducto) {
+		this.tblDisenoProductoIdDisenoProducto = tblDisenoProductoIdDisenoProducto;
 	}
 
 	@Override
 	public int hashCode() {
 		int hash = 0;
-		hash += (idObservaciones != null ? idObservaciones.hashCode() : 0);
+		hash += (idEspecificacionDiseno != null ? idEspecificacionDiseno.hashCode() : 0);
 		return hash;
 	}
 
 	@Override
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof ObservacionesOrdenProduccion)) {
+		if (!(object instanceof EspecificacionDiseno)) {
 			return false;
 		}
-		ObservacionesOrdenProduccion other = (ObservacionesOrdenProduccion) object;
-		if ((this.idObservaciones == null && other.idObservaciones != null) || (this.idObservaciones != null && !this.idObservaciones.equals(other.idObservaciones))) {
+		EspecificacionDiseno other = (EspecificacionDiseno) object;
+		if ((this.idEspecificacionDiseno == null && other.idEspecificacionDiseno != null) || (this.idEspecificacionDiseno != null && !this.idEspecificacionDiseno.equals(other.idEspecificacionDiseno))) {
 			return false;
 		}
 		return true;
@@ -144,7 +139,7 @@ public class ObservacionesOrdenProduccion implements Serializable {
 
 	@Override
 	public String toString() {
-		return "com.sea.backend.entities.ObservacionesOrdenProduccion[ idObservaciones=" + idObservaciones + " ]";
+		return "com.sea.backend.entities.EspecificacionDiseno[ idEspecificacionDiseno=" + idEspecificacionDiseno + " ]";
 	}
 	
 }

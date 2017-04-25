@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 EdisonArturo.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -51,18 +51,18 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EdisonArturo
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_producto")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Producto.findAll", query = "SELECT p FROM Producto p"),
-	@NamedQuery(name = "Producto.findByIdProducto", query = "SELECT p FROM Producto p WHERE p.idProducto = :idProducto"),
-	@NamedQuery(name = "Producto.findByReferencia", query = "SELECT p FROM Producto p WHERE p.referencia = :referencia"),
-	@NamedQuery(name = "Producto.findByFechaActualizacion", query = "SELECT p FROM Producto p WHERE p.fechaActualizacion = :fechaActualizacion"),
-	@NamedQuery(name = "Producto.findByPrecio", query = "SELECT p FROM Producto p WHERE p.precio = :precio"),
-	@NamedQuery(name = "Producto.findByPersonalizado", query = "SELECT p FROM Producto p WHERE p.personalizado = :personalizado")})
+	@NamedQuery(name = "Producto.findAll", query = "SELECT p FROM Producto p")
+	, @NamedQuery(name = "Producto.findByIdProducto", query = "SELECT p FROM Producto p WHERE p.idProducto = :idProducto")
+	, @NamedQuery(name = "Producto.findByReferencia", query = "SELECT p FROM Producto p WHERE p.referencia = :referencia")
+	, @NamedQuery(name = "Producto.findByFechaActualizacion", query = "SELECT p FROM Producto p WHERE p.fechaActualizacion = :fechaActualizacion")
+	, @NamedQuery(name = "Producto.findByPrecio", query = "SELECT p FROM Producto p WHERE p.precio = :precio")
+	, @NamedQuery(name = "Producto.findByPersonalizado", query = "SELECT p FROM Producto p WHERE p.personalizado = :personalizado")})
 public class Producto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -91,16 +91,16 @@ public class Producto implements Serializable {
 	private float precio;
 	@Column(name = "PERSONALIZADO")
 	private Boolean personalizado;
-	@JoinTable(name = "tbl_producto_sufijo", joinColumns = {
-    	@JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")}, inverseJoinColumns = {
-    	@JoinColumn(name = "TBL_SUFIJO_ID_SUFIJO", referencedColumnName = "ID_SUFIJO")})
-    @ManyToMany
-	private List<Sufijo> sufijoList;
 	@JoinTable(name = "tbl_especificacion_producto", joinColumns = {
     	@JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")}, inverseJoinColumns = {
     	@JoinColumn(name = "TBL_ESPECIFICACION_ID_ESPECIFICACION", referencedColumnName = "ID_ESPECIFICACION")})
     @ManyToMany
 	private List<Especificacion> especificacionList;
+	@JoinTable(name = "tbl_producto_sufijo", joinColumns = {
+    	@JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")}, inverseJoinColumns = {
+    	@JoinColumn(name = "TBL_SUFIJO_ID_SUFIJO", referencedColumnName = "ID_SUFIJO")})
+    @ManyToMany
+	private List<Sufijo> sufijoList;
 	@ManyToMany(mappedBy = "productoList")
 	private List<Material> materialList;
 	@ManyToMany(mappedBy = "productoList")
@@ -181,21 +181,21 @@ public class Producto implements Serializable {
 	}
 
 	@XmlTransient
-	public List<Sufijo> getSufijoList() {
-		return sufijoList;
-	}
-
-	public void setSufijoList(List<Sufijo> sufijoList) {
-		this.sufijoList = sufijoList;
-	}
-
-	@XmlTransient
 	public List<Especificacion> getEspecificacionList() {
 		return especificacionList;
 	}
 
 	public void setEspecificacionList(List<Especificacion> especificacionList) {
 		this.especificacionList = especificacionList;
+	}
+
+	@XmlTransient
+	public List<Sufijo> getSufijoList() {
+		return sufijoList;
+	}
+
+	public void setSufijoList(List<Sufijo> sufijoList) {
+		this.sufijoList = sufijoList;
 	}
 
 	@XmlTransient

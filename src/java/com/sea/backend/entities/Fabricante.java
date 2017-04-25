@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 EdisonArturo.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,15 +41,15 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EdisonArturo
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_fabricante")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Fabricante.findAll", query = "SELECT f FROM Fabricante f"),
-	@NamedQuery(name = "Fabricante.findByIdFabricante", query = "SELECT f FROM Fabricante f WHERE f.idFabricante = :idFabricante"),
-	@NamedQuery(name = "Fabricante.findByNombre", query = "SELECT f FROM Fabricante f WHERE f.nombre = :nombre")})
+	@NamedQuery(name = "Fabricante.findAll", query = "SELECT f FROM Fabricante f")
+	, @NamedQuery(name = "Fabricante.findByIdFabricante", query = "SELECT f FROM Fabricante f WHERE f.idFabricante = :idFabricante")
+	, @NamedQuery(name = "Fabricante.findByNombre", query = "SELECT f FROM Fabricante f WHERE f.nombre = :nombre")})
 public class Fabricante implements Serializable {
 
 	private static final long serialVersionUID = 1L;

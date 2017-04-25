@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 EdisonArturo.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,42 +39,50 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author EdisonArturo
+ * @author Depurador
  */
 @Entity
-@Table(name = "tbl_usuario_perfil")
+@Table(name = "tbl_cargo_perfil")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "UsuarioPerfil.findAll", query = "SELECT u FROM UsuarioPerfil u"),
-	@NamedQuery(name = "UsuarioPerfil.findByIdUsuarioPerfil", query = "SELECT u FROM UsuarioPerfil u WHERE u.idUsuarioPerfil = :idUsuarioPerfil")})
-public class UsuarioPerfil implements Serializable {
+	@NamedQuery(name = "CargoPerfil.findAll", query = "SELECT c FROM CargoPerfil c")
+	, @NamedQuery(name = "CargoPerfil.findByIdCargoPerfil", query = "SELECT c FROM CargoPerfil c WHERE c.idCargoPerfil = :idCargoPerfil")})
+public class CargoPerfil implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "ID_USUARIO_PERFIL")
-	private Integer idUsuarioPerfil;
+    @Column(name = "ID_CARGO_PERFIL")
+	private Integer idCargoPerfil;
+	@JoinColumn(name = "TBL_CARGO_ID_CARGO", referencedColumnName = "ID_CARGO")
+    @ManyToOne(optional = false)
+	private Cargo tblCargoIdCargo;
 	@JoinColumn(name = "TBL_PERFIL_ID_PERFIL", referencedColumnName = "ID_PERFIL")
     @ManyToOne(optional = false)
 	private Perfil tblPerfilIdPerfil;
-	@JoinColumn(name = "TBL_USUARIO_ID_USUARIO", referencedColumnName = "ID_USUARIO")
-    @ManyToOne(optional = false)
-	private Usuario tblUsuarioIdUsuario;
 
-	public UsuarioPerfil() {
+	public CargoPerfil() {
 	}
 
-	public UsuarioPerfil(Integer idUsuarioPerfil) {
-		this.idUsuarioPerfil = idUsuarioPerfil;
+	public CargoPerfil(Integer idCargoPerfil) {
+		this.idCargoPerfil = idCargoPerfil;
 	}
 
-	public Integer getIdUsuarioPerfil() {
-		return idUsuarioPerfil;
+	public Integer getIdCargoPerfil() {
+		return idCargoPerfil;
 	}
 
-	public void setIdUsuarioPerfil(Integer idUsuarioPerfil) {
-		this.idUsuarioPerfil = idUsuarioPerfil;
+	public void setIdCargoPerfil(Integer idCargoPerfil) {
+		this.idCargoPerfil = idCargoPerfil;
+	}
+
+	public Cargo getTblCargoIdCargo() {
+		return tblCargoIdCargo;
+	}
+
+	public void setTblCargoIdCargo(Cargo tblCargoIdCargo) {
+		this.tblCargoIdCargo = tblCargoIdCargo;
 	}
 
 	public Perfil getTblPerfilIdPerfil() {
@@ -85,29 +93,21 @@ public class UsuarioPerfil implements Serializable {
 		this.tblPerfilIdPerfil = tblPerfilIdPerfil;
 	}
 
-	public Usuario getTblUsuarioIdUsuario() {
-		return tblUsuarioIdUsuario;
-	}
-
-	public void setTblUsuarioIdUsuario(Usuario tblUsuarioIdUsuario) {
-		this.tblUsuarioIdUsuario = tblUsuarioIdUsuario;
-	}
-
 	@Override
 	public int hashCode() {
 		int hash = 0;
-		hash += (idUsuarioPerfil != null ? idUsuarioPerfil.hashCode() : 0);
+		hash += (idCargoPerfil != null ? idCargoPerfil.hashCode() : 0);
 		return hash;
 	}
 
 	@Override
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof UsuarioPerfil)) {
+		if (!(object instanceof CargoPerfil)) {
 			return false;
 		}
-		UsuarioPerfil other = (UsuarioPerfil) object;
-		if ((this.idUsuarioPerfil == null && other.idUsuarioPerfil != null) || (this.idUsuarioPerfil != null && !this.idUsuarioPerfil.equals(other.idUsuarioPerfil))) {
+		CargoPerfil other = (CargoPerfil) object;
+		if ((this.idCargoPerfil == null && other.idCargoPerfil != null) || (this.idCargoPerfil != null && !this.idCargoPerfil.equals(other.idCargoPerfil))) {
 			return false;
 		}
 		return true;
@@ -115,7 +115,7 @@ public class UsuarioPerfil implements Serializable {
 
 	@Override
 	public String toString() {
-		return "com.sea.backend.entities.UsuarioPerfil[ idUsuarioPerfil=" + idUsuarioPerfil + " ]";
+		return "com.sea.backend.entities.CargoPerfil[ idCargoPerfil=" + idCargoPerfil + " ]";
 	}
 	
 }

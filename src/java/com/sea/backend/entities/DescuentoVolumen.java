@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 EdisonArturo.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -44,15 +44,15 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EdisonArturo
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_descuento_volumen")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "DescuentoVolumen.findAll", query = "SELECT d FROM DescuentoVolumen d"),
-	@NamedQuery(name = "DescuentoVolumen.findByIdDescuentoVolumen", query = "SELECT d FROM DescuentoVolumen d WHERE d.idDescuentoVolumen = :idDescuentoVolumen"),
-	@NamedQuery(name = "DescuentoVolumen.findByActivo", query = "SELECT d FROM DescuentoVolumen d WHERE d.activo = :activo")})
+	@NamedQuery(name = "DescuentoVolumen.findAll", query = "SELECT d FROM DescuentoVolumen d")
+	, @NamedQuery(name = "DescuentoVolumen.findByIdDescuentoVolumen", query = "SELECT d FROM DescuentoVolumen d WHERE d.idDescuentoVolumen = :idDescuentoVolumen")
+	, @NamedQuery(name = "DescuentoVolumen.findByActivo", query = "SELECT d FROM DescuentoVolumen d WHERE d.activo = :activo")})
 public class DescuentoVolumen implements Serializable {
 
 	private static final long serialVersionUID = 1L;

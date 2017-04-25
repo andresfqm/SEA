@@ -61,6 +61,7 @@ public class LoadDataController implements Serializable {
 	private Part fileCSV;
 	private String nombre;
 	private String pathReal;
+	private String tabla;
 
 	public void uploadFile() {
 		String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("uploadFiles");
@@ -112,6 +113,18 @@ public class LoadDataController implements Serializable {
 
 	public void setPathReal(String pathReal) {
 		this.pathReal = pathReal;
+	}
+
+	public String getTabla() {
+		return tabla;
+	}
+
+	public void setTabla(String tabla) {
+		this.tabla = tabla;
+	}
+	
+	public void leerTabla(){
+		tabla = tabla;
 	}
 	
 }

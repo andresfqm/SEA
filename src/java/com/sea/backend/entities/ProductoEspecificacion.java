@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 EdisonArturo.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,25 +39,20 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EdisonArturo
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_producto_especificacion")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "ProductoEspecificacion.findAll", query = "SELECT p FROM ProductoEspecificacion p"),
-	@NamedQuery(name = "ProductoEspecificacion.findByIdProductoEspecificacion", query = "SELECT p FROM ProductoEspecificacion p WHERE p.idProductoEspecificacion = :idProductoEspecificacion"),
-	@NamedQuery(name = "ProductoEspecificacion.findByLogotipo", query = "SELECT p FROM ProductoEspecificacion p WHERE p.logotipo = :logotipo"),
-	@NamedQuery(name = "ProductoEspecificacion.findByCantidadArticulos", query = "SELECT p FROM ProductoEspecificacion p WHERE p.cantidadArticulos = :cantidadArticulos"),
-	@NamedQuery(name = "ProductoEspecificacion.findByDiagramaDise\u00f1o", query = "SELECT p FROM ProductoEspecificacion p WHERE p.diagramaDise\u00f1o = :diagramaDise\u00f1o"),
-	@NamedQuery(name = "ProductoEspecificacion.findByNecesitaBordado", query = "SELECT p FROM ProductoEspecificacion p WHERE p.necesitaBordado = :necesitaBordado")})
+	@NamedQuery(name = "ProductoEspecificacion.findAll", query = "SELECT p FROM ProductoEspecificacion p")
+	, @NamedQuery(name = "ProductoEspecificacion.findByIdProductoEspecificacion", query = "SELECT p FROM ProductoEspecificacion p WHERE p.idProductoEspecificacion = :idProductoEspecificacion")})
 public class ProductoEspecificacion implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -68,24 +63,10 @@ public class ProductoEspecificacion implements Serializable {
 	private Integer idProductoEspecificacion;
 	@Lob
     @Size(max = 65535)
-    @Column(name = "DESCRIPCION")
-	private String descripcion;
-	@Size(max = 256)
-    @Column(name = "LOGOTIPO")
-	private String logotipo;
-	@Basic(optional = false)
-    @NotNull
-    @Column(name = "CANTIDAD_ARTICULOS")
-	private int cantidadArticulos;
-	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 256)
-    @Column(name = "DIAGRAMA_DISE\u00d1O")
-	private String diagramaDiseño;
-	@Column(name = "NECESITA_BORDADO")
-	private Boolean necesitaBordado;
+    @Column(name = "OBSERVAQCIONES")
+	private String observaqciones;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblProductoEspecificacionIdProductoEspecificacion")
-	private List<ProductoEspecificacionTalla> productoEspecificacionTallaList;
+	private List<DisenoProducto> disenoProductoList;
 	@JoinColumn(name = "TBL_ORDEN_PRODUCCION_ID_ORDEN_PRODUCCION", referencedColumnName = "ID_ORDEN_PRODUCCION")
     @ManyToOne(optional = false)
 	private OrdenProduccion tblOrdenProduccionIdOrdenProduccion;
@@ -100,12 +81,6 @@ public class ProductoEspecificacion implements Serializable {
 		this.idProductoEspecificacion = idProductoEspecificacion;
 	}
 
-	public ProductoEspecificacion(Integer idProductoEspecificacion, int cantidadArticulos, String diagramaDiseño) {
-		this.idProductoEspecificacion = idProductoEspecificacion;
-		this.cantidadArticulos = cantidadArticulos;
-		this.diagramaDiseño = diagramaDiseño;
-	}
-
 	public Integer getIdProductoEspecificacion() {
 		return idProductoEspecificacion;
 	}
@@ -114,53 +89,21 @@ public class ProductoEspecificacion implements Serializable {
 		this.idProductoEspecificacion = idProductoEspecificacion;
 	}
 
-	public String getDescripcion() {
-		return descripcion;
+	public String getObservaqciones() {
+		return observaqciones;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public String getLogotipo() {
-		return logotipo;
-	}
-
-	public void setLogotipo(String logotipo) {
-		this.logotipo = logotipo;
-	}
-
-	public int getCantidadArticulos() {
-		return cantidadArticulos;
-	}
-
-	public void setCantidadArticulos(int cantidadArticulos) {
-		this.cantidadArticulos = cantidadArticulos;
-	}
-
-	public String getDiagramaDiseño() {
-		return diagramaDiseño;
-	}
-
-	public void setDiagramaDiseño(String diagramaDiseño) {
-		this.diagramaDiseño = diagramaDiseño;
-	}
-
-	public Boolean getNecesitaBordado() {
-		return necesitaBordado;
-	}
-
-	public void setNecesitaBordado(Boolean necesitaBordado) {
-		this.necesitaBordado = necesitaBordado;
+	public void setObservaqciones(String observaqciones) {
+		this.observaqciones = observaqciones;
 	}
 
 	@XmlTransient
-	public List<ProductoEspecificacionTalla> getProductoEspecificacionTallaList() {
-		return productoEspecificacionTallaList;
+	public List<DisenoProducto> getDisenoProductoList() {
+		return disenoProductoList;
 	}
 
-	public void setProductoEspecificacionTallaList(List<ProductoEspecificacionTalla> productoEspecificacionTallaList) {
-		this.productoEspecificacionTallaList = productoEspecificacionTallaList;
+	public void setDisenoProductoList(List<DisenoProducto> disenoProductoList) {
+		this.disenoProductoList = disenoProductoList;
 	}
 
 	public OrdenProduccion getTblOrdenProduccionIdOrdenProduccion() {

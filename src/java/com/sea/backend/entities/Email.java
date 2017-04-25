@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 EdisonArturo.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,15 +41,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author EdisonArturo
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_email")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Email.findAll", query = "SELECT e FROM Email e"),
-	@NamedQuery(name = "Email.findByIdEmail", query = "SELECT e FROM Email e WHERE e.idEmail = :idEmail"),
-	@NamedQuery(name = "Email.findByEmail", query = "SELECT e FROM Email e WHERE e.email = :email")})
+	@NamedQuery(name = "Email.findAll", query = "SELECT e FROM Email e")
+	, @NamedQuery(name = "Email.findByIdEmail", query = "SELECT e FROM Email e WHERE e.idEmail = :idEmail")
+	, @NamedQuery(name = "Email.findByEmail", query = "SELECT e FROM Email e WHERE e.email = :email")})
 public class Email implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -150,5 +150,5 @@ public class Email implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.Email[ idEmail=" + idEmail + " ]";
 	}
-    
+	
 }

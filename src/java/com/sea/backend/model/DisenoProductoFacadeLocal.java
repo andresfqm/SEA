@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,28 +23,29 @@
  */
 package com.sea.backend.model;
 
-import com.sea.backend.entities.UsuarioPerfil;
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import com.sea.backend.entities.DisenoProducto;
+import java.util.List;
+import javax.ejb.Local;
 
 /**
  *
- * @author homero
+ * @author Depurador
  */
-@Stateless
-public class UsuarioPerfilFacade extends AbstractFacade<UsuarioPerfil> implements UsuarioPerfilFacadeLocal {
+@Local
+public interface DisenoProductoFacadeLocal {
 
-	@PersistenceContext(unitName = "SEAPU")
-	private EntityManager em;
+	void create(DisenoProducto disenoProducto);
 
-	@Override
-	protected EntityManager getEntityManager() {
-		return em;
-	}
+	void edit(DisenoProducto disenoProducto);
 
-	public UsuarioPerfilFacade() {
-		super(UsuarioPerfil.class);
-	}
+	void remove(DisenoProducto disenoProducto);
+
+	DisenoProducto find(Object id);
+
+	List<DisenoProducto> findAll();
+
+	List<DisenoProducto> findRange(int[] range);
+
+	int count();
 	
 }

@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 EdisonArturo.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,16 +43,16 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EdisonArturo
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_tipo_documento")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "TipoDocumento.findAll", query = "SELECT t FROM TipoDocumento t"),
-	@NamedQuery(name = "TipoDocumento.findByIdTipoDocumento", query = "SELECT t FROM TipoDocumento t WHERE t.idTipoDocumento = :idTipoDocumento"),
-	@NamedQuery(name = "TipoDocumento.findByTipo", query = "SELECT t FROM TipoDocumento t WHERE t.tipo = :tipo"),
-	@NamedQuery(name = "TipoDocumento.findByCodigo", query = "SELECT t FROM TipoDocumento t WHERE t.codigo = :codigo")})
+	@NamedQuery(name = "TipoDocumento.findAll", query = "SELECT t FROM TipoDocumento t")
+	, @NamedQuery(name = "TipoDocumento.findByIdTipoDocumento", query = "SELECT t FROM TipoDocumento t WHERE t.idTipoDocumento = :idTipoDocumento")
+	, @NamedQuery(name = "TipoDocumento.findByTipo", query = "SELECT t FROM TipoDocumento t WHERE t.tipo = :tipo")
+	, @NamedQuery(name = "TipoDocumento.findByCodigo", query = "SELECT t FROM TipoDocumento t WHERE t.codigo = :codigo")})
 public class TipoDocumento implements Serializable {
 
 	private static final long serialVersionUID = 1L;

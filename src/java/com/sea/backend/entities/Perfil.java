@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 EdisonArturo.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -44,15 +44,15 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EdisonArturo
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_perfil")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Perfil.findAll", query = "SELECT p FROM Perfil p"),
-	@NamedQuery(name = "Perfil.findByIdPerfil", query = "SELECT p FROM Perfil p WHERE p.idPerfil = :idPerfil"),
-	@NamedQuery(name = "Perfil.findByNombre", query = "SELECT p FROM Perfil p WHERE p.nombre = :nombre")})
+	@NamedQuery(name = "Perfil.findAll", query = "SELECT p FROM Perfil p")
+	, @NamedQuery(name = "Perfil.findByIdPerfil", query = "SELECT p FROM Perfil p WHERE p.idPerfil = :idPerfil")
+	, @NamedQuery(name = "Perfil.findByNombre", query = "SELECT p FROM Perfil p WHERE p.nombre = :nombre")})
 public class Perfil implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -69,7 +69,7 @@ public class Perfil implements Serializable {
 	@ManyToMany(mappedBy = "perfilList")
 	private List<Pagina> paginaList;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblPerfilIdPerfil")
-	private List<UsuarioPerfil> usuarioPerfilList;
+	private List<CargoPerfil> cargoPerfilList;
 
 	public Perfil() {
 	}
@@ -109,12 +109,12 @@ public class Perfil implements Serializable {
 	}
 
 	@XmlTransient
-	public List<UsuarioPerfil> getUsuarioPerfilList() {
-		return usuarioPerfilList;
+	public List<CargoPerfil> getCargoPerfilList() {
+		return cargoPerfilList;
 	}
 
-	public void setUsuarioPerfilList(List<UsuarioPerfil> usuarioPerfilList) {
-		this.usuarioPerfilList = usuarioPerfilList;
+	public void setCargoPerfilList(List<CargoPerfil> cargoPerfilList) {
+		this.cargoPerfilList = cargoPerfilList;
 	}
 
 	@Override

@@ -23,19 +23,17 @@
  */
 package com.sea.backend.model;
 
-import com.sea.backend.entities.Pagina;
-import java.util.List;
+import com.sea.backend.entities.TallaDisenoProducto;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 /**
  *
  * @author Depurador
  */
 @Stateless
-public class PaginaFacade extends AbstractFacade<Pagina> implements PaginaFacadeLocal {
+public class TallaDisenoProductoFacade extends AbstractFacade<TallaDisenoProducto> implements TallaDisenoProductoFacadeLocal {
 
 	@PersistenceContext(unitName = "SEAPU")
 	private EntityManager em;
@@ -45,34 +43,8 @@ public class PaginaFacade extends AbstractFacade<Pagina> implements PaginaFacade
 		return em;
 	}
 
-	public PaginaFacade() {
-		super(Pagina.class);
+	public TallaDisenoProductoFacade() {
+		super(TallaDisenoProducto.class);
 	}
-
-	@Override
-	public List<Pagina> obtenerSubMenus(int idUsuario, String seccion) {
-		/*
-        Nomenclatura de la consulta
-		u: Usuario
-		up: Usuario perfil
-		p: Perfil
-		pp: Página
-		m: Menú
-		 */
-
-		String consulta = "SELECT pa.TBL_MENU_ID_MENU, pa.NOMBRE, pa.DESCRIPCION, pa.NOMBRE_BOTON, pa.URL, pa.URL_IMAGEN FROM "
-				+ "tbl_usuario AS u INNER JOIN tbl_cargo AS c ON u.tbl_cargo_id_cargo = c.id_cargo "
-				+ "INNER JOIN tbl_cargo_perfil AS cp ON c.id_cargo = cp.tbl_cargo_id_cargo "
-				+ "INNER JOIN tbl_perfil AS p ON cp.tbl_perfil_id_perfil = p.id_perfil "
-				+ "INNER JOIN tbl_perfil_pagina AS pp ON p.id_perfil = pp.tbl_perfil_id_perfil "
-				+ "INNER JOIN tbl_pagina AS pa ON pp.tbl_pagina_id_pagina = pa.id_pagina "
-				+ "INNER JOIN tbl_menu AS m ON pa.tbl_menu_id_menu = m.id_menu "
-				+ "WHERE u.id_usuario = ?1 AND m.nombre = ?2 ORDER BY pa.POSICION;";
-		Query query = em.createNativeQuery(consulta);
-		query.setParameter(1, idUsuario);
-		query.setParameter(2, seccion);
-		List<Pagina> subMenusUsuario;
-		subMenusUsuario = query.getResultList();
-		return subMenusUsuario;
-	}
+	
 }

@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 EdisonArturo.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,16 +43,16 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EdisonArturo
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_descuento")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Descuento.findAll", query = "SELECT d FROM Descuento d"),
-	@NamedQuery(name = "Descuento.findByIdDescuento", query = "SELECT d FROM Descuento d WHERE d.idDescuento = :idDescuento"),
-	@NamedQuery(name = "Descuento.findByDescuento", query = "SELECT d FROM Descuento d WHERE d.descuento = :descuento"),
-	@NamedQuery(name = "Descuento.findByCantidadMinima", query = "SELECT d FROM Descuento d WHERE d.cantidadMinima = :cantidadMinima")})
+	@NamedQuery(name = "Descuento.findAll", query = "SELECT d FROM Descuento d")
+	, @NamedQuery(name = "Descuento.findByIdDescuento", query = "SELECT d FROM Descuento d WHERE d.idDescuento = :idDescuento")
+	, @NamedQuery(name = "Descuento.findByDescuento", query = "SELECT d FROM Descuento d WHERE d.descuento = :descuento")
+	, @NamedQuery(name = "Descuento.findByCantidadMinima", query = "SELECT d FROM Descuento d WHERE d.cantidadMinima = :cantidadMinima")})
 public class Descuento implements Serializable {
 
 	private static final long serialVersionUID = 1L;

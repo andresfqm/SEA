@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 EdisonArturo.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -45,16 +45,16 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EdisonArturo
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_subcategoria")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Subcategoria.findAll", query = "SELECT s FROM Subcategoria s"),
-	@NamedQuery(name = "Subcategoria.findByIdSubcategoria", query = "SELECT s FROM Subcategoria s WHERE s.idSubcategoria = :idSubcategoria"),
-	@NamedQuery(name = "Subcategoria.findByNombre", query = "SELECT s FROM Subcategoria s WHERE s.nombre = :nombre"),
-	@NamedQuery(name = "Subcategoria.findByCodigo", query = "SELECT s FROM Subcategoria s WHERE s.codigo = :codigo")})
+	@NamedQuery(name = "Subcategoria.findAll", query = "SELECT s FROM Subcategoria s")
+	, @NamedQuery(name = "Subcategoria.findByIdSubcategoria", query = "SELECT s FROM Subcategoria s WHERE s.idSubcategoria = :idSubcategoria")
+	, @NamedQuery(name = "Subcategoria.findByNombre", query = "SELECT s FROM Subcategoria s WHERE s.nombre = :nombre")
+	, @NamedQuery(name = "Subcategoria.findByCodigo", query = "SELECT s FROM Subcategoria s WHERE s.codigo = :codigo")})
 public class Subcategoria implements Serializable {
 
 	private static final long serialVersionUID = 1L;

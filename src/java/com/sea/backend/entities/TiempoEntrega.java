@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 EdisonArturo.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -44,15 +44,15 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EdisonArturo
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_tiempo_entrega")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "TiempoEntrega.findAll", query = "SELECT t FROM TiempoEntrega t"),
-	@NamedQuery(name = "TiempoEntrega.findByIdTiempoEntrega", query = "SELECT t FROM TiempoEntrega t WHERE t.idTiempoEntrega = :idTiempoEntrega"),
-	@NamedQuery(name = "TiempoEntrega.findByActivo", query = "SELECT t FROM TiempoEntrega t WHERE t.activo = :activo")})
+	@NamedQuery(name = "TiempoEntrega.findAll", query = "SELECT t FROM TiempoEntrega t")
+	, @NamedQuery(name = "TiempoEntrega.findByIdTiempoEntrega", query = "SELECT t FROM TiempoEntrega t WHERE t.idTiempoEntrega = :idTiempoEntrega")
+	, @NamedQuery(name = "TiempoEntrega.findByActivo", query = "SELECT t FROM TiempoEntrega t WHERE t.activo = :activo")})
 public class TiempoEntrega implements Serializable {
 
 	private static final long serialVersionUID = 1L;

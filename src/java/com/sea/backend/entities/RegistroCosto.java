@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 EdisonArturo.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,17 +41,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author EdisonArturo
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_registro_costo")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "RegistroCosto.findAll", query = "SELECT r FROM RegistroCosto r"),
-	@NamedQuery(name = "RegistroCosto.findByIdRegistroCosto", query = "SELECT r FROM RegistroCosto r WHERE r.idRegistroCosto = :idRegistroCosto"),
-	@NamedQuery(name = "RegistroCosto.findByInicioVigencia", query = "SELECT r FROM RegistroCosto r WHERE r.inicioVigencia = :inicioVigencia"),
-	@NamedQuery(name = "RegistroCosto.findByFinVigencia", query = "SELECT r FROM RegistroCosto r WHERE r.finVigencia = :finVigencia"),
-	@NamedQuery(name = "RegistroCosto.findByCosto", query = "SELECT r FROM RegistroCosto r WHERE r.costo = :costo")})
+	@NamedQuery(name = "RegistroCosto.findAll", query = "SELECT r FROM RegistroCosto r")
+	, @NamedQuery(name = "RegistroCosto.findByIdRegistroCosto", query = "SELECT r FROM RegistroCosto r WHERE r.idRegistroCosto = :idRegistroCosto")
+	, @NamedQuery(name = "RegistroCosto.findByInicioVigencia", query = "SELECT r FROM RegistroCosto r WHERE r.inicioVigencia = :inicioVigencia")
+	, @NamedQuery(name = "RegistroCosto.findByFinVigencia", query = "SELECT r FROM RegistroCosto r WHERE r.finVigencia = :finVigencia")
+	, @NamedQuery(name = "RegistroCosto.findByCosto", query = "SELECT r FROM RegistroCosto r WHERE r.costo = :costo")})
 public class RegistroCosto implements Serializable {
 
 	private static final long serialVersionUID = 1L;

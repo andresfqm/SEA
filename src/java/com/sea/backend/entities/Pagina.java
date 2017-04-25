@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 EdisonArturo.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -46,19 +46,19 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EdisonArturo
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_pagina")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Pagina.findAll", query = "SELECT p FROM Pagina p"),
-	@NamedQuery(name = "Pagina.findByIdPagina", query = "SELECT p FROM Pagina p WHERE p.idPagina = :idPagina"),
-	@NamedQuery(name = "Pagina.findByNombre", query = "SELECT p FROM Pagina p WHERE p.nombre = :nombre"),
-	@NamedQuery(name = "Pagina.findByNombreBoton", query = "SELECT p FROM Pagina p WHERE p.nombreBoton = :nombreBoton"),
-	@NamedQuery(name = "Pagina.findByUrl", query = "SELECT p FROM Pagina p WHERE p.url = :url"),
-	@NamedQuery(name = "Pagina.findByUrlImagen", query = "SELECT p FROM Pagina p WHERE p.urlImagen = :urlImagen"),
-	@NamedQuery(name = "Pagina.findByPosicion", query = "SELECT p FROM Pagina p WHERE p.posicion = :posicion")})
+	@NamedQuery(name = "Pagina.findAll", query = "SELECT p FROM Pagina p")
+	, @NamedQuery(name = "Pagina.findByIdPagina", query = "SELECT p FROM Pagina p WHERE p.idPagina = :idPagina")
+	, @NamedQuery(name = "Pagina.findByNombre", query = "SELECT p FROM Pagina p WHERE p.nombre = :nombre")
+	, @NamedQuery(name = "Pagina.findByNombreBoton", query = "SELECT p FROM Pagina p WHERE p.nombreBoton = :nombreBoton")
+	, @NamedQuery(name = "Pagina.findByUrl", query = "SELECT p FROM Pagina p WHERE p.url = :url")
+	, @NamedQuery(name = "Pagina.findByUrlImagen", query = "SELECT p FROM Pagina p WHERE p.urlImagen = :urlImagen")
+	, @NamedQuery(name = "Pagina.findByPosicion", query = "SELECT p FROM Pagina p WHERE p.posicion = :posicion")})
 public class Pagina implements Serializable {
 
 	private static final long serialVersionUID = 1L;
