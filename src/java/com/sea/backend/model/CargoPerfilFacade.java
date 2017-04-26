@@ -23,7 +23,7 @@
  */
 package com.sea.backend.model;
 
-import com.sea.backend.entities.EspecificacionDiseno;
+import com.sea.backend.entities.CargoPerfil;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -33,7 +33,7 @@ import javax.persistence.PersistenceContext;
  * @author Depurador
  */
 @Stateless
-public class EspecificacionDisenoFacade extends AbstractFacade<EspecificacionDiseno> implements EspecificacionDisenoFacadeLocal {
+public class CargoPerfilFacade extends AbstractFacade<CargoPerfil> implements CargoPerfilFacadeLocal {
 
 	@PersistenceContext(unitName = "SEAPU")
 	private EntityManager em;
@@ -43,8 +43,8 @@ public class EspecificacionDisenoFacade extends AbstractFacade<EspecificacionDis
 		return em;
 	}
 
-	public EspecificacionDisenoFacade() {
-		super(EspecificacionDiseno.class);
+	public CargoPerfilFacade() {
+		super(CargoPerfil.class);
 	}
 	
 }

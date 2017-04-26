@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,15 +43,15 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author homero
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_tipo_telefono")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "TipoTelefono.findAll", query = "SELECT t FROM TipoTelefono t"),
-	@NamedQuery(name = "TipoTelefono.findByIdTipoTelefono", query = "SELECT t FROM TipoTelefono t WHERE t.idTipoTelefono = :idTipoTelefono"),
-	@NamedQuery(name = "TipoTelefono.findByTipo", query = "SELECT t FROM TipoTelefono t WHERE t.tipo = :tipo")})
+	@NamedQuery(name = "TipoTelefono.findAll", query = "SELECT t FROM TipoTelefono t")
+	, @NamedQuery(name = "TipoTelefono.findByIdTipoTelefono", query = "SELECT t FROM TipoTelefono t WHERE t.idTipoTelefono = :idTipoTelefono")
+	, @NamedQuery(name = "TipoTelefono.findByTipo", query = "SELECT t FROM TipoTelefono t WHERE t.tipo = :tipo")})
 public class TipoTelefono implements Serializable {
 
 	private static final long serialVersionUID = 1L;

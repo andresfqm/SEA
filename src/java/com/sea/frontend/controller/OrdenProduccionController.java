@@ -203,7 +203,7 @@ public class OrdenProduccionController implements Serializable {
 
 	private UsuarioFacadeLocal EJBUsuario;
 	private Usuario usuario;
-	private int idUsuario;
+
 
 	@PostConstruct
 	public void init() {
@@ -873,13 +873,7 @@ public class OrdenProduccionController implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public int getIdUsuario() {
-		return idUsuario;
-	}
 
-	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
-	}
 	
 	
 

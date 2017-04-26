@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,15 +40,15 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author homero
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_tipo_email")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "TipoEmail.findAll", query = "SELECT t FROM TipoEmail t"),
-	@NamedQuery(name = "TipoEmail.findByIdTipoEmail", query = "SELECT t FROM TipoEmail t WHERE t.idTipoEmail = :idTipoEmail"),
-	@NamedQuery(name = "TipoEmail.findByTipo", query = "SELECT t FROM TipoEmail t WHERE t.tipo = :tipo")})
+	@NamedQuery(name = "TipoEmail.findAll", query = "SELECT t FROM TipoEmail t")
+	, @NamedQuery(name = "TipoEmail.findByIdTipoEmail", query = "SELECT t FROM TipoEmail t WHERE t.idTipoEmail = :idTipoEmail")
+	, @NamedQuery(name = "TipoEmail.findByTipo", query = "SELECT t FROM TipoEmail t WHERE t.tipo = :tipo")})
 public class TipoEmail implements Serializable {
 
 	private static final long serialVersionUID = 1L;

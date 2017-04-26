@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,18 +43,18 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author homero
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_menu")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Menu.findAll", query = "SELECT m FROM Menu m"),
-	@NamedQuery(name = "Menu.findByIdMenu", query = "SELECT m FROM Menu m WHERE m.idMenu = :idMenu"),
-	@NamedQuery(name = "Menu.findByNombre", query = "SELECT m FROM Menu m WHERE m.nombre = :nombre"),
-	@NamedQuery(name = "Menu.findByUrl", query = "SELECT m FROM Menu m WHERE m.url = :url"),
-	@NamedQuery(name = "Menu.findByIcono", query = "SELECT m FROM Menu m WHERE m.icono = :icono"),
-	@NamedQuery(name = "Menu.findByPosicion", query = "SELECT m FROM Menu m WHERE m.posicion = :posicion")})
+	@NamedQuery(name = "Menu.findAll", query = "SELECT m FROM Menu m")
+	, @NamedQuery(name = "Menu.findByIdMenu", query = "SELECT m FROM Menu m WHERE m.idMenu = :idMenu")
+	, @NamedQuery(name = "Menu.findByNombre", query = "SELECT m FROM Menu m WHERE m.nombre = :nombre")
+	, @NamedQuery(name = "Menu.findByUrl", query = "SELECT m FROM Menu m WHERE m.url = :url")
+	, @NamedQuery(name = "Menu.findByIcono", query = "SELECT m FROM Menu m WHERE m.icono = :icono")
+	, @NamedQuery(name = "Menu.findByPosicion", query = "SELECT m FROM Menu m WHERE m.posicion = :posicion")})
 public class Menu implements Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -45,16 +45,16 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author homero
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_devolucion")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Devolucion.findAll", query = "SELECT d FROM Devolucion d"),
-	@NamedQuery(name = "Devolucion.findByIdDevolucion", query = "SELECT d FROM Devolucion d WHERE d.idDevolucion = :idDevolucion"),
-	@NamedQuery(name = "Devolucion.findByAceptada", query = "SELECT d FROM Devolucion d WHERE d.aceptada = :aceptada"),
-	@NamedQuery(name = "Devolucion.findByValorDevolucion", query = "SELECT d FROM Devolucion d WHERE d.valorDevolucion = :valorDevolucion")})
+	@NamedQuery(name = "Devolucion.findAll", query = "SELECT d FROM Devolucion d")
+	, @NamedQuery(name = "Devolucion.findByIdDevolucion", query = "SELECT d FROM Devolucion d WHERE d.idDevolucion = :idDevolucion")
+	, @NamedQuery(name = "Devolucion.findByAceptada", query = "SELECT d FROM Devolucion d WHERE d.aceptada = :aceptada")
+	, @NamedQuery(name = "Devolucion.findByValorDevolucion", query = "SELECT d FROM Devolucion d WHERE d.valorDevolucion = :valorDevolucion")})
 public class Devolucion implements Serializable {
 
 	private static final long serialVersionUID = 1L;

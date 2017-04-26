@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -45,15 +45,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author homero
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_registro_seguimiento")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "RegistroSeguimiento.findAll", query = "SELECT r FROM RegistroSeguimiento r"),
-	@NamedQuery(name = "RegistroSeguimiento.findByIdRegistroSeguimiento", query = "SELECT r FROM RegistroSeguimiento r WHERE r.idRegistroSeguimiento = :idRegistroSeguimiento"),
-	@NamedQuery(name = "RegistroSeguimiento.findByFechaRegistro", query = "SELECT r FROM RegistroSeguimiento r WHERE r.fechaRegistro = :fechaRegistro")})
+	@NamedQuery(name = "RegistroSeguimiento.findAll", query = "SELECT r FROM RegistroSeguimiento r")
+	, @NamedQuery(name = "RegistroSeguimiento.findByIdRegistroSeguimiento", query = "SELECT r FROM RegistroSeguimiento r WHERE r.idRegistroSeguimiento = :idRegistroSeguimiento")
+	, @NamedQuery(name = "RegistroSeguimiento.findByFechaRegistro", query = "SELECT r FROM RegistroSeguimiento r WHERE r.fechaRegistro = :fechaRegistro")})
 public class RegistroSeguimiento implements Serializable {
 
 	private static final long serialVersionUID = 1L;

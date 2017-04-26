@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -44,15 +44,15 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author homero
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_modalidad_de_pago")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "ModalidadDePago.findAll", query = "SELECT m FROM ModalidadDePago m"),
-	@NamedQuery(name = "ModalidadDePago.findByIdModalidadDePago", query = "SELECT m FROM ModalidadDePago m WHERE m.idModalidadDePago = :idModalidadDePago"),
-	@NamedQuery(name = "ModalidadDePago.findByActivo", query = "SELECT m FROM ModalidadDePago m WHERE m.activo = :activo")})
+	@NamedQuery(name = "ModalidadDePago.findAll", query = "SELECT m FROM ModalidadDePago m")
+	, @NamedQuery(name = "ModalidadDePago.findByIdModalidadDePago", query = "SELECT m FROM ModalidadDePago m WHERE m.idModalidadDePago = :idModalidadDePago")
+	, @NamedQuery(name = "ModalidadDePago.findByActivo", query = "SELECT m FROM ModalidadDePago m WHERE m.activo = :activo")})
 public class ModalidadDePago implements Serializable {
 
 	private static final long serialVersionUID = 1L;

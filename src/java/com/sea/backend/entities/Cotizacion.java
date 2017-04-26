@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -47,26 +47,26 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author homero
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_cotizacion")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Cotizacion.findAll", query = "SELECT c FROM Cotizacion c"),
-	@NamedQuery(name = "Cotizacion.findByNumeroCotizacion", query = "SELECT c FROM Cotizacion c WHERE c.numeroCotizacion = :numeroCotizacion"),
-	@NamedQuery(name = "Cotizacion.findByFechaEmision", query = "SELECT c FROM Cotizacion c WHERE c.fechaEmision = :fechaEmision"),
-	@NamedQuery(name = "Cotizacion.findByLugarEmision", query = "SELECT c FROM Cotizacion c WHERE c.lugarEmision = :lugarEmision"),
-	@NamedQuery(name = "Cotizacion.findByValidezOferta", query = "SELECT c FROM Cotizacion c WHERE c.validezOferta = :validezOferta"),
-	@NamedQuery(name = "Cotizacion.findByDescuento", query = "SELECT c FROM Cotizacion c WHERE c.descuento = :descuento"),
-	@NamedQuery(name = "Cotizacion.findByIva", query = "SELECT c FROM Cotizacion c WHERE c.iva = :iva"),
-	@NamedQuery(name = "Cotizacion.findByFechaCierreEfectivo", query = "SELECT c FROM Cotizacion c WHERE c.fechaCierreEfectivo = :fechaCierreEfectivo"),
-	@NamedQuery(name = "Cotizacion.findByCancelada", query = "SELECT c FROM Cotizacion c WHERE c.cancelada = :cancelada"),
-	@NamedQuery(name = "Cotizacion.findByVisita", query = "SELECT c FROM Cotizacion c WHERE c.visita = :visita"),
-	@NamedQuery(name = "Cotizacion.findByPrestamoMuestra", query = "SELECT c FROM Cotizacion c WHERE c.prestamoMuestra = :prestamoMuestra"),
-	@NamedQuery(name = "Cotizacion.findByNumeroRemision", query = "SELECT c FROM Cotizacion c WHERE c.numeroRemision = :numeroRemision"),
-	@NamedQuery(name = "Cotizacion.findByEstado", query = "SELECT c FROM Cotizacion c WHERE c.estado = :estado"),
-	@NamedQuery(name = "Cotizacion.findByFechaFacturacion", query = "SELECT c FROM Cotizacion c WHERE c.fechaFacturacion = :fechaFacturacion")})
+	@NamedQuery(name = "Cotizacion.findAll", query = "SELECT c FROM Cotizacion c")
+	, @NamedQuery(name = "Cotizacion.findByNumeroCotizacion", query = "SELECT c FROM Cotizacion c WHERE c.numeroCotizacion = :numeroCotizacion")
+	, @NamedQuery(name = "Cotizacion.findByFechaEmision", query = "SELECT c FROM Cotizacion c WHERE c.fechaEmision = :fechaEmision")
+	, @NamedQuery(name = "Cotizacion.findByLugarEmision", query = "SELECT c FROM Cotizacion c WHERE c.lugarEmision = :lugarEmision")
+	, @NamedQuery(name = "Cotizacion.findByValidezOferta", query = "SELECT c FROM Cotizacion c WHERE c.validezOferta = :validezOferta")
+	, @NamedQuery(name = "Cotizacion.findByDescuento", query = "SELECT c FROM Cotizacion c WHERE c.descuento = :descuento")
+	, @NamedQuery(name = "Cotizacion.findByIva", query = "SELECT c FROM Cotizacion c WHERE c.iva = :iva")
+	, @NamedQuery(name = "Cotizacion.findByFechaCierreEfectivo", query = "SELECT c FROM Cotizacion c WHERE c.fechaCierreEfectivo = :fechaCierreEfectivo")
+	, @NamedQuery(name = "Cotizacion.findByCancelada", query = "SELECT c FROM Cotizacion c WHERE c.cancelada = :cancelada")
+	, @NamedQuery(name = "Cotizacion.findByVisita", query = "SELECT c FROM Cotizacion c WHERE c.visita = :visita")
+	, @NamedQuery(name = "Cotizacion.findByPrestamoMuestra", query = "SELECT c FROM Cotizacion c WHERE c.prestamoMuestra = :prestamoMuestra")
+	, @NamedQuery(name = "Cotizacion.findByNumeroRemision", query = "SELECT c FROM Cotizacion c WHERE c.numeroRemision = :numeroRemision")
+	, @NamedQuery(name = "Cotizacion.findByEstado", query = "SELECT c FROM Cotizacion c WHERE c.estado = :estado")
+	, @NamedQuery(name = "Cotizacion.findByFechaFacturacion", query = "SELECT c FROM Cotizacion c WHERE c.fechaFacturacion = :fechaFacturacion")})
 public class Cotizacion implements Serializable {
 
 	private static final long serialVersionUID = 1L;

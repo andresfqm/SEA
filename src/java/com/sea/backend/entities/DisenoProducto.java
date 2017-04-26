@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -44,18 +44,18 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author homero
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_diseno_producto")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "DisenoProducto.findAll", query = "SELECT d FROM DisenoProducto d"),
-	@NamedQuery(name = "DisenoProducto.findByIdDisenoProducto", query = "SELECT d FROM DisenoProducto d WHERE d.idDisenoProducto = :idDisenoProducto"),
-	@NamedQuery(name = "DisenoProducto.findByLogotipo", query = "SELECT d FROM DisenoProducto d WHERE d.logotipo = :logotipo"),
-	@NamedQuery(name = "DisenoProducto.findByDiagramaDiseno", query = "SELECT d FROM DisenoProducto d WHERE d.diagramaDiseno = :diagramaDiseno"),
-	@NamedQuery(name = "DisenoProducto.findByNecesitaBordado", query = "SELECT d FROM DisenoProducto d WHERE d.necesitaBordado = :necesitaBordado"),
-	@NamedQuery(name = "DisenoProducto.findByDiseno", query = "SELECT d FROM DisenoProducto d WHERE d.diseno = :diseno")})
+	@NamedQuery(name = "DisenoProducto.findAll", query = "SELECT d FROM DisenoProducto d")
+	, @NamedQuery(name = "DisenoProducto.findByIdDisenoProducto", query = "SELECT d FROM DisenoProducto d WHERE d.idDisenoProducto = :idDisenoProducto")
+	, @NamedQuery(name = "DisenoProducto.findByLogotipo", query = "SELECT d FROM DisenoProducto d WHERE d.logotipo = :logotipo")
+	, @NamedQuery(name = "DisenoProducto.findByDiagramaDiseno", query = "SELECT d FROM DisenoProducto d WHERE d.diagramaDiseno = :diagramaDiseno")
+	, @NamedQuery(name = "DisenoProducto.findByNecesitaBordado", query = "SELECT d FROM DisenoProducto d WHERE d.necesitaBordado = :necesitaBordado")
+	, @NamedQuery(name = "DisenoProducto.findByDiseno", query = "SELECT d FROM DisenoProducto d WHERE d.diseno = :diseno")})
 public class DisenoProducto implements Serializable {
 
 	private static final long serialVersionUID = 1L;

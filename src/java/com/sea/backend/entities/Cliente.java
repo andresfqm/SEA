@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -45,19 +45,19 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author homero
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_cliente")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c"),
-	@NamedQuery(name = "Cliente.findByIdCliente", query = "SELECT c FROM Cliente c WHERE c.idCliente = :idCliente"),
-	@NamedQuery(name = "Cliente.findByNumeroDocumento", query = "SELECT c FROM Cliente c WHERE c.numeroDocumento = :numeroDocumento"),
-	@NamedQuery(name = "Cliente.findByDigitoVerificacion", query = "SELECT c FROM Cliente c WHERE c.digitoVerificacion = :digitoVerificacion"),
-	@NamedQuery(name = "Cliente.findByNombreORazonSocial", query = "SELECT c FROM Cliente c WHERE c.nombreORazonSocial = :nombreORazonSocial"),
-	@NamedQuery(name = "Cliente.findByApellido", query = "SELECT c FROM Cliente c WHERE c.apellido = :apellido"),
-	@NamedQuery(name = "Cliente.findByNombreContacto", query = "SELECT c FROM Cliente c WHERE c.nombreContacto = :nombreContacto")})
+	@NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")
+	, @NamedQuery(name = "Cliente.findByIdCliente", query = "SELECT c FROM Cliente c WHERE c.idCliente = :idCliente")
+	, @NamedQuery(name = "Cliente.findByNumeroDocumento", query = "SELECT c FROM Cliente c WHERE c.numeroDocumento = :numeroDocumento")
+	, @NamedQuery(name = "Cliente.findByDigitoVerificacion", query = "SELECT c FROM Cliente c WHERE c.digitoVerificacion = :digitoVerificacion")
+	, @NamedQuery(name = "Cliente.findByNombreORazonSocial", query = "SELECT c FROM Cliente c WHERE c.nombreORazonSocial = :nombreORazonSocial")
+	, @NamedQuery(name = "Cliente.findByApellido", query = "SELECT c FROM Cliente c WHERE c.apellido = :apellido")
+	, @NamedQuery(name = "Cliente.findByNombreContacto", query = "SELECT c FROM Cliente c WHERE c.nombreContacto = :nombreContacto")})
 public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;

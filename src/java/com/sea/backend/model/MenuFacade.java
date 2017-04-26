@@ -60,15 +60,14 @@ public class MenuFacade extends AbstractFacade<Menu> implements MenuFacadeLocal 
 		m: Menú
 		 */
 
-		String consulta = "SELECT "
-				+ "m.icono, m.url, m.nombre FROM "
-				+ "tbl_usuario AS u INNER JOIN "
-				+ "tbl_usuario_perfil AS up ON u.id_usuario = up.tbl_usuario_id_usuario INNER JOIN "
-				+ "tbl_perfil AS p ON up.tbl_perfil_id_perfil = p.id_perfil INNER JOIN "
-				+ "tbl_perfil_pagina AS pp ON p.id_perfil = pp.tbl_perfil_id_perfil INNER JOIN "
-				+ "tbl_pagina AS pa ON pp.tbl_pagina_id_pagina = pa.id_pagina INNER JOIN "
-				+ "tbl_menu AS m ON pa.tbl_menu_id_menu = m.id_menu WHERE "
-				+ "u.id_usuario = ?1 GROUP BY m.nombre ORDER BY m.POSICION;";
+		String consulta = "SELECT m.icono, m.url, m.nombre FROM "
+				+ "tbl_usuario AS u INNER JOIN tbl_cargo c ON u.tbl_cargo_id_cargo = c.id_cargo "
+				+ "INNER JOIN tbl_cargo_perfil AS cp ON c.id_cargo = cp.tbl_cargo_id_cargo "
+				+ "INNER JOIN tbl_perfil AS p ON cp.tbl_perfil_id_perfil = p.id_perfil "
+				+ "INNER JOIN tbl_perfil_pagina AS pp ON p.id_perfil = pp.tbl_perfil_id_perfil "
+				+ "INNER JOIN tbl_pagina AS pa ON pp.tbl_pagina_id_pagina = pa.id_pagina "
+				+ "INNER JOIN tbl_menu AS m ON pa.tbl_menu_id_menu = m.id_menu "
+				+ "WHERE u.id_usuario = ?1 GROUP BY m.nombre ORDER BY m.POSICION;";
 		Query query = em.createNativeQuery(consulta);
 		query.setParameter(1, idUsuario);
 		List<Menu> menusUsuario;

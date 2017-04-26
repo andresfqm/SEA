@@ -79,6 +79,14 @@ main > div{
 	text-align: center;
 	align-self: end;
 }
+.ui-button .ui-button-text{
+display: initial !important;
+line-height: initial !important;
+
+}
+.ui-button-text-only .ui-button-text{
+padding: 0 !important;
+}
 @media all and (max-width: 360px){
 	body{
 		grid-template-areas: "main main";

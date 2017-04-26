@@ -23,28 +23,29 @@
  */
 package com.sea.backend.model;
 
-import com.sea.backend.entities.EspecificacionDiseno;
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import com.sea.backend.entities.CargoPerfil;
+import java.util.List;
+import javax.ejb.Local;
 
 /**
  *
  * @author Depurador
  */
-@Stateless
-public class EspecificacionDisenoFacade extends AbstractFacade<EspecificacionDiseno> implements EspecificacionDisenoFacadeLocal {
+@Local
+public interface CargoPerfilFacadeLocal {
 
-	@PersistenceContext(unitName = "SEAPU")
-	private EntityManager em;
+	void create(CargoPerfil cargoPerfil);
 
-	@Override
-	protected EntityManager getEntityManager() {
-		return em;
-	}
+	void edit(CargoPerfil cargoPerfil);
 
-	public EspecificacionDisenoFacade() {
-		super(EspecificacionDiseno.class);
-	}
+	void remove(CargoPerfil cargoPerfil);
+
+	CargoPerfil find(Object id);
+
+	List<CargoPerfil> findAll();
+
+	List<CargoPerfil> findRange(int[] range);
+
+	int count();
 	
 }

@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -51,18 +51,18 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author homero
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_producto")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Producto.findAll", query = "SELECT p FROM Producto p"),
-	@NamedQuery(name = "Producto.findByIdProducto", query = "SELECT p FROM Producto p WHERE p.idProducto = :idProducto"),
-	@NamedQuery(name = "Producto.findByReferencia", query = "SELECT p FROM Producto p WHERE p.referencia = :referencia"),
-	@NamedQuery(name = "Producto.findByFechaActualizacion", query = "SELECT p FROM Producto p WHERE p.fechaActualizacion = :fechaActualizacion"),
-	@NamedQuery(name = "Producto.findByPrecio", query = "SELECT p FROM Producto p WHERE p.precio = :precio"),
-	@NamedQuery(name = "Producto.findByPersonalizado", query = "SELECT p FROM Producto p WHERE p.personalizado = :personalizado")})
+	@NamedQuery(name = "Producto.findAll", query = "SELECT p FROM Producto p")
+	, @NamedQuery(name = "Producto.findByIdProducto", query = "SELECT p FROM Producto p WHERE p.idProducto = :idProducto")
+	, @NamedQuery(name = "Producto.findByReferencia", query = "SELECT p FROM Producto p WHERE p.referencia = :referencia")
+	, @NamedQuery(name = "Producto.findByFechaActualizacion", query = "SELECT p FROM Producto p WHERE p.fechaActualizacion = :fechaActualizacion")
+	, @NamedQuery(name = "Producto.findByPrecio", query = "SELECT p FROM Producto p WHERE p.precio = :precio")
+	, @NamedQuery(name = "Producto.findByPersonalizado", query = "SELECT p FROM Producto p WHERE p.personalizado = :personalizado")})
 public class Producto implements Serializable {
 
 	private static final long serialVersionUID = 1L;

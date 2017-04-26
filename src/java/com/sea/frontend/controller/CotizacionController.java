@@ -166,10 +166,6 @@ public class CotizacionController implements Serializable {
 	private int idPropuestaNoIncluye;
 	private PropuestaNoIncluye propuestaNoIncluye;
 
-	//EJB Producto Especificación talla
-	private ProductoEspecificacionTallaFacadeLocal productoETEJB;
-	private ProductoEspecificacionTalla productoEspecificacionTalla;
-	private List<ProductoEspecificacionTalla> listaProductoEspecificacionTallas;
 
 	//Ejb de la foranea TiempoEntrega
 	@EJB
@@ -252,13 +248,9 @@ public class CotizacionController implements Serializable {
 		listaCotizacionesOrdenProduccion = cotizacionEJB.findAll();
 		listaProductoEspecificacion = new ArrayList<>();
 		cotizacionProducto = new CotizacionProducto();
-
-		//clientes = clienteEJB.findAll();
-		listaProductoEspecificacionTallas = new ArrayList<>();
 		productoEspecificacion = new ProductoEspecificacion();
 		talla = new Talla();
 		listaTallas = tallaEJB.findAll();
-		productoEspecificacionTalla = new ProductoEspecificacionTalla();
 		ordenProduccion = new OrdenProduccion();
 		ordenProduccion.setFechaExpedicion(new Date());
 		ordenProduccion.setFechaEntregaFinal(new Date());
@@ -905,14 +897,6 @@ public class CotizacionController implements Serializable {
 		this.productoEspecificacion = productoEspecificacion;
 	}
 
-	public ProductoEspecificacionTalla getProductoEspecificacionTalla() {
-		return productoEspecificacionTalla;
-	}
-
-	public void setProductoEspecificacionTalla(ProductoEspecificacionTalla productoEspecificacionTalla) {
-		this.productoEspecificacionTalla = productoEspecificacionTalla;
-	}
-
 	public List<ProductoEspecificacion> getListaProductoEspecificacion() {
 		return listaProductoEspecificacion;
 	}
@@ -935,33 +919,6 @@ public class CotizacionController implements Serializable {
 
 	public void setIdProductoEspecificacion(int idProductoEspecificacion) {
 		this.idProductoEspecificacion = idProductoEspecificacion;
-	}
-
-	public List<ProductoEspecificacionTalla> getListaProductoEspecificacionTallas() {
-		return listaProductoEspecificacionTallas;
-	}
-
-	public void setListaProductoEspecificacionTallas(List<ProductoEspecificacionTalla> listaProductoEspecificacionTallas) {
-		this.listaProductoEspecificacionTallas = listaProductoEspecificacionTallas;
-	}
-
-	//Metodo para agragar producto_especificación
-	public void productoEspecificacon() {
-		ProductoEspecificacion proE = new ProductoEspecificacion();
-
-		proE.setDescripcion(productoEspecificacion.getDescripcion());
-		proE.setLogotipo(productoEspecificacion.getLogotipo());
-		proE.setCantidadArticulos(productoEspecificacion.getCantidadArticulos());
-		proE.setDiagramaDiseño(productoEspecificacion.getDiagramaDiseño());
-		proE.setNecesitaBordado(productoEspecificacion.getNecesitaBordado());
-		proE.setTblProductoIdProducto(producto);
-		listaProductoEspecificacion.add(proE);
-
-		ProductoEspecificacionTalla proET = new ProductoEspecificacionTalla();
-		proET.setCantidad(productoEspecificacionTalla.getCantidad());
-		proET.setTblTallaIdTalla(talla);
-		listaProductoEspecificacionTallas.add(proET);
-
 	}
 
 	public List<Cotizacion> getListaLugarEmision() {

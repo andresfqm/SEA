@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -44,15 +44,15 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author homero
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_origen")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Origen.findAll", query = "SELECT o FROM Origen o"),
-	@NamedQuery(name = "Origen.findByIdOrigen", query = "SELECT o FROM Origen o WHERE o.idOrigen = :idOrigen"),
-	@NamedQuery(name = "Origen.findByNombre", query = "SELECT o FROM Origen o WHERE o.nombre = :nombre")})
+	@NamedQuery(name = "Origen.findAll", query = "SELECT o FROM Origen o")
+	, @NamedQuery(name = "Origen.findByIdOrigen", query = "SELECT o FROM Origen o WHERE o.idOrigen = :idOrigen")
+	, @NamedQuery(name = "Origen.findByNombre", query = "SELECT o FROM Origen o WHERE o.nombre = :nombre")})
 public class Origen implements Serializable {
 
 	private static final long serialVersionUID = 1L;
