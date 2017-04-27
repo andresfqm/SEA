@@ -14,11 +14,8 @@ import com.sea.backend.entities.Fabricante;
 import com.sea.backend.entities.LugaresEntrega;
 import com.sea.backend.entities.Material;
 import com.sea.backend.entities.ModalidadDePago;
-import com.sea.backend.entities.OrdenProduccion;
 import com.sea.backend.entities.Producto;
-import com.sea.backend.entities.ProductoEspecificacion;
 import com.sea.backend.entities.PropuestaNoIncluye;
-import com.sea.backend.entities.Talla;
 import com.sea.backend.entities.TiempoEntrega;
 import com.sea.backend.entities.Usuario;
 import com.sea.backend.model.CiudadFacadeLocal;
@@ -31,18 +28,15 @@ import com.sea.backend.model.FabricanteFacadeLocal;
 import com.sea.backend.model.LugaresEntregaFacadeLocal;
 import com.sea.backend.model.MaterialFacadeLocal;
 import com.sea.backend.model.ModalidadDePagoFacadeLocal;
-import com.sea.backend.model.OrdenProduccionFacadeLocal;
-import com.sea.backend.model.ProductoEspecificacionFacadeLocal;
 import com.sea.backend.model.ProductoFacadeLocal;
 import com.sea.backend.model.PropuestaNoIncluyeFacadeLocal;
-import com.sea.backend.model.TallaFacadeLocal;
 import com.sea.backend.model.TiempoEntregaFacadeLocal;
 import com.sea.backend.model.UsuarioFacadeLocal;
 import com.sea.frontend.servlet.PDF;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -73,8 +67,11 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporter;
 import net.sf.jasperreports.engine.JRExporterParameter;
@@ -101,8 +98,6 @@ public class CotizacionController implements Serializable {
 	private Cotizacion cotizacion;
 	private Double descuentoCotizacion;
 	private List<Cotizacion> listaSeguimientoCotizacions;
-	private String numeroCotizacion;
-	private List<Cotizacion> listaCotizacionesOrdenProduccion;
 
 	@EJB
 	private UsuarioFacadeLocal EJBUsuario;
@@ -119,29 +114,14 @@ public class CotizacionController implements Serializable {
 	private int idModalidad;
 	private List<Cliente> clientes;
 
-//EJB Producto Especificación
-	@EJB
-	private ProductoEspecificacionFacadeLocal productoEsEJB;
-	private ProductoEspecificacion productoEspecificacion;
-	private int idProductoEspecificacion;
-	private List<ProductoEspecificacion> listaProductoEspecificacion;
-
 	//EJB CotizaciónProducto
 	@EJB
 	private CotizacionProductoFacadeLocal cotizacionProductoEJB;
 	private CotizacionProducto cotizacionProducto;
 	private List<CotizacionProducto> listaCotizacionP;
-	private Object datosCotizacionProducto;
 	private int cantidad;
 	private Float precioParaCliente;
 	private double precioDescuento;
-
-	// EJB de tallas
-	@EJB
-	private TallaFacadeLocal tallaEJB;
-	private Talla talla;
-	private List<Talla> listaTallas;
-	private int idTalla;
 
 	@EJB
 	private CotizacionProductoFacadeLocal cotizacionpEJB;
@@ -166,6 +146,13 @@ public class CotizacionController implements Serializable {
 	private int idPropuestaNoIncluye;
 	private PropuestaNoIncluye propuestaNoIncluye;
 
+	public List<PropuestaNoIncluye> getListapropuestaNoIncluye() {
+		return ListapropuestaNoIncluye;
+	}
+
+	public void setListapropuestaNoIncluye(List<PropuestaNoIncluye> ListapropuestaNoIncluye) {
+		this.ListapropuestaNoIncluye = ListapropuestaNoIncluye;
+	}
 
 	//Ejb de la foranea TiempoEntrega
 	@EJB
@@ -210,14 +197,8 @@ public class CotizacionController implements Serializable {
 	private int idDescuento;
 
 	private int formatoCotizacion;
-
+	
 	private String mensaje;
-
-	//EJB de generar orden de producción
-	@EJB
-	private OrdenProduccionFacadeLocal ordenPEJB;
-	private OrdenProduccion ordenProduccion;
-	private List<Cotizacion> listaLugarEmision;
 
 	@PostConstruct
 	public void init() {
@@ -245,15 +226,6 @@ public class CotizacionController implements Serializable {
 		listaSeguimientoCotizacions = cotizacionEJB.listaSeguimiento(idUsuario());
 		propuestaNoIncluye = new PropuestaNoIncluye();
 		usuario.getConsecutivoCotizacion();
-		listaCotizacionesOrdenProduccion = cotizacionEJB.findAll();
-		listaProductoEspecificacion = new ArrayList<>();
-		cotizacionProducto = new CotizacionProducto();
-		productoEspecificacion = new ProductoEspecificacion();
-		talla = new Talla();
-		listaTallas = tallaEJB.findAll();
-		ordenProduccion = new OrdenProduccion();
-		ordenProduccion.setFechaExpedicion(new Date());
-		ordenProduccion.setFechaEntregaFinal(new Date());
 
 	}
 
@@ -270,7 +242,7 @@ public class CotizacionController implements Serializable {
 	public void agregarCotizacionProducto() {
 		CotizacionProducto cot = new CotizacionProducto();
 
-		cot.setTblProductoIdProducto(producto);
+		cot.setTblProductoIdProducto(productoEJB.find(idProducto));
 		cot.setCantidad(cotizacionP.getCantidad());
 		cot.setPrecioParaCliente(cotizacionP.getPrecioParaCliente());
 
@@ -283,31 +255,6 @@ public class CotizacionController implements Serializable {
 	public Double calcularPrecioProductoDescuento() {
 		return this.listaProductoPrecio.get(0).getPrecio() - (this.listaProductoPrecio.get(0).getPrecio() * this.descuentoCotizacion);
 
-	}
-
-	// Metodo para traer los productos registrados en una cotización
-	public void obtenerProductosRegistrados() throws Exception {
-		try {
-
-			datosCotizacionProducto = cotizacionProductoEJB.datosCotizacionProducto(getNumeroCotizacion());
-
-		} catch (Exception e) {
-		}
-	}
-
-	// Metodo para obtener las cotizaciones registradas por un asesor
-	public void obtenerCotizacionesRegistradas() throws Exception {
-		try {
-			listaSeguimientoCotizacions = cotizacionEJB.listaSeguimiento(idUsuario());
-
-		} catch (Exception e) {
-		}
-	}
-
-	public int idUsuario() {
-		HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-		Usuario u = (Usuario) sesion.getAttribute("usuario");
-		return u.getIdUsuario();
 	}
 
 	public void registrarCotización()
@@ -332,17 +279,21 @@ public class CotizacionController implements Serializable {
 			cotizacion.setTblLugaresEntregaIdLugaresEntrega(lugaresEEJB.find(idLugaresEntrega));
 			cotizacionEJB.create(cotizacion);
 			for (CotizacionProducto itemVenta : listaCotizacionP) {
-				itemVenta.setTblCotizacionNumeroCotizacion(cotizacion);
-				itemVenta.setTblProductoIdProducto(producto);
-				itemVenta.setPrecioParaCliente(this.cotizacionP.getPrecioParaCliente());
-				itemVenta.setPrecioBase(producto.getPrecio());
-				itemVenta.setCantidad(this.cotizacionP.getCantidad());
-				cotizacionProductoEJB.create(itemVenta);
+				cotizacionP.setTblCotizacionNumeroCotizacion(cotizacion);
+				cotizacionP.setTblProductoIdProducto(itemVenta.getTblProductoIdProducto());
+				cotizacionP.setPrecioBase(itemVenta.getPrecioBase());
+				if (itemVenta.getPrecioParaCliente() == null) {
+					cotizacionP.setPrecioParaCliente(itemVenta.getTblProductoIdProducto().getPrecio());
+				}else{
+					cotizacionP.setPrecioParaCliente(itemVenta.getPrecioParaCliente());
+				}
+				cotizacionP.setCantidad(itemVenta.getCantidad());
+				cotizacionProductoEJB.create(cotizacionP);
 			}
 
 			FacesContext facesContext = FacesContext.getCurrentInstance();
 			ServletContext servletContext = (ServletContext) facesContext.getExternalContext().getContext();
-			String ruta = servletContext.getRealPath("/reportes/Cotizacion.jasper");
+			String ruta = servletContext.getRealPath("/reportes/cotizacion.jasper");
 			if (formatoCotizacion == 1) {
 				cotizacionEJB.getReportePDF(ruta, cotizacion.getNumeroCotizacion());
 				final String user = "edarvio.98@gmail.com";//cambiará en consecuencia al servidor utilizado
@@ -367,7 +318,7 @@ public class CotizacionController implements Serializable {
 				try {
 
 					BodyPart adjunto = new MimeBodyPart();
-					adjunto.setDataHandler(new DataHandler(new FileDataSource("C:\\Users\\homero\\Documents\\NetBeansProjects\\SEA\\web\\PDF/cotizacion_N_" + cotizacion.getNumeroCotizacion() + ".pdf")));
+					adjunto.setDataHandler(new DataHandler(new FileDataSource("C:\\Users\\EdisonArturo\\Documents\\NetBeansProjects\\SEA\\web\\PDF/cotizacion_N_" + cotizacion.getNumeroCotizacion() + ".pdf")));
 					adjunto.setFileName("cotizacion.pdf");
 
 					BodyPart texto = new MimeBodyPart();
@@ -378,7 +329,7 @@ public class CotizacionController implements Serializable {
 					MimeMessage message = new MimeMessage(session);
 					message.setFrom(new InternetAddress(user, "Fulldotaciones"));
 					InternetAddress[] destinatarios = {
-						new InternetAddress("edarvio.98@gmail.com"),
+						new InternetAddress(),
 						new InternetAddress("andresfqm@misena.edu.co")
 					};
 
@@ -418,7 +369,7 @@ public class CotizacionController implements Serializable {
 				try {
 
 					BodyPart adjunto = new MimeBodyPart();
-					adjunto.setDataHandler(new DataHandler(new FileDataSource("C:\\Users\\homero\\Documents\\NetBeansProjects\\SEA\\web\\EXCEL/cotizacion_N_" + cotizacion.getNumeroCotizacion() + ".xlsx")));
+					adjunto.setDataHandler(new DataHandler(new FileDataSource("C:\\Users\\EdisonArturo\\Documents\\NetBeansProjects\\SEA\\web\\EXCEL/cotizacion_N_" + cotizacion.getNumeroCotizacion() + ".xlsx")));
 					adjunto.setFileName("cotizacion.xlsx");
 
 					BodyPart texto = new MimeBodyPart();
@@ -441,7 +392,7 @@ public class CotizacionController implements Serializable {
 					Transport.send(message);
 
 					System.out.println("Done");
-				} catch (MessagingException e) {
+					} catch (MessagingException e) {
 					throw new RuntimeException(e);
 				}
 			}
@@ -716,7 +667,7 @@ public class CotizacionController implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
+	
 	public Usuario setUsuarioLogueado() {
 		return EJBUsuario.find(idUsuario());
 	}
@@ -729,24 +680,33 @@ public class CotizacionController implements Serializable {
 		this.precioParaCliente = precioParaCliente;
 	}
 
-	//Metodo para registrar las tallas
-	public void obtenertallaDescripcion() throws Exception {
-		talla = tallaEJB.tallaDescripcion(talla.getIdTalla());
-	}
-
 	public void obtenerDescripcionReferencia() throws Exception {
 		try {
 
-			producto = productoEJB.productoDescripcion(producto.getIdProducto());
-			listaMateriales = materialEJB.datosMaterial(producto.getIdProducto());
-			listaFabricante = fabricanteEJB.descripcionFabricante(producto.getIdProducto());
-			listaProductoPrecio = productoEJB.productoPrecio(producto.getIdProducto());
+			producto = productoEJB.productoDescripcion(idProducto);
+			listaMateriales = materialEJB.datosMaterial(idProducto);
+			listaFabricante = fabricanteEJB.descripcionFabricante(idProducto);
+			listaProductoPrecio = productoEJB.productoPrecio(idProducto);
 		} catch (Exception e) {
 			throw e;
 		}
 
 	}
 
+	// Metodo para obtener las cotizaciones registradas por un asesor
+	public void obtenerCotizacionesRegistradas() throws Exception {
+		try {
+			listaSeguimientoCotizacions = cotizacionEJB.listaSeguimiento(idUsuario());
+		} catch (Exception e) {
+		}
+	}
+
+	public int idUsuario() {
+		HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+		Usuario u = (Usuario) sesion.getAttribute("usuario");
+		return u.getIdUsuario();
+	}
+	
 	public int consecutivoCotizacion() {
 		HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 		Usuario u = (Usuario) sesion.getAttribute("usuario");
@@ -840,93 +800,7 @@ public class CotizacionController implements Serializable {
 	public void setMensaje(String mensaje) {
 		this.mensaje = mensaje;
 	}
-
-	public List<PropuestaNoIncluye> getListapropuestaNoIncluye() {
-		return ListapropuestaNoIncluye;
-	}
-
-	public void setListapropuestaNoIncluye(List<PropuestaNoIncluye> ListapropuestaNoIncluye) {
-		this.ListapropuestaNoIncluye = ListapropuestaNoIncluye;
-	}
-
-	public String getNumeroCotizacion() {
-		return numeroCotizacion;
-	}
-
-	public void setNumeroCotizacion(String numeroCotizacion) {
-		this.numeroCotizacion = numeroCotizacion;
-	}
-
-	public List<Cotizacion> getListaCotizacionesOrdenProduccion() {
-		return listaCotizacionesOrdenProduccion;
-	}
-
-	public void setListaCotizacionesOrdenProduccion(List<Cotizacion> listaCotizacionesOrdenProduccion) {
-		this.listaCotizacionesOrdenProduccion = listaCotizacionesOrdenProduccion;
-	}
-
-	public Talla getTalla() {
-		return talla;
-	}
-
-	public void setTalla(Talla talla) {
-		this.talla = talla;
-	}
-
-	public List<Talla> getListaTallas() {
-		return listaTallas;
-	}
-
-	public void setListaTallas(List<Talla> listaTallas) {
-		this.listaTallas = listaTallas;
-	}
-
-	public int getIdTalla() {
-		return idTalla;
-	}
-
-	public void setIdTalla(int idTalla) {
-		this.idTalla = idTalla;
-	}
-
-	public ProductoEspecificacion getProductoEspecificacion() {
-		return productoEspecificacion;
-	}
-
-	public void setProductoEspecificacion(ProductoEspecificacion productoEspecificacion) {
-		this.productoEspecificacion = productoEspecificacion;
-	}
-
-	public List<ProductoEspecificacion> getListaProductoEspecificacion() {
-		return listaProductoEspecificacion;
-	}
-
-	public void setListaProductoEspecificacion(List<ProductoEspecificacion> listaProductoEspecificacion) {
-		this.listaProductoEspecificacion = listaProductoEspecificacion;
-	}
-
-	public OrdenProduccion getOrdenProduccion() {
-		return ordenProduccion;
-	}
-
-	public void setOrdenProduccion(OrdenProduccion ordenProduccion) {
-		this.ordenProduccion = ordenProduccion;
-	}
-
-	public int getIdProductoEspecificacion() {
-		return idProductoEspecificacion;
-	}
-
-	public void setIdProductoEspecificacion(int idProductoEspecificacion) {
-		this.idProductoEspecificacion = idProductoEspecificacion;
-	}
-
-	public List<Cotizacion> getListaLugarEmision() {
-		return listaLugarEmision;
-	}
-
-	public void setListaLugarEmision(List<Cotizacion> listaLugarEmision) {
-		this.listaLugarEmision = listaLugarEmision;
-	}
+	
+	
 
 }

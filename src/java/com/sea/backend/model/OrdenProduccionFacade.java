@@ -24,13 +24,9 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.OrdenProduccion;
-import com.sea.frontend.controller.OrdenProduccionAuxiliar;
-import java.util.ArrayList;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 /**
  *
@@ -50,17 +46,6 @@ public class OrdenProduccionFacade extends AbstractFacade<OrdenProduccion> imple
 	public OrdenProduccionFacade() {
 		super(OrdenProduccion.class);
 	}
-
-	@Override
-	public List<OrdenProduccionAuxiliar> lugarEmisionCotizacion(String numeroCotizacion) throws Exception {
-		
-		List<Object[]> listaDatos;
-		 List<OrdenProduccionAuxiliar> listalugarEmisionCotizacion;
-		 listalugarEmisionCotizacion = new ArrayList<>();
-			String consulta1 = "SELECT LUGAR_EMISION FROM tbl_cotizacion WHERE NUMERO_COTIZACION = ?1";
-
-		Query query = em.createNativeQuery(consulta1);
-		query.setParameter(1, numeroCotizacion);
 
 		listaDatos = query.getResultList();
 		
