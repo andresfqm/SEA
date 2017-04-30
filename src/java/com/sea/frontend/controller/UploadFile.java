@@ -21,35 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.sea.backend.model;
-
-import com.sea.backend.entities.OrdenProduccion;
-import com.sea.frontend.controller.OrdenProduccionAuxiliar;
-import java.util.List;
-import javax.ejb.Local;
+package com.sea.frontend.controller;
 
 /**
  *
  * @author homero
  */
-@Local
-public interface OrdenProduccionFacadeLocal {
-
-	void create(OrdenProduccion ordenProduccion);
-
-	void edit(OrdenProduccion ordenProduccion);
-
-	void remove(OrdenProduccion ordenProduccion);
-
-	OrdenProduccion find(Object id);
-
-	List<OrdenProduccion> findAll();
-
-	List<OrdenProduccion> findRange(int[] range);
-
-	int count();
-	
-	List<OrdenProduccionAuxiliar> lugarEmisionCotizacion(String numeroCotizacion) throws Exception;
-	
+class UploadFile {
 	
 }
