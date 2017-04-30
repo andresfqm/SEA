@@ -107,7 +107,7 @@ public class OrdenProduccionController implements Serializable {
 	private CotizacionProductoFacadeLocal cotizacionProductoEJB;
 	private CotizacionProducto cotizacionProducto;
 	private List<CotizacionProducto> listaCotizacionP;
-	private Object datosCotizacionProducto;
+	private List<CotizacionProductoAuxiliar> datosCotizacionProducto;
 	private List<CotizacionProductoAuxiliar> listaDatosCotizacionProducto;
 
 	// EJB de tallas
@@ -284,7 +284,6 @@ public class OrdenProduccionController implements Serializable {
 		try {
 
 			datosCotizacionProducto = cotizacionProductoEJB.datosCotizacionProducto(getNumeroCotizacion());
-
 		} catch (Exception e) {
 		}
 	}
@@ -558,11 +557,11 @@ public class OrdenProduccionController implements Serializable {
 		this.mensaje = mensaje;
 	}
 
-	public Object getDatosCotizacionProducto() {
+	public List<CotizacionProductoAuxiliar> getDatosCotizacionProducto() {
 		return datosCotizacionProducto;
 	}
 
-	public void setDatosCotizacionProducto(Object datosCotizacionProducto) {
+	public void setDatosCotizacionProducto(List<CotizacionProductoAuxiliar> datosCotizacionProducto) {
 		this.datosCotizacionProducto = datosCotizacionProducto;
 	}
 
@@ -735,7 +734,8 @@ public class OrdenProduccionController implements Serializable {
 	public void objetosCotizacionProducto() throws Exception {
 		System.out.println("(((((((((((((((((" + numeroCotizacion);
 		listaDatosCotizacionProducto = cotizacionProductoEJB.datosCotizacionProducto(getNumeroCotizacion());
-
+		ordenProduccion.setTotalPrendas(listaDatosCotizacionProducto.size());
+		System.out.println("total de prendas: " + ordenProduccion.getTotalPrendas());
 	}
 	//Metodo para traer las especififaciones de los prodectos registrados EJP: Botones, Colores, Botas etc.
 
@@ -801,9 +801,9 @@ public class OrdenProduccionController implements Serializable {
 				System.out.println(e.getMessage());
 			}
 			 */
+			this.cotizacion = cotizacionEJB.find(numeroCotizacion);
+			ordenProduccion.setCiudadExpedicion(cotizacion.getLugarEmision());
 			ordenProduccion.setFechaExpedicion(ordenProduccion.getFechaExpedicion());
-			//Ciudad quemada
-			ordenProduccion.setCiudadExpedicion("Abriaquí");
 			ordenProduccion.setObservaciones(ordenProduccion.getObservaciones());
 			ordenProduccion.setTotalPrendas(ordenProduccion.getTotalPrendas());
 			ordenProduccion.setEstado("Pendiente");
@@ -821,7 +821,7 @@ public class OrdenProduccionController implements Serializable {
 				disenoProducto.setNecesitaBordado(item1.getNecesitaBordado());
 				disenoProducto.setDiseno(item1.getDiseno());
 				disenoProducto.setDescripcionDiseno(item1.getDescripcionDiseno());
-				
+
 				String diagramaD = this.cargarArchivos(file);
 				disenoProducto.setDiagramaDiseno(diagramaD);
 				System.out.println("Diagrama Diseño " + diagramaD);

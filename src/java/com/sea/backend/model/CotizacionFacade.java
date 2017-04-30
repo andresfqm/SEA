@@ -29,6 +29,7 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -87,93 +88,88 @@ public class CotizacionFacade extends AbstractFacade<Cotizacion> implements Coti
 		listaSeguimientoCotizacions = query.getResultList();
 		return listaSeguimientoCotizacions;
 	}
-	
-	@Override
-    public void getReportePDF(String ruta, String numero_cotizacion) throws  ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-        Connection conexion;
-        Class.forName("com.mysql.jdbc.Driver").newInstance();
-        conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/fulldotaciones", "root", "5050");
 
-        //Se definen los parametros si es que el reporte necesita
-        Map parameter = new HashMap();
+	@Override
+	public void getReportePDF(String ruta, String numero_cotizacion) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+		Connection conexion;
+		Class.forName("com.mysql.jdbc.Driver").newInstance();
+		conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/fulldotaciones", "root", "5050");
+
+		//Se definen los parametros si es que el reporte necesita
+		Map parameter = new HashMap();
 		parameter.put("numero_cotizacion", numero_cotizacion);
 
-
-        try {
-            File file = new File(ruta);
+		try {
+			File file = new File(ruta);
 			String destino = "C:\\Users\\homero\\Documents\\NetBeansProjects\\SEA\\web\\PDF/cotizacion_N_" + numero_cotizacion + ".pdf";
 
+			JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(file.getPath());
 
+			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameter, conexion);
 
-            JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(file.getPath());
+			JasperExportManager.exportReportToPdfFile(jasperPrint, destino);
 
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameter, conexion);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (conexion != null) {
+				try {
+					conexion.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 
-            JasperExportManager.exportReportToPdfFile( jasperPrint, destino);
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (conexion != null) {
-                try {
-                    conexion.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-	
 	@Override
-    public void getReporteXLSX(String ruta, String numero_cotizacion) throws  ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-        Connection conexion;
-        Class.forName("com.mysql.jdbc.Driver").newInstance();
-        conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/fulldotaciones", "root", "5050");
+	public void getReporteXLSX(String ruta, String numero_cotizacion) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+		Connection conexion;
+		Class.forName("com.mysql.jdbc.Driver").newInstance();
+		conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/fulldotaciones", "root", "5050");
 
-        //Se definen los parametros si es que el reporte necesita
-        Map parameter = new HashMap();
+		//Se definen los parametros si es que el reporte necesita
+		Map parameter = new HashMap();
 		parameter.put("numero_cotizacion", numero_cotizacion);
 		String destino = "C:\\Users\\homero\\Documents\\NetBeansProjects\\SEA\\web\\EXCEL/cotizacion_N_" + numero_cotizacion + ".xlsx";
 
-        try {
-            File file = new File(ruta);
+		try {
+			File file = new File(ruta);
 
+			JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(file.getPath());
 
-            JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(file.getPath());
+			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameter, conexion);
 
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameter, conexion);
-
-            JRExporter jrExporter = null;                      
-            jrExporter = new JRXlsxExporter();
-            jrExporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+			JRExporter jrExporter = null;
+			jrExporter = new JRXlsxExporter();
+			jrExporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
 			jrExporter.setParameter(JRExporterParameter.OUTPUT_FILE, new File(destino));
 
-            if (jrExporter != null) {
-                try {
-                    jrExporter.exportReport();
-                } catch (JRException e) {
-                    e.printStackTrace();
-                }
-            }
+			if (jrExporter != null) {
+				try {
+					jrExporter.exportReport();
+				} catch (JRException e) {
+					e.printStackTrace();
+				}
+			}
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (conexion != null) {
-                try {
-                    conexion.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (conexion != null) {
+				try {
+					conexion.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 
 	@Override
 	public Object datosCotizacion(String numeroCotizacion) throws Exception {
-		
-		String consulta2 = "SELECT co.numero_cotizacion, c.nombre_o_razon_social, ci.nombre, e.email, d.direccion\n"
+
+		String consulta2 = "SELECT co.numero_cotizacion, c.nombre_o_razon_social, ci.nombre, e.email, d.direccion, co.lugar_emision\n"
 				+ "FROM tbl_cotizacion AS co\n"
 				+ "INNER JOIN tbl_cliente as c \n"
 				+ "ON co.TBL_CLIENTE_ID_CLIENTE = c.ID_CLIENTE \n"
