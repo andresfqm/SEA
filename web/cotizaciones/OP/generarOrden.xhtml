@@ -11,12 +11,13 @@
         <h:outputStylesheet library="css" name="cotizaciones.css" />
     </h:head>
 	<h:body>
-		<ui:composition template="/templates/header.xhtml" />
-		<f:view>
-			<main>
-				<h:form class="stepForm ordenProduccion" id="formGen" enctype="multipart/form-data">
-					<h:panelGroup class="step">
-						<h3 class="mdl-typography--headline">Datos de la orden</h3>
+        <div class="mdl-layout mdl-js-layout">
+			<ui:composition template="/templates/header.xhtml" />
+			<main class="mdl-layout__content">
+				<div class="page-content">
+					<h:form class="stepForm ordenProduccion" id="formGen" enctype="multipart/form-data">
+						<h:panelGroup class="step">
+							<h3 class="mdl-typography--headline">Datos de la orden</h3>
 
 
 
@@ -209,45 +210,43 @@
 
 						</h:panelGroup>
 					</h:form>
-				</p:dialog>
+
+					<p:dialog widgetVar="dlg2" id="cantidadTallas" >	
+						<h:form id="addCantidadTallas" class="mdl-dialog" enctype="multipart/form-data">
+							<h3 class="mdl-dialog__title">Cantidad por tallas</h3>
+							<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+								<h:inputText class="mdl-textfield__input" id="diseño" pt:maxlength="100" pt:required="true" value="#{cotizacionController.diseño}" />
+								<h:outputLabel class="mdl-textfield__label" for="diseño">Diseño</h:outputLabel>
+							</h:panelGroup>
+
+							<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+								<h:inputText class="mdl-textfield__input" id="descripcion" pt:required="true"  value="#{cotizacionController.productoEspecificacion.descripcion}" pt:maxlength="250" />
+								<h:outputLabel class="mdl-textfield__label" for="descripcion">Descripción</h:outputLabel>
+							</h:panelGroup>
 
 
 
+							<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+								<h:outputLabel class="mdl-textfield__label" for="referencia">Talla</h:outputLabel>
+								<p:selectOneMenu value="#{cotizacionController.talla.idTalla}" id="talla">
+									<p:ajax event="valueChange" listener="#{cotizacionController.obtenertallaDescripcion()}"/>
+									<f:selectItem itemValue="" itemLabel="Seleccione" />
+									<f:selectItems value="#{cotizacionController.listaTallas}" pt:required="true" var="talla" itemLabel="#{talla.talla}" itemValue="#{talla.idTalla}"/>
+								</p:selectOneMenu>
+							</h:panelGroup>
+							<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+								<h:inputText class="mdl-textfield__input" pt:type="number" p:min="1" p:step="1" pt:maxlength="32" pt:required="true" value="#{cotizacionController.productoEspecificacionTalla.cantidad}"/>
+								<h:outputLabel class="mdl-textfield__label" for="cantidad">cantidad</h:outputLabel>
+							</h:panelGroup>
+							<h:panelGroup layout="block" class="mdl-dialog__actions">
+								<p:commandButton actionListener="#{cotizacionController.productoEspecificacon()}" value="Agregar" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" update="formGen:formTable:tablaP" oncomplete="PF('dlg2').hide();"/>
+								<p:commandButton value="Cancelar" onclick="PF('dlg2').hide();" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm"/>
 
+							</h:panelGroup>
+						</h:form>
+					</p:dialog>
+				</div>
 			</main>
-			<ui:composition template="/templates/navGeneral.xhtml" />
-            <ui:composition template="/templates/taskTabs.xhtml" />
-            <aside>
-                <h:panelGroup layout="block" id="articuloAgregado" class="mdl-js-snackbar mdl-snackbar">
-                    <h:panelGroup layout="block" class="mdl-snackbar__text"></h:panelGroup>
-                    <button class="mdl-snackbar__action" type="button"></button>
-                </h:panelGroup>
-                <script>
-					(function () {
-						'use strict';
-						window['counter'] = 0;
-						var snackbarContainer = document.querySelector('#articuloAgregado');
-						var showToastButton = document.querySelector('#mostrarArticuloAgregado');
-						var handler = function (event) {
-							console.log("artículo removido");
-						};
-						showToastButton.addEventListener('click', function () {
-							'use strict';
-							var data = {message: 'Artículo añadido a la cotización.', timeout: 5000, actionHandler: handler, actionText: 'Deshacer'};
-							snackbarContainer.MaterialSnackbar.showSnackbar(data);
-						});
-					}());
-                </script>
-
-				<script>
-					function limitTextArea(element, limit) {
-						if (element.value.length > limit) {
-							element.value = element.value.substring(0, limit);
-						}
-					}
-				</script>
-            </aside>
-
-        </f:view>
+		</div>
     </h:body>
 </html>
