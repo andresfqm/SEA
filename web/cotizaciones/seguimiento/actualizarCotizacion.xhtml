@@ -3,12 +3,19 @@
 	  xmlns:h="http://xmlns.jcp.org/jsf/html" 
 	  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	  xmlns:p="http://primefaces.org/ui">
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core">
 	<h:head>
 		<title>Actualizar cotización | SEA</title>
 		<ui:composition template="/templates/resources.xhtml" />
         <h:outputStylesheet library="css" name="cotizaciones.css" />
+		<f:metadata>
+			<f:viewParam name="numeroCotizacion" value="#{cotizacionController.numeroCotizacion}"/>
+
+		</f:metadata>
+
 	</h:head>
+
 	<h:body>
         <div class="mdl-layout mdl-js-layout">
 			<ui:composition template="/templates/header.xhtml" />
@@ -18,19 +25,26 @@
 						<section class="step">
 							<h3 class="mdl-typography--headline">Datos de la cotización</h3>
 							<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-								<h:inputText class="mdl-textfield__input" id="numeroCotizacion" value="#{cotizacionController.cotizacion.numeroCotizacion}" disabled="disabled" />
-								<h:outputLabel class="mdl-textfield__label" for="numeroCotizacion">Cotización No.</h:outputLabel>
+								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+									<p:selectOneMenu value="#{cotizacionController.numeroCotizacion}" filter="true" filterMatchMode="contains" pt:required="required">
+										<p:ajax event="valueChange" listener="#{cotizacionController.obtenerDatosRegistradosCotizacion()}" update="ciudadEmision" />
+										<f:selectItem itemValue="" itemLabel="Seleccione" />
+										<f:selectItems value="#{cotizacionController.listaDatosRegistradosCotizacion}" var="dat" itemLabel="#{dat.numeroCotizacion}" itemValue="#{dat.numeroCotizacion}"/>
+									</p:selectOneMenu>
+									<h:outputLabel class="mdl-textfield__label" for="cliente">Empresa</h:outputLabel>
+								</h:panelGroup>
+
 							</h:panelGroup>
 							<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-								<h:inputText class="mdl-textfield__input" pt:maxlength="32" id="ciudadEmision" value="#{cotizacionController.cotizacion.lugarEmision}" required="required" />
+								<h:inputText class="mdl-textfield__input" pt:maxlength="32" id="ciudadEmision" value="#{cotizacionController.datosModificacionCotizacion[0]}" required="required" />
 								<h:outputLabel class="mdl-textfield__label" for="ciudadEmision">Ciudad de emisión:</h:outputLabel>
 							</h:panelGroup>
 							<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-								<h:inputText class="mdl-textfield__input" id="fechaEmision" value="15/05/2016" disabled="disabled" />
+								<h:inputText class="mdl-textfield__input" id="fechaEmision" value="#{cotizacionController.datosModificacionCotizacion[1]}" disabled="disabled" />
 								<h:outputLabel class="mdl-textfield__label" for="fechaEmision">Fecha de emisión:</h:outputLabel>
 							</h:panelGroup>
 							<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-								<h:inputText class="mdl-textfield__input" id="cliente" value="DIMAI DOTACIONES" required="required" />
+								<h:inputText class="mdl-textfield__input" id="cliente" value="#{cotizacionController.datosModificacionCotizacion[2]}" required="required" />
 								<h:outputLabel class="mdl-textfield__label" for="cliente">Empresa:</h:outputLabel>
 							</h:panelGroup>
 							<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">

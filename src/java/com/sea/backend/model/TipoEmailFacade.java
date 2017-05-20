@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author homero
+ * @author Depurador
  */
 @Stateless
 public class TipoEmailFacade extends AbstractFacade<TipoEmail> implements TipoEmailFacadeLocal {
@@ -46,5 +46,5 @@ public class TipoEmailFacade extends AbstractFacade<TipoEmail> implements TipoEm
 	public TipoEmailFacade() {
 		super(TipoEmail.class);
 	}
-	
+
 }

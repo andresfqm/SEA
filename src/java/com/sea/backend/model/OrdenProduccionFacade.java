@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author homero
+ * @author Depurador
  */
 @Stateless
 public class OrdenProduccionFacade extends AbstractFacade<OrdenProduccion> implements OrdenProduccionFacadeLocal {
@@ -47,17 +47,4 @@ public class OrdenProduccionFacade extends AbstractFacade<OrdenProduccion> imple
 		super(OrdenProduccion.class);
 	}
 
-		listaDatos = query.getResultList();
-		
-		for (Object[] ordenProduccionAuxiliar : listaDatos) {
-			OrdenProduccionAuxiliar ordPA = new OrdenProduccionAuxiliar();
-			ordPA.setLugarEmision(ordenProduccionAuxiliar[0].toString());
-	
-	
-		listalugarEmisionCotizacion.add(ordPA);
-		}
-		return listalugarEmisionCotizacion;
-		//List<Object[]> miLista = query.getResultList();
-	}
-	
 }

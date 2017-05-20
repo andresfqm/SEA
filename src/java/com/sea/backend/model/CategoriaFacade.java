@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,13 +24,14 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.Categoria;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author homero
+ * @author Depurador
  */
 @Stateless
 public class CategoriaFacade extends AbstractFacade<Categoria> implements CategoriaFacadeLocal {
@@ -46,5 +47,9 @@ public class CategoriaFacade extends AbstractFacade<Categoria> implements Catego
 	public CategoriaFacade() {
 		super(Categoria.class);
 	}
-	
+
+	@Override
+	public List<Categoria> findAll() {
+		return super.findAll();
+	}
 }

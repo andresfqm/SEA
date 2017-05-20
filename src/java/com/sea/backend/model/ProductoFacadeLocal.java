@@ -53,4 +53,6 @@ public interface ProductoFacadeLocal {
 	List<Producto> productoPrecio(int idProducto) throws Exception;
 	
 	List<ProductoAuxiliar> datosEspecificacionProducto(String referencia) throws Exception;
+	
+	List<Producto> listaProductos();
 }

@@ -25,6 +25,7 @@ package com.sea.backend.model;
 
 import com.sea.backend.entities.Cotizacion;
 import com.sea.backend.entities.Email;
+import com.sun.org.apache.bcel.internal.generic.RET;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -85,26 +86,26 @@ public class CotizacionFacade extends AbstractFacade<Cotizacion> implements Coti
 		listaSeguimientoCotizacions = query.getResultList();
 		return listaSeguimientoCotizacions;
 	}
-	
+
 	@Override
 	public String correoCliente(int cliente) {
-		Object email=null;
+		Object email = null;
 		String correo;
 		String consulta = "SELECT e.email\n"
 				+ "FROM tbl_email AS e\n"
 				+ "INNER JOIN tbl_cliente as c \n"
 				+ "ON e.TBL_CLIENTE_ID_CLIENTE = c.ID_CLIENTE \n"
-				+ "WHERE id_cliente = ?1";
+				+ "WHERE id_usuario = ?1";
 		Query query = em.createNativeQuery(consulta);
 		query.setParameter(1, cliente);
 		email = query.getSingleResult();
 		correo = email.toString();
 		return correo;
 	}
-	
+
 	@Override
 	public String correoUsuario(int usuario) {
-		Object email=null;
+		Object email = null;
 		String correo;
 		String consulta = "SELECT e.email\n"
 				+ "FROM tbl_email AS e\n"
@@ -117,12 +118,6 @@ public class CotizacionFacade extends AbstractFacade<Cotizacion> implements Coti
 		correo = email.toString();
 		return correo;
 	}
-	
-	@Override
-    public void getReportePDF(String ruta, String numero_cotizacion) throws  ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-        Connection conexion;
-        Class.forName("com.mysql.jdbc.Driver").newInstance();
-        conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/fulldotaciones", "root", "");
 
 	@Override
 	public void getReportePDF(String ruta, String numero_cotizacion) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
@@ -134,10 +129,9 @@ public class CotizacionFacade extends AbstractFacade<Cotizacion> implements Coti
 		Map parameter = new HashMap();
 		parameter.put("numero_cotizacion", numero_cotizacion);
 
-
-        try {
-            File file = new File(ruta);
-			String destino = "C:\\Users\\EdisonArturo\\Documents\\NetBeansProjects\\SEA\\web\\PDF/cotizacion_N_" + numero_cotizacion + ".pdf";
+		try {
+			File file = new File(ruta);
+			String destino = "C:\\Users\\homero\\Documents\\NetBeansProjects\\SEA\\web\\PDF/cotizacion_N_" + numero_cotizacion + ".pdf";
 
 			JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(file.getPath());
 
@@ -159,10 +153,10 @@ public class CotizacionFacade extends AbstractFacade<Cotizacion> implements Coti
 	}
 
 	@Override
-    public void getReporteXLSX(String ruta, String numero_cotizacion) throws  ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-        Connection conexion;
-        Class.forName("com.mysql.jdbc.Driver").newInstance();
-        conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/fulldotaciones", "root", "");
+	public void getReporteXLSX(String ruta, String numero_cotizacion) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+		Connection conexion;
+		Class.forName("com.mysql.jdbc.Driver").newInstance();
+		conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/fulldotaciones", "root", "5050");
 
 		//Se definen los parametros si es que el reporte necesita
 		Map parameter = new HashMap();
@@ -189,16 +183,72 @@ public class CotizacionFacade extends AbstractFacade<Cotizacion> implements Coti
 				}
 			}
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (conexion != null) {
-                try {
-                    conexion.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (conexion != null) {
+				try {
+					conexion.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	@Override
+	public Object datosCotizacion(String numeroCotizacion) throws Exception {
+
+		String consulta2 = "SELECT co.numero_cotizacion, c.nombre_o_razon_social, ci.nombre, e.email, d.direccion, co.lugar_emision\n"
+				+ "FROM tbl_cotizacion AS co\n"
+				+ "INNER JOIN tbl_cliente as c \n"
+				+ "ON co.TBL_CLIENTE_ID_CLIENTE = c.ID_CLIENTE \n"
+				+ "INNER JOIN tbl_usuario AS u \n"
+				+ "ON c.TBL_USUARIO_ID_USUARIO = u.ID_USUARIO\n"
+				+ "INNER JOIN\n"
+				+ "TBL_EMAIL e ON c.ID_CLIENTE = e.TBL_CLIENTE_ID_CLIENTE\n"
+				+ "INNER JOIN\n"
+				+ "TBL_TIPO_EMAIL te ON e.TBL_TIPO_EMAIL_ID_TIPO_EMAIL = te.ID_TIPO_EMAIL\n"
+				+ "INNER JOIN\n"
+				+ "TBL_DIRECCION d ON d.TBL_CLIENTE_ID_CLIENTE = c.ID_CLIENTE\n"
+				+ "INNER JOIN\n"
+				+ "TBL_TIPO_DIRECCION tdi ON d.TBL_TIPO_DIRECCION_ID_TIPO_DIRECCION = tdi.ID_TIPO_DIRECCION\n"
+				+ "INNER JOIN\n"
+				+ "TBL_CIUDAD ci ON d.TBL_CIUDAD_ID_CIUDAD = ci.ID_CIUDAD\n"
+				+ "WHERE numero_cotizacion = ?1";
+
+		Query query = em.createNativeQuery(consulta2);
+		query.setParameter(1, numeroCotizacion);
+
+		//datosCliente = query.getResultList();
+		Object datosCotizacion = query.getSingleResult();
+
+		return datosCotizacion;
+	}
+
+	// Metodo para traer los datos de la cotización realizada
+	@Override
+	public Object ModificacionCotizacion(String numeroCotizacion) throws Exception {
+		String consulta5 = "SELECT co.numero_cotizacion, co.lugar_emision, co.fecha_emision, co.numero_remision, c.nombre_o_razon_social, e.email, t.numero_telefono\n"
+				+ "FROM tbl_cotizacion AS co\n"
+				+ "INNER JOIN tbl_cliente AS c\n"
+				+ "ON co.TBL_CLIENTE_ID_CLIENTE = c.ID_CLIENTE \n"
+				+ "INNER JOIN\n"
+				+ "TBL_EMAIL e ON c.ID_CLIENTE = e.TBL_CLIENTE_ID_CLIENTE\n"
+				+ "INNER JOIN\n"
+				+ "TBL_TIPO_EMAIL te ON e.TBL_TIPO_EMAIL_ID_TIPO_EMAIL = te.ID_TIPO_EMAIL\n"
+				+ "INNER JOIN\n"
+				+ "TBL_TELEFONO t ON c.ID_CLIENTE = t.TBL_CLIENTE_ID_CLIENTE\n"
+				+ "INNER JOIN\n"
+				+ "TBL_TIPO_TELEFONO tt ON t.TBL_TIPO_TELEFONO_ID_TIPO_TELEFONO = tt.ID_TIPO_TELEFONO\n"
+				+ "WHERE numero_cotizacion = ?1";
+		Query query = em.createNativeQuery(consulta5);
+		query.setParameter(1, numeroCotizacion);
+
+		//datosCliente = query.getResultList();
+		Object ModificacionCotizacion = query.getSingleResult();
+
+		return ModificacionCotizacion;
+	}
+
 }

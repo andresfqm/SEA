@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 homero.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,13 +24,12 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.OrdenProduccion;
-import com.sea.frontend.controller.OrdenProduccionAuxiliar;
 import java.util.List;
 import javax.ejb.Local;
 
 /**
  *
- * @author homero
+ * @author Depurador
  */
 @Local
 public interface OrdenProduccionFacadeLocal {

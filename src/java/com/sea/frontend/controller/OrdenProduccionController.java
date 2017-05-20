@@ -93,7 +93,7 @@ public class OrdenProduccionController implements Serializable {
 	private String numeroCotizacion;
 	private List<Cotizacion> listaCotizacionesOrdenProduccion;
 	private Object datosCotizacion;
-	private List<OrdenProduccionAuxiliar> listaLugarEmicion;
+
 
 //EJB Producto Especificación
 	@EJB
@@ -204,6 +204,7 @@ public class OrdenProduccionController implements Serializable {
 	@EJB
 	private TallaDisenoProductoFacadeLocal tallaDPEJB;
 	private TallaDisenoProducto tallaDisenoProducto;
+	private List<TallaDisenoProducto> listaTallaDisenoProductos;
 
 	private UsuarioFacadeLocal EJBUsuario;
 	private Usuario usuario;
@@ -252,13 +253,13 @@ public class OrdenProduccionController implements Serializable {
 		listaTallas = tallaEJB.findAll();
 		ordenProduccion = new OrdenProduccion();
 		ordenProduccion.setFechaExpedicion(new Date());
-		ordenProduccion.setFechaEntregaFinal(new Date());
 
 		disenoProducto = new DisenoProducto();
 		listaDiseñoProducto = new ArrayList<>();
 		especificacionDiseno = new EspecificacionDiseno();
 		tallaDisenoProducto = new TallaDisenoProducto();
-		listaLugarEmicion = new ArrayList<>();
+		listaTallaDisenoProductos = new ArrayList<>();
+		tallaDisenoProducto = new TallaDisenoProducto();
 	}
 
 	public void agregarCotizacionProducto() {
@@ -272,6 +273,7 @@ public class OrdenProduccionController implements Serializable {
 		listaCotizacionP.add(cot);
 
 	}
+	
 
 	//Metodo para calcular el precio del producto seleccionado
 	public Double calcularPrecioProductoDescuento() {
@@ -722,6 +724,26 @@ public class OrdenProduccionController implements Serializable {
 		diseñoP.setTblProductoEspecificacionIdProductoEspecificacion(productoEspecificacion);
 		listaDiseñoProducto.add(diseñoP);
 	}
+	
+	//Metodo para agregar tallas de los articulos
+	public void agregarTallas(){
+		TallaDisenoProducto tallaP = new TallaDisenoProducto();
+		tallaP.setCantidad(tallaDisenoProducto.getCantidad());
+		tallaP.setTblDisenoProductoIdDisenoProducto(disenoProducto);
+		tallaP.setTblTallaIdTalla(talla);
+		listaTallaDisenoProductos.add(tallaP);
+				
+				
+	}
+
+	public List<TallaDisenoProducto> getListaTallaDisenoProductos() {
+		return listaTallaDisenoProductos;
+	}
+
+	public void setListaTallaDisenoProductos(List<TallaDisenoProducto> listaTallaDisenoProductos) {
+		this.listaTallaDisenoProductos = listaTallaDisenoProductos;
+	}
+	
 
 	public List<Cotizacion> getListaLugarEmision() {
 		return listaLugarEmision;
@@ -733,7 +755,7 @@ public class OrdenProduccionController implements Serializable {
 
 	public void objetosCotizacionProducto() throws Exception {
 		System.out.println("(((((((((((((((((" + numeroCotizacion);
-		listaDatosCotizacionProducto = cotizacionProductoEJB.datosCotizacionProducto(getNumeroCotizacion());
+		listaDatosCotizacionProducto = cotizacionProductoEJB.datosCotizacionProducto(numeroCotizacion);
 		ordenProduccion.setTotalPrendas(listaDatosCotizacionProducto.size());
 		System.out.println("total de prendas: " + ordenProduccion.getTotalPrendas());
 	}
@@ -749,7 +771,7 @@ public class OrdenProduccionController implements Serializable {
 	public void obtenerLugarEmicionCotizacion() throws Exception {
 
 		System.out.println("Prueba Lugar Emicion = " + numeroCotizacion);
-		listaLugarEmicion = ordenPEJB.lugarEmisionCotizacion(getNumeroCotizacion());
+		
 
 	}
 
@@ -810,9 +832,12 @@ public class OrdenProduccionController implements Serializable {
 			ordenProduccion.setTblCotizacionNumeroCotizacion(cotizacionEJB.find(numeroCotizacion));
 			ordenPEJB.create(ordenProduccion);
 
+			
 			productoEspecificacion.setObservaqciones(productoEspecificacion.getObservaqciones());
 			productoEspecificacion.setTblOrdenProduccionIdOrdenProduccion(ordenPEJB.find(idOrdenProduccion));
-			productoEspecificacion.setTblProductoIdProducto(productoEJB.find(idProducto));
+			for (CotizacionProductoAuxiliar listaCPA : listaDatosCotizacionProducto) {
+			}
+			
 
 			for (DisenoProducto item1 : listaDiseñoProducto) {
 				disenoProducto.setTblProductoEspecificacionIdProductoEspecificacion(productoEspecificacion);
@@ -864,15 +889,7 @@ public class OrdenProduccionController implements Serializable {
 		return listaDatosEspecificacionProducto;
 	}
 
-	public List<OrdenProduccionAuxiliar> getListaLugarEmicion() throws Exception {
-		obtenerLugarEmicionCotizacion();
-		for (OrdenProduccionAuxiliar ordA : listaLugarEmicion) {
-			System.out.println("LugarEmision" + ordA.getLugarEmision());
 
-		}
-		return listaLugarEmicion;
-
-	}
 
 	public void setListaDatosEspecificacionProducto(List<ProductoAuxiliar> listaDatosEspecificacionProducto) {
 		this.listaDatosEspecificacionProducto = listaDatosEspecificacionProducto;
@@ -926,9 +943,6 @@ public class OrdenProduccionController implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public void setListaLugarEmicion(List<OrdenProduccionAuxiliar> listaLugarEmicion) {
-		this.listaLugarEmicion = listaLugarEmicion;
-	}
 
 	public int getIdOrdenProduccion() {
 		return idOrdenProduccion;
@@ -961,7 +975,11 @@ public class OrdenProduccionController implements Serializable {
 			System.out.println(e.getMessage());
 		}
 		return pathReal1;
+		
+		
 
 	}
+	
+	
 
 }
