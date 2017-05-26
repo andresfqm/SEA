@@ -22,13 +22,12 @@
 
 
 						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <p:selectOneMenu value="#{ordenProduccionController.numeroCotizacion}" filter="true" filterMatchMode="contains">
-                                <p:ajax event="valueChange" listener="#{ordenProduccionController.obtenerDatosRegistroOrdenProduccion()}" update="ciudadEmision, cliente, e-mail, direccionCliente, datosCP1,espec"/>
-
+                            <h:outputLabel class="mdl-textfield__label" for="numeroCotizacion">Cotización No.</h:outputLabel>
+                            <p:selectOneMenu value="#{ordenProduccionController.numeroCotizacion}" filter="true" filterMatchMode="contains" id="numeroCotizacion">
+                                <p:ajax listener="#{ordenProduccionController.obtenerDatosRegistroOrdenProduccion()}" update="ciudadEmision, cliente, e-mail, direccionCliente, datosCP1, espec"/>
 								<f:selectItem itemValue="" itemLabel="Seleccione" />
                                 <f:selectItems value="#{ordenProduccionController.listaCotizacionesOrdenProduccion}" var="ord" itemLabel="#{ord.numeroCotizacion}" itemValue="#{ord.numeroCotizacion}"/>
                             </p:selectOneMenu>
-                            <h:outputLabel class="mdl-textfield__label" for="numeroCotizacion">Cotización No.</h:outputLabel>
                         </h:panelGroup>
 
 
@@ -42,7 +41,7 @@
 						</h:panelGroup>
 						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 							<h:inputText pt:type="date" class="mdl-textfield__input" id="fechaEmision" value="#{ordenProduccionController.ordenProduccion.fechaExpedicion}" pt:disabled="true">
-								<f:convertDateTime pattern="dd/MM/yyyy" />
+								<f:convertDateTime pattern="dd/MM/yy" />
 							</h:inputText>
 							<h:outputLabel class="mdl-textfield__label" for="fechaEmision">Fecha de emisión</h:outputLabel>
 						</h:panelGroup>
@@ -54,7 +53,7 @@
 						</h:panelGroup>
 						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 							<h:inputText class="mdl-textfield__input" pt:type="email" id="e-mail" value="#{ordenProduccionController.datosCotizacion[3]}" pt:disabled="true" />
-							<h:outputLabel class="mdl-textfield__label" for="e-mail1">e-mail</h:outputLabel>
+							<h:outputLabel class="mdl-textfield__label" for="e-mail">e-mail</h:outputLabel>
 						</h:panelGroup>
 						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 							<h:inputText class="mdl-textfield__input" id="direccionCliente" value="#{ordenProduccionController.datosCotizacion[4]}" pt:disabled="true" />
@@ -72,42 +71,44 @@
 
 
 
-						<ui:repeat value="#{ordenProduccionController.listaDatosCotizacionProducto}" var="item" class="step">
+						<ui:repeat value="#{ordenProduccionController.listaDatosCotizacionProducto}" var="item" class="step" id="repeat">
 
 							<h5 class="mdl-typography--title fullWidth">Prenda</h5>
 
 							<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-								<h:inputText class="mdl-textfield__input" id="referencia" value="#{item.referencia}" pt:disabled="true" />
+								<h:inputText class="mdl-textfield__input" id="referencia" value="#{item[0]}" pt:disabled="true" />
 								<h:outputLabel class="mdl-textfield__label" for="referencia">Referencia</h:outputLabel>
 							</h:panelGroup>
 							<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-								<h:inputText class="mdl-textfield__input" id="descripcion" value="#{item.descripcion}" pt:disabled="true" />
+								<h:inputText class="mdl-textfield__input" id="descripcion" value="#{item[1]}" pt:disabled="true" />
 								<h:outputLabel class="mdl-textfield__label" for="descripcion">Descripción</h:outputLabel>
 							</h:panelGroup>
 
 							<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-								<h:inputText class="mdl-textfield__input" id="material" value="#{item.nombreMaterial}" pt:disabled="true" />
+								<h:inputText class="mdl-textfield__input" id="material" value="#{item[2]}" pt:disabled="true" />
 								<h:outputLabel class="mdl-textfield__label" for="material">Material</h:outputLabel>
 							</h:panelGroup>
 							<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-								<h:inputText class="mdl-textfield__input" id="fabricante" value="#{item.nombreFabricante}" pt:disabled="true" />
+								<h:inputText class="mdl-textfield__input" id="fabricante" value="#{item[3]}" pt:disabled="true" />
 								<h:outputLabel class="mdl-textfield__label" for="fabricante">Fabricante</h:outputLabel>
 							</h:panelGroup>
 
 
 							<h3 class="mdl-typography--headline">Cantidad por tallas</h3>
 							<!-- Usar <template> para los artículos a cotizar -->
-							<p:commandLink styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" onclick="PF('dlg2').show();" value="Agregar diseño producto" />
+							<p:commandLink ajax="true" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" onclick="PF('dlg2').show();" actionListener="#{ordenProduccionController.producto.setIdProducto(item[4])}" value="Agregar diseño producto" update=":addCantidadTallas"/>
 							<p:commandLink styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" onclick="PF('dlg3').show();" value="Agregar tallas" />
 							<br/>
 
-							<h:panelGroup class="fullWidth">
-								<h:form id="formTable" enctype="multipart/form-data">
-									<p:dataTable id="tablaP" var="proET" emptyMessage="No se encontraron registros"
-												 value="#{ordenProduccionController.listaDiseñoProducto}" 
-												 styleClass="mdl-data-table mdl-js-data-table  mdl-shadow--2dp " rowStyleClass="mdl-data-table__cell--non-numeric">
+						</ui:repeat>
+						<div>
+						<h:panelGroup layout="block" class="fullWidth">
+							<h:form id="formTable">
+								<p:dataTable id="tableP" var="proET" emptyMessage="No se encontraron registros" value="#{ordenProduccionController.listaDiseñoProducto}" styleClass="mdl-data-table mdl-js-data-table  mdl-shadow--2dp">
 
-
+										<p:column headerText="Diseño">
+											<h:outputText value="#{proET.diseno}"/>
+										</p:column>
 										<p:column headerText="Diseño">
 											<h:outputText value="#{proET.diseno}"/>
 										</p:column>
@@ -115,30 +116,28 @@
 											<h:outputText value="#{proET.descripcionDiseno}"/>
 										</p:column>
 
+								</p:dataTable>
+							</h:form>
 
-									</p:dataTable>
-								</h:form>
-							</h:panelGroup>
-							<h:panelGroup class="fullWidth">
-								<h:form id="formt">
-									<p:dataTable id="tablaT" var="proT" emptyMessage="No se encontraron registros"
-												 value="#{ordenProduccionController.listaTallaDisenoProductos}" 
-												 styleClass="mdl-data-table mdl-js-data-table  mdl-shadow--2dp " rowStyleClass="mdl-data-table__cell--non-numeric">
-										<p:column headerText="Talla">
-											<h:outputText value="#{proT.tblTallaIdTalla.talla}"/>
-										</p:column>
-										<p:column headerText="Cantidad">
-											<h:outputText value="#{proT.cantidad}"/>
-										</p:column>
 
-									</p:dataTable>
+						</h:panelGroup><br/>
+						<h:panelGroup layout="block" class="fullWidth">
+							<h:form id="formt">
+								<p:dataTable id="tablaT" var="proT" emptyMessage="No se encontraron registros" value="#{ordenProduccionController.listaTallaDisenoProductos}" styleClass="mdl-data-table mdl-js-data-table  mdl-shadow--2dp">
+									<p:column headerText="Talla">
+										<h:outputText value="#{proT.tblTallaIdTalla.talla}"/>
+									</p:column>
+									<p:column headerText="Cantidad">
+										<h:outputText value="#{proT.cantidad}"/>
+									</p:column>
 
-								</h:form>
-							</h:panelGroup>
-						</ui:repeat>
+								</p:dataTable>
 
+							</h:form>
+						</h:panelGroup>
+						</div>
 						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<h:inputText class="mdl-textfield__input" id="totalPrendas" pt:type="number" p:min="1" p:step="1" pt:maxlength="32" pt:required="true" value="#{ordenProduccionController.ordenProduccion.totalPrendas}"/>
+							<h:inputText class="mdl-textfield__input" id="totalPrendas" pt:type="number" p:min="1" p:step="1" pt:maxlength="32" pt:required="true" value="#{ordenProduccionController.ordenProduccion.totalPrendas}" />
 							<h:outputLabel class="mdl-textfield__label" for="totalPrendas">Total prendas</h:outputLabel>
 						</h:panelGroup>
 
@@ -164,7 +163,7 @@
 							<h:outputLabel class="mdl-textfield__label" for="lugarEntrega">Lugar de entrega</h:outputLabel>
 						</h:panelGroup>
 						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<h:inputText class="mdl-textfield__input" id="tiempoEntrega" disabled="disabled" value="1 días hábiles enviada orden de compra y validado anticipo" />
+							<h:inputText class="mdl-textfield__input" id="tiempoEntrega" disabled="disabled" value="1 días hÃ¡biles enviada orden de compra y validado anticipo" />
 							<h:outputLabel class="mdl-textfield__label" for="tiempoEntrega">Tiempo de entrega</h:outputLabel>
 						</h:panelGroup>
 						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
@@ -174,10 +173,13 @@
 						<p:commandButton ajax="false" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent notificacion" value="Generar orden de producción" actionListener="#{ordenProduccionController.registrarOrdenProduccion()}" id="reporte"/>
 					</h:panelGroup>
 				</h:form>
-
 				<p:dialog widgetVar="dlg2" id="cantidadTallas" >	
 					<h:form id="addCantidadTallas" class="mdl-dialog" enctype="multipart/form-data">
 						<h3 class="mdl-dialog__title">Cantidad por tallas</h3>
+						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="id">
+							<h:outputLabel class="mdl-textfield__label" value="#{ordenProduccionController.producto.idProducto}"></h:outputLabel>
+						</h:panelGroup>
+
 						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 							<h:inputText class="mdl-textfield__input" id="diseño" pt:required="true" value="#{ordenProduccionController.disenoProducto.diseno}" pt:maxlength="100" />
 							<h:outputLabel class="mdl-textfield__label" for="diseño">Diseño</h:outputLabel>
@@ -211,7 +213,7 @@
 
 
 						<h:panelGroup layout="block" class="mdl-dialog__actions">
-							<p:commandButton ajax="false" actionListener="#{ordenProduccionController.diseñoProducto()}" value="Agregar" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" update="formGen:formTable:tablaP" oncomplete="PF('dlg2').hide();"/>
+							<p:commandButton ajax="true" actionListener="#{ordenProduccionController.diseñoProducto()}" value="Agregar" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" update="formGen:datosCP1" oncomplete="PF('dlg2').hide();"/>
 							<p:commandButton value="Cancelar" onclick="PF('dlg2').hide();" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm"/>
 
 						</h:panelGroup>
@@ -234,7 +236,7 @@
 							<h:outputLabel class="mdl-textfield__label" for="cantidadTalla">Cantidad talla</h:outputLabel>
 						</h:panelGroup>
 
-						<p:commandButton ajax="false" actionListener="#{ordenProduccionController.agregarTallas()}" value="Agregar" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" update="formGen:formt:tablaT" oncomplete="PF('dlg3').hide();"/>
+						<p:commandButton ajax="true" actionListener="#{ordenProduccionController.agregarTallas()}" value="Agregar" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" update="formGen:datosCP1" oncomplete="PF('dlg3').hide();"/>
 						<p:commandButton value="Cancelar" onclick="PF('dlg3').hide();" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm"/>
 
 					</h:form>
@@ -250,36 +252,6 @@
 
 			</main>
 			<ui:composition template="/templates/navGeneral.xhtml" />
-            <aside>
-                <h:panelGroup layout="block" id="articuloAgregado" class="mdl-js-snackbar mdl-snackbar">
-                    <h:panelGroup layout="block" class="mdl-snackbar__text"></h:panelGroup>
-                    <button class="mdl-snackbar__action" type="button"></button>
-                </h:panelGroup>
-                <script>
-					(function () {
-						'use strict';
-						window['counter'] = 0;
-						var snackbarContainer = document.querySelector('#articuloAgregado');
-						var showToastButton = document.querySelector('#mostrarArticuloAgregado');
-						var handler = function (event) {
-							console.log("artículo removido");
-						};
-						showToastButton.addEventListener('click', function () {
-							'use strict';
-							var data = {message: 'Artículo añadido a la cotización.', timeout: 5000, actionHandler: handler, actionText: 'Deshacer'};
-							snackbarContainer.MaterialSnackbar.showSnackbar(data);
-						});
-					}());
-                </script>
-
-				<script>
-					function limitTextArea(element, limit) {
-						if (element.value.length > limit) {
-							element.value = element.value.substring(0, limit);
-						}
-					}
-				</script>
-            </aside>
 
         </f:view>
     </h:body>

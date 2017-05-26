@@ -53,7 +53,6 @@ public class CotizacionProductoFacade extends AbstractFacade<CotizacionProducto>
 
 	@Override
 	public List<CotizacionProductoAuxiliar> datosCotizacionProducto(String numeroCotizacion) throws Exception {
-		List<Object[]> listaDatos;
 		List<CotizacionProductoAuxiliar> listaDatosCotizacionProductoAuxiliar;
 		listaDatosCotizacionProductoAuxiliar = new ArrayList<>();
 		String consulta1 = "SELECT pr.referencia, pr.descripcion, ma.nombre, fa.nombre, pr.id_producto\n"
@@ -71,19 +70,25 @@ public class CotizacionProductoFacade extends AbstractFacade<CotizacionProducto>
 		Query query = em.createNativeQuery(consulta1);
 		query.setParameter(1, numeroCotizacion);
 
-		listaDatos = query.getResultList();
+		listaDatosCotizacionProductoAuxiliar = query.getResultList();
 
-		for (Object[] cotizacionProductoAuxiliar : listaDatos) {
-			CotizacionProductoAuxiliar cotPA = new CotizacionProductoAuxiliar();
-			cotPA.setReferencia(cotizacionProductoAuxiliar[0].toString());
-			cotPA.setDescripcion(cotizacionProductoAuxiliar[1].toString());
-			cotPA.setNombreMaterial(cotizacionProductoAuxiliar[2].toString());
-			cotPA.setNombreFabricante(cotizacionProductoAuxiliar[3].toString());
-
-			listaDatosCotizacionProductoAuxiliar.add(cotPA);
-		}
 		return listaDatosCotizacionProductoAuxiliar;
 		//List<Object[]> miLista = query.getResultList();
 	}
 
+	@Override
+	public List<CotizacionProducto> productosCotizados(String numeroCotizacion) throws Exception {
+		List<CotizacionProducto> listaProductosCotizados;
+		String consulta2 = " SELECT pr.referencia, pr.descripcion, cp.cantidad, cp.precio_base, cp.precio_para_cliente\n"
+				+ "                FROM tbl_cotizacion_producto AS cp\n"
+				+ "                INNER JOIN tbl_producto AS pr\n"
+				+ "                ON cp.tbl_producto_id_producto = pr.id_producto\n"
+				+ "                WHERE cp.tbl_cotizacion_numero_cotizacion = ?1";
+
+		Query query = em.createNativeQuery(consulta2);
+		query.setParameter(1, numeroCotizacion);
+		listaProductosCotizados = query.getResultList();
+		return listaProductosCotizados;
+
+	}
 }

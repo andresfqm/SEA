@@ -411,10 +411,6 @@ group by numero_cotizacion]]>
 	</background>
 	<title>
 		<band height="108" splitType="Stretch">
-			<image>
-				<reportElement x="11" y="11" width="230" height="52" uuid="596b5a77-c0d4-4388-b1df-75e64823db56"/>
-				<imageExpression><![CDATA["C:\\Users\\EdisonArturo\\Downloads\\137405.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="409" y="17" width="83" height="21" forecolor="#3F51B5" uuid="2faf17da-a877-4662-bea0-63e9beaffece"/>
 				<textElement>
@@ -440,6 +436,10 @@ group by numero_cotizacion]]>
 				<reportElement x="250" y="68" width="314" height="20" forecolor="#3F51B5" uuid="74842670-bc68-4ce3-97fc-0e8e33a0a3e6"/>
 				<text><![CDATA[Carrera 21 # 49 - 11  |  Palermo - Teusaquillo | Bogotá | Colombia]]></text>
 			</staticText>
+			<image>
+				<reportElement x="22" y="11" width="338" height="57" uuid="8b0eb2fb-b242-4b5d-b932-f92a1a34d7e9"/>
+				<imageExpression><![CDATA["C:\\Users\\homero\\Documents\\NetBeansProjects\\SEA\\web\\resources\\img\\full.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<detail>
@@ -690,7 +690,7 @@ group by numero_cotizacion]]>
 				<reportElement key="table 4" style="table 4" x="11" y="288" width="523" height="62" uuid="8673cdd9-c866-4f6c-ab49-ac77ed9c33b7"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="cotizacion_producto" uuid="c20063a4-654a-4de6-967c-dbc708883645">
-						<datasetParameter name="cotizacion_tabla" >
+						<datasetParameter name="cotizacion_tabla">
 							<datasetParameterExpression><![CDATA[$P{numero_cotizacion}]]></datasetParameterExpression>
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>

@@ -15,7 +15,6 @@ import com.sea.backend.entities.EspecificacionDiseno;
 import com.sea.backend.entities.Fabricante;
 import com.sea.backend.entities.LugaresEntrega;
 import com.sea.backend.entities.Material;
-import com.sea.backend.entities.ModalidadDePago;
 import com.sea.backend.entities.OrdenProduccion;
 import com.sea.backend.entities.Producto;
 import com.sea.backend.entities.ProductoEspecificacion;
@@ -25,17 +24,14 @@ import com.sea.backend.entities.TallaDisenoProducto;
 import com.sea.backend.entities.TiempoEntrega;
 import com.sea.backend.entities.Usuario;
 import com.sea.backend.model.CiudadFacadeLocal;
-import com.sea.backend.model.ClienteFacadeLocal;
 import com.sea.backend.model.CotizacionFacadeLocal;
 import com.sea.backend.model.CotizacionProductoFacadeLocal;
 import com.sea.backend.model.DescuentoFacadeLocal;
-import com.sea.backend.model.DescuentoVolumenFacadeLocal;
 import com.sea.backend.model.DisenoProductoFacadeLocal;
 import com.sea.backend.model.EspecificacionDisenoFacadeLocal;
 import com.sea.backend.model.FabricanteFacadeLocal;
 import com.sea.backend.model.LugaresEntregaFacadeLocal;
 import com.sea.backend.model.MaterialFacadeLocal;
-import com.sea.backend.model.ModalidadDePagoFacadeLocal;
 import com.sea.backend.model.OrdenProduccionFacadeLocal;
 import com.sea.backend.model.ProductoEspecificacionFacadeLocal;
 import com.sea.backend.model.ProductoFacadeLocal;
@@ -50,8 +46,11 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Properties;
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
@@ -61,17 +60,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import javax.mail.BodyPart;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import org.primefaces.model.UploadedFile;
@@ -211,6 +199,12 @@ public class OrdenProduccionController implements Serializable {
 
 	private UploadedFile file;
 	private UploadedFile file2;
+	
+	private String idUi;
+	private int valueId;
+	
+	private List<List<DisenoProducto>> listaTablaProductoDiseño= new  ArrayList<>();
+	
 
 	public UploadedFile getFile() {
 		return file;
@@ -255,11 +249,13 @@ public class OrdenProduccionController implements Serializable {
 		ordenProduccion.setFechaExpedicion(new Date());
 
 		disenoProducto = new DisenoProducto();
-		listaDiseñoProducto = new ArrayList<>();
+		listaDiseñoProducto = new ArrayList<>();			
 		especificacionDiseno = new EspecificacionDiseno();
 		tallaDisenoProducto = new TallaDisenoProducto();
 		listaTallaDisenoProductos = new ArrayList<>();
 		tallaDisenoProducto = new TallaDisenoProducto();
+		idUi = "id";
+		valueId = 0;
 	}
 
 	public void agregarCotizacionProducto() {
@@ -303,6 +299,10 @@ public class OrdenProduccionController implements Serializable {
 	public void obtenerDatosRegistroOrdenProduccion() throws Exception {
 		try {
 			datosCotizacion = cotizacionEJB.datosCotizacion(numeroCotizacion);
+			objetosCotizacionProducto();
+			for (int i = 0; i < listaDatosCotizacionProducto.size(); i++) {
+			listaTablaProductoDiseño.add(new ArrayList<>(i));
+		}
 		} catch (Exception e) {
 		}
 	}
@@ -326,6 +326,7 @@ public class OrdenProduccionController implements Serializable {
 		return "actualizarCotizacion.xhtml";
 
 	}
+
 
 	public PropuestaNoIncluye getPropuestaNoIncluye() {
 		return propuestaNoIncluye;
@@ -716,6 +717,7 @@ public class OrdenProduccionController implements Serializable {
 	//Metodo para agragar diseño del producto
 	public void diseñoProducto() {
 		DisenoProducto diseñoP = new DisenoProducto();
+		diseñoP.setIdDisenoProducto(producto.getIdProducto());
 		diseñoP.setLogotipo(disenoProducto.getLogotipo());
 		diseñoP.setDiagramaDiseno(disenoProducto.getDiagramaDiseno());
 		diseñoP.setNecesitaBordado(disenoProducto.getNecesitaBordado());
@@ -723,6 +725,8 @@ public class OrdenProduccionController implements Serializable {
 		diseñoP.setDescripcionDiseno(disenoProducto.getDescripcionDiseno());
 		diseñoP.setTblProductoEspecificacionIdProductoEspecificacion(productoEspecificacion);
 		listaDiseñoProducto.add(diseñoP);
+		listaTablaProductoDiseño.get(0).add(diseñoP);
+
 	}
 	
 	//Metodo para agregar tallas de los articulos
@@ -732,7 +736,7 @@ public class OrdenProduccionController implements Serializable {
 		tallaP.setTblDisenoProductoIdDisenoProducto(disenoProducto);
 		tallaP.setTblTallaIdTalla(talla);
 		listaTallaDisenoProductos.add(tallaP);
-				
+		System.out.println("asd");
 				
 	}
 
@@ -836,6 +840,7 @@ public class OrdenProduccionController implements Serializable {
 			productoEspecificacion.setObservaqciones(productoEspecificacion.getObservaqciones());
 			productoEspecificacion.setTblOrdenProduccionIdOrdenProduccion(ordenPEJB.find(idOrdenProduccion));
 			for (CotizacionProductoAuxiliar listaCPA : listaDatosCotizacionProducto) {
+			productoEspecificacion.setTblProductoIdProducto(productoEJB.find(listaCPA.getIdProducto()));
 			}
 			
 
@@ -861,17 +866,6 @@ public class OrdenProduccionController implements Serializable {
 	}
 
 	public List<CotizacionProductoAuxiliar> getListaDatosCotizacionProducto() throws Exception {
-
-		objetosCotizacionProducto();
-
-		for (CotizacionProductoAuxiliar ca : listaDatosCotizacionProducto) {
-			System.out.println("Descripción" + ca.getDescripcion());
-			System.out.println("Referencia" + ca.getReferencia());
-			System.out.println("Material" + ca.getNombreMaterial());
-			System.out.println("Fabricante" + ca.getNombreFabricante());
-
-		}
-
 		return listaDatosCotizacionProducto;
 
 	}
@@ -881,11 +875,6 @@ public class OrdenProduccionController implements Serializable {
 	}
 
 	public List<ProductoAuxiliar> getListaDatosEspecificacionProducto() throws Exception {
-		obtenerEspecicacionesProductosRegistrados();
-		for (ProductoAuxiliar prA : listaDatosEspecificacionProducto) {
-			System.out.println("Descripción de los productos" + prA.getDescripcion());
-
-		}
 		return listaDatosEspecificacionProducto;
 	}
 
@@ -979,6 +968,33 @@ public class OrdenProduccionController implements Serializable {
 		
 
 	}
+
+	public String getIdUi() {
+		idUi = idUi + valueId;
+		return idUi;
+	}
+
+	public void setIdUi(String idUi) {
+		this.idUi = idUi;
+	}
+
+	public int getValueId() {
+		return valueId ++ ;
+	}
+
+	public void setValueId(int valueId) {
+		this.valueId = valueId;
+	}
+
+	public List<List<DisenoProducto>> getListaTablaProductoDiseño() {
+		return listaTablaProductoDiseño;
+	}
+
+	public void setListaTablaProductoDiseño(List<List<DisenoProducto>> listaTablaProductoDiseño) {
+		this.listaTablaProductoDiseño = listaTablaProductoDiseño;
+	}
+
+	
 	
 	
 
