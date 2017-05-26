@@ -19,9 +19,9 @@
 						<h:panelGroup class="step">
 							<h3 class="mdl-typography--headline">Datos de la cotización</h3>
 							<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-								
+
 								<p:selectOneMenu value="#{cotizacionController.numeroCotizacion}" filter="true" filterMatchMode="contains" pt:required="required">
-									<p:ajax event="valueChange" listener="#{cotizacionController.obtenerDatosRegistradosCotizacion()}" update="ciudadEmision,fechaEmision,cliente,ciudad,departamento,e-mail1,telefono1,numeroRemision,formGen:formTable:productos"/>
+									<p:ajax event="valueChange" listener="#{cotizacionController.obtenerDatosRegistradosCotizacion()}" update="ciudadEmision,fechaEmision,cliente,ciudad,departamento,e-mail1,telefono1,numeroRemision,:formGen:formTable:p"/>
 									<f:selectItem itemValue="" itemLabel="Seleccione" />
 									<f:selectItems value="#{cotizacionController.listaCotizacionesPorEstados}" var="dat" itemLabel="#{dat.numeroCotizacion}" itemValue="#{dat.numeroCotizacion}"/>
 								</p:selectOneMenu>
@@ -87,193 +87,165 @@
 								<h:outputLabel class="mdl-textfield__label" for="relacionMuestra">Relación de muestras:</h:outputLabel>
 							</h:panelGroup>
 
-						</h:panelGroup>
-						<h3 class="mdl-typography--headline">Artículos a cotizar</h3>
-						<p:commandButton styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" onclick="PF('dlg2').show();" value="Agregar articulo"/>
-						<a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" href="/SEA/reportes/listaDePrecios.xhtml" target="_blank">Ver lista de precios</a>
 
-						<h:form id="formTable">
-							<h:panelGroup id="productos" class="fullWidth">
-								<p:dataTable id="tablaP" var="producto" emptyMessage="No se encontraron registros"
-											 value="#{cotizacionController.listaProductosCotizacion}" 
-											 styleClass="mdl-data-table mdl-js-data-table  mdl-shadow--2dp " rowStyleClass="mdl-data-table__cell--non-numeric">
-									<p:column headerText="Referencia">
-										<h:outputText value="#{producto.tblProductoIdProducto.referencia}"/>
-									</p:column>
-									<p:column headerText="Descripcion">
-										<h:outputText value="#{producto.tblProductoIdProducto.descripcion}"/>
-									</p:column>
-									<p:column headerText="Cantidad Minima">
-										<h:outputText value="#{producto.cantidad}"/>
-									</p:column>
-									<p:column headerText="Precio unitario sin descuento">
-										<h:outputText value="#{producto.tblProductoIdProducto.precio}"/>
-									</p:column>
-									<p:column headerText="Precio Para el cliente">
-										<h:outputText value="#{producto.precioParaCliente}"/>
-									</p:column>
-									<p:column>
-										<f:facet name="header">
-											<h:outputLabel value="Acciones"/>
-										</f:facet>
-										<p:commandButton value="Editar" actionListener="#{cotizacionController.leerId(producto)}" immediate="true" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" oncomplete="PF('dlg2').show();"/>
-										<p:commandButton value="Eliminar" actionListener="#{cotizacionController.eliminarProductosCotizados(producto)}" immediate="true" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" oncomplete="PF('dlg2').show();" />
+							<h3 class="mdl-typography--headline">Artículos a cotizar</h3>
+							<p:commandButton styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" onclick="PF('dlg2').show();" value="Agregar articulo"/>
+							<a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" href="/SEA/reportes/listaDePrecios.xhtml" target="_blank">Ver lista de precios</a>
 
-									</p:column>
-								</p:dataTable>
+							<h:form id="formTable">
+								<h:panelGroup class="fullWidth" id="p">
+									<p:dataTable id="tablaP" var="producto" emptyMessage="No se encontraron registros"
+												 value="#{cotizacionController.listaProductosCotizacion}" 
+												 styleClass="mdl-data-table mdl-js-data-table  mdl-shadow--2dp " rowStyleClass="mdl-data-table__cell--non-numeric">
+										<p:column headerText="Referencia">
+											<h:outputText value="#{producto[0]}"/>
+										</p:column>
+										<p:column headerText="Descripcion">
+											<h:outputText value="#{producto[1]}"/>
+										</p:column>
+										<p:column headerText="Cantidad Minima">
+											<h:outputText value="#{producto[2]}"/>
+										</p:column>
+										<p:column headerText="Precio unitario sin descuento">
+											<h:outputText value="#{producto[3]}"/>
+										</p:column>
+										<p:column headerText="Precio Para el cliente">
+											<h:outputText value="#{producto[4]}"/>
+										</p:column>
+										<p:column>
+											<f:facet name="header">
+												<h:outputLabel value="Acciones"/>
+											</f:facet>
+											<p:commandButton value="Editar" actionListener="#{cotizacionController.leerId(producto)}" immediate="true" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" oncomplete="PF('dlg2').show();"/>
+											<p:commandButton value="Eliminar" actionListener="#{cotizacionController.eliminarProductosCotizados(producto)}" immediate="true" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" oncomplete="PF('dlg2').show();" />
+
+										</p:column>
+									</p:dataTable>
+								</h:panelGroup>
+							</h:form>
+							<h:panelGroup layout="block">
+								<h3 class="mdl-typography--headline">Condiciones comerciales</h3>
+								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+									<p:inputText styleClass="mdl-textfield__input" pt:type="number" id="descuento" pt:required="required" p:min="0" p:max="100" p:step="0.01" value="#{cotizacionController.cotizacion.descuento}" />
+									<h:outputLabel class="mdl-textfield__label" for="descuento">Descuento</h:outputLabel>
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+									<output class="mdl-textfield__input" id="totalDescuento">649050</output>
+									<h:outputLabel class="mdl-textfield__label" for="totalDescuento">Total descuento</h:outputLabel>
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+									<h:inputText  class="mdl-textfield__input" pt:type="number" id="IVA" pt:required="true" p:min="0" p:max="100" p:step="0.01" value="#{cotizacionController.cotizacion.iva}" />
+									<h:outputLabel class="mdl-textfield__label" for="IVA">IVA</h:outputLabel>
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+									<output class="mdl-textfield__input" id="totalIVA">588472</output>
+									<h:outputLabel class="mdl-textfield__label" for="totalIVA">Total IVA</h:outputLabel>
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+									<output class="mdl-textfield__input" id="subtotal">3677950</output>
+									<h:outputLabel class="mdl-textfield__label" for="subtotal">Subtotal: </h:outputLabel>
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+									<output class="mdl-textfield__input" id="total">4266422</output>
+									<h:outputLabel class="mdl-textfield__label" for="total">Total: </h:outputLabel>
+								</h:panelGroup>
+								<div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+									<p:selectOneMenu id="formaPago" styleClass="mdl-selectfield__select" value="#{cotizacionController.idModalidadDePago}" title="Modalidades" pt:required="required">
+										<f:selectItem itemValue="" itemLabel="Seleccione" />
+										<f:selectItems value="#{cotizacionController.listaModalidadDePago}" var="moda" itemLabel="#{moda.descripcion}" itemValue="#{moda.idModalidadDePago}" />
+									</p:selectOneMenu>
+									<h:outputLabel class="mdl-selectfield__label" for="formaPago">Forma de pago</h:outputLabel>
+								</div>
+								<div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+									<p:selectOneMenu value="#{cotizacionController.idLugaresEntrega}" id="lugarEntrega" styleClass="mdl-selectfield__select" pt:required="required">
+										<f:selectItem itemValue="" itemLabel="Seleccione" />
+										<f:selectItems value="#{cotizacionController.listaLugaresEntrega}" var="lug" itemLabel="#{lug.descripcion}" itemValue="#{lug.idLugaresEntrega}"/>
+									</p:selectOneMenu>
+									<h:outputLabel class="mdl-selectfield__label" for="lugarEntrega">Lugar de entrega</h:outputLabel>
+								</div>
+								<div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+									<p:selectOneMenu styleClass="mdl-selectfield__select" value="#{cotizacionController.idDescuentoVolumen}" id="descuentoVolumen" pt:required="required">
+										<f:selectItem itemValue="" itemLabel="Seleccione" />
+										<f:selectItems value="#{cotizacionController.listaDescuentoVolumen}" var="desV" itemLabel="#{desV.descripcion}" itemValue="#{desV.idDescuentoVolumen}"/>
+									</p:selectOneMenu>
+									<h:outputLabel class="mdl-selectfield__label" for="descuentoVolumen">Descuento por volumen</h:outputLabel>
+								</div>
+								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" >
+									<p:inputText value="#{cotizacionController.cotizacion.validezOferta}" styleClass="mdl-textfield__input" pt:type="number" id="validezCotizacion" p:min="1" p:step="1" pt:required="true" />
+									<h:outputLabel class="mdl-textfield__label" for="validesCotizacion">Validez de la oferta: </h:outputLabel>
+								</div>
+								<div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+									<p:selectOneMenu styleClass="mdl-selectfield__select" value="#{cotizacionController.idTiempoEntrega}" id="tiempoEntrega" pt:required="required">
+										<f:selectItem itemValue="" itemLabel="Seleccione" />
+										<f:selectItems value="#{cotizacionController.listaTiempoEntrega}" var="tiemE" itemLabel="#{tiemE.descripcion}" itemValue="#{tiemE.idTiempoEntrega}"/>
+									</p:selectOneMenu>
+									<h:outputLabel class="mdl-selectfield__label" for="tiempoEntrega">Tiempo de entrega: </h:outputLabel>
+								</div>
+								<div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+									<p:selectOneMenu styleClass="mdl-selectfield__select" value="#{cotizacionController.idPropuestaNoIncluye}" id="ofertaNoIncluye" pt:required="required">
+										<f:selectItem itemValue="" itemLabel="Seleccione" />
+										<f:selectItems value="#{cotizacionController.listapropuestaNoIncluye}" var="proN" itemLabel="#{proN.descripcion}" itemValue="#{proN.idPropuestaNoIncluye}"/>
+									</p:selectOneMenu>
+									<h:outputLabel class="mdl-selectfield__label" for="ofertaNoIncluye">La oferta no incluye: </h:outputLabel>
+								</div>
 							</h:panelGroup>
-						</h:form>
+
+							<h3 class="mdl-typography--headline">Enviar la cotización</h3>
+							<h:outputLabel class="mdl-switch mdl-js-switch fullWidth" for="enviarCotizacion">
+								<input class="mdl-switch__input" type="checkbox" id="enviarCotizacion" />
+								<h:panelGroup class="mdl-switch__label">Enviar la cotización por correo electrónico</h:panelGroup>
+							</h:outputLabel>
+							<h:panelGroup layout="block" class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label fullWidth">
+								<select class="mdl-selectfield__select" id="formatoReporte" required="required">
+									<option value=""></option>
+									<option value="1">PDF</option>
+									<option value="2">Excel</option>
+								</select>
+								<h:outputLabel class="mdl-selectfield__label" for="lugarEntrega">Seleccione el formato de la cotización</h:outputLabel>
+							</h:panelGroup>
+							<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
+								<h:inputTextarea class="mdl-textfield__input" id="cuerpoMensaje" required="required" />
+								<h:outputLabel class="mdl-textfield__label" for="cuerpoMensaje">Cuerpo del mensaje a enviar:</h:outputLabel>
+							</h:panelGroup>
+							<h:panelGroup layout="block" class="buttons fullWidth">
+								<button id="mostrarCorreoEnviado" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">Enviar cotización</button>
+							</h:panelGroup>
 
 
-						<h3 class="mdl-typography--headline">Condiciones comerciales</h3>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<h:inputText class="mdl-textfield__input" pt:type="number" id="descuento" required="required" pt:min="0" pt:max="100" pt:step="0.01" value="15" />
-							<h:outputLabel class="mdl-textfield__label" for="descuento">Descuento:</h:outputLabel>
-						</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<output class="mdl-textfield__input" id="totalDescuento">649050</output>
-							<h:outputLabel class="mdl-textfield__label" for="totalDescuento">Total descuento:</h:outputLabel>
-						</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<h:inputText  class="mdl-textfield__input" pt:type="number" id="IVA" required="required" pt:min="0" pt:max="100" pt:step="0.01" value="19" />
-							<h:outputLabel class="mdl-textfield__label" for="IVA">IVA:</h:outputLabel>
-						</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<output class="mdl-textfield__input" id="totalIVA">588472</output>
-							<h:outputLabel class="mdl-textfield__label" for="totalIVA">Total IVA:</h:outputLabel>
-						</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<output class="mdl-textfield__input" id="subtotal">3677950</output>
-							<h:outputLabel class="mdl-textfield__label" for="subtotal">Subtotal: </h:outputLabel>
-						</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<output class="mdl-textfield__input" id="total">4266422</output>
-							<h:outputLabel class="mdl-textfield__label" for="total">Total: </h:outputLabel>
-						</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-							<select class="mdl-selectfield__select" id="formaPago" required="required">
-								<option value=""></option>
-								<option value="1">20% Anticipo 80% Contra entrega</option>
-								<option value="2">30% Anticipo 70% Contra entrega</option>
-								<option value="3">50% Anticipo 50% Contra entrega</option>
+							<h3 class="mdl-typography--headline">Seguimiento comercial</h3>
+							<h:panelGroup layout="block" class="buttons fullWidth">
+								<a href="#addNovedad" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm">Agregar novedad</a>
+								<a href="#addNovedad" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm">Modificar novedad</a>
+								<a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm">Eliminar novedad</a>
+							</h:panelGroup>
+							<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp fullWidth">
+								<thead>
+									<tr>
+										<th class="mdl-data-table__cell--non-numeric">Fecha</th>
+										<th class="mdl-data-table__cell--non-numeric">Observación</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="mdl-data-table__cell--non-numeric">16/03/2016</td>
+										<td class="mdl-data-table__cell--non-numeric">Se envía correo con diseños</td>
+									</tr>
+									<tr>
+										<td class="mdl-data-table__cell--non-numeric">22/03/2016</td>
+										<td class="mdl-data-table__cell--non-numeric">se envia cotizacion con precios reales por el material de fabricacion y diseño</td>
+									</tr>
+									<tr>
+										<td class="mdl-data-table__cell--non-numeric">28/03/2016</td>
+										<td class="mdl-data-table__cell--non-numeric">Se confirman precios</td>
+									</tr>
+								</tbody>
+							</table>
+							<h:panelGroup layout="block" class="buttons fullWidth">
+								<p:commandButton styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent notificacion" value="Enviar y realizar seguimiento" actionListener="#{cotizacionController.modificarCotización()}" id="reporte"/>
+								<h:commandButton class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" value="Realizar cierre efectivo" />
+							</h:panelGroup>
 
-							</select>
-							<h:outputLabel class="mdl-selectfield__label" for="formaPago">Forma de pago</h:outputLabel>
 						</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-							<select class="mdl-selectfield__select" id="lugarEntrega" required="required">
-								<option value=""></option>
-								<option value="1">Full Dotaciones (Cra 21 # 49 -11, Bogotá D.C.)</option>
-								<option value="2">En sus Instalaciones</option>
-								<option value="3">A convenir</option>
-								<option value="4">En sus Instalaciones (Para pedidos superiores a $500.000)</option>
-							</select>
-							<h:outputLabel class="mdl-selectfield__label" for="lugarEntrega">Lugar de entrega</h:outputLabel>
-						</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-							<select class="mdl-selectfield__select" id="descuentoVolumen" required="required">
-								<option value=""></option>
-								<option value="1">3% a partir de 12 unidades</option>
-								<option value="2">3% antes de IVA</option>
-								<option value="3">5% antes de IVA</option>
-								<option value="4">7% antes de IVA</option>
-								<option value="5">8% antes de IVA</option>
-								<option value="6">9% antes de IVA</option>
-								<option value="7">10% antes de IVA</option>
-								<option value="8">11% antes de IVA</option>
-								<option value="9">12% antes de IVA</option>
-								<option value="10">13% antes de IVA</option>
-
-								<option value="22">Incluido en precio cotizado</option>
-								<option value="23">Bordados tamaño frontal</option>
-							</select>
-							<h:outputLabel class="mdl-selectfield__label" for="descuentoVolumen">Descuento por volumen:</h:outputLabel>
-						</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<h:inputText class="mdl-textfield__input" pt:type="number" id="validezCotizacion" pt:min="1" pt:step="1" value="60" required="required" />
-							<h:outputLabel class="mdl-textfield__label" for="validesCotizacion">Validez de la oferta: </h:outputLabel>
-						</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-							<select class="mdl-selectfield__select" id="tiempoEntrega" required="required">
-								<option value=""></option>
-								<option value="1">1 días hábiles enviada orden de compra y validado anticipo</option>
-								<option value="2">2 días hábiles enviada orden de compra y validado anticipo</option>
-								<option value="3">3 días hábiles enviada orden de compra y validado anticipo</option>
-								<option value="4">4 días hábiles enviada orden de compra y validado anticipo</option>
-								<option value="5">5 días hábiles enviada orden de compra y validado anticipo</option>
-								<option value="6">6 días hábiles enviada orden de compra y validado anticipo</option>
-								<option value="7">7 días hábiles enviada orden de compra y validado anticipo</option>
-
-							</select>
-							<h:outputLabel class="mdl-selectfield__label" for="tiempoEntrega">Tiempo de entrega: </h:outputLabel>
-						</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-							<select class="mdl-selectfield__select" id="ofertaNoIncluye" required="required">
-								<option value=""></option>
-								<option value="1">Elementos no relacionados.</option>
-								<option value="2">Elementos no relacionados o fletes fuera de Bogotá</option>
-								<option value="3">Elementos no relacionados, fletes fuera de Bogotá, bordados o estampados.</option>
-							</select>
-							<h:outputLabel class="mdl-selectfield__label" for="ofertaNoIncluye">La oferta no incluye: </h:outputLabel>
-						</h:panelGroup>
-
-
-						<h3 class="mdl-typography--headline">Enviar la cotización</h3>
-						<h:outputLabel class="mdl-switch mdl-js-switch fullWidth" for="enviarCotizacion">
-							<input class="mdl-switch__input" type="checkbox" id="enviarCotizacion" />
-							<h:panelGroup class="mdl-switch__label">Enviar la cotización por correo electrónico</h:panelGroup>
-						</h:outputLabel>
-						<h:panelGroup layout="block" class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label fullWidth">
-							<select class="mdl-selectfield__select" id="formatoReporte" required="required">
-								<option value=""></option>
-								<option value="1">PDF</option>
-								<option value="2">Excel</option>
-							</select>
-							<h:outputLabel class="mdl-selectfield__label" for="lugarEntrega">Seleccione el formato de la cotización</h:outputLabel>
-						</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-							<h:inputTextarea class="mdl-textfield__input" id="cuerpoMensaje" required="required" />
-							<h:outputLabel class="mdl-textfield__label" for="cuerpoMensaje">Cuerpo del mensaje a enviar:</h:outputLabel>
-						</h:panelGroup>
-						<h:panelGroup layout="block" class="buttons fullWidth">
-							<button id="mostrarCorreoEnviado" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">Enviar cotización</button>
-						</h:panelGroup>
-
-
-						<h3 class="mdl-typography--headline">Seguimiento comercial</h3>
-						<h:panelGroup layout="block" class="buttons fullWidth">
-							<a href="#addNovedad" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm">Agregar novedad</a>
-							<a href="#addNovedad" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm">Modificar novedad</a>
-							<a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm">Eliminar novedad</a>
-						</h:panelGroup>
-						<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp fullWidth">
-							<thead>
-								<tr>
-									<th class="mdl-data-table__cell--non-numeric">Fecha</th>
-									<th class="mdl-data-table__cell--non-numeric">Observación</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td class="mdl-data-table__cell--non-numeric">16/03/2016</td>
-									<td class="mdl-data-table__cell--non-numeric">Se envía correo con diseños</td>
-								</tr>
-								<tr>
-									<td class="mdl-data-table__cell--non-numeric">22/03/2016</td>
-									<td class="mdl-data-table__cell--non-numeric">se envia cotizacion con precios reales por el material de fabricacion y diseño</td>
-								</tr>
-								<tr>
-									<td class="mdl-data-table__cell--non-numeric">28/03/2016</td>
-									<td class="mdl-data-table__cell--non-numeric">Se confirman precios</td>
-								</tr>
-							</tbody>
-						</table>
-						<h:panelGroup layout="block" class="buttons fullWidth">
-							<h:commandButton class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" value="Actualizar seguimiento" />
-							<h:commandButton class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" value="Realizar cierre efectivo" />
-						</h:panelGroup>
-
-
 					</h:form>
 					<p:dialog widgetVar="dlg2" id="articuloCotizar" closeOnEscape="true" draggable="false" >
 						<h:form id="frmAddArticulo" class="mdl-dialog">
